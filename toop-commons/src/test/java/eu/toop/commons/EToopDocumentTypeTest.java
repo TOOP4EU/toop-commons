@@ -15,6 +15,11 @@
  */
 package eu.toop.commons;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 /**
  * Test class for class {@link EToopDocumentType}.
  *
@@ -23,4 +28,10 @@ package eu.toop.commons;
 public final class EToopDocumentTypeTest
 {
   // dummy class
+  @Test
+  public void testDummy ()
+  {
+    assertTrue (true, "JUnit5 is working");
+    assertFalse (false, "JUnit5 is working");
+  }
 }
