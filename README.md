@@ -1,2 +1,2 @@
 # toop-commons
-Shared common components, codelists etc.
+Shared common TOOP components, codelists etc.
