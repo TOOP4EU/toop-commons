@@ -63,6 +63,13 @@
   
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>com.helger</groupId>
+        <artifactId>ph-commons-parent-pom</artifactId>
+        <version>9.0.1</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -92,5 +99,6 @@
   
   <modules>
     <module>toop-commons</module>
+    <module>toop-kafka-client</module>
   </modules>
 </project>
