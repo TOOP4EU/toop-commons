@@ -63,12 +63,25 @@
   
   <dependencyManagement>
     <dependencies>
+      <!-- Import all BOMs -->
       <dependency>
         <groupId>com.helger</groupId>
         <artifactId>ph-commons-parent-pom</artifactId>
         <version>9.0.1</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+      
+      <!-- predefined versions for all subprojects -->
+      <dependency>
+        <groupId>eu.toop</groupId>
+        <artifactId>toop-commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>eu.toop</groupId>
+        <artifactId>toop-kafka-client</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
