@@ -1,6 +1,35 @@
 # toop-commons
 Shared common TOOP components, codelists etc.
 
+# Development environment
+
+* Java 1.8 latest
+* Eclipse 4.7 latest (JEE version - with m2e and egit contained)
+* Apache Maven 3.x latest (only needed if building on the commandline is necessary)
+* git Commandline client latest (only needed if building on the commandline is necessary)
+
+Ensure the following environment variables are set (the values are just examples from my Windows machine)
+
+```
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_144
+M2_HOME=C:\tools\apache-maven-3.5.0
+```
+
+`PATH` must contain `%JAVA_HOME%/bin` and `%M2_HOME%/bin`
+
+If a proxy server is necessary, please make sure it is configured appropriately.
+
+## Import of a project in Eclipse
+
+* Start Eclipse
+* Adopt the path to your Git repositories (Window | Predeferences | Team | Git) - must be done once only
+* Choose the "git" perspective (right top)
+* Paste the URL `https://github.com/TOOP4EU/toop-commons.git` in the window labeled `Git Repositories`.
+  * Deselect the `Import projects` checkbox
+* Switch to the `Java` perspective
+* In the `Package Explorer` perform a right-mouse button click, choose `Import...`, open group `Maven`, select `Existing Maven Projects` and choose the local `toop-commons` folder as the base directory (the one including the hidden .git folder). 
+
+# Contained projects
 
 ## toop-kafka-client
 
