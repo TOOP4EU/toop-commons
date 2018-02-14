@@ -4,6 +4,7 @@ Shared common TOOP components, codelists etc.
 # Development environment
 
 * Java 1.8 latest
+  * At least 1.8.0_91 is needed, so that access to "https://repo.maven.apache.org" works, because in this version the "DigitCert Global Root CA" support was added
 * Eclipse 4.7 latest (JEE version - with m2e and egit contained)
 * Apache Maven 3.x latest (only needed if building on the commandline is necessary)
 * git Commandline client latest (only needed if building on the commandline is necessary)
