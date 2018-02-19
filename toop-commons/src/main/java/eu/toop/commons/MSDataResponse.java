@@ -7,9 +7,9 @@ package eu.toop.commons;
 import java.io.Serializable;
 
 public class MSDataResponse implements Serializable {
-    public String identifier;
+  public String identifier;
 
-    public MSDataResponse(String identifier) {
-        this.identifier = identifier;
-    }
+  public MSDataResponse(String identifier) {
+    this.identifier = identifier;
+  }
 }

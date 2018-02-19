@@ -7,9 +7,9 @@ package eu.toop.commons;
 import java.io.Serializable;
 
 public class ToopDataRequest implements Serializable {
-    public String identifier;
+  public String identifier;
 
-    public ToopDataRequest(String identifier) {
-        this.identifier = identifier;
-    }
+  public ToopDataRequest(String identifier) {
+    this.identifier = identifier;
+  }
 }

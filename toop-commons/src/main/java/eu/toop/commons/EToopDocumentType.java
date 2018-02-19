@@ -20,8 +20,7 @@ package eu.toop.commons;
  *
  * @author Philip Helger
  */
-public enum EToopDocumentType
-{
+public enum EToopDocumentType {
   @Deprecated
   DUMMY1
 }
