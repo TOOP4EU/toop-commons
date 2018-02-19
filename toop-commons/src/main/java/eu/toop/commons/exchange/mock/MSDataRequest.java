@@ -11,6 +11,7 @@ import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.mime.CMimeType;
 import com.helger.commons.mime.IMimeType;
+import com.helger.commons.string.ToStringGenerator;
 import com.helger.xml.microdom.IMicroDocument;
 import com.helger.xml.microdom.IMicroElement;
 import com.helger.xml.microdom.MicroDocument;
@@ -70,6 +71,12 @@ public class MSDataRequest implements IMSDataRequest {
     aElement.appendElement("identifier").appendText(_identifier);
 
     return new NonBlockingByteArrayInputStream(MicroWriter.getNodeAsBytes(aDoc));
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringGenerator(this).append("CountryCode", _countryCode).append("DocTypeID", _docTypeID)
+        .append("Identifier", _identifier).getToString();
   }
 
   @Nonnull
