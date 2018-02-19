@@ -37,59 +37,50 @@ import com.helger.commons.concurrent.SimpleReadWriteLock;
  *
  * @author Philip Helger
  */
-final class ToopKafkaManager
-{
-  private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock ();
-  @GuardedBy ("s_aRWLock")
-  private static KafkaProducer <String, String> s_aProducer;
+final class ToopKafkaManager {
+  private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock();
+  @GuardedBy("s_aRWLock")
+  private static KafkaProducer<String, String> s_aProducer;
 
-  private ToopKafkaManager ()
-  {}
+  private ToopKafkaManager() {
+  }
 
   @Nonnull
   @ReturnsMutableObject
-  private static Properties _getCreationProperties ()
-  {
-    final Properties aProps = new Properties ();
+  private static Properties _getCreationProperties() {
+    final Properties aProps = new Properties();
     // Instead of 16K
     if (true)
-      aProps.put ("batch.size", "1");
+      aProps.put("batch.size", "1");
     // Server URL
-    aProps.put ("bootstrap.servers", "localhost:9092");
+    aProps.put("bootstrap.servers", "localhost:9092");
     // Default: 60secs
-    aProps.put ("max.block.ms", "5000");
+    aProps.put("max.block.ms", "5000");
     return aProps;
   }
 
   /**
-   * Init the global {@link KafkaProducer} - must be called once before the
-   * first message is logged. This is only invoked internally.
+   * Init the global {@link KafkaProducer} - must be called once before the first
+   * message is logged. This is only invoked internally.
    *
    * @return The non-<code>null</code> producer to be used.
    */
   @Nonnull
-  public static KafkaProducer <String, String> getOrCreateProducer ()
-  {
+  public static KafkaProducer<String, String> getOrCreateProducer() {
     // Read-lock first
-    KafkaProducer <String, String> ret = s_aRWLock.readLocked ( () -> s_aProducer);
-    if (ret == null)
-    {
-      s_aRWLock.writeLock ().lock ();
-      try
-      {
+    KafkaProducer<String, String> ret = s_aRWLock.readLocked(() -> s_aProducer);
+    if (ret == null) {
+      s_aRWLock.writeLock().lock();
+      try {
         // Try again in write lock
         ret = s_aProducer;
-        if (ret == null)
-        {
+        if (ret == null) {
           // Create new one
-          s_aProducer = ret = new KafkaProducer <> (_getCreationProperties (),
-                                                    new StringSerializer (),
-                                                    new StringSerializer ());
+          s_aProducer = ret = new KafkaProducer<>(_getCreationProperties(), new StringSerializer(),
+              new StringSerializer());
         }
-      }
-      finally
-      {
-        s_aRWLock.writeLock ().unlock ();
+      } finally {
+        s_aRWLock.writeLock().unlock();
       }
     }
     return ret;
@@ -99,12 +90,10 @@ final class ToopKafkaManager
    * Shutdown the global {@link KafkaProducer}. This method can be called
    * independent of the initialization state.
    */
-  public static void shutdown ()
-  {
-    s_aRWLock.writeLocked ( () -> {
-      if (s_aProducer != null)
-      {
-        s_aProducer.close ();
+  public static void shutdown() {
+    s_aRWLock.writeLocked(() -> {
+      if (s_aProducer != null) {
+        s_aProducer.close();
         s_aProducer = null;
       }
     });
@@ -112,28 +101,26 @@ final class ToopKafkaManager
 
   /**
    * Main sending of a message. Since the send call is asynchronous it returns a
-   * Future for the RecordMetadata that will be assigned to this record.
-   * Invoking get() on this future will block until the associated request
-   * completes and then return the metadata for the record or throw any
-   * exception that occurred while sending the record.
+   * Future for the RecordMetadata that will be assigned to this record. Invoking
+   * get() on this future will block until the associated request completes and
+   * then return the metadata for the record or throw any exception that occurred
+   * while sending the record.
    *
    * @param sKey
-   *        Key to be send. May not be <code>null</code>.
+   *          Key to be send. May not be <code>null</code>.
    * @param sValue
-   *        Value to be send. May not be <code>null</code>.
+   *          Value to be send. May not be <code>null</code>.
    * @param aKafkaCallback
-   *        Optional Kafka callback
+   *          Optional Kafka callback
    * @return The {@link Future} with the details on message receipt
    */
   @Nonnull
-  public static Future <RecordMetadata> send (@Nonnull final String sKey,
-                                              @Nonnull final String sValue,
-                                              @Nullable final Callback aKafkaCallback)
-  {
-    ValueEnforcer.notNull (sKey, "Key");
-    ValueEnforcer.notNull (sValue, "Value");
+  public static Future<RecordMetadata> send(@Nonnull final String sKey, @Nonnull final String sValue,
+      @Nullable final Callback aKafkaCallback) {
+    ValueEnforcer.notNull(sKey, "Key");
+    ValueEnforcer.notNull(sValue, "Value");
 
-    final ProducerRecord <String, String> aMessage = new ProducerRecord <> ("toop", sKey, sValue);
-    return getOrCreateProducer ().send (aMessage, aKafkaCallback);
+    final ProducerRecord<String, String> aMessage = new ProducerRecord<>("toop", sKey, sValue);
+    return getOrCreateProducer().send(aMessage, aKafkaCallback);
   }
 }
