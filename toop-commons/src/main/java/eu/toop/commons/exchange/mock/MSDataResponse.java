@@ -15,20 +15,20 @@ import eu.toop.commons.exchange.IMSDataResponse;
  * @author Anton
  */
 @Deprecated
-@DevelopersNote("Mock class")
+@DevelopersNote ("Mock class")
 public class MSDataResponse implements IMSDataResponse, IMockDataElement {
   private final String _identifier;
 
-  public MSDataResponse(final String identifier) {
+  public MSDataResponse (final String identifier) {
     _identifier = identifier;
   }
 
-  public String getIdentifier() {
+  public String getIdentifier () {
     return _identifier;
   }
 
   @Nonnull
-  public static Function<byte[], MSDataResponse> getDeserializerFunction() {
+  public static Function<byte[], MSDataResponse> getDeserializerFunction () {
     return SerializationHelper::getDeserializedObject;
   }
 }

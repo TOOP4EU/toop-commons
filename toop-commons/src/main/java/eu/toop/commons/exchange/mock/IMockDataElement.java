@@ -19,15 +19,15 @@ import eu.toop.commons.exchange.IToopDataElement;
  * @author Philip Helger
  */
 @Deprecated
-@DevelopersNote("Mock class")
+@DevelopersNote ("Mock class")
 public interface IMockDataElement extends IToopDataElement {
   @Nonnull
-  default IMimeType getMimeType() {
+  default IMimeType getMimeType () {
     return CMimeType.APPLICATION_OCTET_STREAM;
   }
 
   @Nonnull
-  default InputStream getAsSerializedVersion() {
+  default InputStream getAsSerializedVersion () {
     final byte[] aData = SerializationHelper.getSerializedByteArray(this);
     return new NonBlockingByteArrayInputStream(aData);
   }

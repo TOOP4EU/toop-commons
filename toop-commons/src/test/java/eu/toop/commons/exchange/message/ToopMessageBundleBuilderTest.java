@@ -22,21 +22,21 @@ import eu.toop.commons.exchange.mock.MSDataResponse;
 import eu.toop.commons.exchange.mock.ToopDataRequest;
 import eu.toop.commons.exchange.mock.ToopDataResponse;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings ("deprecation")
 public final class ToopMessageBundleBuilderTest {
-  private static final SignatureHelper SH = new SignatureHelper(
-      FileHelper.getInputStream(new File("src/test/resources/demo-keystore.jks")), "password", null, "password");
+  private static final SignatureHelper SH = new SignatureHelper(FileHelper.getInputStream(new File("src/test/resources/demo-keystore.jks")),
+                                                                "password", null, "password");
 
   @Test
-  public void testRequestMessage() throws IOException {
+  public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream()) {
       ToopMessageBuilder.createRequestMessage(new MSDataRequest("SE", "docTypeID1", "procID2", false, "ABC123"),
-          archiveOutput, SH);
+                                              archiveOutput, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream()) {
         // Read ASIC again
         final ToopRequestMessage bundleRead = ToopMessageBuilder.parseRequestMessage(archiveInput,
-            MSDataRequest.getDeserializerFunction());
+                                                                                     MSDataRequest.getDeserializerFunction());
         assertNotNull(bundleRead);
 
         assertTrue(bundleRead.getMSDataRequest() instanceof MSDataRequest);
@@ -52,17 +52,19 @@ public final class ToopMessageBundleBuilderTest {
   }
 
   @Test
-  public void testResponseMessage() throws IOException {
+  public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream()) {
       ToopMessageBuilder.createResponseMessage(new MSDataRequest("SE", "docTypeID1", "procID2", false, "ABC123"),
-          new ToopDataRequest("DEF456"), new MSDataResponse("AAA111"), new ToopDataResponse("BBB222"), archiveOutput,
-          SH);
+                                               new ToopDataRequest("DEF456"), new MSDataResponse("AAA111"),
+                                               new ToopDataResponse("BBB222"), archiveOutput, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream()) {
         // Read ASIC again
         final ToopResponseMessage bundleRead = ToopMessageBuilder.parseResponseMessage(archiveInput,
-            MSDataRequest.getDeserializerFunction(), ToopDataRequest.getDeserializerFunction(),
-            MSDataResponse.getDeserializerFunction(), ToopDataResponse.getDeserializerFunction());
+                                                                                       MSDataRequest.getDeserializerFunction(),
+                                                                                       ToopDataRequest.getDeserializerFunction(),
+                                                                                       MSDataResponse.getDeserializerFunction(),
+                                                                                       ToopDataResponse.getDeserializerFunction());
         assertNotNull(bundleRead);
 
         assertTrue(bundleRead.getMSDataRequest() instanceof MSDataRequest);
@@ -77,18 +79,18 @@ public final class ToopMessageBundleBuilderTest {
         assertFalse(aMSReq.isProduction());
         assertEquals(aMSReq.getIdentifier(), "ABC123");
         assertEquals(((ToopDataRequest) bundleRead.getToopDataRequest()).getIdentifier(), "DEF456",
-            "ToopDataRequest did not arrive safely");
+                     "ToopDataRequest did not arrive safely");
         assertEquals(((MSDataResponse) bundleRead.getMSDataResponse()).getIdentifier(), "AAA111",
-            "MSDataResponse did not arrive safely");
+                     "MSDataResponse did not arrive safely");
         assertEquals(((ToopDataResponse) bundleRead.getToopDataResponse()).getIdentifier(), "BBB222",
-            "MSDataResponse did not arrive safely");
+                     "MSDataResponse did not arrive safely");
       }
     }
   }
 
   @Test
-  @SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-  public void testEmpty() throws IOException {
+  @SuppressFBWarnings ("NP_NONNULL_PARAM_VIOLATION")
+  public void testEmpty () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream()) {
       // No data
       ToopMessageBuilder.createRequestMessage(null, archiveOutput, SH);

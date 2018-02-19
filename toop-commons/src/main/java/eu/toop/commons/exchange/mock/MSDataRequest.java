@@ -27,7 +27,7 @@ import eu.toop.commons.exchange.IMSDataRequest;
  * @author Anton
  */
 @Deprecated
-@DevelopersNote("Mock class")
+@DevelopersNote ("Mock class")
 public class MSDataRequest implements IMSDataRequest {
   private final String _countryCode;
   private final String _docTypeID;
@@ -35,8 +35,9 @@ public class MSDataRequest implements IMSDataRequest {
   private final boolean _isProduction;
   private final String _identifier;
 
-  public MSDataRequest(@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
-      @Nonnull @Nonempty final String sProcessID, final boolean bIsProduction, final String identifier) {
+  public MSDataRequest (@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
+                        @Nonnull @Nonempty final String sProcessID, final boolean bIsProduction,
+                        final String identifier) {
     ValueEnforcer.notEmpty(sCountryCode, "CountryCode");
     ValueEnforcer.notEmpty(sDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notEmpty(sProcessID, "ProcessID");
@@ -49,36 +50,36 @@ public class MSDataRequest implements IMSDataRequest {
 
   @Nonnull
   @Nonempty
-  public String getDestinationCountryCode() {
+  public String getDestinationCountryCode () {
     return _countryCode;
   }
 
   @Nonnull
   @Nonempty
-  public String getDocumentTypeID() {
+  public String getDocumentTypeID () {
     return _docTypeID;
   }
 
   @Nonnull
   @Nonempty
-  public String getProcessID() {
+  public String getProcessID () {
     return _processID;
   }
 
-  public boolean isProduction() {
+  public boolean isProduction () {
     return _isProduction;
   }
 
-  public String getIdentifier() {
+  public String getIdentifier () {
     return _identifier;
   }
 
-  public IMimeType getMimeType() {
+  public IMimeType getMimeType () {
     return CMimeType.APPLICATION_XML;
   }
 
   @Nonnull
-  public InputStream getAsSerializedVersion() {
+  public InputStream getAsSerializedVersion () {
     final IMicroDocument aDoc = new MicroDocument();
     final IMicroElement aElement = aDoc.appendElement("ms-request");
     aElement.setAttribute("production", _isProduction);
@@ -91,14 +92,14 @@ public class MSDataRequest implements IMSDataRequest {
   }
 
   @Override
-  public String toString() {
+  public String toString () {
     return new ToStringGenerator(this).append("CountryCode", _countryCode).append("DocTypeID", _docTypeID)
-        .append("ProcessID", _processID).append("Production", _isProduction).append("Identifier", _identifier)
-        .getToString();
+                                      .append("ProcessID", _processID).append("Production", _isProduction)
+                                      .append("Identifier", _identifier).getToString();
   }
 
   @Nonnull
-  public static Function<byte[], MSDataRequest> getDeserializerFunction() {
+  public static Function<byte[], MSDataRequest> getDeserializerFunction () {
     return x -> {
       final IMicroDocument aDoc = MicroReader.readMicroXML(x);
       if (aDoc != null) {

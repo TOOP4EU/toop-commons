@@ -20,7 +20,7 @@ public interface IToopDataElement extends Serializable {
    * @see #getAsSerializedVersion()
    */
   @Nonnull
-  IMimeType getMimeType();
+  IMimeType getMimeType ();
 
   /**
    *
@@ -30,5 +30,5 @@ public interface IToopDataElement extends Serializable {
    * @see #getMimeType()
    */
   @Nonnull
-  InputStream getAsSerializedVersion();
+  InputStream getAsSerializedVersion ();
 }

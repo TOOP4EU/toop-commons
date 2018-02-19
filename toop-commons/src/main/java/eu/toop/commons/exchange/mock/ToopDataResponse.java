@@ -15,20 +15,20 @@ import eu.toop.commons.exchange.IToopDataResponse;
  * @author Anton
  */
 @Deprecated
-@DevelopersNote("Mock class")
+@DevelopersNote ("Mock class")
 public class ToopDataResponse implements IToopDataResponse, IMockDataElement {
   private final String _identifier;
 
-  public ToopDataResponse(final String identifier) {
+  public ToopDataResponse (final String identifier) {
     _identifier = identifier;
   }
 
-  public String getIdentifier() {
+  public String getIdentifier () {
     return _identifier;
   }
 
   @Nonnull
-  public static Function<byte[], ToopDataResponse> getDeserializerFunction() {
+  public static Function<byte[], ToopDataResponse> getDeserializerFunction () {
     return SerializationHelper::getDeserializedObject;
   }
 }

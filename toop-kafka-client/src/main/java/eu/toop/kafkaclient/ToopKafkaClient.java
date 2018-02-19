@@ -22,7 +22,7 @@ public final class ToopKafkaClient {
    * @param bEnabled
    *          <code>true</code> to enable, <code>false</code> to disable.
    */
-  public static void setEnabled(final boolean bEnabled) {
+  public static void setEnabled (final boolean bEnabled) {
     s_aEnabled.set(bEnabled);
     s_aLogger.info("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
   }
@@ -31,7 +31,7 @@ public final class ToopKafkaClient {
    * @return <code>true</code> if client is enabled, <code>false</code> if not. By
    *         default is is disabled.
    */
-  public static boolean isEnabled() {
+  public static boolean isEnabled () {
     return s_aEnabled.get();
   }
 
@@ -44,7 +44,7 @@ public final class ToopKafkaClient {
    *          Value to send. May not be <code>null</code>.
    * @see #isEnabled()
    */
-  public static void send(@Nonnull final String sKey, @Nonnull final String sValue) {
+  public static void send (@Nonnull final String sKey, @Nonnull final String sValue) {
     if (isEnabled()) {
       s_aLogger.info("Sending to Kafka: '" + sKey + "' / '" + sValue + "'");
 
@@ -59,7 +59,7 @@ public final class ToopKafkaClient {
    *
    * @see #isEnabled()
    */
-  public static void close() {
+  public static void close () {
     if (isEnabled()) {
       ToopKafkaManager.shutdown();
       s_aLogger.info("Successfully shutdown Kafka client");

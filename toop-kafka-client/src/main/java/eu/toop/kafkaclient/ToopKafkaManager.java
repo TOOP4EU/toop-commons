@@ -39,15 +39,15 @@ import com.helger.commons.concurrent.SimpleReadWriteLock;
  */
 final class ToopKafkaManager {
   private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock();
-  @GuardedBy("s_aRWLock")
+  @GuardedBy ("s_aRWLock")
   private static KafkaProducer<String, String> s_aProducer;
 
-  private ToopKafkaManager() {
+  private ToopKafkaManager () {
   }
 
   @Nonnull
   @ReturnsMutableObject
-  private static Properties _getCreationProperties() {
+  private static Properties _getCreationProperties () {
     final Properties aProps = new Properties();
     // Instead of 16K
     if (true)
@@ -66,9 +66,9 @@ final class ToopKafkaManager {
    * @return The non-<code>null</code> producer to be used.
    */
   @Nonnull
-  public static KafkaProducer<String, String> getOrCreateProducer() {
+  public static KafkaProducer<String, String> getOrCreateProducer () {
     // Read-lock first
-    KafkaProducer<String, String> ret = s_aRWLock.readLocked(() -> s_aProducer);
+    KafkaProducer<String, String> ret = s_aRWLock.readLocked( () -> s_aProducer);
     if (ret == null) {
       s_aRWLock.writeLock().lock();
       try {
@@ -77,7 +77,7 @@ final class ToopKafkaManager {
         if (ret == null) {
           // Create new one
           s_aProducer = ret = new KafkaProducer<>(_getCreationProperties(), new StringSerializer(),
-              new StringSerializer());
+                                                  new StringSerializer());
         }
       } finally {
         s_aRWLock.writeLock().unlock();
@@ -90,8 +90,8 @@ final class ToopKafkaManager {
    * Shutdown the global {@link KafkaProducer}. This method can be called
    * independent of the initialization state.
    */
-  public static void shutdown() {
-    s_aRWLock.writeLocked(() -> {
+  public static void shutdown () {
+    s_aRWLock.writeLocked( () -> {
       if (s_aProducer != null) {
         s_aProducer.close();
         s_aProducer = null;
@@ -115,8 +115,8 @@ final class ToopKafkaManager {
    * @return The {@link Future} with the details on message receipt
    */
   @Nonnull
-  public static Future<RecordMetadata> send(@Nonnull final String sKey, @Nonnull final String sValue,
-      @Nullable final Callback aKafkaCallback) {
+  public static Future<RecordMetadata> send (@Nonnull final String sKey, @Nonnull final String sValue,
+                                             @Nullable final Callback aKafkaCallback) {
     ValueEnforcer.notNull(sKey, "Key");
     ValueEnforcer.notNull(sValue, "Value");
 

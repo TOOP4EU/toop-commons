@@ -21,29 +21,29 @@ public class ToopResponseMessage extends ToopRequestMessage {
   private IToopDataResponse _toopDataResponse;
 
   @Nullable
-  public IToopDataRequest getToopDataRequest() {
+  public IToopDataRequest getToopDataRequest () {
     return _toopDataRequest;
   }
 
-  public void setToopDataRequest(@Nullable final IToopDataRequest toopDataRequest) {
+  public void setToopDataRequest (@Nullable final IToopDataRequest toopDataRequest) {
     _toopDataRequest = toopDataRequest;
   }
 
   @Nullable
-  public IMSDataResponse getMSDataResponse() {
+  public IMSDataResponse getMSDataResponse () {
     return _msDataResponse;
   }
 
-  public void setMSDataResponse(@Nullable final IMSDataResponse msDataResponse) {
+  public void setMSDataResponse (@Nullable final IMSDataResponse msDataResponse) {
     _msDataResponse = msDataResponse;
   }
 
   @Nullable
-  public IToopDataResponse getToopDataResponse() {
+  public IToopDataResponse getToopDataResponse () {
     return _toopDataResponse;
   }
 
-  public void setToopDataResponse(@Nullable final IToopDataResponse toopDataResponse) {
+  public void setToopDataResponse (@Nullable final IToopDataResponse toopDataResponse) {
     _toopDataResponse = toopDataResponse;
   }
 }

@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
  */
 public final class ToopKafkaClientTest {
   @Test
-  public void testBasic() {
+  public void testBasic () {
     try {
       ToopKafkaClient.setEnabled(true);
       // Don't send too many - will take forever if no Kafka server is up and

@@ -18,7 +18,7 @@ public interface IMSDataRequest extends IToopDataElement {
    */
   @Nonnull
   @Nonempty
-  String getDestinationCountryCode();
+  String getDestinationCountryCode ();
 
   /**
    * @return The document type ID that is e.g. used in R2D2 for endpoint
@@ -26,19 +26,19 @@ public interface IMSDataRequest extends IToopDataElement {
    */
   @Nonnull
   @Nonempty
-  String getDocumentTypeID();
+  String getDocumentTypeID ();
 
   /**
    * @return The process ID that is e.g. used in R2D2 for endpoint discovery.
    */
   @Nonnull
   @Nonempty
-  String getProcessID();
+  String getProcessID ();
 
   /**
    *
    * @return <code>true</code> if this is a production message, <code>false</code>
    *         if it is a test message.
    */
-  boolean isProduction();
+  boolean isProduction ();
 }

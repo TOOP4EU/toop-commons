@@ -30,11 +30,11 @@ public final class ToopMessageBuilder {
   public static final String ENTRY_NAME_MS_DATA_RESPONSE = "MSDataResponse";
   public static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPDataResponse";
 
-  private ToopMessageBuilder() {
+  private ToopMessageBuilder () {
   }
 
-  public static void createRequestMessage(@Nonnull final IMSDataRequest msDataRequest, @Nonnull final OutputStream aOS,
-      @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+  public static void createRequestMessage (@Nonnull final IMSDataRequest msDataRequest, @Nonnull final OutputStream aOS,
+                                           @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
     ValueEnforcer.notNull(msDataRequest, "msDataRequest");
     ValueEnforcer.notNull(aOS, "ArchiveOutput");
     ValueEnforcer.notNull(aSigHelper, "SignatureHelper");
@@ -45,10 +45,12 @@ public final class ToopMessageBuilder {
     asicWriter.sign(aSigHelper);
   }
 
-  public static void createResponseMessage(@Nonnull final IMSDataRequest msDataRequest,
-      @Nonnull final IToopDataRequest toopDataRequest, @Nonnull final IMSDataResponse msDataResponse,
-      @Nonnull final IToopDataResponse toopDataResponse, @Nonnull final OutputStream aOS,
-      @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+  public static void createResponseMessage (@Nonnull final IMSDataRequest msDataRequest,
+                                            @Nonnull final IToopDataRequest toopDataRequest,
+                                            @Nonnull final IMSDataResponse msDataResponse,
+                                            @Nonnull final IToopDataResponse toopDataResponse,
+                                            @Nonnull final OutputStream aOS,
+                                            @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
     ValueEnforcer.notNull(msDataRequest, "msDataRequest");
     ValueEnforcer.notNull(toopDataRequest, "toopDataRequest");
     ValueEnforcer.notNull(msDataResponse, "msDataResponse");
@@ -60,10 +62,10 @@ public final class ToopMessageBuilder {
     final IAsicWriter asicWriter = asicWriterFactory.newContainer(aOS);
     asicWriter.add(msDataRequest.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_REQUEST, msDataRequest.getMimeType());
     asicWriter.add(toopDataRequest.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_REQUEST,
-        toopDataRequest.getMimeType());
+                   toopDataRequest.getMimeType());
     asicWriter.add(msDataResponse.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_RESPONSE, msDataResponse.getMimeType());
     asicWriter.add(toopDataResponse.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_RESPONSE,
-        toopDataResponse.getMimeType());
+                   toopDataResponse.getMimeType());
     asicWriter.sign(aSigHelper);
   }
 
@@ -82,8 +84,8 @@ public final class ToopMessageBuilder {
    */
   @Nonnull
   @ReturnsMutableObject
-  public static ToopRequestMessage parseRequestMessage(@Nonnull @WillClose final InputStream archiveInput,
-      @Nonnull final Function<byte[], ? extends IMSDataRequest> aDecryptorMSDataRequest) throws IOException {
+  public static ToopRequestMessage parseRequestMessage (@Nonnull @WillClose final InputStream archiveInput,
+                                                        @Nonnull final Function<byte[], ? extends IMSDataRequest> aDecryptorMSDataRequest) throws IOException {
     ValueEnforcer.notNull(archiveInput, "archiveInput");
     ValueEnforcer.notNull(aDecryptorMSDataRequest, "aDecryptorMSDataRequest");
 
@@ -128,11 +130,11 @@ public final class ToopMessageBuilder {
    */
   @Nonnull
   @ReturnsMutableObject
-  public static ToopResponseMessage parseResponseMessage(@Nonnull @WillClose final InputStream archiveInput,
-      @Nonnull final Function<byte[], ? extends IMSDataRequest> aDecryptorMSDataRequest,
-      @Nonnull final Function<byte[], ? extends IToopDataRequest> aDecryptorToopDataRequest,
-      @Nonnull final Function<byte[], ? extends IMSDataResponse> aDecryptorMSDataResponse,
-      @Nonnull final Function<byte[], ? extends IToopDataResponse> aDecryptorToopDataResponse) throws IOException {
+  public static ToopResponseMessage parseResponseMessage (@Nonnull @WillClose final InputStream archiveInput,
+                                                          @Nonnull final Function<byte[], ? extends IMSDataRequest> aDecryptorMSDataRequest,
+                                                          @Nonnull final Function<byte[], ? extends IToopDataRequest> aDecryptorToopDataRequest,
+                                                          @Nonnull final Function<byte[], ? extends IMSDataResponse> aDecryptorMSDataResponse,
+                                                          @Nonnull final Function<byte[], ? extends IToopDataResponse> aDecryptorToopDataResponse) throws IOException {
     ValueEnforcer.notNull(archiveInput, "archiveInput");
     ValueEnforcer.notNull(aDecryptorMSDataRequest, "aDecryptorMSDataRequest");
     ValueEnforcer.notNull(aDecryptorToopDataRequest, "aDecryptorToopDataRequest");
