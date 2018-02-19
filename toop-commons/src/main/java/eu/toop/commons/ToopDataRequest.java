@@ -1,15 +1,15 @@
 package eu.toop.commons;
 
-/*
- * A Mockup TOOPDataRequest
- */
-
 import java.io.Serializable;
 
 public class ToopDataRequest implements Serializable {
-  public String identifier;
+  private final String _identifier;
 
-  public ToopDataRequest(String identifier) {
-    this.identifier = identifier;
+  public ToopDataRequest(final String identifier) {
+    _identifier = identifier;
+  }
+
+  public String getIdentifier() {
+    return _identifier;
   }
 }

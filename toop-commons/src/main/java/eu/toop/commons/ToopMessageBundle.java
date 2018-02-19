@@ -1,45 +1,51 @@
 package eu.toop.commons;
 
-/*
+import java.io.Serializable;
+
+import javax.annotation.Nullable;
+
+/**
  * A Mockup TOOPMessageBundle
  */
+public class ToopMessageBundle implements Serializable {
+  private MSDataRequest _msDataRequest;
+  private MSDataResponse _msDataResponse;
+  private ToopDataRequest _toopDataRequest;
+  private ToopDataResponse _toopDataResponse;
 
-public class ToopMessageBundle {
-
-  private MSDataRequest msDataRequest;
-  private MSDataResponse msDataResponse;
-  private ToopDataRequest toopDataRequest;
-  private ToopDataResponse toopDataResponse;
-
+  @Nullable
   public MSDataRequest getMsDataRequest() {
-    return msDataRequest;
+    return _msDataRequest;
   }
 
-  public void setMsDataRequest(MSDataRequest msDataRequest) {
-    this.msDataRequest = msDataRequest;
+  public void setMsDataRequest(@Nullable final MSDataRequest msDataRequest) {
+    _msDataRequest = msDataRequest;
   }
 
+  @Nullable
   public MSDataResponse getMsDataResponse() {
-    return msDataResponse;
+    return _msDataResponse;
   }
 
-  public void setMsDataResponse(MSDataResponse msDataResponse) {
-    this.msDataResponse = msDataResponse;
+  public void setMsDataResponse(@Nullable final MSDataResponse msDataResponse) {
+    _msDataResponse = msDataResponse;
   }
 
+  @Nullable
   public ToopDataRequest getToopDataRequest() {
-    return toopDataRequest;
+    return _toopDataRequest;
   }
 
-  public void setToopDataRequest(ToopDataRequest toopDataRequest) {
-    this.toopDataRequest = toopDataRequest;
+  public void setToopDataRequest(@Nullable final ToopDataRequest toopDataRequest) {
+    _toopDataRequest = toopDataRequest;
   }
 
+  @Nullable
   public ToopDataResponse getToopDataResponse() {
-    return toopDataResponse;
+    return _toopDataResponse;
   }
 
-  public void setToopDataResponse(ToopDataResponse toopDataResponse) {
-    this.toopDataResponse = toopDataResponse;
+  public void setToopDataResponse(@Nullable final ToopDataResponse toopDataResponse) {
+    _toopDataResponse = toopDataResponse;
   }
 }

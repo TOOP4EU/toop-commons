@@ -1,6 +1,6 @@
 package eu.toop.commons;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,13 +25,14 @@ public class ToopMessageBundleBuilderTest {
       archiveOutput.flush();
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream()) {
-        final ToopMessageBundle bundleRead = new ToopMessageBundleBuilder().parse(archiveInput);
+        // Read ASIC again
+        final ToopMessageBundle bundleRead = ToopMessageBundleBuilder.parse(archiveInput);
 
-        assertTrue(bundleRead.getMsDataRequest().identifier.equals("ABC123"), "MSDataRequest did not arrive safely");
-        assertTrue(bundleRead.getToopDataRequest().identifier.equals("DEF456"),
+        assertEquals(bundleRead.getMsDataRequest().getIdentifier(), "ABC123", "MSDataRequest did not arrive safely");
+        assertEquals(bundleRead.getToopDataRequest().getIdentifier(), "DEF456",
             "ToopDataRequest did not arrive safely");
-        assertTrue(bundleRead.getMsDataResponse().identifier.equals("AAA111"), "MSDataResponse did not arrive safely");
-        assertTrue(bundleRead.getToopDataResponse().identifier.equals("BBB222"),
+        assertEquals(bundleRead.getMsDataResponse().getIdentifier(), "AAA111", "MSDataResponse did not arrive safely");
+        assertEquals(bundleRead.getToopDataResponse().getIdentifier(), "BBB222",
             "MSDataResponse did not arrive safely");
       }
     }

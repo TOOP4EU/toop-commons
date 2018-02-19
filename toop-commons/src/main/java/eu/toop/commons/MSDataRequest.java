@@ -1,15 +1,15 @@
 package eu.toop.commons;
 
-/*
- * A Mockup MSDataRequest
- */
-
 import java.io.Serializable;
 
 public class MSDataRequest implements Serializable {
-  public String identifier;
+  private final String _identifier;
 
-  public MSDataRequest(String identifier) {
-    this.identifier = identifier;
+  public MSDataRequest(final String identifier) {
+    _identifier = identifier;
+  }
+
+  public String getIdentifier() {
+    return _identifier;
   }
 }

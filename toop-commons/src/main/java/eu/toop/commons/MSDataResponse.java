@@ -1,15 +1,15 @@
 package eu.toop.commons;
 
-/*
- * A Mockup MSDataResponse
- */
-
 import java.io.Serializable;
 
 public class MSDataResponse implements Serializable {
-  public String identifier;
+  private final String _identifier;
 
-  public MSDataResponse(String identifier) {
-    this.identifier = identifier;
+  public MSDataResponse(final String identifier) {
+    _identifier = identifier;
+  }
+
+  public String getIdentifier() {
+    return _identifier;
   }
 }
