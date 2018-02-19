@@ -1,6 +1,7 @@
 package eu.toop.commons.exchange.message;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -29,7 +30,8 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testRequestMessage() throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream()) {
-      ToopMessageBuilder.createRequestMessage(new MSDataRequest("SE", "docTypeID1", "ABC123"), archiveOutput, SH);
+      ToopMessageBuilder.createRequestMessage(new MSDataRequest("SE", "docTypeID1", "procID2", false, "ABC123"),
+          archiveOutput, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream()) {
         // Read ASIC again
@@ -42,6 +44,8 @@ public final class ToopMessageBundleBuilderTest {
         final MSDataRequest aMSReq = (MSDataRequest) bundleRead.getMSDataRequest();
         assertEquals(aMSReq.getDestinationCountryCode(), "SE");
         assertEquals(aMSReq.getDocumentTypeID(), "docTypeID1");
+        assertEquals(aMSReq.getProcessID(), "procID2");
+        assertFalse(aMSReq.isProduction());
         assertEquals(aMSReq.getIdentifier(), "ABC123");
       }
     }
@@ -50,7 +54,7 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testResponseMessage() throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream()) {
-      ToopMessageBuilder.createResponseMessage(new MSDataRequest("SE", "docTypeID1", "ABC123"),
+      ToopMessageBuilder.createResponseMessage(new MSDataRequest("SE", "docTypeID1", "procID2", false, "ABC123"),
           new ToopDataRequest("DEF456"), new MSDataResponse("AAA111"), new ToopDataResponse("BBB222"), archiveOutput,
           SH);
 
@@ -69,6 +73,8 @@ public final class ToopMessageBundleBuilderTest {
         final MSDataRequest aMSReq = (MSDataRequest) bundleRead.getMSDataRequest();
         assertEquals(aMSReq.getDestinationCountryCode(), "SE");
         assertEquals(aMSReq.getDocumentTypeID(), "docTypeID1");
+        assertEquals(aMSReq.getProcessID(), "procID2");
+        assertFalse(aMSReq.isProduction());
         assertEquals(aMSReq.getIdentifier(), "ABC123");
         assertEquals(((ToopDataRequest) bundleRead.getToopDataRequest()).getIdentifier(), "DEF456",
             "ToopDataRequest did not arrive safely");

@@ -31,14 +31,19 @@ import eu.toop.commons.exchange.IMSDataRequest;
 public class MSDataRequest implements IMSDataRequest {
   private final String _countryCode;
   private final String _docTypeID;
+  private final String _processID;
+  private final boolean _isProduction;
   private final String _identifier;
 
-  public MSDataRequest(@Nonnull @Nonempty final String countryCode, @Nonnull @Nonempty final String documentTypeID,
-      final String identifier) {
-    ValueEnforcer.notEmpty(countryCode, "CountryCode");
-    ValueEnforcer.notEmpty(documentTypeID, "DocumentTypeID");
-    _countryCode = countryCode;
-    _docTypeID = documentTypeID;
+  public MSDataRequest(@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
+      @Nonnull @Nonempty final String sProcessID, final boolean bIsProduction, final String identifier) {
+    ValueEnforcer.notEmpty(sCountryCode, "CountryCode");
+    ValueEnforcer.notEmpty(sDocumentTypeID, "DocumentTypeID");
+    ValueEnforcer.notEmpty(sProcessID, "ProcessID");
+    _countryCode = sCountryCode;
+    _docTypeID = sDocumentTypeID;
+    _processID = sProcessID;
+    _isProduction = bIsProduction;
     _identifier = identifier;
   }
 
@@ -54,6 +59,16 @@ public class MSDataRequest implements IMSDataRequest {
     return _docTypeID;
   }
 
+  @Nonnull
+  @Nonempty
+  public String getProcessID() {
+    return _processID;
+  }
+
+  public boolean isProduction() {
+    return _isProduction;
+  }
+
   public String getIdentifier() {
     return _identifier;
   }
@@ -66,8 +81,10 @@ public class MSDataRequest implements IMSDataRequest {
   public InputStream getAsSerializedVersion() {
     final IMicroDocument aDoc = new MicroDocument();
     final IMicroElement aElement = aDoc.appendElement("ms-request");
+    aElement.setAttribute("production", _isProduction);
     aElement.appendElement("country-code").appendText(_countryCode);
     aElement.appendElement("document-type").appendText(_docTypeID);
+    aElement.appendElement("process").appendText(_processID);
     aElement.appendElement("identifier").appendText(_identifier);
 
     return new NonBlockingByteArrayInputStream(MicroWriter.getNodeAsBytes(aDoc));
@@ -76,7 +93,8 @@ public class MSDataRequest implements IMSDataRequest {
   @Override
   public String toString() {
     return new ToStringGenerator(this).append("CountryCode", _countryCode).append("DocTypeID", _docTypeID)
-        .append("Identifier", _identifier).getToString();
+        .append("ProcessID", _processID).append("Production", _isProduction).append("Identifier", _identifier)
+        .getToString();
   }
 
   @Nonnull
@@ -88,8 +106,10 @@ public class MSDataRequest implements IMSDataRequest {
         if (eRoot != null) {
           final String sCountryCode = MicroHelper.getChildTextContent(eRoot, "country-code");
           final String sDocumentTypeID = MicroHelper.getChildTextContent(eRoot, "document-type");
+          final String sProcessID = MicroHelper.getChildTextContent(eRoot, "process");
+          final boolean bIsProduction = eRoot.getAttributeValueAsBool("production", false);
           final String sIdentifier = MicroHelper.getChildTextContent(eRoot, "identifier");
-          return new MSDataRequest(sCountryCode, sDocumentTypeID, sIdentifier);
+          return new MSDataRequest(sCountryCode, sDocumentTypeID, sProcessID, bIsProduction, sIdentifier);
         }
       }
       return null;
