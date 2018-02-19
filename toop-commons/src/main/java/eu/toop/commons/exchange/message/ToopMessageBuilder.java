@@ -134,7 +134,7 @@ public final class ToopMessageBuilder {
           try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {
             asicReader.writeFile(bos);
             final IMSDataRequest msDataRequest = aDecryptorMSDataRequest.apply(bos.toByteArray());
-            ret.setMsDataRequest(msDataRequest);
+            ret.setMSDataRequest(msDataRequest);
           }
         } else if (entryName.equals(ENTRY_NAME_TOOP_DATA_REQUEST)) {
           try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {
@@ -192,7 +192,7 @@ public final class ToopMessageBuilder {
           try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {
             asicReader.writeFile(bos);
             final IMSDataRequest msDataRequest = aDecryptorMSDataRequest.apply(bos.toByteArray());
-            ret.setMsDataRequest(msDataRequest);
+            ret.setMSDataRequest(msDataRequest);
           }
         } else if (entryName.equals(ENTRY_NAME_TOOP_DATA_REQUEST)) {
           try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {
@@ -204,7 +204,7 @@ public final class ToopMessageBuilder {
           try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {
             asicReader.writeFile(bos);
             final IMSDataResponse msDataResponse = aDecryptorMSDataResponse.apply(bos.toByteArray());
-            ret.setMsDataResponse(msDataResponse);
+            ret.setMSDataResponse(msDataResponse);
           }
         } else if (entryName.equals(ENTRY_NAME_TOOP_DATA_RESPONSE)) {
           try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {

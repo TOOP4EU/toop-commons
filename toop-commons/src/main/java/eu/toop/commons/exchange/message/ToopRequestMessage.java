@@ -20,11 +20,11 @@ public class ToopRequestMessage implements Serializable {
   private IToopDataRequest _toopDataRequest;
 
   @Nullable
-  public IMSDataRequest getMsDataRequest() {
+  public IMSDataRequest getMSDataRequest() {
     return _msDataRequest;
   }
 
-  public void setMsDataRequest(@Nullable final IMSDataRequest msDataRequest) {
+  public void setMSDataRequest(@Nullable final IMSDataRequest msDataRequest) {
     _msDataRequest = msDataRequest;
   }
 

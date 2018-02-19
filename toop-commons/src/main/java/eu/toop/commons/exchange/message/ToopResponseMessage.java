@@ -19,11 +19,11 @@ public class ToopResponseMessage extends ToopRequestMessage {
   private IToopDataResponse _toopDataResponse;
 
   @Nullable
-  public IMSDataResponse getMsDataResponse() {
+  public IMSDataResponse getMSDataResponse() {
     return _msDataResponse;
   }
 
-  public void setMsDataResponse(@Nullable final IMSDataResponse msDataResponse) {
+  public void setMSDataResponse(@Nullable final IMSDataResponse msDataResponse) {
     _msDataResponse = msDataResponse;
   }
 

@@ -37,10 +37,10 @@ public final class ToopMessageBundleBuilderTest {
             MSDataRequest.getDeserializerFunction(), ToopDataRequest.getDeserializerFunction());
         assertNotNull(bundleRead);
 
-        assertTrue(bundleRead.getMsDataRequest() instanceof MSDataRequest);
+        assertTrue(bundleRead.getMSDataRequest() instanceof MSDataRequest);
         assertTrue(bundleRead.getToopDataRequest() instanceof ToopDataRequest);
 
-        assertEquals(((MSDataRequest) bundleRead.getMsDataRequest()).getIdentifier(), "ABC123",
+        assertEquals(((MSDataRequest) bundleRead.getMSDataRequest()).getIdentifier(), "ABC123",
             "MSDataRequest did not arrive safely");
         assertEquals(((ToopDataRequest) bundleRead.getToopDataRequest()).getIdentifier(), "DEF456",
             "ToopDataRequest did not arrive safely");
@@ -61,16 +61,16 @@ public final class ToopMessageBundleBuilderTest {
             MSDataResponse.getDeserializerFunction(), ToopDataResponse.getDeserializerFunction());
         assertNotNull(bundleRead);
 
-        assertTrue(bundleRead.getMsDataRequest() instanceof MSDataRequest);
+        assertTrue(bundleRead.getMSDataRequest() instanceof MSDataRequest);
         assertTrue(bundleRead.getToopDataRequest() instanceof ToopDataRequest);
-        assertTrue(bundleRead.getMsDataResponse() instanceof MSDataResponse);
+        assertTrue(bundleRead.getMSDataResponse() instanceof MSDataResponse);
         assertTrue(bundleRead.getToopDataResponse() instanceof ToopDataResponse);
 
-        assertEquals(((MSDataRequest) bundleRead.getMsDataRequest()).getIdentifier(), "ABC123",
+        assertEquals(((MSDataRequest) bundleRead.getMSDataRequest()).getIdentifier(), "ABC123",
             "MSDataRequest did not arrive safely");
         assertEquals(((ToopDataRequest) bundleRead.getToopDataRequest()).getIdentifier(), "DEF456",
             "ToopDataRequest did not arrive safely");
-        assertEquals(((MSDataResponse) bundleRead.getMsDataResponse()).getIdentifier(), "AAA111",
+        assertEquals(((MSDataResponse) bundleRead.getMSDataResponse()).getIdentifier(), "AAA111",
             "MSDataResponse did not arrive safely");
         assertEquals(((ToopDataResponse) bundleRead.getToopDataResponse()).getIdentifier(), "BBB222",
             "MSDataResponse did not arrive safely");
