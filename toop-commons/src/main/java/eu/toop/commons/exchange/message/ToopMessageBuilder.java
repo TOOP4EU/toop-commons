@@ -6,7 +6,6 @@ import java.io.OutputStream;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.WillClose;
 import javax.annotation.concurrent.Immutable;
 
@@ -34,70 +33,37 @@ public final class ToopMessageBuilder {
   private ToopMessageBuilder() {
   }
 
-  public static void createRequestMessage(@Nullable final IMSDataRequest msDataRequest,
-      @Nullable final IToopDataRequest toopDataRequest, @Nonnull final OutputStream aOS,
+  public static void createRequestMessage(@Nonnull final IMSDataRequest msDataRequest, @Nonnull final OutputStream aOS,
       @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+    ValueEnforcer.notNull(msDataRequest, "msDataRequest");
     ValueEnforcer.notNull(aOS, "ArchiveOutput");
     ValueEnforcer.notNull(aSigHelper, "SignatureHelper");
 
     final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory();
     final IAsicWriter asicWriter = asicWriterFactory.newContainer(aOS);
-    int nItems = 0;
-
-    if (msDataRequest != null) {
-      asicWriter.add(msDataRequest.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_REQUEST, msDataRequest.getMimeType());
-      ++nItems;
-    }
-
-    if (toopDataRequest != null) {
-      asicWriter.add(toopDataRequest.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_REQUEST,
-          toopDataRequest.getMimeType());
-      ++nItems;
-    }
-
-    if (nItems == 0)
-      throw new IllegalStateException("No request data present!");
-
+    asicWriter.add(msDataRequest.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_REQUEST, msDataRequest.getMimeType());
     asicWriter.sign(aSigHelper);
   }
 
-  public static void createResponseMessage(@Nullable final IMSDataRequest msDataRequest,
-      @Nullable final IToopDataRequest toopDataRequest, @Nullable final IMSDataResponse msDataResponse,
-      @Nullable final IToopDataResponse toopDataResponse, @Nonnull final OutputStream aOS,
+  public static void createResponseMessage(@Nonnull final IMSDataRequest msDataRequest,
+      @Nonnull final IToopDataRequest toopDataRequest, @Nonnull final IMSDataResponse msDataResponse,
+      @Nonnull final IToopDataResponse toopDataResponse, @Nonnull final OutputStream aOS,
       @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+    ValueEnforcer.notNull(msDataRequest, "msDataRequest");
+    ValueEnforcer.notNull(toopDataRequest, "toopDataRequest");
+    ValueEnforcer.notNull(msDataResponse, "msDataResponse");
+    ValueEnforcer.notNull(toopDataResponse, "toopDataResponse");
     ValueEnforcer.notNull(aOS, "ArchiveOutput");
     ValueEnforcer.notNull(aSigHelper, "SignatureHelper");
 
     final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory();
     final IAsicWriter asicWriter = asicWriterFactory.newContainer(aOS);
-    int nItems = 0;
-
-    if (msDataRequest != null) {
-      asicWriter.add(msDataRequest.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_REQUEST, msDataRequest.getMimeType());
-      ++nItems;
-    }
-
-    if (toopDataRequest != null) {
-      asicWriter.add(toopDataRequest.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_REQUEST,
-          toopDataRequest.getMimeType());
-      ++nItems;
-    }
-
-    if (msDataResponse != null) {
-      asicWriter.add(msDataResponse.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_RESPONSE,
-          msDataResponse.getMimeType());
-      ++nItems;
-    }
-
-    if (toopDataResponse != null) {
-      asicWriter.add(toopDataResponse.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_RESPONSE,
-          toopDataResponse.getMimeType());
-      ++nItems;
-    }
-
-    if (nItems == 0)
-      throw new IllegalStateException("No data present!");
-
+    asicWriter.add(msDataRequest.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_REQUEST, msDataRequest.getMimeType());
+    asicWriter.add(toopDataRequest.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_REQUEST,
+        toopDataRequest.getMimeType());
+    asicWriter.add(msDataResponse.getAsSerializedVersion(), ENTRY_NAME_MS_DATA_RESPONSE, msDataResponse.getMimeType());
+    asicWriter.add(toopDataResponse.getAsSerializedVersion(), ENTRY_NAME_TOOP_DATA_RESPONSE,
+        toopDataResponse.getMimeType());
     asicWriter.sign(aSigHelper);
   }
 
@@ -110,9 +76,6 @@ public final class ToopMessageBuilder {
    * @param aDecryptorMSDataRequest
    *          The callback function that is invoked for the read byte[] to convert
    *          it to the implementation object. May not be <code>null</code>.
-   * @param aDecryptorToopDataRequest
-   *          The callback function that is invoked for the read byte[] to convert
-   *          it to the implementation object. May not be <code>null</code>.
    * @return New {@link ToopRequestMessage} every time the method is called.
    * @throws IOException
    *           In case of IO error
@@ -120,11 +83,9 @@ public final class ToopMessageBuilder {
   @Nonnull
   @ReturnsMutableObject
   public static ToopRequestMessage parseRequestMessage(@Nonnull @WillClose final InputStream archiveInput,
-      @Nonnull final Function<byte[], ? extends IMSDataRequest> aDecryptorMSDataRequest,
-      @Nonnull final Function<byte[], ? extends IToopDataRequest> aDecryptorToopDataRequest) throws IOException {
+      @Nonnull final Function<byte[], ? extends IMSDataRequest> aDecryptorMSDataRequest) throws IOException {
     ValueEnforcer.notNull(archiveInput, "archiveInput");
     ValueEnforcer.notNull(aDecryptorMSDataRequest, "aDecryptorMSDataRequest");
-    ValueEnforcer.notNull(aDecryptorToopDataRequest, "aDecryptorToopDataRequest");
 
     final ToopRequestMessage ret = new ToopRequestMessage();
     try (final IAsicReader asicReader = AsicReaderFactory.newFactory().open(archiveInput)) {
@@ -135,12 +96,6 @@ public final class ToopMessageBuilder {
             asicReader.writeFile(bos);
             final IMSDataRequest msDataRequest = aDecryptorMSDataRequest.apply(bos.toByteArray());
             ret.setMSDataRequest(msDataRequest);
-          }
-        } else if (entryName.equals(ENTRY_NAME_TOOP_DATA_REQUEST)) {
-          try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream()) {
-            asicReader.writeFile(bos);
-            final IToopDataRequest toopDataRequest = aDecryptorToopDataRequest.apply(bos.toByteArray());
-            ret.setToopDataRequest(toopDataRequest);
           }
         }
       }

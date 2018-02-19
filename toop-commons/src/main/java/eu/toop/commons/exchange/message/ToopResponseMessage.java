@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import eu.toop.commons.exchange.IMSDataResponse;
+import eu.toop.commons.exchange.IToopDataRequest;
 import eu.toop.commons.exchange.IToopDataResponse;
 
 /**
@@ -15,8 +16,18 @@ import eu.toop.commons.exchange.IToopDataResponse;
  */
 @NotThreadSafe
 public class ToopResponseMessage extends ToopRequestMessage {
+  private IToopDataRequest _toopDataRequest;
   private IMSDataResponse _msDataResponse;
   private IToopDataResponse _toopDataResponse;
+
+  @Nullable
+  public IToopDataRequest getToopDataRequest() {
+    return _toopDataRequest;
+  }
+
+  public void setToopDataRequest(@Nullable final IToopDataRequest toopDataRequest) {
+    _toopDataRequest = toopDataRequest;
+  }
 
   @Nullable
   public IMSDataResponse getMSDataResponse() {
