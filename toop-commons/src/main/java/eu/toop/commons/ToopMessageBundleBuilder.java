@@ -56,34 +56,42 @@ public class ToopMessageBundleBuilder {
 
   @Nonnull
   public ToopMessageBundle sign(final OutputStream archiveOutput, final File keystoreFile,
-      final String keystorePassword, final String keyPassword) throws IOException {
+      final String keystorePassword, final String keyPassword) throws IOException, IllegalStateException {
 
     final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory();
     final IAsicWriter asicWriter = asicWriterFactory.newContainer(archiveOutput);
+    int nItems = 0;
 
     if (_mb.getMsDataRequest() != null) {
       final byte[] msDataRequestBytes = SerializationHelper.getSerializedByteArray(_mb.getMsDataRequest());
       asicWriter.add(new NonBlockingByteArrayInputStream(msDataRequestBytes), ENTRY_NAME_MS_DATA_REQUEST,
           CMimeType.APPLICATION_XML);
+      ++nItems;
     }
 
     if (_mb.getMsDataResponse() != null) {
       final byte[] msDataResponseBytes = SerializationHelper.getSerializedByteArray(_mb.getMsDataResponse());
       asicWriter.add(new NonBlockingByteArrayInputStream(msDataResponseBytes), ENTRY_NAME_MS_DATA_RESPONSE,
           CMimeType.APPLICATION_XML);
+      ++nItems;
     }
 
     if (_mb.getToopDataRequest() != null) {
       final byte[] toopDataRequestBytes = SerializationHelper.getSerializedByteArray(_mb.getToopDataRequest());
       asicWriter.add(new NonBlockingByteArrayInputStream(toopDataRequestBytes), ENTRY_NAME_TOOP_DATA_REQUEST,
           CMimeType.APPLICATION_XML);
+      ++nItems;
     }
 
     if (_mb.getToopDataResponse() != null) {
       final byte[] toopDataResponseBytes = SerializationHelper.getSerializedByteArray(_mb.getToopDataResponse());
       asicWriter.add(new NonBlockingByteArrayInputStream(toopDataResponseBytes), ENTRY_NAME_TOOP_DATA_RESPONSE,
           CMimeType.APPLICATION_XML);
+      ++nItems;
     }
+
+    if (nItems == 0)
+      throw new IllegalStateException("No data present!");
 
     asicWriter.sign(keystoreFile, keystorePassword, keyPassword);
     return _mb;
