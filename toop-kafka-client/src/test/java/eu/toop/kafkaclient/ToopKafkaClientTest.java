@@ -26,15 +26,15 @@ public final class ToopKafkaClientTest {
   @Test
   public void testBasic () {
     try {
-      ToopKafkaClient.setEnabled(true);
+      ToopKafkaClient.setEnabled (true);
       // Don't send too many - will take forever if no Kafka server is up and
       // running!
       for (int i = 0; i < 5; ++i)
-        ToopKafkaClient.send("Key" + i, "Value" + i);
-      ToopKafkaClient.close();
+        ToopKafkaClient.send ("Key" + i, "Value" + i);
+      ToopKafkaClient.close ();
     } finally {
       // Disable again for other tests
-      ToopKafkaClient.setEnabled(false);
+      ToopKafkaClient.setEnabled (false);
     }
   }
 }

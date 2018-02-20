@@ -28,7 +28,7 @@ public interface IMockDataElement extends IToopDataElement {
 
   @Nonnull
   default InputStream getAsSerializedVersion () {
-    final byte[] aData = SerializationHelper.getSerializedByteArray(this);
-    return new NonBlockingByteArrayInputStream(aData);
+    final byte[] aData = SerializationHelper.getSerializedByteArray (this);
+    return new NonBlockingByteArrayInputStream (aData);
   }
 }

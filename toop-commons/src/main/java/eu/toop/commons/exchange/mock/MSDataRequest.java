@@ -38,9 +38,9 @@ public class MSDataRequest implements IMSDataRequest {
   public MSDataRequest (@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
                         @Nonnull @Nonempty final String sProcessID, final boolean bIsProduction,
                         final String identifier) {
-    ValueEnforcer.notEmpty(sCountryCode, "CountryCode");
-    ValueEnforcer.notEmpty(sDocumentTypeID, "DocumentTypeID");
-    ValueEnforcer.notEmpty(sProcessID, "ProcessID");
+    ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
+    ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
+    ValueEnforcer.notEmpty (sProcessID, "ProcessID");
     _countryCode = sCountryCode;
     _docTypeID = sDocumentTypeID;
     _processID = sProcessID;
@@ -80,37 +80,37 @@ public class MSDataRequest implements IMSDataRequest {
 
   @Nonnull
   public InputStream getAsSerializedVersion () {
-    final IMicroDocument aDoc = new MicroDocument();
-    final IMicroElement aElement = aDoc.appendElement("ms-request");
-    aElement.setAttribute("production", _isProduction);
-    aElement.appendElement("country-code").appendText(_countryCode);
-    aElement.appendElement("document-type").appendText(_docTypeID);
-    aElement.appendElement("process").appendText(_processID);
-    aElement.appendElement("identifier").appendText(_identifier);
+    final IMicroDocument aDoc = new MicroDocument ();
+    final IMicroElement aElement = aDoc.appendElement ("ms-request");
+    aElement.setAttribute ("production", _isProduction);
+    aElement.appendElement ("country-code").appendText (_countryCode);
+    aElement.appendElement ("document-type").appendText (_docTypeID);
+    aElement.appendElement ("process").appendText (_processID);
+    aElement.appendElement ("identifier").appendText (_identifier);
 
-    return new NonBlockingByteArrayInputStream(MicroWriter.getNodeAsBytes(aDoc));
+    return new NonBlockingByteArrayInputStream (MicroWriter.getNodeAsBytes (aDoc));
   }
 
   @Override
   public String toString () {
-    return new ToStringGenerator(this).append("CountryCode", _countryCode).append("DocTypeID", _docTypeID)
-                                      .append("ProcessID", _processID).append("Production", _isProduction)
-                                      .append("Identifier", _identifier).getToString();
+    return new ToStringGenerator (this).append ("CountryCode", _countryCode).append ("DocTypeID", _docTypeID)
+                                       .append ("ProcessID", _processID).append ("Production", _isProduction)
+                                       .append ("Identifier", _identifier).getToString ();
   }
 
   @Nonnull
   public static Function<byte[], MSDataRequest> getDeserializerFunction () {
     return x -> {
-      final IMicroDocument aDoc = MicroReader.readMicroXML(x);
+      final IMicroDocument aDoc = MicroReader.readMicroXML (x);
       if (aDoc != null) {
-        final IMicroElement eRoot = aDoc.getDocumentElement();
+        final IMicroElement eRoot = aDoc.getDocumentElement ();
         if (eRoot != null) {
-          final String sCountryCode = MicroHelper.getChildTextContent(eRoot, "country-code");
-          final String sDocumentTypeID = MicroHelper.getChildTextContent(eRoot, "document-type");
-          final String sProcessID = MicroHelper.getChildTextContent(eRoot, "process");
-          final boolean bIsProduction = eRoot.getAttributeValueAsBool("production", false);
-          final String sIdentifier = MicroHelper.getChildTextContent(eRoot, "identifier");
-          return new MSDataRequest(sCountryCode, sDocumentTypeID, sProcessID, bIsProduction, sIdentifier);
+          final String sCountryCode = MicroHelper.getChildTextContent (eRoot, "country-code");
+          final String sDocumentTypeID = MicroHelper.getChildTextContent (eRoot, "document-type");
+          final String sProcessID = MicroHelper.getChildTextContent (eRoot, "process");
+          final boolean bIsProduction = eRoot.getAttributeValueAsBool ("production", false);
+          final String sIdentifier = MicroHelper.getChildTextContent (eRoot, "identifier");
+          return new MSDataRequest (sCountryCode, sDocumentTypeID, sProcessID, bIsProduction, sIdentifier);
         }
       }
       return null;

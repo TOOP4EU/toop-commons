@@ -38,7 +38,7 @@ import com.helger.commons.concurrent.SimpleReadWriteLock;
  * @author Philip Helger
  */
 final class ToopKafkaManager {
-  private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock();
+  private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock ();
   @GuardedBy ("s_aRWLock")
   private static KafkaProducer<String, String> s_aProducer;
 
@@ -48,14 +48,14 @@ final class ToopKafkaManager {
   @Nonnull
   @ReturnsMutableObject
   private static Properties _getCreationProperties () {
-    final Properties aProps = new Properties();
+    final Properties aProps = new Properties ();
     // Instead of 16K
     if (true)
-      aProps.put("batch.size", "1");
+      aProps.put ("batch.size", "1");
     // Server URL
-    aProps.put("bootstrap.servers", "localhost:9092");
+    aProps.put ("bootstrap.servers", "localhost:9092");
     // Default: 60secs
-    aProps.put("max.block.ms", "5000");
+    aProps.put ("max.block.ms", "5000");
     return aProps;
   }
 
@@ -68,19 +68,19 @@ final class ToopKafkaManager {
   @Nonnull
   public static KafkaProducer<String, String> getOrCreateProducer () {
     // Read-lock first
-    KafkaProducer<String, String> ret = s_aRWLock.readLocked( () -> s_aProducer);
+    KafkaProducer<String, String> ret = s_aRWLock.readLocked ( () -> s_aProducer);
     if (ret == null) {
-      s_aRWLock.writeLock().lock();
+      s_aRWLock.writeLock ().lock ();
       try {
         // Try again in write lock
         ret = s_aProducer;
         if (ret == null) {
           // Create new one
-          s_aProducer = ret = new KafkaProducer<>(_getCreationProperties(), new StringSerializer(),
-                                                  new StringSerializer());
+          s_aProducer = ret = new KafkaProducer<> (_getCreationProperties (), new StringSerializer (),
+                                                   new StringSerializer ());
         }
       } finally {
-        s_aRWLock.writeLock().unlock();
+        s_aRWLock.writeLock ().unlock ();
       }
     }
     return ret;
@@ -91,9 +91,9 @@ final class ToopKafkaManager {
    * independent of the initialization state.
    */
   public static void shutdown () {
-    s_aRWLock.writeLocked( () -> {
+    s_aRWLock.writeLocked ( () -> {
       if (s_aProducer != null) {
-        s_aProducer.close();
+        s_aProducer.close ();
         s_aProducer = null;
       }
     });
@@ -117,10 +117,10 @@ final class ToopKafkaManager {
   @Nonnull
   public static Future<RecordMetadata> send (@Nonnull final String sKey, @Nonnull final String sValue,
                                              @Nullable final Callback aKafkaCallback) {
-    ValueEnforcer.notNull(sKey, "Key");
-    ValueEnforcer.notNull(sValue, "Value");
+    ValueEnforcer.notNull (sKey, "Key");
+    ValueEnforcer.notNull (sValue, "Value");
 
-    final ProducerRecord<String, String> aMessage = new ProducerRecord<>("toop", sKey, sValue);
-    return getOrCreateProducer().send(aMessage, aKafkaCallback);
+    final ProducerRecord<String, String> aMessage = new ProducerRecord<> ("toop", sKey, sValue);
+    return getOrCreateProducer ().send (aMessage, aKafkaCallback);
   }
 }
