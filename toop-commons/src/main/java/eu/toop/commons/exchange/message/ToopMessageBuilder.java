@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.WillClose;
 import javax.annotation.concurrent.Immutable;
 
@@ -35,6 +36,13 @@ public final class ToopMessageBuilder {
 
   public static void createRequestMessage (@Nonnull final IMSDataRequest msDataRequest, @Nonnull final OutputStream aOS,
                                            @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+    createRequestMessage (msDataRequest, null, aOS, aSigHelper);
+  }
+
+  public static void createRequestMessage (@Nonnull final IMSDataRequest msDataRequest,
+                                           @Nullable final IToopDataRequest toopDataRequest,
+                                           @Nonnull final OutputStream aOS,
+                                           @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
     ValueEnforcer.notNull (msDataRequest, "msDataRequest");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -42,6 +50,10 @@ public final class ToopMessageBuilder {
     final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory ();
     final IAsicWriter asicWriter = asicWriterFactory.newContainer (aOS);
     asicWriter.add (msDataRequest.getAsSerializedVersion (), ENTRY_NAME_MS_DATA_REQUEST, msDataRequest.getMimeType ());
+    if (toopDataRequest != null) {
+      asicWriter.add (toopDataRequest.getAsSerializedVersion (), ENTRY_NAME_TOOP_DATA_REQUEST,
+                      toopDataRequest.getMimeType ());
+    }
     asicWriter.sign (aSigHelper);
   }
 
