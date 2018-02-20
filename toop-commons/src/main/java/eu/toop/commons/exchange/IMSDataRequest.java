@@ -49,11 +49,4 @@ public interface IMSDataRequest extends IToopDataElement {
   @Nonnull
   @Nonempty
   String getProcessID ();
-
-  /**
-   *
-   * @return <code>true</code> if this is a production message, <code>false</code>
-   *         if it is a test message.
-   */
-  boolean isProduction ();
 }
