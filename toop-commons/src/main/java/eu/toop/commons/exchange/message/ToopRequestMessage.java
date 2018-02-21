@@ -21,6 +21,8 @@ import java.io.Serializable;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
 
+import com.helger.commons.string.ToStringGenerator;
+
 import eu.toop.commons.exchange.IMSDataRequest;
 import eu.toop.commons.exchange.IToopDataRequest;
 
@@ -50,5 +52,11 @@ public class ToopRequestMessage implements Serializable {
 
   public void setToopDataRequest (@Nullable final IToopDataRequest toopDataRequest) {
     _toopDataRequest = toopDataRequest;
+  }
+
+  @Override
+  public String toString () {
+    return new ToStringGenerator (this).append ("MSDataRequest", _msDataRequest)
+                                       .appendIfNotNull ("ToopDataRequest", _toopDataRequest).getToString ();
   }
 }

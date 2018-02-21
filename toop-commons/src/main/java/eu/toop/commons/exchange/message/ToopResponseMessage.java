@@ -19,6 +19,8 @@ package eu.toop.commons.exchange.message;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
 
+import com.helger.commons.string.ToStringGenerator;
+
 import eu.toop.commons.exchange.IMSDataResponse;
 import eu.toop.commons.exchange.IToopDataResponse;
 
@@ -49,5 +51,11 @@ public class ToopResponseMessage extends ToopRequestMessage {
 
   public void setToopDataResponse (@Nullable final IToopDataResponse toopDataResponse) {
     _toopDataResponse = toopDataResponse;
+  }
+
+  @Override
+  public String toString () {
+    return ToStringGenerator.getDerived (super.toString ()).append ("MSDataResponse", _msDataResponse)
+                            .appendIfNotNull ("ToopDataResponse", _toopDataResponse).getToString ();
   }
 }
