@@ -19,10 +19,13 @@ import java.io.InputStream;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.helger.commons.ValueEnforcer;
-import com.helger.commons.annotation.DevelopersNote;
 import com.helger.commons.annotation.Nonempty;
+import com.helger.commons.annotation.ReturnsMutableCopy;
+import com.helger.commons.collection.impl.CommonsArrayList;
+import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.mime.CMimeType;
 import com.helger.commons.mime.IMimeType;
@@ -35,27 +38,29 @@ import com.helger.xml.microdom.serialize.MicroWriter;
 import com.helger.xml.microdom.util.MicroHelper;
 
 import eu.toop.commons.exchange.IMSDataRequest;
+import eu.toop.commons.exchange.RequestValue;
 
 /**
- * Mock member state request (DC to DP)
+ * Member state request (DC to DP)
  *
- * @author Anton
+ * @author Philip Helger
  */
-@Deprecated
-@DevelopersNote ("Mock class")
 public class MSDataRequest implements IMSDataRequest {
   private final String m_sCountryCode;
   private final String m_sDocTypeID;
   private final String m_sProcessID;
+  private final ICommonsList<RequestValue> m_aValues;
 
   public MSDataRequest (@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
-                        @Nonnull @Nonempty final String sProcessID) {
+                        @Nonnull @Nonempty final String sProcessID,
+                        @Nullable final Iterable<? extends RequestValue> aValues) {
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notEmpty (sProcessID, "ProcessID");
     m_sCountryCode = sCountryCode;
     m_sDocTypeID = sDocumentTypeID;
     m_sProcessID = sProcessID;
+    m_aValues = new CommonsArrayList<> (aValues);
   }
 
   @Nonnull
@@ -76,6 +81,12 @@ public class MSDataRequest implements IMSDataRequest {
     return m_sProcessID;
   }
 
+  @Nonnull
+  @ReturnsMutableCopy
+  public ICommonsList<RequestValue> getAllRequestValues () {
+    return m_aValues.getClone ();
+  }
+
   public IMimeType getMimeType () {
     return CMimeType.APPLICATION_XML;
   }
@@ -87,6 +98,12 @@ public class MSDataRequest implements IMSDataRequest {
     aElement.appendElement ("country-code").appendText (m_sCountryCode);
     aElement.appendElement ("document-type").appendText (m_sDocTypeID);
     aElement.appendElement ("process").appendText (m_sProcessID);
+    // Add all request values
+    for (final RequestValue aValue : m_aValues) {
+      final IMicroElement eValue = aElement.appendElement ("request-value");
+      eValue.setAttribute ("key", aValue.getKey ());
+      eValue.appendText (aValue.getValue ());
+    }
 
     return new NonBlockingByteArrayInputStream (MicroWriter.getNodeAsBytes (aDoc));
   }
@@ -107,7 +124,10 @@ public class MSDataRequest implements IMSDataRequest {
           final String sCountryCode = MicroHelper.getChildTextContent (eRoot, "country-code");
           final String sDocumentTypeID = MicroHelper.getChildTextContent (eRoot, "document-type");
           final String sProcessID = MicroHelper.getChildTextContent (eRoot, "process");
-          return new MSDataRequest (sCountryCode, sDocumentTypeID, sProcessID);
+          final ICommonsList<RequestValue> aValues = new CommonsArrayList<> ();
+          for (final IMicroElement eRequest : eRoot.getAllChildElements ("request-value"))
+            aValues.add (new RequestValue (eRoot.getAttributeValue ("key"), eRequest.getTextContentTrimmed ()));
+          return new MSDataRequest (sCountryCode, sDocumentTypeID, sProcessID, aValues);
         }
       }
       return null;

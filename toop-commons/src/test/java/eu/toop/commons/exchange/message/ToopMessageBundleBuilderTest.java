@@ -27,6 +27,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import com.helger.asic.SignatureHelper;
+import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.io.file.FileHelper;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
@@ -34,6 +35,7 @@ import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import eu.toop.commons.doctype.EToopDocumentType;
 import eu.toop.commons.doctype.EToopProcess;
+import eu.toop.commons.exchange.RequestValue;
 import eu.toop.commons.exchange.mock.MSDataRequest;
 import eu.toop.commons.exchange.mock.MSDataResponse;
 import eu.toop.commons.exchange.mock.ToopDataRequest;
@@ -48,7 +50,9 @@ public final class ToopMessageBundleBuilderTest {
   public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
       ToopMessageBuilder.createRequestMessage (new MSDataRequest ("SE", EToopDocumentType.DOCTYPE2.getURIEncoded (),
-                                                                  EToopProcess.PROC.getURIEncoded ()),
+                                                                  EToopProcess.PROC.getURIEncoded (),
+                                                                  new CommonsArrayList<> (new RequestValue ("companyName",
+                                                                                                            "Acme Inc."))),
                                                archiveOutput, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream ()) {
@@ -73,7 +77,9 @@ public final class ToopMessageBundleBuilderTest {
   public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
       ToopMessageBuilder.createResponseMessage (new MSDataRequest ("SE", EToopDocumentType.DOCTYPE2.getURIEncoded (),
-                                                                   EToopProcess.PROC.getURIEncoded ()),
+                                                                   EToopProcess.PROC.getURIEncoded (),
+                                                                   new CommonsArrayList<> (new RequestValue ("companyName",
+                                                                                                             "Acme SE Inc."))),
                                                 new ToopDataRequest ("DEF456"), new MSDataResponse ("AAA111"),
                                                 new ToopDataResponse ("BBB222"), archiveOutput, SH);
 
@@ -95,6 +101,7 @@ public final class ToopMessageBundleBuilderTest {
         assertEquals (aMSReq.getDestinationCountryCode (), "SE");
         assertEquals (aMSReq.getDocumentTypeID (), EToopDocumentType.DOCTYPE2.getURIEncoded ());
         assertEquals (aMSReq.getProcessID (), EToopProcess.PROC.getURIEncoded ());
+        assertEquals (1, aMSReq.getAllRequestValues ().size ());
         assertEquals (bundleRead.getToopDataRequest ().getRequestID (), "DEF456",
                       "ToopDataRequest did not arrive safely");
         assertEquals (((MSDataResponse) bundleRead.getMSDataResponse ()).getIdentifier (), "AAA111",

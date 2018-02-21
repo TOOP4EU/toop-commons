@@ -18,6 +18,8 @@ package eu.toop.commons.exchange;
 import javax.annotation.Nonnull;
 
 import com.helger.commons.annotation.Nonempty;
+import com.helger.commons.annotation.ReturnsMutableCopy;
+import com.helger.commons.collection.impl.ICommonsList;
 
 /**
  * Member state request (DC to DP). This data request MUST serialize to XML
@@ -49,4 +51,12 @@ public interface IMSDataRequest extends IToopDataElement {
   @Nonnull
   @Nonempty
   String getProcessID ();
+
+  /**
+   * @return A copy of the list of all request values. Never <code>null</code> but
+   *         maybe empty.
+   */
+  @Nonnull
+  @ReturnsMutableCopy
+  ICommonsList<RequestValue> getAllRequestValues ();
 }
