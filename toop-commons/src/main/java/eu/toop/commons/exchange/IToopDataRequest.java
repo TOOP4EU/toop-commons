@@ -15,11 +15,21 @@
  */
 package eu.toop.commons.exchange;
 
+import javax.annotation.Nonnull;
+
+import com.helger.commons.annotation.Nonempty;
+
 /**
  * TOOP Demo UI request (DC to DP)
  *
  * @author Philip Helger
  */
 public interface IToopDataRequest extends IToopDataElement {
-  // TODO
+  /**
+   * @return The unique request ID that can be used to match the response to the
+   *         request.
+   */
+  @Nonnull
+  @Nonempty
+  String getRequestID ();
 }

@@ -19,7 +19,6 @@ import java.io.InputStream;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.DevelopersNote;
@@ -45,42 +44,36 @@ import eu.toop.commons.exchange.IMSDataRequest;
 @Deprecated
 @DevelopersNote ("Mock class")
 public class MSDataRequest implements IMSDataRequest {
-  private final String _countryCode;
-  private final String _docTypeID;
-  private final String _processID;
-  private final String _identifier;
+  private final String m_sCountryCode;
+  private final String m_sDocTypeID;
+  private final String m_sProcessID;
 
   public MSDataRequest (@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
-                        @Nonnull @Nonempty final String sProcessID, @Nullable final String identifier) {
+                        @Nonnull @Nonempty final String sProcessID) {
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notEmpty (sProcessID, "ProcessID");
-    _countryCode = sCountryCode;
-    _docTypeID = sDocumentTypeID;
-    _processID = sProcessID;
-    _identifier = identifier;
+    m_sCountryCode = sCountryCode;
+    m_sDocTypeID = sDocumentTypeID;
+    m_sProcessID = sProcessID;
   }
 
   @Nonnull
   @Nonempty
   public String getDestinationCountryCode () {
-    return _countryCode;
+    return m_sCountryCode;
   }
 
   @Nonnull
   @Nonempty
   public String getDocumentTypeID () {
-    return _docTypeID;
+    return m_sDocTypeID;
   }
 
   @Nonnull
   @Nonempty
   public String getProcessID () {
-    return _processID;
-  }
-
-  public String getIdentifier () {
-    return _identifier;
+    return m_sProcessID;
   }
 
   public IMimeType getMimeType () {
@@ -91,19 +84,17 @@ public class MSDataRequest implements IMSDataRequest {
   public InputStream getAsSerializedVersion () {
     final IMicroDocument aDoc = new MicroDocument ();
     final IMicroElement aElement = aDoc.appendElement ("ms-request");
-    aElement.appendElement ("country-code").appendText (_countryCode);
-    aElement.appendElement ("document-type").appendText (_docTypeID);
-    aElement.appendElement ("process").appendText (_processID);
-    aElement.appendElement ("identifier").appendText (_identifier);
+    aElement.appendElement ("country-code").appendText (m_sCountryCode);
+    aElement.appendElement ("document-type").appendText (m_sDocTypeID);
+    aElement.appendElement ("process").appendText (m_sProcessID);
 
     return new NonBlockingByteArrayInputStream (MicroWriter.getNodeAsBytes (aDoc));
   }
 
   @Override
   public String toString () {
-    return new ToStringGenerator (this).append ("CountryCode", _countryCode).append ("DocTypeID", _docTypeID)
-                                       .append ("ProcessID", _processID).append ("Identifier", _identifier)
-                                       .getToString ();
+    return new ToStringGenerator (this).append ("CountryCode", m_sCountryCode).append ("DocTypeID", m_sDocTypeID)
+                                       .append ("ProcessID", m_sProcessID).getToString ();
   }
 
   @Nonnull
@@ -116,8 +107,7 @@ public class MSDataRequest implements IMSDataRequest {
           final String sCountryCode = MicroHelper.getChildTextContent (eRoot, "country-code");
           final String sDocumentTypeID = MicroHelper.getChildTextContent (eRoot, "document-type");
           final String sProcessID = MicroHelper.getChildTextContent (eRoot, "process");
-          final String sIdentifier = MicroHelper.getChildTextContent (eRoot, "identifier");
-          return new MSDataRequest (sCountryCode, sDocumentTypeID, sProcessID, sIdentifier);
+          return new MSDataRequest (sCountryCode, sDocumentTypeID, sProcessID);
         }
       }
       return null;

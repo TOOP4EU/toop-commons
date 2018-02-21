@@ -20,6 +20,7 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 import com.helger.commons.annotation.DevelopersNote;
+import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.serialize.SerializationHelper;
 
 import eu.toop.commons.exchange.IToopDataRequest;
@@ -32,14 +33,16 @@ import eu.toop.commons.exchange.IToopDataRequest;
 @Deprecated
 @DevelopersNote ("Mock class")
 public class ToopDataRequest implements IToopDataRequest, IMockDataElement {
-  private final String _identifier;
+  private final String m_sRequestID;
 
-  public ToopDataRequest (final String identifier) {
-    _identifier = identifier;
+  public ToopDataRequest (final String sRequestID) {
+    m_sRequestID = sRequestID;
   }
 
-  public String getIdentifier () {
-    return _identifier;
+  @Nonnull
+  @Nonempty
+  public String getRequestID () {
+    return m_sRequestID;
   }
 
   @Nonnull

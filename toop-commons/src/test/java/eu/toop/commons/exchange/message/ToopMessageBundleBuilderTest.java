@@ -48,7 +48,7 @@ public final class ToopMessageBundleBuilderTest {
   public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
       ToopMessageBuilder.createRequestMessage (new MSDataRequest ("SE", EToopDocumentType.DOCTYPE2.getURIEncoded (),
-                                                                  EToopProcess.PROC.getURIEncoded (), "ABC123"),
+                                                                  EToopProcess.PROC.getURIEncoded ()),
                                                archiveOutput, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream ()) {
@@ -65,7 +65,6 @@ public final class ToopMessageBundleBuilderTest {
         assertEquals (aMSReq.getDestinationCountryCode (), "SE");
         assertEquals (aMSReq.getDocumentTypeID (), EToopDocumentType.DOCTYPE2.getURIEncoded ());
         assertEquals (aMSReq.getProcessID (), EToopProcess.PROC.getURIEncoded ());
-        assertEquals (aMSReq.getIdentifier (), "ABC123");
       }
     }
   }
@@ -74,7 +73,7 @@ public final class ToopMessageBundleBuilderTest {
   public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
       ToopMessageBuilder.createResponseMessage (new MSDataRequest ("SE", EToopDocumentType.DOCTYPE2.getURIEncoded (),
-                                                                   EToopProcess.PROC.getURIEncoded (), "ABC123"),
+                                                                   EToopProcess.PROC.getURIEncoded ()),
                                                 new ToopDataRequest ("DEF456"), new MSDataResponse ("AAA111"),
                                                 new ToopDataResponse ("BBB222"), archiveOutput, SH);
 
@@ -96,8 +95,7 @@ public final class ToopMessageBundleBuilderTest {
         assertEquals (aMSReq.getDestinationCountryCode (), "SE");
         assertEquals (aMSReq.getDocumentTypeID (), EToopDocumentType.DOCTYPE2.getURIEncoded ());
         assertEquals (aMSReq.getProcessID (), EToopProcess.PROC.getURIEncoded ());
-        assertEquals (aMSReq.getIdentifier (), "ABC123");
-        assertEquals (((ToopDataRequest) bundleRead.getToopDataRequest ()).getIdentifier (), "DEF456",
+        assertEquals (bundleRead.getToopDataRequest ().getRequestID (), "DEF456",
                       "ToopDataRequest did not arrive safely");
         assertEquals (((MSDataResponse) bundleRead.getMSDataResponse ()).getIdentifier (), "AAA111",
                       "MSDataResponse did not arrive safely");
