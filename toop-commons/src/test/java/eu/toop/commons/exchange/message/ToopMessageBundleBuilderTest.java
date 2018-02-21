@@ -49,7 +49,8 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
-      ToopMessageBuilder.createRequestMessage (new MSDataRequest ("SE", EToopDocumentType.DOCTYPE2.getURIEncoded (),
+      ToopMessageBuilder.createRequestMessage (new MSDataRequest ("toop::senderid", "SE",
+                                                                  EToopDocumentType.DOCTYPE2.getURIEncoded (),
                                                                   EToopProcess.PROC.getURIEncoded (),
                                                                   new CommonsArrayList<> (new RequestValue ("companyName",
                                                                                                             "Acme Inc."))),
@@ -76,7 +77,8 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
-      ToopMessageBuilder.createResponseMessage (new MSDataRequest ("SE", EToopDocumentType.DOCTYPE2.getURIEncoded (),
+      ToopMessageBuilder.createResponseMessage (new MSDataRequest ("toop::senderid", "SE",
+                                                                   EToopDocumentType.DOCTYPE2.getURIEncoded (),
                                                                    EToopProcess.PROC.getURIEncoded (),
                                                                    new CommonsArrayList<> (new RequestValue ("companyName",
                                                                                                              "Acme SE Inc."))),

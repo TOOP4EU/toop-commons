@@ -46,21 +46,31 @@ import eu.toop.commons.exchange.RequestValue;
  * @author Philip Helger
  */
 public class MSDataRequest implements IMSDataRequest {
+  private final String m_sSenderParticipantID;
   private final String m_sCountryCode;
   private final String m_sDocTypeID;
   private final String m_sProcessID;
   private final ICommonsList<RequestValue> m_aValues;
 
-  public MSDataRequest (@Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
+  public MSDataRequest (@Nonnull @Nonempty final String sSenderParticipantID,
+                        @Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
                         @Nonnull @Nonempty final String sProcessID,
                         @Nullable final Iterable<? extends RequestValue> aValues) {
+    ValueEnforcer.notEmpty (sSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notEmpty (sProcessID, "ProcessID");
+    m_sSenderParticipantID = sSenderParticipantID;
     m_sCountryCode = sCountryCode;
     m_sDocTypeID = sDocumentTypeID;
     m_sProcessID = sProcessID;
     m_aValues = new CommonsArrayList<> (aValues);
+  }
+
+  @Nonnull
+  @Nonempty
+  public String getSenderParticipantID () {
+    return m_sSenderParticipantID;
   }
 
   @Nonnull
@@ -95,6 +105,8 @@ public class MSDataRequest implements IMSDataRequest {
   public InputStream getAsSerializedVersion () {
     final IMicroDocument aDoc = new MicroDocument ();
     final IMicroElement aElement = aDoc.appendElement ("ms-request");
+    aElement.setAttribute ("version", "1.0");
+    aElement.appendElement ("sender-pid").appendText (m_sSenderParticipantID);
     aElement.appendElement ("country-code").appendText (m_sCountryCode);
     aElement.appendElement ("document-type").appendText (m_sDocTypeID);
     aElement.appendElement ("process").appendText (m_sProcessID);
@@ -110,8 +122,10 @@ public class MSDataRequest implements IMSDataRequest {
 
   @Override
   public String toString () {
-    return new ToStringGenerator (this).append ("CountryCode", m_sCountryCode).append ("DocTypeID", m_sDocTypeID)
-                                       .append ("ProcessID", m_sProcessID).getToString ();
+    return new ToStringGenerator (this).append ("SenderParticipantID", m_sSenderParticipantID)
+                                       .append ("CountryCode", m_sCountryCode).append ("DocTypeID", m_sDocTypeID)
+                                       .append ("ProcessID", m_sProcessID).append ("RequestValues", m_aValues)
+                                       .getToString ();
   }
 
   @Nonnull
@@ -121,13 +135,14 @@ public class MSDataRequest implements IMSDataRequest {
       if (aDoc != null) {
         final IMicroElement eRoot = aDoc.getDocumentElement ();
         if (eRoot != null) {
+          final String sSenderParticipantID = MicroHelper.getChildTextContent (eRoot, "sender-pid");
           final String sCountryCode = MicroHelper.getChildTextContent (eRoot, "country-code");
           final String sDocumentTypeID = MicroHelper.getChildTextContent (eRoot, "document-type");
           final String sProcessID = MicroHelper.getChildTextContent (eRoot, "process");
           final ICommonsList<RequestValue> aValues = new CommonsArrayList<> ();
           for (final IMicroElement eRequest : eRoot.getAllChildElements ("request-value"))
-            aValues.add (new RequestValue (eRoot.getAttributeValue ("key"), eRequest.getTextContentTrimmed ()));
-          return new MSDataRequest (sCountryCode, sDocumentTypeID, sProcessID, aValues);
+            aValues.add (new RequestValue (eRequest.getAttributeValue ("key"), eRequest.getTextContentTrimmed ()));
+          return new MSDataRequest (sSenderParticipantID, sCountryCode, sDocumentTypeID, sProcessID, aValues);
         }
       }
       return null;

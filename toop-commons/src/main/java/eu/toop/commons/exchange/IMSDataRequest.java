@@ -29,6 +29,15 @@ import com.helger.commons.collection.impl.ICommonsList;
  */
 public interface IMSDataRequest extends IToopDataElement {
   /**
+   * @return The participant ID of the sender needed for R2D2 invocation from DP
+   *         to DC. It must contain identifier scheme and identifier values in a
+   *         combined string in the form <code>scheme::value</code>.
+   */
+  @Nonnull
+  @Nonempty
+  String getSenderParticipantID ();
+
+  /**
    * @return The ID of the destination country. May not be <code>null</code> and
    *         must be the 2-letter country code as in "DE" or "AT". This field is
    *         required for R2D2 client.
