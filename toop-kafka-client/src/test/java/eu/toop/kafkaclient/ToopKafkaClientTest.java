@@ -15,6 +15,7 @@
  */
 package eu.toop.kafkaclient;
 
+import org.apache.kafka.common.KafkaException;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,6 +33,8 @@ public final class ToopKafkaClientTest {
       for (int i = 0; i < 5; ++i)
         ToopKafkaClient.send ("Key" + i, "Value" + i);
       ToopKafkaClient.close ();
+    } catch (final KafkaException ex) {
+      // lets act as if we are not surprised...
     } finally {
       // Disable again for other tests
       ToopKafkaClient.setEnabled (false);

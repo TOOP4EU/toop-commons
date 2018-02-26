@@ -26,10 +26,13 @@ import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.ReturnsMutableObject;
+import com.helger.commons.collection.impl.CommonsHashMap;
+import com.helger.commons.collection.impl.ICommonsMap;
 import com.helger.commons.concurrent.SimpleReadWriteLock;
 
 /**
@@ -41,6 +44,28 @@ final class ToopKafkaManager {
   private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock ();
   @GuardedBy ("s_aRWLock")
   private static KafkaProducer<String, String> s_aProducer;
+  private static final ICommonsMap<String, String> s_aProps = new CommonsHashMap<> ();
+
+  static {
+    // Instead of 16K
+    if (false)
+      s_aProps.put ("batch.size", "1");
+    // Server URL
+    s_aProps.put ("bootstrap.servers", "tracker.central.toop:7073");
+    // Default: 5secs
+    s_aProps.put ("max.block.ms", "5000");
+  }
+
+  /**
+   *
+   * @return The default properties for customization. Changes to this map only
+   *         effect new connections! Never <code>null</code>.
+   */
+  @Nonnull
+  @ReturnsMutableObject
+  public static ICommonsMap<String, String> defaultProperties () {
+    return s_aProps;
+  }
 
   private ToopKafkaManager () {
   }
@@ -49,13 +74,8 @@ final class ToopKafkaManager {
   @ReturnsMutableObject
   private static Properties _getCreationProperties () {
     final Properties aProps = new Properties ();
-    // Instead of 16K
-    if (true)
-      aProps.put ("batch.size", "1");
-    // Server URL
-    aProps.put ("bootstrap.servers", "tracker.central.toop:7073");
-    // Default: 5secs
-    aProps.put ("max.block.ms", "5000");
+    // Use all default props
+    aProps.putAll (s_aProps);
     return aProps;
   }
 
@@ -64,9 +84,11 @@ final class ToopKafkaManager {
    * message is logged. This is only invoked internally.
    *
    * @return The non-<code>null</code> producer to be used.
+   * @throws KafkaException
+   *           in case of invalid properties (like non-existing server domain9
    */
   @Nonnull
-  public static KafkaProducer<String, String> getOrCreateProducer () {
+  public static KafkaProducer<String, String> getOrCreateProducer () throws KafkaException {
     // Read-lock first
     KafkaProducer<String, String> ret = s_aRWLock.readLocked ( () -> s_aProducer);
     if (ret == null) {
