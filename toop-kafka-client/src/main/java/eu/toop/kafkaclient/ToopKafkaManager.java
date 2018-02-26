@@ -53,8 +53,8 @@ final class ToopKafkaManager {
     if (true)
       aProps.put ("batch.size", "1");
     // Server URL
-    aProps.put ("bootstrap.servers", "localhost:9092");
-    // Default: 60secs
+    aProps.put ("bootstrap.servers", "tracker.central.toop:7073");
+    // Default: 5secs
     aProps.put ("max.block.ms", "5000");
     return aProps;
   }
