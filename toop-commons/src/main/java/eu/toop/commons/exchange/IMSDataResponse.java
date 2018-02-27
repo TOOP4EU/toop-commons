@@ -15,6 +15,14 @@
  */
 package eu.toop.commons.exchange;
 
+import javax.annotation.Nonnull;
+
+import com.helger.commons.annotation.ReturnsMutableCopy;
+import com.helger.commons.collection.impl.CommonsArrayList;
+import com.helger.commons.collection.impl.ICommonsList;
+
+import eu.toop.commons.concept.ConceptValue;
+
 /**
  * Member state response (DP to DC)
  *
@@ -22,4 +30,15 @@ package eu.toop.commons.exchange;
  */
 public interface IMSDataResponse extends IToopDataElement {
   // TODO
+
+  /**
+   * @return A copy of the list of all concept values. Never <code>null</code> but
+   *         maybe empty.
+   */
+  @Nonnull
+  @ReturnsMutableCopy
+  default ICommonsList<ConceptValue> getAllConceptValues () {
+    // TODO empty list
+    return new CommonsArrayList<> ();
+  }
 }
