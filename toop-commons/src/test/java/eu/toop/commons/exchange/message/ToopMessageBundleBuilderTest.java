@@ -103,7 +103,7 @@ public final class ToopMessageBundleBuilderTest {
         assertEquals (aMSReq.getDestinationCountryCode (), "SE");
         assertEquals (aMSReq.getDocumentTypeID (), EToopDocumentType.DOCTYPE2.getURIEncoded ());
         assertEquals (aMSReq.getProcessID (), EToopProcess.PROC.getURIEncoded ());
-        assertEquals (1, aMSReq.getAllRequestValues ().size ());
+        assertEquals (1, aMSReq.getAllConceptValues ().size ());
         assertEquals (bundleRead.getToopDataRequest ().getRequestID (), "DEF456",
                       "ToopDataRequest did not arrive safely");
         assertEquals (((MSDataResponse) bundleRead.getMSDataResponse ()).getIdentifier (), "AAA111",

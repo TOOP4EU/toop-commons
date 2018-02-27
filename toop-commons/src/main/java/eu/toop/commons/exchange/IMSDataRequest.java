@@ -64,10 +64,10 @@ public interface IMSDataRequest extends IToopDataElement {
   String getProcessID ();
 
   /**
-   * @return A copy of the list of all request values. Never <code>null</code> but
+   * @return A copy of the list of all concept values. Never <code>null</code> but
    *         maybe empty.
    */
   @Nonnull
   @ReturnsMutableCopy
-  ICommonsList<ConceptValue> getAllRequestValues ();
+  ICommonsList<ConceptValue> getAllConceptValues ();
 }

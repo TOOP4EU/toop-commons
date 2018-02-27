@@ -93,7 +93,7 @@ public class MSDataRequest implements IMSDataRequest {
 
   @Nonnull
   @ReturnsMutableCopy
-  public ICommonsList<ConceptValue> getAllRequestValues () {
+  public ICommonsList<ConceptValue> getAllConceptValues () {
     return m_aValues.getClone ();
   }
 
