@@ -33,9 +33,9 @@ import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.doctype.EToopDocumentType;
 import eu.toop.commons.doctype.EToopProcess;
-import eu.toop.commons.exchange.RequestValue;
 import eu.toop.commons.exchange.mock.MSDataRequest;
 import eu.toop.commons.exchange.mock.MSDataResponse;
 import eu.toop.commons.exchange.mock.ToopDataRequest;
@@ -52,7 +52,7 @@ public final class ToopMessageBundleBuilderTest {
       ToopMessageBuilder.createRequestMessage (new MSDataRequest ("toop::senderid", "SE",
                                                                   EToopDocumentType.DOCTYPE2.getURIEncoded (),
                                                                   EToopProcess.PROC.getURIEncoded (),
-                                                                  new CommonsArrayList<> (new RequestValue ("companyName",
+                                                                  new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                             "Acme Inc."))),
                                                archiveOutput, SH);
 
@@ -80,7 +80,7 @@ public final class ToopMessageBundleBuilderTest {
       ToopMessageBuilder.createResponseMessage (new MSDataRequest ("toop::senderid", "SE",
                                                                    EToopDocumentType.DOCTYPE2.getURIEncoded (),
                                                                    EToopProcess.PROC.getURIEncoded (),
-                                                                   new CommonsArrayList<> (new RequestValue ("companyName",
+                                                                   new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                              "Acme SE Inc."))),
                                                 new ToopDataRequest ("DEF456"), new MSDataResponse ("AAA111"),
                                                 new ToopDataResponse ("BBB222"), archiveOutput, SH);

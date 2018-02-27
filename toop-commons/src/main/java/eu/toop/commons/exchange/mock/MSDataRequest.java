@@ -37,8 +37,8 @@ import com.helger.xml.microdom.serialize.MicroReader;
 import com.helger.xml.microdom.serialize.MicroWriter;
 import com.helger.xml.microdom.util.MicroHelper;
 
+import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.exchange.IMSDataRequest;
-import eu.toop.commons.exchange.RequestValue;
 
 /**
  * Member state request (DC to DP)
@@ -50,12 +50,12 @@ public class MSDataRequest implements IMSDataRequest {
   private final String m_sCountryCode;
   private final String m_sDocTypeID;
   private final String m_sProcessID;
-  private final ICommonsList<RequestValue> m_aValues;
+  private final ICommonsList<ConceptValue> m_aValues;
 
   public MSDataRequest (@Nonnull @Nonempty final String sSenderParticipantID,
                         @Nonnull @Nonempty final String sCountryCode, @Nonnull @Nonempty final String sDocumentTypeID,
                         @Nonnull @Nonempty final String sProcessID,
-                        @Nullable final Iterable<? extends RequestValue> aValues) {
+                        @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notEmpty (sSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
@@ -93,7 +93,7 @@ public class MSDataRequest implements IMSDataRequest {
 
   @Nonnull
   @ReturnsMutableCopy
-  public ICommonsList<RequestValue> getAllRequestValues () {
+  public ICommonsList<ConceptValue> getAllRequestValues () {
     return m_aValues.getClone ();
   }
 
@@ -111,9 +111,9 @@ public class MSDataRequest implements IMSDataRequest {
     aElement.appendElement ("document-type").appendText (m_sDocTypeID);
     aElement.appendElement ("process").appendText (m_sProcessID);
     // Add all request values
-    for (final RequestValue aValue : m_aValues) {
+    for (final ConceptValue aValue : m_aValues) {
       final IMicroElement eValue = aElement.appendElement ("request-value");
-      eValue.setAttribute ("key", aValue.getKey ());
+      eValue.setAttribute ("namespace", aValue.getNamespace ());
       eValue.appendText (aValue.getValue ());
     }
 
@@ -124,7 +124,7 @@ public class MSDataRequest implements IMSDataRequest {
   public String toString () {
     return new ToStringGenerator (this).append ("SenderParticipantID", m_sSenderParticipantID)
                                        .append ("CountryCode", m_sCountryCode).append ("DocTypeID", m_sDocTypeID)
-                                       .append ("ProcessID", m_sProcessID).append ("RequestValues", m_aValues)
+                                       .append ("ProcessID", m_sProcessID).append ("ConceptValues", m_aValues)
                                        .getToString ();
   }
 
@@ -139,9 +139,10 @@ public class MSDataRequest implements IMSDataRequest {
           final String sCountryCode = MicroHelper.getChildTextContent (eRoot, "country-code");
           final String sDocumentTypeID = MicroHelper.getChildTextContent (eRoot, "document-type");
           final String sProcessID = MicroHelper.getChildTextContent (eRoot, "process");
-          final ICommonsList<RequestValue> aValues = new CommonsArrayList<> ();
+          final ICommonsList<ConceptValue> aValues = new CommonsArrayList<> ();
           for (final IMicroElement eRequest : eRoot.getAllChildElements ("request-value"))
-            aValues.add (new RequestValue (eRequest.getAttributeValue ("key"), eRequest.getTextContentTrimmed ()));
+            aValues.add (new ConceptValue (eRequest.getAttributeValue ("namespace"),
+                                           eRequest.getTextContentTrimmed ()));
           return new MSDataRequest (sSenderParticipantID, sCountryCode, sDocumentTypeID, sProcessID, aValues);
         }
       }

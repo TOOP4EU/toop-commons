@@ -21,6 +21,8 @@ import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.collection.impl.ICommonsList;
 
+import eu.toop.commons.concept.ConceptValue;
+
 /**
  * Member state request (DC to DP). This data request MUST serialize to XML
  * because it is used
@@ -67,5 +69,5 @@ public interface IMSDataRequest extends IToopDataElement {
    */
   @Nonnull
   @ReturnsMutableCopy
-  ICommonsList<RequestValue> getAllRequestValues ();
+  ICommonsList<ConceptValue> getAllRequestValues ();
 }
