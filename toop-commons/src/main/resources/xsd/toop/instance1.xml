@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toop:TOOP_DataResponse xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+ xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
+ xmlns:toop="http://toop.eu"
+ xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://toop.eu file:/C:/Users/yyi3320.ICNT/Desktop/TOOP_xsd_v0.5/xsd/toop/TOOP_DataExchange.xsd">
+    <DocumentIdentifier schemeID="schemeID0" schemeName="schemeName0" schemeAgencyID="schemeAgencyID0" schemeAgencyName="schemeAgencyName0" schemeVersionID="schemeVersionID0" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIdentifier0</DocumentIdentifier>
+    <DocumentIssueDate>2006-05-04</DocumentIssueDate>
+    <DocumentIssueTime>01:01:01.001</DocumentIssueTime>
+    <DocumentUniversalUniqueIdentifier schemeID="schemeID1" schemeName="schemeName1" schemeAgencyID="schemeAgencyID1" schemeAgencyName="schemeAgencyName1" schemeVersionID="schemeVersionID1" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentUniversalUniqueIdentifier0</DocumentUniversalUniqueIdentifier>
+    <DocumentVersionIdentifier schemeID="schemeID2" schemeName="schemeName2" schemeAgencyID="schemeAgencyID2" schemeAgencyName="schemeAgencyName2" schemeVersionID="schemeVersionID2" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentVersionIdentifier0</DocumentVersionIdentifier>
+    <CopyIndicator>false</CopyIndicator>
+    <DocumentTypeCode>data.request.registeredorganization</DocumentTypeCode>
+    <SpecificationIdentifier schemeID="schemeID3" schemeName="schemeName3" schemeAgencyID="schemeAgencyID3" schemeAgencyName="schemeAgencyName3" schemeVersionID="schemeVersionID3" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SpecificationIdentifier0</SpecificationIdentifier>
+    <ProcessIdentifier schemeID="schemeID4" schemeName="schemeName4" schemeAgencyID="schemeAgencyID4" schemeAgencyName="schemeAgencyName4" schemeVersionID="schemeVersionID4" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ProcessIdentifier0</ProcessIdentifier>
+    <SessionIdentifier schemeID="schemeID5" schemeName="schemeName5" schemeAgencyID="schemeAgencyID5" schemeAgencyName="schemeAgencyName5" schemeVersionID="schemeVersionID5" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SessionIdentifier0</SessionIdentifier>
+    <DataConsumer>
+        <DCUniqueIdentifier schemeID="schemeID6" schemeName="schemeName6" schemeAgencyID="schemeAgencyID6" schemeAgencyName="schemeAgencyName6" schemeVersionID="schemeVersionID6" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DCUniqueIdentifier0</DCUniqueIdentifier>
+        <DCName languageID="en-US" languageLocaleID="languageLocaleID0">DCName0</DCName>
+        <DCElectronicAddressIdentifier schemeID="schemeID7" schemeName="schemeName7" schemeAgencyID="schemeAgencyID7" schemeAgencyName="schemeAgencyName7" schemeVersionID="schemeVersionID7" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DCElectronicAddressIdentifier0</DCElectronicAddressIdentifier>
+        <DCWebsite schemeID="schemeID8" schemeName="schemeName8" schemeAgencyID="schemeAgencyID8" schemeAgencyName="schemeAgencyName8" schemeVersionID="schemeVersionID8" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DCWebsite0</DCWebsite>
+        <DCLegalAddress>
+            <AddressLine1 languageID="en-US" languageLocaleID="languageLocaleID1">AddressLine10</AddressLine1>
+            <AddressLine2 languageID="en-US" languageLocaleID="languageLocaleID2">AddressLine20</AddressLine2>
+            <AddressLine3 languageID="en-US" languageLocaleID="languageLocaleID3">AddressLine30</AddressLine3>
+            <StreetName languageID="en-US" languageLocaleID="languageLocaleID4">StreetName0</StreetName>
+            <StreetNumber languageID="en-US" languageLocaleID="languageLocaleID5">StreetNumber0</StreetNumber>
+            <City languageID="en-US" languageLocaleID="languageLocaleID6">City0</City>
+            <PostCode languageID="en-US" languageLocaleID="languageLocaleID7">PostCode0</PostCode>
+            <Country languageID="en-US" languageLocaleID="languageLocaleID8">Country0</Country>
+            <CountryCode listID="listID0" listAgencyID="listAgencyID0" listAgencyName="listAgencyName0" listName="listName0" listVersionID="listVersionID0" name="name0" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</CountryCode>
+        </DCLegalAddress>
+    </DataConsumer>
+    <DataSubject>
+        <DataSubjectTypeCode listID="listID1" listAgencyID="listAgencyID1" listAgencyName="listAgencyName1" listName="listName1" listVersionID="listVersionID1" name="name1" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DataSubjectTypeCode0</DataSubjectTypeCode>
+        <LegalEntity>
+            <LegalPersonUniqueIdentifier schemeID="schemeID9" schemeName="schemeName9" schemeAgencyID="schemeAgencyID9" schemeAgencyName="schemeAgencyName9" schemeVersionID="schemeVersionID9" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">LegalPersonUniqueIdentifier0</LegalPersonUniqueIdentifier>
+            <LegalName languageID="en-US" languageLocaleID="languageLocaleID9">LegalName0</LegalName>
+            <VATRegistrationNumber schemeID="schemeID10" schemeName="schemeName10" schemeAgencyID="schemeAgencyID10" schemeAgencyName="schemeAgencyName10" schemeVersionID="schemeVersionID10" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">VATRegistrationNumber0</VATRegistrationNumber>
+            <TaxReferenceNumber schemeID="schemeID11" schemeName="schemeName11" schemeAgencyID="schemeAgencyID11" schemeAgencyName="schemeAgencyName11" schemeVersionID="schemeVersionID11" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">TaxReferenceNumber0</TaxReferenceNumber>
+            <BusinessCode schemeID="schemeID12" schemeName="schemeName12" schemeAgencyID="schemeAgencyID12" schemeAgencyName="schemeAgencyName12" schemeVersionID="schemeVersionID12" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">BusinessCode0</BusinessCode>
+            <LegalEntityIdentifier schemeID="schemeID13" schemeName="schemeName13" schemeAgencyID="schemeAgencyID13" schemeAgencyName="schemeAgencyName13" schemeVersionID="schemeVersionID13" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">LegalEntityIdentifier0</LegalEntityIdentifier>
+            <EORIIdentifier schemeID="schemeID14" schemeName="schemeName14" schemeAgencyID="schemeAgencyID14" schemeAgencyName="schemeAgencyName14" schemeVersionID="schemeVersionID14" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">EORIIdentifier0</EORIIdentifier>
+            <SEEDIdentifier schemeID="schemeID15" schemeName="schemeName15" schemeAgencyID="schemeAgencyID15" schemeAgencyName="schemeAgencyName15" schemeVersionID="schemeVersionID15" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SEEDIdentifier0</SEEDIdentifier>
+            <StandardIndustrialClassification listID="listID2" listAgencyID="listAgencyID2" listAgencyName="listAgencyName2" listName="listName2" listVersionID="listVersionID2" name="name2" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">0000</StandardIndustrialClassification>
+            <AuthorisedRepresentativeIdentifier schemeID="schemeID16" schemeName="schemeName16" schemeAgencyID="schemeAgencyID16" schemeAgencyName="schemeAgencyName16" schemeVersionID="schemeVersionID16" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">AuthorisedRepresentativeIdentifier0</AuthorisedRepresentativeIdentifier>
+            <LegalEntityLegalAddress>
+                <AddressLine1 languageID="en-US" languageLocaleID="languageLocaleID10">AddressLine11</AddressLine1>
+                <AddressLine2 languageID="en-US" languageLocaleID="languageLocaleID11">AddressLine21</AddressLine2>
+                <AddressLine3 languageID="en-US" languageLocaleID="languageLocaleID12">AddressLine31</AddressLine3>
+                <StreetName languageID="en-US" languageLocaleID="languageLocaleID13">StreetName1</StreetName>
+                <StreetNumber languageID="en-US" languageLocaleID="languageLocaleID14">StreetNumber1</StreetNumber>
+                <City languageID="en-US" languageLocaleID="languageLocaleID15">City1</City>
+                <PostCode languageID="en-US" languageLocaleID="languageLocaleID16">PostCode1</PostCode>
+                <Country languageID="en-US" languageLocaleID="languageLocaleID17">Country1</Country>
+                <CountryCode listID="listID3" listAgencyID="listAgencyID3" listAgencyName="listAgencyName3" listName="listName3" listVersionID="listVersionID3" name="name3" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</CountryCode>
+            </LegalEntityLegalAddress>
+        </LegalEntity>
+        <NaturalPerson>
+            <PersonIdentifier schemeID="schemeID17" schemeName="schemeName17" schemeAgencyID="schemeAgencyID17" schemeAgencyName="schemeAgencyName17" schemeVersionID="schemeVersionID17" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">PersonIdentifier0</PersonIdentifier>
+            <FamilyName languageID="en-US" languageLocaleID="languageLocaleID18">FamilyName0</FamilyName>
+            <FirstName languageID="en-US" languageLocaleID="languageLocaleID19">FirstName0</FirstName>
+            <BirthDate>2006-05-04</BirthDate>
+            <BirthFamilyName languageID="en-US" languageLocaleID="languageLocaleID20">BirthFamilyName0</BirthFamilyName>
+            <BirthPlace languageID="en-US" languageLocaleID="languageLocaleID21">BirthPlace0</BirthPlace>
+            <GenderCode>Male</GenderCode>
+            <NaturalPersonLegalAddress>
+                <AddressLine1 languageID="en-US" languageLocaleID="languageLocaleID22">AddressLine12</AddressLine1>
+                <AddressLine2 languageID="en-US" languageLocaleID="languageLocaleID23">AddressLine22</AddressLine2>
+                <AddressLine3 languageID="en-US" languageLocaleID="languageLocaleID24">AddressLine32</AddressLine3>
+                <StreetName languageID="en-US" languageLocaleID="languageLocaleID25">StreetName2</StreetName>
+                <StreetNumber languageID="en-US" languageLocaleID="languageLocaleID26">StreetNumber2</StreetNumber>
+                <City languageID="en-US" languageLocaleID="languageLocaleID27">City2</City>
+                <PostCode languageID="en-US" languageLocaleID="languageLocaleID28">PostCode2</PostCode>
+                <Country languageID="en-US" languageLocaleID="languageLocaleID29">Country2</Country>
+                <CountryCode listID="listID4" listAgencyID="listAgencyID4" listAgencyName="listAgencyName4" listName="listName4" listVersionID="listVersionID4" name="name4" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</CountryCode>
+            </NaturalPersonLegalAddress>
+        </NaturalPerson>
+    </DataSubject>
+    <DataRequestAuthorization>
+        <DataRequestConsentToken schemeID="schemeID18" schemeName="schemeName18" schemeAgencyID="schemeAgencyID18" schemeAgencyName="schemeAgencyName18" schemeVersionID="schemeVersionID18" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataRequestConsentToken0</DataRequestConsentToken>
+    </DataRequestAuthorization>
+    <DataRequestIdentifier schemeID="schemeID19" schemeName="schemeName19" schemeAgencyID="schemeAgencyID19" schemeAgencyName="schemeAgencyName19" schemeVersionID="schemeVersionID19" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataRequestIdentifier0</DataRequestIdentifier>
+    <DataRequest>
+        <DataRequestIdentifier schemeID="schemeID20" schemeName="schemeName20" schemeAgencyID="schemeAgencyID20" schemeAgencyName="schemeAgencyName20" schemeVersionID="schemeVersionID20" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataRequestIdentifier1</DataRequestIdentifier>
+        <DataRequestDomainCode listID="listID5" listAgencyID="listAgencyID5" listAgencyName="listAgencyName5" listName="listName5" listVersionID="listVersionID5" name="name5" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DataRequestDomainCode0</DataRequestDomainCode>
+        <DataElementRequestIndicator>false</DataElementRequestIndicator>
+        <DocumentRequestIndicator>false</DocumentRequestIndicator>
+        <DocumentRequestTypeCode listID="listID6" listAgencyID="listAgencyID6" listAgencyName="listAgencyName6" listName="listName6" listVersionID="listVersionID6" name="name6" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentRequestTypeCode0</DocumentRequestTypeCode>
+        <DocumentRequestTypeCode listID="listID7" listAgencyID="listAgencyID7" listAgencyName="listAgencyName7" listName="listName7" listVersionID="listVersionID7" name="name7" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentRequestTypeCode1</DocumentRequestTypeCode>
+        <PreferredDocumentFileTypeCode listID="listID8" listAgencyID="listAgencyID8" listAgencyName="listAgencyName8" listName="listName8" listVersionID="listVersionID8" name="name8" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">PreferredDocumentFileTypeCode0</PreferredDocumentFileTypeCode>
+        <DataRequestPurpose languageID="en-US" languageLocaleID="languageLocaleID30">DataRequestPurpose0</DataRequestPurpose>
+        <DataElementRequest>
+            <DataElementRequestIdentifier schemeID="schemeID21" schemeName="schemeName21" schemeAgencyID="schemeAgencyID21" schemeAgencyName="schemeAgencyName21" schemeVersionID="schemeVersionID21" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier0</DataElementRequestIdentifier>
+            <DataElementRequestIdentifier schemeID="schemeID22" schemeName="schemeName22" schemeAgencyID="schemeAgencyID22" schemeAgencyName="schemeAgencyName22" schemeVersionID="schemeVersionID22" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier1</DataElementRequestIdentifier>
+            <DataConsumerSemanticMappingIndicator>false</DataConsumerSemanticMappingIndicator>
+            <DataConsumerConceptIdentifier schemeID="schemeID23" schemeName="schemeName23" schemeAgencyID="schemeAgencyID23" schemeAgencyName="schemeAgencyName23" schemeVersionID="schemeVersionID23" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptIdentifier0</DataConsumerConceptIdentifier>
+            <DataConsumerConceptIdentifier schemeID="schemeID24" schemeName="schemeName24" schemeAgencyID="schemeAgencyID24" schemeAgencyName="schemeAgencyName24" schemeVersionID="schemeVersionID24" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptIdentifier1</DataConsumerConceptIdentifier>
+            <DataConsumerConcept languageID="en-US" languageLocaleID="languageLocaleID31">DataConsumerConcept0</DataConsumerConcept>
+            <DataConsumerConcept languageID="en-US" languageLocaleID="languageLocaleID32">DataConsumerConcept1</DataConsumerConcept>
+            <DataConsumerConceptSyntaxPathURI schemeID="schemeID25" schemeName="schemeName25" schemeAgencyID="schemeAgencyID25" schemeAgencyName="schemeAgencyName25" schemeVersionID="schemeVersionID25" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptSyntaxPathURI0</DataConsumerConceptSyntaxPathURI>
+            <DataConsumerConceptSyntaxPathURI schemeID="schemeID26" schemeName="schemeName26" schemeAgencyID="schemeAgencyID26" schemeAgencyName="schemeAgencyName26" schemeVersionID="schemeVersionID26" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptSyntaxPathURI1</DataConsumerConceptSyntaxPathURI>
+            <ToopConcept languageID="en-US" languageLocaleID="languageLocaleID33">ToopConcept0</ToopConcept>
+            <ToopConcept languageID="en-US" languageLocaleID="languageLocaleID34">ToopConcept1</ToopConcept>
+            <ToopConceptDefinition languageID="en-US" languageLocaleID="languageLocaleID35">ToopConceptDefinition0</ToopConceptDefinition>
+            <ToopConceptDefinition languageID="en-US" languageLocaleID="languageLocaleID36">ToopConceptDefinition1</ToopConceptDefinition>
+            <ToopConceptURI schemeID="schemeID27" schemeName="schemeName27" schemeAgencyID="schemeAgencyID27" schemeAgencyName="schemeAgencyName27" schemeVersionID="schemeVersionID27" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ToopConceptURI0</ToopConceptURI>
+            <ToopConceptURI schemeID="schemeID28" schemeName="schemeName28" schemeAgencyID="schemeAgencyID28" schemeAgencyName="schemeAgencyName28" schemeVersionID="schemeVersionID28" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ToopConceptURI1</ToopConceptURI>
+        </DataElementRequest>
+        <DataElementRequest>
+            <DataElementRequestIdentifier schemeID="schemeID29" schemeName="schemeName29" schemeAgencyID="schemeAgencyID29" schemeAgencyName="schemeAgencyName29" schemeVersionID="schemeVersionID29" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier2</DataElementRequestIdentifier>
+            <DataElementRequestIdentifier schemeID="schemeID30" schemeName="schemeName30" schemeAgencyID="schemeAgencyID30" schemeAgencyName="schemeAgencyName30" schemeVersionID="schemeVersionID30" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier3</DataElementRequestIdentifier>
+            <DataConsumerSemanticMappingIndicator>false</DataConsumerSemanticMappingIndicator>
+            <DataConsumerConceptIdentifier schemeID="schemeID31" schemeName="schemeName31" schemeAgencyID="schemeAgencyID31" schemeAgencyName="schemeAgencyName31" schemeVersionID="schemeVersionID31" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptIdentifier2</DataConsumerConceptIdentifier>
+            <DataConsumerConceptIdentifier schemeID="schemeID32" schemeName="schemeName32" schemeAgencyID="schemeAgencyID32" schemeAgencyName="schemeAgencyName32" schemeVersionID="schemeVersionID32" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptIdentifier3</DataConsumerConceptIdentifier>
+            <DataConsumerConcept languageID="en-US" languageLocaleID="languageLocaleID37">DataConsumerConcept2</DataConsumerConcept>
+            <DataConsumerConcept languageID="en-US" languageLocaleID="languageLocaleID38">DataConsumerConcept3</DataConsumerConcept>
+            <DataConsumerConceptSyntaxPathURI schemeID="schemeID33" schemeName="schemeName33" schemeAgencyID="schemeAgencyID33" schemeAgencyName="schemeAgencyName33" schemeVersionID="schemeVersionID33" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptSyntaxPathURI2</DataConsumerConceptSyntaxPathURI>
+            <DataConsumerConceptSyntaxPathURI schemeID="schemeID34" schemeName="schemeName34" schemeAgencyID="schemeAgencyID34" schemeAgencyName="schemeAgencyName34" schemeVersionID="schemeVersionID34" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataConsumerConceptSyntaxPathURI3</DataConsumerConceptSyntaxPathURI>
+            <ToopConcept languageID="en-US" languageLocaleID="languageLocaleID39">ToopConcept2</ToopConcept>
+            <ToopConcept languageID="en-US" languageLocaleID="languageLocaleID40">ToopConcept3</ToopConcept>
+            <ToopConceptDefinition languageID="en-US" languageLocaleID="languageLocaleID41">ToopConceptDefinition2</ToopConceptDefinition>
+            <ToopConceptDefinition languageID="en-US" languageLocaleID="languageLocaleID42">ToopConceptDefinition3</ToopConceptDefinition>
+            <ToopConceptURI schemeID="schemeID35" schemeName="schemeName35" schemeAgencyID="schemeAgencyID35" schemeAgencyName="schemeAgencyName35" schemeVersionID="schemeVersionID35" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ToopConceptURI2</ToopConceptURI>
+            <ToopConceptURI schemeID="schemeID36" schemeName="schemeName36" schemeAgencyID="schemeAgencyID36" schemeAgencyName="schemeAgencyName36" schemeVersionID="schemeVersionID36" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ToopConceptURI3</ToopConceptURI>
+        </DataElementRequest>
+    </DataRequest>
+    <DataResponse>
+        <DataRequestIdentifier schemeID="schemeID37" schemeName="schemeName37" schemeAgencyID="schemeAgencyID37" schemeAgencyName="schemeAgencyName37" schemeVersionID="schemeVersionID37" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataRequestIdentifier2</DataRequestIdentifier>
+        <DataResponseIdentifier schemeID="schemeID38" schemeName="schemeName38" schemeAgencyID="schemeAgencyID38" schemeAgencyName="schemeAgencyName38" schemeVersionID="schemeVersionID38" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataResponseIdentifier0</DataResponseIdentifier>
+        <DataProviderSyntaxNameCode listID="listID9" listAgencyID="listAgencyID9" listAgencyName="listAgencyName9" listName="listName9" listVersionID="listVersionID9" name="name9" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DataProviderSyntaxNameCode0</DataProviderSyntaxNameCode>
+        <DataResponseConfidentialityLevelCode listID="listID10" listAgencyID="listAgencyID10" listAgencyName="listAgencyName10" listName="listName10" listVersionID="listVersionID10" name="name10" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DataResponseConfidentialityLevelCode0</DataResponseConfidentialityLevelCode>
+        <DataElementResponse>
+            <DataElementRequestIdentifier schemeID="schemeID39" schemeName="schemeName39" schemeAgencyID="schemeAgencyID39" schemeAgencyName="schemeAgencyName39" schemeVersionID="schemeVersionID39" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier4</DataElementRequestIdentifier>
+            <DataElementRequestIdentifier schemeID="schemeID40" schemeName="schemeName40" schemeAgencyID="schemeAgencyID40" schemeAgencyName="schemeAgencyName40" schemeVersionID="schemeVersionID40" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier5</DataElementRequestIdentifier>
+            <DataProviderSemanticMappingIndicator>false</DataProviderSemanticMappingIndicator>
+            <DataProviderConcept languageID="en-US" languageLocaleID="languageLocaleID43">DataProviderConcept0</DataProviderConcept>
+            <DataProviderConcept languageID="en-US" languageLocaleID="languageLocaleID44">DataProviderConcept1</DataProviderConcept>
+            <DataProviderConceptSyntaxPathURI schemeID="schemeID41" schemeName="schemeName41" schemeAgencyID="schemeAgencyID41" schemeAgencyName="schemeAgencyName41" schemeVersionID="schemeVersionID41" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataProviderConceptSyntaxPathURI0</DataProviderConceptSyntaxPathURI>
+            <DataProviderConceptSyntaxPathURI schemeID="schemeID42" schemeName="schemeName42" schemeAgencyID="schemeAgencyID42" schemeAgencyName="schemeAgencyName42" schemeVersionID="schemeVersionID42" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataProviderConceptSyntaxPathURI1</DataProviderConceptSyntaxPathURI>
+            <ResponseValueIdentifier schemeID="schemeID43" schemeName="schemeName43" schemeAgencyID="schemeAgencyID43" schemeAgencyName="schemeAgencyName43" schemeVersionID="schemeVersionID43" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier0</ResponseValueIdentifier>
+            <ResponseValueIdentifier schemeID="schemeID44" schemeName="schemeName44" schemeAgencyID="schemeAgencyID44" schemeAgencyName="schemeAgencyName44" schemeVersionID="schemeVersionID44" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier1</ResponseValueIdentifier>
+            <DataElementResponseValue>
+                <ResponseValueIdentifier schemeID="schemeID45" schemeName="schemeName45" schemeAgencyID="schemeAgencyID45" schemeAgencyName="schemeAgencyName45" schemeVersionID="schemeVersionID45" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier2</ResponseValueIdentifier>
+                <ResponseCodeIndicator>false</ResponseCodeIndicator>
+                <ResponseErrorCode listID="listID11" listAgencyID="listAgencyID11" listAgencyName="listAgencyName11" listName="listName11" listVersionID="listVersionID11" name="name11" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseErrorCode0</ResponseErrorCode>
+                <ResponseIdentifier schemeID="schemeID46" schemeName="schemeName46" schemeAgencyID="schemeAgencyID46" schemeAgencyName="schemeAgencyName46" schemeVersionID="schemeVersionID46" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseIdentifier0</ResponseIdentifier>
+                <ResponseDescription languageID="en-US" languageLocaleID="languageLocaleID45">ResponseDescription0</ResponseDescription>
+                <ResponseAmount currencyID="currencyID0" currencyCodeListVersionID="currencyCodeListVersionID0">0</ResponseAmount>
+                <ResponseCode listID="listID12" listAgencyID="listAgencyID12" listAgencyName="listAgencyName12" listName="listName12" listVersionID="listVersionID12" name="name12" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseCode0</ResponseCode>
+                <ResponseDate>2006-05-04</ResponseDate>
+                <ResponseIndicator>false</ResponseIndicator>
+                <ResponseMeasure unitCode="unitCode0" unitCodeListVersionID="unitCodeListVersionID0">0</ResponseMeasure>
+                <ResponseNumeric format="format0">0</ResponseNumeric>
+                <ResponseQuantity unitCode="unitCode1" unitCodeListID="unitCodeListID0" unitCodeListAgencyID="unitCodeListAgencyID0" unitCodeListAgencyName="unitCodeListAgencyName0">0</ResponseQuantity>
+                <ResponseTime>01:01:01.001</ResponseTime>
+                <ResponseURI>false</ResponseURI>
+            </DataElementResponseValue>
+        </DataElementResponse>
+        <DataElementResponse>
+            <DataElementRequestIdentifier schemeID="schemeID47" schemeName="schemeName47" schemeAgencyID="schemeAgencyID47" schemeAgencyName="schemeAgencyName47" schemeVersionID="schemeVersionID47" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier6</DataElementRequestIdentifier>
+            <DataElementRequestIdentifier schemeID="schemeID48" schemeName="schemeName48" schemeAgencyID="schemeAgencyID48" schemeAgencyName="schemeAgencyName48" schemeVersionID="schemeVersionID48" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataElementRequestIdentifier7</DataElementRequestIdentifier>
+            <DataProviderSemanticMappingIndicator>false</DataProviderSemanticMappingIndicator>
+            <DataProviderConcept languageID="en-US" languageLocaleID="languageLocaleID46">DataProviderConcept2</DataProviderConcept>
+            <DataProviderConcept languageID="en-US" languageLocaleID="languageLocaleID47">DataProviderConcept3</DataProviderConcept>
+            <DataProviderConceptSyntaxPathURI schemeID="schemeID49" schemeName="schemeName49" schemeAgencyID="schemeAgencyID49" schemeAgencyName="schemeAgencyName49" schemeVersionID="schemeVersionID49" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataProviderConceptSyntaxPathURI2</DataProviderConceptSyntaxPathURI>
+            <DataProviderConceptSyntaxPathURI schemeID="schemeID50" schemeName="schemeName50" schemeAgencyID="schemeAgencyID50" schemeAgencyName="schemeAgencyName50" schemeVersionID="schemeVersionID50" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataProviderConceptSyntaxPathURI3</DataProviderConceptSyntaxPathURI>
+            <ResponseValueIdentifier schemeID="schemeID51" schemeName="schemeName51" schemeAgencyID="schemeAgencyID51" schemeAgencyName="schemeAgencyName51" schemeVersionID="schemeVersionID51" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier3</ResponseValueIdentifier>
+            <ResponseValueIdentifier schemeID="schemeID52" schemeName="schemeName52" schemeAgencyID="schemeAgencyID52" schemeAgencyName="schemeAgencyName52" schemeVersionID="schemeVersionID52" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier4</ResponseValueIdentifier>
+            <DataElementResponseValue>
+                <ResponseValueIdentifier schemeID="schemeID53" schemeName="schemeName53" schemeAgencyID="schemeAgencyID53" schemeAgencyName="schemeAgencyName53" schemeVersionID="schemeVersionID53" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier5</ResponseValueIdentifier>
+                <ResponseCodeIndicator>false</ResponseCodeIndicator>
+                <ResponseErrorCode listID="listID13" listAgencyID="listAgencyID13" listAgencyName="listAgencyName13" listName="listName13" listVersionID="listVersionID13" name="name13" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseErrorCode1</ResponseErrorCode>
+                <ResponseIdentifier schemeID="schemeID54" schemeName="schemeName54" schemeAgencyID="schemeAgencyID54" schemeAgencyName="schemeAgencyName54" schemeVersionID="schemeVersionID54" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseIdentifier1</ResponseIdentifier>
+                <ResponseDescription languageID="en-US" languageLocaleID="languageLocaleID48">ResponseDescription1</ResponseDescription>
+                <ResponseAmount currencyID="currencyID1" currencyCodeListVersionID="currencyCodeListVersionID1">0</ResponseAmount>
+                <ResponseCode listID="listID14" listAgencyID="listAgencyID14" listAgencyName="listAgencyName14" listName="listName14" listVersionID="listVersionID14" name="name14" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseCode1</ResponseCode>
+                <ResponseDate>2006-05-04</ResponseDate>
+                <ResponseIndicator>false</ResponseIndicator>
+                <ResponseMeasure unitCode="unitCode2" unitCodeListVersionID="unitCodeListVersionID1">0</ResponseMeasure>
+                <ResponseNumeric format="format1">0</ResponseNumeric>
+                <ResponseQuantity unitCode="unitCode3" unitCodeListID="unitCodeListID1" unitCodeListAgencyID="unitCodeListAgencyID1" unitCodeListAgencyName="unitCodeListAgencyName1">0</ResponseQuantity>
+                <ResponseTime>01:01:01.001</ResponseTime>
+                <ResponseURI>false</ResponseURI>
+            </DataElementResponseValue>
+        </DataElementResponse>
+    </DataResponse>
+    <DocumentResponse>
+        <DocumentIdentifier schemeID="schemeID55" schemeName="schemeName55" schemeAgencyID="schemeAgencyID55" schemeAgencyName="schemeAgencyName55" schemeVersionID="schemeVersionID55" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIdentifier1</DocumentIdentifier>
+        <DocumentIdentifier schemeID="schemeID56" schemeName="schemeName56" schemeAgencyID="schemeAgencyID56" schemeAgencyName="schemeAgencyName56" schemeVersionID="schemeVersionID56" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIdentifier2</DocumentIdentifier>
+        <DocumentTypeCode listID="listID15" listAgencyID="listAgencyID15" listAgencyName="listAgencyName15" listName="listName15" listVersionID="listVersionID15" name="name15" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentTypeCode1</DocumentTypeCode>
+        <DocumentTypeCode listID="listID16" listAgencyID="listAgencyID16" listAgencyName="listAgencyName16" listName="listName16" listVersionID="listVersionID16" name="name16" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentTypeCode2</DocumentTypeCode>
+        <DocumentName languageID="en-US" languageLocaleID="languageLocaleID49">DocumentName0</DocumentName>
+        <DocumentName languageID="en-US" languageLocaleID="languageLocaleID50">DocumentName1</DocumentName>
+        <DocumentDescription languageID="en-US" languageLocaleID="languageLocaleID51">DocumentDescription0</DocumentDescription>
+        <DocumentDescription languageID="en-US" languageLocaleID="languageLocaleID52">DocumentDescription1</DocumentDescription>
+        <DocumentValidityPeriod languageID="en-US" languageLocaleID="languageLocaleID53">DocumentValidityPeriod0</DocumentValidityPeriod>
+        <DocumentValidityPeriod languageID="en-US" languageLocaleID="languageLocaleID54">DocumentValidityPeriod1</DocumentValidityPeriod>
+        <DocumentIssuer>
+            <DocumentIssuerIdentifier schemeID="schemeID57" schemeName="schemeName57" schemeAgencyID="schemeAgencyID57" schemeAgencyName="schemeAgencyName57" schemeVersionID="schemeVersionID57" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIssuerIdentifier0</DocumentIssuerIdentifier>
+            <DocumentIssuerName languageID="en-US" languageLocaleID="languageLocaleID55">DocumentIssuerName0</DocumentIssuerName>
+        </DocumentIssuer>
+        <Document>
+            <ExternalDocumentURI schemeID="schemeID58" schemeName="schemeName58" schemeAgencyID="schemeAgencyID58" schemeAgencyName="schemeAgencyName58" schemeVersionID="schemeVersionID58" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI0</ExternalDocumentURI>
+            <ExternalDocumentURI schemeID="schemeID59" schemeName="schemeName59" schemeAgencyID="schemeAgencyID59" schemeAgencyName="schemeAgencyName59" schemeVersionID="schemeVersionID59" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI1</ExternalDocumentURI>
+        </Document>
+        <Document>
+            <ExternalDocumentURI schemeID="schemeID60" schemeName="schemeName60" schemeAgencyID="schemeAgencyID60" schemeAgencyName="schemeAgencyName60" schemeVersionID="schemeVersionID60" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI2</ExternalDocumentURI>
+            <ExternalDocumentURI schemeID="schemeID61" schemeName="schemeName61" schemeAgencyID="schemeAgencyID61" schemeAgencyName="schemeAgencyName61" schemeVersionID="schemeVersionID61" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI3</ExternalDocumentURI>
+        </Document>
+    </DocumentResponse>
+    <DataProvider>
+        <DPIdentifier schemeID="schemeID62" schemeName="schemeName62" schemeAgencyID="schemeAgencyID62" schemeAgencyName="schemeAgencyName62" schemeVersionID="schemeVersionID62" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DPIdentifier0</DPIdentifier>
+        <DPName languageID="en-US" languageLocaleID="languageLocaleID56">DPName0</DPName>
+        <DPAdministrativeUnit schemeID="schemeID63" schemeName="schemeName63" schemeAgencyID="schemeAgencyID63" schemeAgencyName="schemeAgencyName63" schemeVersionID="schemeVersionID63" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DPAdministrativeUnit0</DPAdministrativeUnit>
+        <DPElectronicAddressIdentifier schemeID="schemeID64" schemeName="schemeName64" schemeAgencyID="schemeAgencyID64" schemeAgencyName="schemeAgencyName64" schemeVersionID="schemeVersionID64" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DPElectronicAddressIdentifier0</DPElectronicAddressIdentifier>
+        <DPLegalAddress>
+            <AddressLine1 languageID="en-US" languageLocaleID="languageLocaleID57">AddressLine13</AddressLine1>
+            <AddressLine2 languageID="en-US" languageLocaleID="languageLocaleID58">AddressLine23</AddressLine2>
+            <AddressLine3 languageID="en-US" languageLocaleID="languageLocaleID59">AddressLine33</AddressLine3>
+            <StreetName languageID="en-US" languageLocaleID="languageLocaleID60">StreetName3</StreetName>
+            <StreetNumber languageID="en-US" languageLocaleID="languageLocaleID61">StreetNumber3</StreetNumber>
+            <City languageID="en-US" languageLocaleID="languageLocaleID62">City3</City>
+            <PostCode languageID="en-US" languageLocaleID="languageLocaleID63">PostCode3</PostCode>
+            <Country languageID="en-US" languageLocaleID="languageLocaleID64">Country3</Country>
+            <CountryCode listID="listID17" listAgencyID="listAgencyID17" listAgencyName="listAgencyName17" listName="listName17" listVersionID="listVersionID17" name="name17" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</CountryCode>
+        </DPLegalAddress>
+        <DPContactDetails>
+            <ContactPoint schemeID="schemeID65" schemeName="schemeName65" schemeAgencyID="schemeAgencyID65" schemeAgencyName="schemeAgencyName65" schemeVersionID="schemeVersionID65" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ContactPoint0</ContactPoint>
+            <ContactTelephoneNumber schemeID="schemeID66" schemeName="schemeName66" schemeAgencyID="schemeAgencyID66" schemeAgencyName="schemeAgencyName66" schemeVersionID="schemeVersionID66" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ContactTelephoneNumber0</ContactTelephoneNumber>
+            <ContactFaxNumber schemeID="schemeID67" schemeName="schemeName67" schemeAgencyID="schemeAgencyID67" schemeAgencyName="schemeAgencyName67" schemeVersionID="schemeVersionID67" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ContactFaxNumber0</ContactFaxNumber>
+            <ContactEmailAddress schemeID="schemeID68" schemeName="schemeName68" schemeAgencyID="schemeAgencyID68" schemeAgencyName="schemeAgencyName68" schemeVersionID="schemeVersionID68" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ContactEmailAddress0</ContactEmailAddress>
+        </DPContactDetails>
+    </DataProvider>
+    <NationalOOPServiceProvider>
+        <OOPServiceProviderIdentifier schemeID="schemeID69" schemeName="schemeName69" schemeAgencyID="schemeAgencyID69" schemeAgencyName="schemeAgencyName69" schemeVersionID="schemeVersionID69" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderIdentifier0</OOPServiceProviderIdentifier>
+        <OOPServiceProviderName languageID="en-US" languageLocaleID="languageLocaleID65">OOPServiceProviderName0</OOPServiceProviderName>
+        <OOPServiceProviderElectronicAddressIdentifier schemeID="schemeID70" schemeName="schemeName70" schemeAgencyID="schemeAgencyID70" schemeAgencyName="schemeAgencyName70" schemeVersionID="schemeVersionID70" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderElectronicAddressIdentifier0</OOPServiceProviderElectronicAddressIdentifier>
+        <OOPServiceProviderCountry languageID="en-US" languageLocaleID="languageLocaleID66">OOPServiceProviderCountry0</OOPServiceProviderCountry>
+        <OOPServiceProviderCountryCode listID="listID18" listAgencyID="listAgencyID18" listAgencyName="listAgencyName18" listName="listName18" listVersionID="listVersionID18" name="name18" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">OOPServiceProviderCountryCode0</OOPServiceProviderCountryCode>
+    </NationalOOPServiceProvider>
+</toop:TOOP_DataResponse>

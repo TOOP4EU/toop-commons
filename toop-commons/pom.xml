@@ -48,6 +48,24 @@
       <url>http://www.helger.com</url>
     </developer>
   </developers>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.helger</groupId>
+        <artifactId>ph-xsds-parent-pom</artifactId>
+        <version>2.0.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger</groupId>
+        <artifactId>ph-ubl-parent-pom</artifactId>
+        <version>6.0.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>com.helger</groupId>
@@ -56,6 +74,14 @@
     <dependency>
       <groupId>com.helger</groupId>
       <artifactId>ph-asic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.helger</groupId>
+      <artifactId>ph-xsds-ccts-cct-schemamodule</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.helger</groupId>
+      <artifactId>ph-ubl21</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -75,6 +101,85 @@
             <Import-Package>!javax.annotation.*,*</Import-Package>
           </instructions>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.13.3</version>
+        <executions>
+          <execution>
+            <id>toop-exchange</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <generateDirectory>${project.build.directory}/generated-sources/toop-exchange</generateDirectory>
+              <schemaDirectory>${basedir}/src/main/resources/xsd/toop</schemaDirectory>
+              <schemaIncludes>
+                <schemaInclude>TOOP_DataExchange.xsd</schemaInclude>
+              </schemaIncludes>
+              <bindingIncludes>
+                <bindingInclude>toop-data-exchange.xjb</bindingInclude>
+              </bindingIncludes>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <bindingDirectory>${basedir}/src/main/jaxb</bindingDirectory>
+          <extension>true</extension>
+          <args>
+            <arg>-no-header</arg>
+            <arg>-Xph-default-locale</arg>
+            <arg>en_US</arg>
+            <arg>-Xph-annotate</arg>
+            <arg>-Xph-fields-private</arg>
+            <arg>-Xph-code-quality</arg>
+            <arg>-Xph-implements</arg>
+            <arg>java.io.Serializable</arg>
+            <arg>-Xph-equalshashcode</arg>
+            <arg>-Xph-tostring</arg>
+            <arg>-Xph-list-extension</arg>
+            <arg>-Xph-csu</arg>
+            <arg>-Xph-cloneable</arg>
+          </args>
+          <episodes>
+            <episode>
+              <groupId>com.helger</groupId>
+              <artifactId>ph-xsds-ccts-cct-schemamodule</artifactId>
+            </episode>
+            <episode>
+              <groupId>com.helger</groupId>
+              <artifactId>ph-ubl21</artifactId>
+            </episode>
+          </episodes>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.helger</groupId>
+            <artifactId>ph-jaxb22-plugin</artifactId>
+            <version>2.2.11.10</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <!-- Delete the directory with only ObjectFactory 
+           Source: http://stackoverflow.com/questions/32635137
+      -->
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <delete dir="${basedir}/target/generated-sources/bde10/com/helger/xsds/" />
+                <delete dir="${basedir}/target/generated-sources/bde11/com/helger/xsds/" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
