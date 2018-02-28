@@ -4,7 +4,10 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
 	targetNamespace="http://toop.eu"
-	version="0.5">  <!-- QUESTION: I added a  version attribute here; is this useful? -->
+	version="0.5"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">  
+<!-- QUESTION: I added a  version attribute here; is this useful? -->
 
 	<xsd:import
 		namespace="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
