@@ -16,6 +16,7 @@
 package eu.toop.kafkaclient;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
 
@@ -50,6 +51,13 @@ public final class ToopKafkaClient {
     return s_aEnabled.get ();
   }
 
+  private static void _sendIfEnabled (@Nonnull final String sKey, @Nonnull final String sValue) {
+    s_aLogger.info ("Sending to Kafka: '" + sKey + "' / '" + sValue + "'");
+
+    // Send but don't wait for the commit!
+    ToopKafkaManager.send (sKey, sValue, null);
+  }
+
   /**
    * Send a message, if it is enabled.
    *
@@ -60,12 +68,23 @@ public final class ToopKafkaClient {
    * @see #isEnabled()
    */
   public static void send (@Nonnull final String sKey, @Nonnull final String sValue) {
-    if (isEnabled ()) {
-      s_aLogger.info ("Sending to Kafka: '" + sKey + "' / '" + sValue + "'");
+    if (isEnabled ())
+      _sendIfEnabled (sKey, sValue);
+  }
 
-      // Send but don't wait for the commit!
-      ToopKafkaManager.send (sKey, sValue, null);
-    }
+  /**
+   * Send a message, if it is enabled.
+   *
+   * @param sKey
+   *          Key to send. May not be <code>null</code>.
+   * @param aValue
+   *          Value supplier to send. Is only evaluated if enabled. May not be
+   *          <code>null</code>.
+   * @see #isEnabled()
+   */
+  public static void send (@Nonnull final String sKey, @Nonnull final Supplier<String> aValue) {
+    if (isEnabled ())
+      _sendIfEnabled (sKey, aValue.get ());
   }
 
   /**
