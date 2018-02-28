@@ -154,9 +154,11 @@ public final class ToopDataExchangeFuncTest {
         final TDEDataElementRequestType aItem = new TDEDataElementRequestType ();
         aItem.getDataElementRequestIdentifier ().add (_createIdentifier ("bla"));
         aItem.setDataConsumerSemanticMappingIndicator (_createIndicator (true));
+
+        aItem.getDataConsumerConceptSyntaxPathURI ().add (_createIdentifier ("elUri"));
         aItem.getDataConsumerConcept ().add (_createText ("elType"));
-        aItem.getToopConcept ().add (_createText ("toopType"));
         aItem.getToopConceptURI ().add (_createIdentifier ("toopUri"));
+        aItem.getToopConcept ().add (_createText ("toopType"));
         aReq.getDataElementRequest ().add (aItem);
       }
       r.setDataRequest (aReq);
