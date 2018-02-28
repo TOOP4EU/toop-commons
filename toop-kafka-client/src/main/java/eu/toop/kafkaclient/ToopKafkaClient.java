@@ -23,6 +23,9 @@ import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.helger.commons.annotation.ReturnsMutableObject;
+import com.helger.commons.collection.impl.ICommonsMap;
+
 /**
  * Global TOOP Kafka Client. It is disabled by default.
  *
@@ -31,6 +34,16 @@ import org.slf4j.LoggerFactory;
 public final class ToopKafkaClient {
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopKafkaClient.class);
   private static final AtomicBoolean s_aEnabled = new AtomicBoolean (false);
+
+  /**
+   * @return The default properties for customization. Changes to this map only
+   *         effect new connections! Never <code>null</code>.
+   */
+  @Nonnull
+  @ReturnsMutableObject
+  public static ICommonsMap<String, String> defaultProperties () {
+    return ToopKafkaManager.defaultProperties ();
+  }
 
   /**
    * Enable or disable globally.

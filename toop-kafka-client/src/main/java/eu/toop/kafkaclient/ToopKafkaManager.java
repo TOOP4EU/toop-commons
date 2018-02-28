@@ -57,7 +57,6 @@ final class ToopKafkaManager {
   }
 
   /**
-   *
    * @return The default properties for customization. Changes to this map only
    *         effect new connections! Never <code>null</code>.
    */
