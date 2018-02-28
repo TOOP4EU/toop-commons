@@ -1,326 +1,326 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsd:schema 
-	xmlns:toop="http://toop.eu"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
-	targetNamespace="http://toop.eu"
-	version="0.5"
+  xmlns:toop="http://toop.eu"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+  targetNamespace="http://toop.eu"
+  version="0.5"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified">  
-<!-- QUESTION: I added a  version attribute here; is this useful? -->
 
-	<xsd:import
-		namespace="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
-		schemaLocation="../common/UBL-UnqualifiedDataTypes-2.1.xsd" />
-	
-	<!--alternative ROOT elements-->
-	<xsd:element name="TOOP_DataRequest" type="toop:TOOP_DataRequestType"/>  
-	<xsd:element name="TOOP_DataResponse" type="toop:TOOP_DataResponseType"/>  
-	<!--in the future we can add a TOOP_DataError root here-->
-	
-	<!--************************** -->
-	<!--COMMON elements start here -->
-	<!--************************** -->
-	
-	<xsd:complexType name="DataConsumerType">
-		<xsd:sequence>
-			<xsd:element name="DCUniqueIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DCName" type="udt:TextType"/>
-			<xsd:element name="DCElectronicAddressIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DCWebsite" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-			<xsd:element name="DCLegalAddress" type="toop:AddressType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataSubjectType">
-		<xsd:sequence>
-			<xsd:element name="DataSubjectTypeCode" type="udt:CodeType"/>
-			<xsd:element name="LegalEntity" type="toop:LegalEntityType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="NaturalPerson" type="toop:NaturalPersonType" minOccurs="0" maxOccurs="1"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataRequestAuthorizationType">
-		<xsd:sequence>
-			<xsd:element name="DataRequestConsentToken" type="udt:IdentifierType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataRequestType">
-		<xsd:sequence>
-			<xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DataRequestDomainCode" type="udt:CodeType"/>
-			<xsd:element name="DataElementRequestIndicator" type="udt:IndicatorType"/>
-			<xsd:element name="DocumentRequestIndicator" type="udt:IndicatorType"/>
-			<xsd:element name="DocumentRequestTypeCode" type="udt:CodeType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality?-->
-			<xsd:element name="PreferredDocumentFileTypeCode" type="udt:CodeType"/>
-			<xsd:element name="DataRequestPurpose" type="udt:TextType"/>
-			<xsd:element name="DataElementRequest" type="toop:DataElementRequestType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="LegalEntityType">
-		<xsd:sequence>
-			<xsd:element name="LegalPersonUniqueIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="LegalName" type="udt:TextType"/>  <!--QUESTION: will this support multiple names in countries using them?-->
-			<xsd:element name="VATRegistrationNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="TaxReferenceNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="BusinessCode" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> <!--QUESTION: is the plural "BusinessCodes" in the specifications a typo, or should we include more than one BusinessCode here?-->
-			<xsd:element name="LegalEntityIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> 
-			<xsd:element name="EORIIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="SEEDIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="StandardIndustrialClassification" type="toop:CodeType-FourDigits" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="AuthorisedRepresentativeIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-			<xsd:element name="LegalEntityLegalAddress" type="toop:AddressType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="NaturalPersonType">
-		<xsd:sequence>
-			<xsd:element name="PersonIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="FamilyName" type="udt:TextType"/> 
-			<xsd:element name="FirstName" type="udt:TextType"/> 
-			<xsd:element name="BirthDate" type="xsd:date"/> 
-			<xsd:element name="BirthFamilyName" type="udt:TextType" minOccurs="0" maxOccurs="1"/> 
-			<xsd:element name="BirthPlace" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="GenderCode" type="toop:GenderType" minOccurs="0" maxOccurs="1"/>   <!--TODO: use udt:CodeType with restrictions-->
-			<xsd:element name="NaturalPersonLegalAddress" type="toop:AddressType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataElementRequestType">  <!--QUESTION: should we add a "mandatory" indicator for each DataElementRequest, so you know some data is mandatory and some is "nice to have"? -->
-		<xsd:sequence>
-			<xsd:element name="DataElementRequestIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?-->
-			<xsd:element name="DataConsumerSemanticMappingIndicator" type="udt:IndicatorType"/> <!--QUESTION: should we use "DC" instead of "Data Consumer" as we do elsewhere?-->
-			<xsd:element name="DataConsumerConceptIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality?-->
-			<xsd:element name="DataConsumerConcept" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?--> 
-			<xsd:element name="DataConsumerConceptSyntaxPathURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality? Also: isn't there a specific type for URI's?-->
-			<xsd:element name="ToopConcept" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?--> 
-			<xsd:element name="ToopConceptDefinition" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality?-->
-			<xsd:element name="ToopConceptURI" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?  Also: isn't there a specific type for URI's?--> 
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="AddressType">
-		<xsd:sequence>
-			<xsd:element name="AddressLine1" type="udt:TextType" minOccurs="0" maxOccurs="1"/> <!--QUESTION: the specifications say you can use multiple lines; is it better to create AddressLine1, Addressline2, Addressline3 as commonly used in other projects? Noone in Europe uses needs more than 3 lines -->
-			<xsd:element name="AddressLine2" type="udt:TextType" minOccurs="0" maxOccurs="1"/> <!--QUESTION: the specifications say you can use multiple lines; is it better to create AddressLine1, Addressline2, Addressline3 as commonly used in other projects? Noone in Europe uses needs more than 3 lines -->
-			<xsd:element name="AddressLine3" type="udt:TextType" minOccurs="0" maxOccurs="1"/> <!--QUESTION: the specifications say you can use multiple lines; is it better to create AddressLine1, Addressline2, Addressline3 as commonly used in other projects? Noone in Europe uses needs more than 3 lines -->
-			<xsd:element name="StreetName" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="StreetNumber" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="City" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="PostCode" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Country" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="CountryCode" type="toop:CodeType-TwoUppercaseLetters"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<!--************************** -->
-	<!--COMMON elements stop here -->
-	<!--************************** -->
-	
-	<!--************************************ -->
-	<!--REQUEST specific elements start here -->
-	<!--************************************ -->
-	
-	<!--note: TOOP_DataRequestType and TOOP_DateResponseType have many Elements in common, but these are repeated here for human readability-->
-	<xsd:complexType name="TOOP_DataRequestType">
-		<xsd:sequence>
-			<xsd:element name="DocumentIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="DocumentIssueDate" type="xsd:date"/>
-			<xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DocumentVersionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="CopyIndicator" type="udt:IndicatorType"/>
-			<xsd:element name="DocumentTypeCode" type="toop:DocumentTypeCodeType"/>
-			<xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="SessionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="DataConsumer" type="toop:DataConsumerType"/>
-			<xsd:element name="DataSubject" type="toop:DataSubjectType"/>
-			<xsd:element name="DataRequestAuthorization" type="toop:DataRequestAuthorizationType"/>
-			<xsd:element name="DataRequest" type="toop:DataRequestType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<!--*********************************** -->
-	<!--REQUEST specific elements stop here -->
-	<!--*********************************** -->
-	
-	<!--************************************* -->
-	<!--RESPONSE specific elements start here -->
-	<!--************************************* -->
-	
-	<!--note: TOOP_DateResponseType and TOOP_DataRequestType have many Elements in common, but these are repeated here for human readability-->
-	<xsd:complexType name="TOOP_DataResponseType">
-		<xsd:sequence>
-			<xsd:element name="DocumentIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="DocumentIssueDate" type="xsd:date"/>
-			<xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DocumentVersionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="CopyIndicator" type="udt:IndicatorType"/>
-			<xsd:element name="DocumentTypeCode" type="toop:DocumentTypeCodeType"/>
-			<xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="SessionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="DataConsumer" type="toop:DataConsumerType"/>
-			<xsd:element name="DataSubject" type="toop:DataSubjectType"/>
-			<xsd:element name="DataRequestAuthorization" type="toop:DataRequestAuthorizationType"/>
-			<xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DataRequest" type="toop:DataRequestType"/>
-			<xsd:element name="DataResponse" type="toop:DataResponseType"/>
-			<xsd:element name="DocumentResponse" type="toop:DocumentResponseType"/>
-			<xsd:element name="DataProvider" type="toop:DataProviderType"/>
-			<xsd:element name="NationalOOPServiceProvider" type="toop:NationalOOPServiceProviderType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataResponseType">
-		<xsd:sequence>
-			<xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DataResponseIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DataProviderSyntaxNameCode" type="udt:CodeType"/>
-			<xsd:element name="DataResponseConfidentialityLevelCode" type="udt:CodeType"/>
-			<xsd:element name="DataElementResponse" type="toop:DataElementResponseType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataElementResponseType"> 
-		<xsd:sequence>
-			<xsd:element name="DataElementRequestIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?-->
-			<xsd:element name="DataProviderSemanticMappingIndicator" type="udt:IndicatorType"/> <!--QUESTION: should we use "DC" instead of "Data Consumer" as we do elsewhere?-->
-			<!--QUESTION: don't we need a "DataProviderConceptIdentifier" for simmetry, here? -->
-			<xsd:element name="DataProviderConcept" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?--> 
-			<xsd:element name="DataProviderConceptSyntaxPathURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality? Also: isn't there a specific type for URI's?-->
-			<xsd:element name="ResponseValueIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>
-			<xsd:element name="DataElementResponseValue" type="toop:DataElementResponseValueType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataElementResponseValueType">
-		<xsd:sequence>
-			<xsd:element name="ResponseValueIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="ResponseCodeIndicator" type="udt:IndicatorType"/>
-			<!--TODO: add a "switch" construct here for the response type? -->
-			<xsd:element name="ResponseErrorCode" type="udt:CodeType"/>
-			<xsd:element name="ResponseIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="ResponseDescription" type="udt:TextType"/>
-			<xsd:element name="ResponseAmount" type="udt:AmountType"/>
-			<xsd:element name="ResponseCode" type="udt:CodeType"/>
-			<xsd:element name="ResponseDate" type="xsd:date"/>  <!--QUESTION: should we use standard XSD dates and timestamps or UBL dates?-->
-			<xsd:element name="ResponseIndicator" type="udt:IndicatorType"/>
-			<xsd:element name="ResponseMeasure" type="udt:MeasureType"/>
-			<xsd:element name="ResponseNumeric" type="udt:NumericType"/>
-			<xsd:element name="ResponseQuantity" type="udt:QuantityType"/>
-			<xsd:element name="ResponseTime" type="xsd:time"/>
-			<xsd:element name="ResponseURI" type="udt:IndicatorType"/> 
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DocumentResponseType"> 
-		<xsd:sequence>
-			<xsd:element name="DocumentIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality? Also: the specs say it is an Indicator, but I guess it's a typo-->
-			<xsd:element name="DocumentTypeCode" type="udt:CodeType" minOccurs="1" maxOccurs="unbounded"/> <!--QUESTION: why the 1..n cardinality?--> 
-			<xsd:element name="DocumentName" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  <!--QUESTION: why the 1..n cardinality?--> 
-			<xsd:element name="DocumentDescription" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality? Also: isn't there a specific type for URI's?-->
-			<xsd:element name="DocumentValidityPeriod" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>  <!--QUESTION: why the 0..n cardinality? Also: why is this a text and not a couple of start and end date when available-->
-			<xsd:element name="DocumentIssuer" type="toop:DocumentIssuerType" minOccurs="0" maxOccurs="1"/> 
-			<xsd:element name="Document" type="toop:DocumentType" minOccurs="0" maxOccurs="unbounded"/> 
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DocumentIssuerType"> 
-		<xsd:sequence>
-			<xsd:element name="DocumentIssuerIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-			<xsd:element name="DocumentIssuerName" type="udt:TextType" minOccurs="0" maxOccurs="1"/>  
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DocumentType"> 
-		<xsd:sequence>
-			<xsd:element name="ExternalDocumentURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="DataProviderType">
-		<xsd:sequence>
-			<xsd:element name="DPIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="DPName" type="udt:TextType"/>
-			<xsd:element name="DPAdministrativeUnit" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> 
-			<xsd:element name="DPElectronicAddressIdentifier" type="udt:IdentifierType"/>  
-			<xsd:element name="DPLegalAddress" type="toop:AddressType"/>
-			<xsd:element name="DPContactDetails" type="toop:ContactDetailsType" minOccurs="0" maxOccurs="1"/> 
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="ContactDetailsType"> 
-		<xsd:sequence>
-			<xsd:element name="ContactPoint" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-			<xsd:element name="ContactTelephoneNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-			<xsd:element name="ContactFaxNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-			<xsd:element name="ContactEmailAddress" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<xsd:complexType name="NationalOOPServiceProviderType">
-		<xsd:sequence>
-			<xsd:element name="OOPServiceProviderIdentifier" type="udt:IdentifierType"/>
-			<xsd:element name="OOPServiceProviderName" type="udt:TextType"/>
-			<xsd:element name="OOPServiceProviderElectronicAddressIdentifier" type="udt:IdentifierType"/>  
-			<xsd:element name="OOPServiceProviderCountry" type="udt:TextType"/>
-			<xsd:element name="OOPServiceProviderCountryCode" type="udt:CodeType"/> 
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<!--************************************ -->
-	<!--RESPONSE specific elements stop here -->
-	<!--************************************ -->
+  <xsd:import
+    namespace="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+    schemaLocation="../common/UBL-UnqualifiedDataTypes-2.1.xsd" />
+  
+  <!--alternative ROOT elements-->
+  <xsd:element name="TOOP_DataRequest" type="toop:TOOP_DataRequestType"/>  
+  <xsd:element name="TOOP_DataResponse" type="toop:TOOP_DataResponseType"/>  
+  <!--in the future we can add a TOOP_DataError root here-->
+  
+  <!--************************** -->
+  <!--COMMON elements start here -->
+  <!--************************** -->
+  
+  <xsd:complexType name="DataConsumerType">
+    <xsd:sequence>
+      <xsd:element name="DCUniqueIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DCName" type="udt:TextType"/>
+      <xsd:element name="DCElectronicAddressIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DCWebsite" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+      <xsd:element name="DCLegalAddress" type="toop:AddressType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataSubjectType">
+    <xsd:sequence>
+      <xsd:element name="DataSubjectTypeCode" type="udt:CodeType"/>
+      <xsd:element name="LegalEntity" type="toop:LegalEntityType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="NaturalPerson" type="toop:NaturalPersonType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataRequestAuthorizationType">
+    <xsd:sequence>
+      <xsd:element name="DataRequestConsentToken" type="udt:IdentifierType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataRequestType">
+    <xsd:sequence>
+      <xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DataRequestDomainCode" type="udt:CodeType"/>
+      <xsd:element name="DataElementRequestIndicator" type="udt:IndicatorType"/>
+      <xsd:element name="DocumentRequestIndicator" type="udt:IndicatorType"/>
+      <xsd:element name="DocumentRequestTypeCode" type="udt:CodeType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="PreferredDocumentFileTypeCode" type="udt:CodeType"/>
+      <xsd:element name="DataRequestPurpose" type="udt:TextType"/>
+      <xsd:element name="DataElementRequest" type="toop:DataElementRequestType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="LegalEntityType">
+    <xsd:sequence>
+      <xsd:element name="LegalPersonUniqueIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="LegalName" type="udt:TextType"/>  
+      <xsd:element name="VATRegistrationNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TaxReferenceNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BusinessCode" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="LegalEntityIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="EORIIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SEEDIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="StandardIndustrialClassification" type="toop:CodeType-FourDigits" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AuthorisedRepresentativeIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+      <xsd:element name="LegalEntityLegalAddress" type="toop:AddressType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="NaturalPersonType">
+    <xsd:sequence>
+      <xsd:element name="PersonIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="FamilyName" type="udt:TextType"/> 
+      <xsd:element name="FirstName" type="udt:TextType"/> 
+      <xsd:element name="BirthDate" type="xsd:date"/> 
+      <xsd:element name="BirthFamilyName" type="udt:TextType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="BirthPlace" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GenderCode" type="udt:CodeType" minOccurs="0" maxOccurs="1"/>   
+      <xsd:element name="NaturalPersonLegalAddress" type="toop:AddressType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataElementRequestType">  
+    <xsd:sequence>
+      <xsd:element name="DataElementRequestIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  
+      <xsd:element name="DataConsumerSemanticMappingIndicator" type="udt:IndicatorType"/> 
+      <xsd:element name="DataConsumerConceptIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  
+      <xsd:element name="DataConsumerConcept" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  
+      <xsd:element name="DataConsumerConceptSyntaxPathURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  
+      <xsd:element name="ToopConcept" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  
+      <xsd:element name="ToopConceptDefinition" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>  
+      <xsd:element name="ToopConceptURI" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="AddressLine1" type="udt:TextType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="AddressLine2" type="udt:TextType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="AddressLine3" type="udt:TextType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="StreetName" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="StreetNumber" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="City" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PostCode" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Country" type="udt:TextType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CountryCode" type="toop:CodeType-TwoUppercaseLetters"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!--************************** -->
+  <!--COMMON elements stop here -->
+  <!--************************** -->
+  
+  <!--************************************ -->
+  <!--REQUEST specific elements start here -->
+  <!--************************************ -->
+  
+  <!--note: TOOP_DataRequestType and TOOP_DateResponseType have many Elements in common, but these are repeated here for human readability-->
+  <xsd:complexType name="TOOP_DataRequestType">
+    <xsd:sequence>
+      <xsd:element name="DocumentIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DocumentIssueDate" type="xsd:date"/>
+      <xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DocumentVersionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CopyIndicator" type="udt:IndicatorType"/>
+      <xsd:element name="DocumentTypeCode" type="udt:CodeType"/>
+      <xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="SessionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DataConsumer" type="toop:DataConsumerType"/>
+      <xsd:element name="DataSubject" type="toop:DataSubjectType"/>
+      <xsd:element name="DataRequestAuthorization" type="toop:DataRequestAuthorizationType"/>
+      <xsd:element name="DataRequest" type="toop:DataRequestType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!--*********************************** -->
+  <!--REQUEST specific elements stop here -->
+  <!--*********************************** -->
+  
+  <!--************************************* -->
+  <!--RESPONSE specific elements start here -->
+  <!--************************************* -->
+  
+  <!--note: TOOP_DateResponseType and TOOP_DataRequestType have many Elements in common, but these are repeated here for human readability-->
+  <xsd:complexType name="TOOP_DataResponseType">
+    <xsd:sequence>
+      <xsd:element name="DocumentIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DocumentIssueDate" type="xsd:date"/>
+      <xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DocumentVersionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CopyIndicator" type="udt:IndicatorType"/>
+      <xsd:element name="DocumentTypeCode" type="udt:CodeType"/>
+      <xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="SessionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DataConsumer" type="toop:DataConsumerType"/>
+      <xsd:element name="DataSubject" type="toop:DataSubjectType"/>
+      <xsd:element name="DataRequestAuthorization" type="toop:DataRequestAuthorizationType"/>
+      <xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DataRequest" type="toop:DataRequestType"/>
+      <xsd:element name="DataResponse" type="toop:DataResponseType"/>
+      <xsd:element name="DocumentResponse" type="toop:DocumentResponseType"/>
+      <xsd:element name="DataProvider" type="toop:DataProviderType"/>
+      <xsd:element name="NationalOOPServiceProvider" type="toop:NationalOOPServiceProviderType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataResponseType">
+    <xsd:sequence>
+      <xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DataResponseIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DataProviderSyntaxNameCode" type="udt:CodeType"/>
+      <xsd:element name="DataResponseConfidentialityLevelCode" type="udt:CodeType"/>
+      <xsd:element name="DataElementResponse" type="toop:DataElementResponseType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataElementResponseType"> 
+    <xsd:sequence>
+      <xsd:element name="DataElementRequestIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  
+      <xsd:element name="DataProviderSemanticMappingIndicator" type="udt:IndicatorType"/> 
+      <xsd:element name="DataProviderConcept" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>  
+      <xsd:element name="DataProviderConceptSyntaxPathURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  
+      <xsd:element name="ResponseValueIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>
+      <xsd:element name="DataElementResponseValue" type="toop:DataElementResponseValueType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataElementResponseValueType">
+    <xsd:sequence>
+      <xsd:element name="ResponseValueIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="ResponseCodeIndicator" type="udt:IndicatorType"/>
+      <xsd:choice>
+        <xsd:element name="ResponseErrorCode" type="udt:CodeType"/>
+        <xsd:element name="ResponseIdentifier" type="udt:IdentifierType"/>
+        <xsd:element name="ResponseDescription" type="udt:TextType"/>
+        <xsd:element name="ResponseAmount" type="udt:AmountType"/>
+        <xsd:element name="ResponseCode" type="udt:CodeType"/>
+        <xsd:element name="ResponseDate" type="xsd:date"/>  
+        <xsd:element name="ResponseIndicator" type="udt:IndicatorType"/>
+        <xsd:element name="ResponseMeasure" type="udt:MeasureType"/>
+        <xsd:element name="ResponseNumeric" type="udt:NumericType"/>
+        <xsd:element name="ResponseQuantity" type="udt:QuantityType"/>
+        <xsd:element name="ResponseTime" type="xsd:time"/>
+        <xsd:element name="ResponseURI" type="udt:IndicatorType"/> 
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DocumentResponseType"> 
+    <xsd:sequence>
+      <xsd:element name="DocumentIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="unbounded"/>  
+      <xsd:element name="DocumentTypeCode" type="udt:CodeType" minOccurs="1" maxOccurs="unbounded"/> 
+      <xsd:element name="DocumentName" type="udt:TextType" minOccurs="1" maxOccurs="unbounded"/>   
+      <xsd:element name="DocumentDescription" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>  
+      <xsd:element name="DocumentValidityPeriod" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>  
+      <xsd:element name="DocumentIssuer" type="toop:DocumentIssuerType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="Document" type="toop:DocumentType" minOccurs="0" maxOccurs="unbounded"/> 
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DocumentIssuerType"> 
+    <xsd:sequence>
+      <xsd:element name="DocumentIssuerIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+      <xsd:element name="DocumentIssuerName" type="udt:TextType" minOccurs="0" maxOccurs="1"/>  
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DocumentType"> 
+    <xsd:sequence>
+      <xsd:element name="ExternalDocumentURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="unbounded"/>  
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="DataProviderType">
+    <xsd:sequence>
+      <xsd:element name="DPIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DPName" type="udt:TextType"/>
+      <xsd:element name="DPAdministrativeUnit" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="DPElectronicAddressIdentifier" type="udt:IdentifierType"/>  
+      <xsd:element name="DPLegalAddress" type="toop:AddressType"/>
+      <xsd:element name="DPContactDetails" type="toop:ContactDetailsType" minOccurs="0" maxOccurs="1"/> 
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="ContactDetailsType"> 
+    <xsd:sequence>
+      <xsd:element name="ContactPoint" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+      <xsd:element name="ContactTelephoneNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+      <xsd:element name="ContactFaxNumber" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+      <xsd:element name="ContactEmailAddress" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>  
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="NationalOOPServiceProviderType">
+    <xsd:sequence>
+      <xsd:element name="OOPServiceProviderIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="OOPServiceProviderName" type="udt:TextType"/>
+      <xsd:element name="OOPServiceProviderElectronicAddressIdentifier" type="udt:IdentifierType"/>  
+      <xsd:element name="OOPServiceProviderCountry" type="udt:TextType"/>
+      <xsd:element name="OOPServiceProviderCountryCode" type="udt:CodeType"/> 
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!--************************************ -->
+  <!--RESPONSE specific elements stop here -->
+  <!--************************************ -->
 
-	<!-- TOOP specific enumerations and extensions-->
-
-	<xsd:simpleType name="GenderType">
-		<xsd:annotation>
-			<xsd:documentation> Gender of the natural person. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:token">
-			<xsd:enumeration value="Male"/>
-			<xsd:enumeration value="Female"/>
-			<xsd:enumeration value="Other"/>
-			<xsd:enumeration value="Unspecified"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-	
-	<xsd:simpleType name="DocumentTypeCodeType">
-		<xsd:annotation>
-			<xsd:documentation> Identifies if the specific document type is a data request or a data response. The code also identifies the business domain (e.g. registered organization) of the request and response instance. The business domain is related to a set of toop concepts which can be referencend by this document type. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:token">
-			<xsd:enumeration value="data.request.registeredorganization"/>
-			<xsd:enumeration value="data.response.registeredorganization"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-	
-	<xsd:complexType name="CodeType-TwoUppercaseLetters">
-		<xsd:annotation>
-			<xsd:documentation> udt:CodeType containing exactly two uppercase letters. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:simpleContent>
-			<xsd:restriction base="udt:CodeType">
-				<xsd:pattern value="[A-Z]{2}" />
-			</xsd:restriction>
-		</xsd:simpleContent>
-	</xsd:complexType>
-	
-	<xsd:complexType name="CodeType-FourDigits">
-		<xsd:annotation>
-			<xsd:documentation> udt:CodeType containing exactly four digits. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:simpleContent>
-			<xsd:restriction base="udt:CodeType">
-				<xsd:pattern value="[0-9]{4}" />
-			</xsd:restriction>
-		</xsd:simpleContent>
-	</xsd:complexType>
-	
+  <!-- TOOP specific enumerations and extensions-->
+<!--
+  <xsd:simpleType name="GenderType"> 
+    <xsd:annotation>
+      <xsd:documentation> Gender of the natural person. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Male"/>
+      <xsd:enumeration value="Female"/>
+      <xsd:enumeration value="Other"/>
+      <xsd:enumeration value="Unspecified"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="DocumentTypeCodeType">
+    <xsd:annotation>
+      <xsd:documentation> Identifies if the specific document type is a data request or a data response. The code also identifies the business domain (e.g. registered organization) of the request and response instance. The business domain is related to a set of toop concepts which can be referencend by this document type. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="data.request.registeredorganization"/>
+      <xsd:enumeration value="data.response.registeredorganization"/>
+    </xsd:restriction>
+  </xsd:simpleType
+>-->
+  
+  <xsd:complexType name="CodeType-TwoUppercaseLetters">
+    <xsd:annotation>
+      <xsd:documentation> udt:CodeType containing exactly two uppercase letters. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="udt:CodeType">
+        <xsd:pattern value="[A-Z]{2}" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="CodeType-FourDigits">
+    <xsd:annotation>
+      <xsd:documentation> udt:CodeType containing exactly four digits. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="udt:CodeType">
+        <xsd:pattern value="[0-9]{4}" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  
 </xsd:schema>
