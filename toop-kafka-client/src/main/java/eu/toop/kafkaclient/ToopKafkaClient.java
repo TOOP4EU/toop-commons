@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class ToopKafkaClient {
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopKafkaClient.class);
-  public static final AtomicBoolean s_aEnabled = new AtomicBoolean (false);
+  private static final AtomicBoolean s_aEnabled = new AtomicBoolean (false);
 
   /**
    * Enable or disable globally.
