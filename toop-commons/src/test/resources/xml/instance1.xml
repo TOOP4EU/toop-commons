@@ -86,7 +86,6 @@
         <toop:DataElementRequestIndicator>false</toop:DataElementRequestIndicator>
         <toop:DocumentRequestIndicator>false</toop:DocumentRequestIndicator>
         <toop:DocumentRequestTypeCode listID="listID6" listAgencyID="listAgencyID6" listAgencyName="listAgencyName6" listName="listName6" listVersionID="listVersionID6" name="name6" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentRequestTypeCode0</toop:DocumentRequestTypeCode>
-        <toop:DocumentRequestTypeCode listID="listID7" listAgencyID="listAgencyID7" listAgencyName="listAgencyName7" listName="listName7" listVersionID="listVersionID7" name="name7" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentRequestTypeCode1</toop:DocumentRequestTypeCode>
         <toop:PreferredDocumentFileTypeCode listID="listID8" listAgencyID="listAgencyID8" listAgencyName="listAgencyName8" listName="listName8" listVersionID="listVersionID8" name="name8" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">PreferredDocumentFileTypeCode0</toop:PreferredDocumentFileTypeCode>
         <toop:DataRequestPurpose languageID="en-US" languageLocaleID="languageLocaleID30">DataRequestPurpose0</toop:DataRequestPurpose>
         <toop:DataElementRequest>
@@ -142,7 +141,9 @@
             <toop:DataElementResponseValue>
                 <toop:ResponseValueIdentifier schemeID="schemeID45" schemeName="schemeName45" schemeAgencyID="schemeAgencyID45" schemeAgencyName="schemeAgencyName45" schemeVersionID="schemeVersionID45" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier2</toop:ResponseValueIdentifier>
                 <toop:ResponseCodeIndicator>false</toop:ResponseCodeIndicator>
+                <!-- Now a choice -->
                 <toop:ResponseErrorCode listID="listID11" listAgencyID="listAgencyID11" listAgencyName="listAgencyName11" listName="listName11" listVersionID="listVersionID11" name="name11" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseErrorCode0</toop:ResponseErrorCode>
+                <!--  
                 <toop:ResponseIdentifier schemeID="schemeID46" schemeName="schemeName46" schemeAgencyID="schemeAgencyID46" schemeAgencyName="schemeAgencyName46" schemeVersionID="schemeVersionID46" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseIdentifier0</toop:ResponseIdentifier>
                 <toop:ResponseDescription languageID="en-US" languageLocaleID="languageLocaleID45">ResponseDescription0</toop:ResponseDescription>
                 <toop:ResponseAmount currencyID="currencyID0" currencyCodeListVersionID="currencyCodeListVersionID0">0</toop:ResponseAmount>
@@ -154,6 +155,7 @@
                 <toop:ResponseQuantity unitCode="unitCode1" unitCodeListID="unitCodeListID0" unitCodeListAgencyID="unitCodeListAgencyID0" unitCodeListAgencyName="unitCodeListAgencyName0">0</toop:ResponseQuantity>
                 <toop:ResponseTime>01:01:01.001</toop:ResponseTime>
                 <toop:ResponseURI>false</toop:ResponseURI>
+                -->
             </toop:DataElementResponseValue>
         </toop:DataElementResponse>
         <toop:DataElementResponse>
@@ -170,6 +172,8 @@
                 <toop:ResponseValueIdentifier schemeID="schemeID53" schemeName="schemeName53" schemeAgencyID="schemeAgencyID53" schemeAgencyName="schemeAgencyName53" schemeVersionID="schemeVersionID53" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier5</toop:ResponseValueIdentifier>
                 <toop:ResponseCodeIndicator>false</toop:ResponseCodeIndicator>
                 <toop:ResponseErrorCode listID="listID13" listAgencyID="listAgencyID13" listAgencyName="listAgencyName13" listName="listName13" listVersionID="listVersionID13" name="name13" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseErrorCode1</toop:ResponseErrorCode>
+                <!-- Now a choice -->
+                <!--  
                 <toop:ResponseIdentifier schemeID="schemeID54" schemeName="schemeName54" schemeAgencyID="schemeAgencyID54" schemeAgencyName="schemeAgencyName54" schemeVersionID="schemeVersionID54" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseIdentifier1</toop:ResponseIdentifier>
                 <toop:ResponseDescription languageID="en-US" languageLocaleID="languageLocaleID48">ResponseDescription1</toop:ResponseDescription>
                 <toop:ResponseAmount currencyID="currencyID1" currencyCodeListVersionID="currencyCodeListVersionID1">0</toop:ResponseAmount>
@@ -181,6 +185,7 @@
                 <toop:ResponseQuantity unitCode="unitCode3" unitCodeListID="unitCodeListID1" unitCodeListAgencyID="unitCodeListAgencyID1" unitCodeListAgencyName="unitCodeListAgencyName1">0</toop:ResponseQuantity>
                 <toop:ResponseTime>01:01:01.001</toop:ResponseTime>
                 <toop:ResponseURI>false</toop:ResponseURI>
+                -->
             </toop:DataElementResponseValue>
         </toop:DataElementResponse>
     </toop:DataResponse>
