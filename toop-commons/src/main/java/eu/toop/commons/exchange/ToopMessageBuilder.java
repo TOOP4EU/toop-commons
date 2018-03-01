@@ -108,7 +108,7 @@ public final class ToopMessageBuilder {
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPDataRequestType}.
    *
-   * @param archiveInput
+   * @param aIS
    *          Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPDataRequestType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
@@ -117,20 +117,12 @@ public final class ToopMessageBuilder {
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPDataRequestType parseRequestMessage (@Nonnull @WillClose final InputStream archiveInput) throws IOException {
-    ValueEnforcer.notNull (archiveInput, "archiveInput");
+  public static TDETOOPDataRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
+    ValueEnforcer.notNull (aIS, "archiveInput");
 
-    try (final IAsicReader asicReader = AsicReaderFactory.newFactory ().open (archiveInput)) {
-      String entryName;
-      while ((entryName = asicReader.getNextFile ()) != null) {
-        if (entryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST)) {
-          try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream ()) {
-            asicReader.writeFile (bos);
-            return ToopReader.dataRequest ().read (bos.getAsInputStream ());
-          }
-        }
-      }
-    }
+    final Object o = parseRequestOrResponse (aIS);
+    if (o instanceof TDETOOPDataRequestType)
+      return (TDETOOPDataRequestType) o;
 
     return null;
   }
@@ -139,7 +131,7 @@ public final class ToopMessageBuilder {
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPDataResponseType}.
    *
-   * @param archiveInput
+   * @param aIS
    *          Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPDataResponseType} every time the method is called
    *         or <code>null</code> if none is contained in the ASIC.
@@ -148,16 +140,46 @@ public final class ToopMessageBuilder {
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPDataResponseType parseResponseMessage (@Nonnull @WillClose final InputStream archiveInput) throws IOException {
-    ValueEnforcer.notNull (archiveInput, "archiveInput");
+  public static TDETOOPDataResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
+    ValueEnforcer.notNull (aIS, "archiveInput");
 
-    try (final IAsicReader asicReader = AsicReaderFactory.newFactory ().open (archiveInput)) {
+    final Object o = parseRequestOrResponse (aIS);
+    if (o instanceof TDETOOPDataResponseType)
+      return (TDETOOPDataResponseType) o;
+
+    return null;
+  }
+
+  /**
+   * Parse the given InputStream as an ASiC container and return the contained
+   * {@link TDETOOPDataRequestType} or {@link TDETOOPDataResponseType}.
+   *
+   * @param aIS
+   *          Input stream to read from. May not be <code>null</code>.
+   * @return New {@link TDETOOPDataRequestType} or {@link TDETOOPDataResponseType}
+   *         every time the method is called or <code>null</code> if none is
+   *         contained in the ASIC.
+   * @throws IOException
+   *           In case of IO error
+   */
+  @Nullable
+  @ReturnsMutableObject
+  public static Object parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException {
+    ValueEnforcer.notNull (aIS, "archiveInput");
+
+    try (final IAsicReader asicReader = AsicReaderFactory.newFactory ().open (aIS)) {
       String entryName;
       while ((entryName = asicReader.getNextFile ()) != null) {
+        if (entryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST)) {
+          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+            asicReader.writeFile (aBAOS);
+            return ToopReader.dataRequest ().read (aBAOS.getAsInputStream ());
+          }
+        }
         if (entryName.equals (ENTRY_NAME_TOOP_DATA_RESPONSE)) {
-          try (final NonBlockingByteArrayOutputStream bos = new NonBlockingByteArrayOutputStream ()) {
-            asicReader.writeFile (bos);
-            return ToopReader.dataResponse ().read (bos.getAsInputStream ());
+          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+            asicReader.writeFile (aBAOS);
+            return ToopReader.dataResponse ().read (aBAOS.getAsInputStream ());
           }
         }
       }
