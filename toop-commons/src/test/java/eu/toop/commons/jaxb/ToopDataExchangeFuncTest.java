@@ -3,6 +3,7 @@ package eu.toop.commons.jaxb;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
@@ -11,18 +12,22 @@ import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import com.helger.datetime.util.PDTXMLConverter;
+import com.helger.xml.namespace.MapBasedNamespaceContext;
 import com.helger.xml.serialize.write.XMLWriter;
+import com.helger.xml.serialize.write.XMLWriterSettings;
 
+import eu.toop.commons.dataexchange.ObjectFactory;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDECodeTypeTwoUppercaseLetters;
+import eu.toop.commons.dataexchange.TDEConceptRequestType;
 import eu.toop.commons.dataexchange.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.TDEDataElementRequestType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
-import eu.toop.commons.dataexchange.TDEDataRequestType;
 import eu.toop.commons.dataexchange.TDEDataSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
 import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
 import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.CodeType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IndicatorType;
@@ -97,17 +102,17 @@ public final class ToopDataExchangeFuncTest {
   @Test
   public void testCreateRequestFromScratch () {
     final TDETOOPDataRequestType r = new TDETOOPDataRequestType ();
-    r.setDocumentIdentifier (_createIdentifier ("DC-ID-17"));
-    r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentUniversalUniqueIdentifier (_createIdentifier (UUID.randomUUID ().toString ()));
-    r.setDocumentVersionIdentifier (_createIdentifier ("bla"));
+    r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
+    r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     r.setCopyIndicator (_createIndicator (false));
     // Document type ID
     r.setDocumentTypeCode (_createCode ("toop-doctypeid", "data.request.registeredorganization"));
     r.setSpecificationIdentifier (_createIdentifier ("bla"));
     // Process ID
     r.setProcessIdentifier (_createIdentifier ("toop-procid", "urn:toop:www.toop.eu/data-request"));
-    r.setSessionIdentifier (_createIdentifier ("bla"));
+    r.setDataConsumerDocumentIdentifier (_createIdentifier ("DC-ID-17"));
+    r.setDataRequestIdentifier (_createIdentifier ("bla"));
     {
       final TDEDataConsumerType aDC = new TDEDataConsumerType ();
       aDC.setDCUniqueIdentifier (_createIdentifier ("ATU12345678"));
@@ -138,35 +143,42 @@ public final class ToopDataExchangeFuncTest {
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
-      aAuth.setDataRequestConsentToken (_createIdentifier ("11101010101010001110101"));
+      final BinaryObjectType aBO = new BinaryObjectType ();
+      aBO.setValue ("11101010101010001110101".getBytes (StandardCharsets.ISO_8859_1));
+      aBO.setMimeCode ("application/octet-stream");
+      aAuth.setDataRequestConsentToken (aBO);
       r.setDataRequestAuthorization (aAuth);
     }
     {
-      final TDEDataRequestType aReq = new TDEDataRequestType ();
-      aReq.setDataRequestIdentifier (_createIdentifier ("bla"));
-      aReq.setDataRequestDomainCode (_createCode ("bla"));
-      aReq.setDataElementRequestIndicator (_createIndicator (true));
-      aReq.setDocumentRequestIndicator (_createIndicator (false));
-      aReq.setPreferredDocumentFileTypeCode (_createCode ("application/xml"));
-      aReq.setDataRequestPurpose (_createText ("Testing only"));
-
+      final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
+      aReq.setDataElementRequestIdentifier (_createIdentifier ("bla"));
       {
-        final TDEDataElementRequestType aItem = new TDEDataElementRequestType ();
-        aItem.getDataElementRequestIdentifier ().add (_createIdentifier ("bla"));
-        aItem.setDataConsumerSemanticMappingIndicator (_createIndicator (true));
+        final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
+        aSrcConcept.setConceptType (_createCode ("DC"));
+        aSrcConcept.setSemanticMappingExecutionIndicator (_createIndicator (false));
+        aSrcConcept.setConceptNamespace (_createIdentifier ("elUri"));
+        aSrcConcept.addConcept (_createText ("elType"));
 
-        aItem.getDataConsumerConceptSyntaxPathURI ().add (_createIdentifier ("elUri"));
-        aItem.getDataConsumerConcept ().add (_createText ("elType"));
-        aItem.getToopConceptURI ().add (_createIdentifier ("toopUri"));
-        aItem.getToopConcept ().add (_createText ("toopType"));
-        aReq.getDataElementRequest ().add (aItem);
+        {
+          final TDEConceptRequestType aToopConcept = new TDEConceptRequestType ();
+          aToopConcept.setConceptType (_createCode ("TOOP"));
+          aToopConcept.setSemanticMappingExecutionIndicator (_createIndicator (false));
+          aToopConcept.setConceptNamespace (_createIdentifier ("toopUri"));
+          aToopConcept.addConcept (_createText ("toopType"));
+          aSrcConcept.addConceptRequest (aToopConcept);
+        }
+        aReq.setConceptRequest (aSrcConcept);
       }
-      r.setDataRequest (aReq);
+
+      r.addDataElementRequest (aReq);
     }
 
     final Document aDoc = ToopWriter.dataRequest ().getAsDocument (r);
     assertNotNull (aDoc);
-    if (true)
-      System.out.println (XMLWriter.getNodeAsString (aDoc));
+    if (false) {
+      final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
+      aCtx.addMapping ("toop", ObjectFactory._TOOPDataRequest_QNAME.getNamespaceURI ());
+      System.out.println (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
+    }
   }
 }
