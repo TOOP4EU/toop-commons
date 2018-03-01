@@ -27,6 +27,8 @@ import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.hashcode.HashCodeGenerator;
 import com.helger.commons.string.ToStringGenerator;
 
+import eu.toop.commons.dataexchange.TDEConceptRequestType;
+
 /**
  * This is a single value that consist of a namespace and a concept name.
  *
@@ -83,5 +85,11 @@ public final class ConceptValue implements Serializable {
   @Override
   public String toString () {
     return new ToStringGenerator (null).append ("Namespace", m_sNamespace).append ("Value", m_sValue).getToString ();
+  }
+
+  @Nonnull
+  public static ConceptValue create (@Nonnull final TDEConceptRequestType aConcept) {
+    ValueEnforcer.notNull (aConcept, "Concept");
+    return new ConceptValue (aConcept.getConceptNamespace ().getValue (), aConcept.getConceptAtIndex (0).getValue ());
   }
 }
