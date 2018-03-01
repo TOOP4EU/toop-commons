@@ -12,7 +12,6 @@ e4r3HfEmZMnQK3GWqIEH2EMgVeIWt0pXGaUAugfTAl3hd9Fz7SOsf+CrIEjIbGDXw1oZMGAb0mDqX55G
    
 jdk:
   - oraclejdk8
-  - oraclejdk9
   
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -U -P jdeps
