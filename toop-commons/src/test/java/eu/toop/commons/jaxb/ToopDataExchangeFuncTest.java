@@ -40,9 +40,18 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.TextType
  */
 public final class ToopDataExchangeFuncTest {
   @Test
-  public void testReadWriteExample () {
+  public void testReadWriteDataRequest () {
+    final TDETOOPDataRequestType aRequest = ToopReader.dataRequest ()
+                                                       .read (new File ("src/test/resources/xml/data-request1.xml"));
+    assertNotNull (aRequest);
+    final String sXML = ToopWriter.dataRequest ().getAsString (aRequest);
+    assertNotNull (sXML);
+  }
+
+  @Test
+  public void testReadWriteDataResponse () {
     final TDETOOPDataResponseType aResponse = ToopReader.dataResponse ()
-                                                        .read (new File ("src/test/resources/xml/instance1.xml"));
+                                                        .read (new File ("src/test/resources/xml/data-response1.xml"));
     assertNotNull (aResponse);
     final String sXML = ToopWriter.dataResponse ().getAsString (aResponse);
     assertNotNull (sXML);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toop:TOOP_DataResponse xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+<toop:TOOP_DataRequest xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
  xmlns:toop="http://toop.eu"
  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2">
@@ -82,7 +82,7 @@
       <toop:DataElementRequestIdentifier>bla</toop:DataElementRequestIdentifier>
       <toop:ConceptRequest>
         <toop:ConceptType>DC</toop:ConceptType>
-        <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+        <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
         <toop:Concept>elType</toop:Concept>
         <toop:ConceptNamespace>elUri</toop:ConceptNamespace>
         <toop:ConceptRequest>
@@ -92,73 +92,11 @@
           <toop:ConceptNamespace>toopUri</toop:ConceptNamespace>
           <toop:ConceptRequest>
             <toop:ConceptType>DP</toop:ConceptType>
-            <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
             <toop:Concept>toopType</toop:Concept>
             <toop:ConceptNamespace>toopUri</toop:ConceptNamespace>
-              <toop:DataElementResponseValue>
-                  <toop:ErrorIndicator>false</toop:ErrorIndicator>
-                  <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
-                  <toop:ResponseIdentifier schemeID="schemeID45" schemeName="schemeName45" schemeAgencyID="schemeAgencyID45" schemeAgencyName="schemeAgencyName45" schemeVersionID="schemeVersionID45" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseValueIdentifier2</toop:ResponseIdentifier>
-                  <!-- Now a choice -->
-                  <toop:ErrorCode listID="listID11" listAgencyID="listAgencyID11" listAgencyName="listAgencyName11" listName="listName11" listVersionID="listVersionID11" name="name11" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseErrorCode0</toop:ErrorCode>
-                  <!--  
-                  <toop:ResponseIdentifier schemeID="schemeID46" schemeName="schemeName46" schemeAgencyID="schemeAgencyID46" schemeAgencyName="schemeAgencyName46" schemeVersionID="schemeVersionID46" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ResponseIdentifier0</toop:ResponseIdentifier>
-                  <toop:ResponseDescription languageID="en-US" languageLocaleID="languageLocaleID45">ResponseDescription0</toop:ResponseDescription>
-                  <toop:ResponseAmount currencyID="currencyID0" currencyCodeListVersionID="currencyCodeListVersionID0">0</toop:ResponseAmount>
-                  <toop:ResponseCode listID="listID12" listAgencyID="listAgencyID12" listAgencyName="listAgencyName12" listName="listName12" listVersionID="listVersionID12" name="name12" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">ResponseCode0</toop:ResponseCode>
-                  <toop:ResponseDate>2006-05-04</toop:ResponseDate>
-                  <toop:ResponseIndicator>false</toop:ResponseIndicator>
-                  <toop:ResponseMeasure unitCode="unitCode0" unitCodeListVersionID="unitCodeListVersionID0">0</toop:ResponseMeasure>
-                  <toop:ResponseNumeric format="format0">0</toop:ResponseNumeric>
-                  <toop:ResponseQuantity unitCode="unitCode1" unitCodeListID="unitCodeListID0" unitCodeListAgencyID="unitCodeListAgencyID0" unitCodeListAgencyName="unitCodeListAgencyName0">0</toop:ResponseQuantity>
-                  <toop:ResponseTime>01:01:01.001</toop:ResponseTime>
-                  <toop:ResponseURI>false</toop:ResponseURI>
-                  -->
-              </toop:DataElementResponseValue>
           </toop:ConceptRequest>
         </toop:ConceptRequest>
       </toop:ConceptRequest>
     </toop:DataElementRequest>
-    <toop:DocumentRequest>
-        <toop:DocumentRequestIdentifier>bla</toop:DocumentRequestIdentifier>
-        <toop:DocumentRequestTypeCode>true</toop:DocumentRequestTypeCode>
-        <!--  
-        <toop:DocumentRequestTypeCode schemeID="schemeID55" schemeName="schemeName55" schemeAgencyID="schemeAgencyID55" schemeAgencyName="schemeAgencyName55" schemeVersionID="schemeVersionID55" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIdentifier1</toop:DocumentRequestTypeCode>
-        -->
-        <!--  
-        <toop:DocumentIdentifier schemeID="schemeID56" schemeName="schemeName56" schemeAgencyID="schemeAgencyID56" schemeAgencyName="schemeAgencyName56" schemeVersionID="schemeVersionID56" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIdentifier2</toop:DocumentIdentifier>
-        <toop:DocumentTypeCode listID="listID15" listAgencyID="listAgencyID15" listAgencyName="listAgencyName15" listName="listName15" listVersionID="listVersionID15" name="name15" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentTypeCode1</toop:DocumentTypeCode>
-        <toop:DocumentTypeCode listID="listID16" listAgencyID="listAgencyID16" listAgencyName="listAgencyName16" listName="listName16" listVersionID="listVersionID16" name="name16" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DocumentTypeCode2</toop:DocumentTypeCode>
-        <toop:DocumentName languageID="en-US" languageLocaleID="languageLocaleID49">DocumentName0</toop:DocumentName>
-        <toop:DocumentName languageID="en-US" languageLocaleID="languageLocaleID50">DocumentName1</toop:DocumentName>
-        <toop:DocumentDescription languageID="en-US" languageLocaleID="languageLocaleID51">DocumentDescription0</toop:DocumentDescription>
-        <toop:DocumentDescription languageID="en-US" languageLocaleID="languageLocaleID52">DocumentDescription1</toop:DocumentDescription>
-        <toop:DocumentValidityPeriod languageID="en-US" languageLocaleID="languageLocaleID53">DocumentValidityPeriod0</toop:DocumentValidityPeriod>
-        <toop:DocumentValidityPeriod languageID="en-US" languageLocaleID="languageLocaleID54">DocumentValidityPeriod1</toop:DocumentValidityPeriod>
-        <toop:DocumentIssuer>
-            <toop:DocumentIssuerIdentifier schemeID="schemeID57" schemeName="schemeName57" schemeAgencyID="schemeAgencyID57" schemeAgencyName="schemeAgencyName57" schemeVersionID="schemeVersionID57" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIssuerIdentifier0</toop:DocumentIssuerIdentifier>
-            <toop:DocumentIssuerName languageID="en-US" languageLocaleID="languageLocaleID55">DocumentIssuerName0</toop:DocumentIssuerName>
-        </toop:DocumentIssuer>
-        <toop:Document>
-            <toop:ExternalDocumentURI schemeID="schemeID58" schemeName="schemeName58" schemeAgencyID="schemeAgencyID58" schemeAgencyName="schemeAgencyName58" schemeVersionID="schemeVersionID58" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI0</toop:ExternalDocumentURI>
-            <toop:ExternalDocumentURI schemeID="schemeID59" schemeName="schemeName59" schemeAgencyID="schemeAgencyID59" schemeAgencyName="schemeAgencyName59" schemeVersionID="schemeVersionID59" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI1</toop:ExternalDocumentURI>
-        </toop:Document>
-        <toop:Document>
-            <toop:ExternalDocumentURI schemeID="schemeID60" schemeName="schemeName60" schemeAgencyID="schemeAgencyID60" schemeAgencyName="schemeAgencyName60" schemeVersionID="schemeVersionID60" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI2</toop:ExternalDocumentURI>
-            <toop:ExternalDocumentURI schemeID="schemeID61" schemeName="schemeName61" schemeAgencyID="schemeAgencyID61" schemeAgencyName="schemeAgencyName61" schemeVersionID="schemeVersionID61" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ExternalDocumentURI3</toop:ExternalDocumentURI>
-        </toop:Document>
-        -->
-    </toop:DocumentRequest>
-    <toop:DataProvider>
-        <toop:DPIdentifier schemeID="schemeID69" schemeName="schemeName69" schemeAgencyID="schemeAgencyID69" schemeAgencyName="schemeAgencyName69" schemeVersionID="schemeVersionID69" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderIdentifier0</toop:DPIdentifier>
-        <toop:DPName languageID="en-US" languageLocaleID="languageLocaleID65">DPName0</toop:DPName>
-        <toop:DPElectronicAddressIdentifier schemeID="schemeID70" schemeName="schemeName70" schemeAgencyID="schemeAgencyID70" schemeAgencyName="schemeAgencyName70" schemeVersionID="schemeVersionID70" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DPElectronicAddressIdentifier0</toop:DPElectronicAddressIdentifier>
-    </toop:DataProvider>
-    <toop:OOPServiceProvider>
-        <toop:OOPServiceProviderIdentifier schemeID="schemeID69" schemeName="schemeName69" schemeAgencyID="schemeAgencyID69" schemeAgencyName="schemeAgencyName69" schemeVersionID="schemeVersionID69" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderIdentifier0</toop:OOPServiceProviderIdentifier>
-        <toop:OOPServiceProviderName languageID="en-US" languageLocaleID="languageLocaleID65">OOPServiceProviderName0</toop:OOPServiceProviderName>
-        <toop:OOPServiceProviderElectronicAddressIdentifier schemeID="schemeID70" schemeName="schemeName70" schemeAgencyID="schemeAgencyID70" schemeAgencyName="schemeAgencyName70" schemeVersionID="schemeVersionID70" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderElectronicAddressIdentifier0</toop:OOPServiceProviderElectronicAddressIdentifier>
-        <toop:OOPServiceProviderCountry languageID="en-US" languageLocaleID="languageLocaleID66">OOPServiceProviderCountry0</toop:OOPServiceProviderCountry>
-        <toop:OOPServiceProviderCountryCode listID="listID18" listAgencyID="listAgencyID18" listAgencyName="listAgencyName18" listName="listName18" listVersionID="listVersionID18" name="name18" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">OOPServiceProviderCountryCode0</toop:OOPServiceProviderCountryCode>
-    </toop:OOPServiceProvider>
-</toop:TOOP_DataResponse>
+</toop:TOOP_DataRequest>
