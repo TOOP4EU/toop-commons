@@ -146,7 +146,6 @@
   <!--************************************* -->
   <!--RESPONSE specific elements start here -->
   
-  <!--note: TOOP_DateResponseType and TOOP_DataRequestType have many Elements in common, but these are repeated here for human readability-->
   <xsd:complexType name="TOOP_DataResponseType">
     <xsd:annotation>
       <xsd:documentation>
@@ -241,7 +240,4 @@
   
   <!--RESPONSE specific elements stop here -->
   <!--************************************ -->
-
-  <!--complex types for checks-->
-  
 </xsd:schema>
