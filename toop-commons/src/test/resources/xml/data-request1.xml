@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toop:TOOP_DataRequest xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
- xmlns:toop="http://toop.eu"
+ xmlns:toop="http://toop.eu/ns/dataexchange"
  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2">
     <toop:DocumentUniversalUniqueIdentifier schemeID="schemeID1" schemeName="schemeName1" schemeAgencyID="schemeAgencyID1" schemeAgencyName="schemeAgencyName1" schemeVersionID="schemeVersionID1" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentUniversalUniqueIdentifier0</toop:DocumentUniversalUniqueIdentifier>
     <toop:DocumentIssueDate>2006-05-04</toop:DocumentIssueDate>

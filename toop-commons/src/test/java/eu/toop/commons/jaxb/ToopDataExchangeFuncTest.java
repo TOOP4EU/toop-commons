@@ -17,6 +17,7 @@ import com.helger.xml.serialize.write.XMLWriterSettings;
 import eu.toop.commons.dataexchange.ObjectFactory;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDEConceptRequestType;
+import eu.toop.commons.dataexchange.TDEContactDetailsType;
 import eu.toop.commons.dataexchange.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.TDEDataElementRequestType;
 import eu.toop.commons.dataexchange.TDEDataProviderType;
@@ -213,6 +214,8 @@ public final class ToopDataExchangeFuncTest {
       p.setDPIdentifier (ToopXSDHelper.createIdentifier ("atbla"));
       p.setDPName (ToopXSDHelper.createText ("Register1"));
       p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("me@register.example.org"));
+      final TDEContactDetailsType aCD = new TDEContactDetailsType ();
+      p.setDPContactDetails (aCD);
       r.setDataProvider (p);
     }
 

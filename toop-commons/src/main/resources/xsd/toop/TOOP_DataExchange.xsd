@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsd:schema 
-  xmlns:toop="http://toop.eu"
+  xmlns:toop="http://toop.eu/ns/dataexchange"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
-  targetNamespace="http://toop.eu"
+  targetNamespace="http://toop.eu/ns/dataexchange"
   version="0.7"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified">  
@@ -53,8 +53,9 @@
   <xsd:complexType name="DocumentRequestType">  
     <xsd:sequence>
       <xsd:element name="DocumentRequestIdentifier" type="udt:IdentifierType" minOccurs="1" maxOccurs="1"/>  
-      <xsd:element name="DocumentRequestTypeCode" type="udt:IndicatorType"/> 
+      <xsd:element name="DocumentRequestTypeCode" type="udt:CodeType"/> 
       <xsd:element name="PreferredDocumentMimeTypeCode" type="udt:CodeType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="DocumentResponse" type="toop:DocumentResponseType" minOccurs="0" maxOccurs="1"/> 
     </xsd:sequence>
   </xsd:complexType>
   
@@ -123,7 +124,7 @@
       <xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
       <xsd:element name="DocumentIssueDate" type="xsd:date"/>
       <xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="CopyIndicator" type="udt:IndicatorType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CopyIndicator" type="udt:IndicatorType"  minOccurs="0" maxOccurs="1" default="false"/>
       <xsd:element name="DocumentTypeCode" type="udt:CodeType"/>
       <xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
       <xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
@@ -151,7 +152,7 @@
       <xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
       <xsd:element name="DocumentIssueDate" type="xsd:date"/>
       <xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="CopyIndicator" type="udt:IndicatorType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CopyIndicator" type="udt:IndicatorType"  minOccurs="0" maxOccurs="1" default="false"/>
       <xsd:element name="DocumentTypeCode" type="udt:CodeType"/>
       <xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
       <xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
@@ -224,7 +225,7 @@
       <xsd:element name="DPAdministrativeUnit" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/> 
       <xsd:element name="DPElectronicAddressIdentifier" type="udt:IdentifierType"/>  
       <xsd:element name="DPLegalAddress" type="toop:AddressType" minOccurs="0" maxOccurs="1"/> 
-      <xsd:element name="DPContactDetails" type="toop:ContactDetailsType" minOccurs="0" maxOccurs="1"/> 
+      <xsd:element name="DPContactDetails" type="toop:ContactDetailsType" minOccurs="1" maxOccurs="1"/> 
     </xsd:sequence>
   </xsd:complexType>
   
@@ -242,7 +243,7 @@
       <xsd:element name="OOPServiceProviderName" type="udt:TextType"/>
       <xsd:element name="OOPServiceProviderElectronicAddressIdentifier" type="udt:IdentifierType"/>  
       <xsd:element name="OOPServiceProviderCountry" type="udt:TextType"/>
-      <xsd:element name="OOPServiceProviderCountryCode" type="udt:CodeType"/> 
+      <xsd:element name="OOPServiceProviderCountryCode" type="toop:CodeType-TwoUppercaseLetters"/> 
     </xsd:sequence>
   </xsd:complexType>
   

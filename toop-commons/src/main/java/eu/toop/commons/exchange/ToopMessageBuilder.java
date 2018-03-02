@@ -45,6 +45,7 @@ import com.helger.datetime.util.PDTXMLConverter;
 import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDEConceptRequestType;
+import eu.toop.commons.dataexchange.TDEContactDetailsType;
 import eu.toop.commons.dataexchange.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.TDEDataElementRequestType;
 import eu.toop.commons.dataexchange.TDEDataProviderType;
@@ -363,6 +364,8 @@ public final class ToopMessageBuilder {
       p.setDPIdentifier (ToopXSDHelper.createIdentifier ("atbla"));
       p.setDPName (ToopXSDHelper.createText ("Register1"));
       p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("me@register.example.org"));
+      final TDEContactDetailsType aCD = new TDEContactDetailsType ();
+      p.setDPContactDetails (aCD);
       r.setDataProvider (p);
     }
 
