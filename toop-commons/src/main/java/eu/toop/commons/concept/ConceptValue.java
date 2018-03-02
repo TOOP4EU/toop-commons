@@ -90,6 +90,6 @@ public final class ConceptValue implements Serializable {
   @Nonnull
   public static ConceptValue create (@Nonnull final TDEConceptRequestType aConcept) {
     ValueEnforcer.notNull (aConcept, "Concept");
-    return new ConceptValue (aConcept.getConceptNamespace ().getValue (), aConcept.getConceptAtIndex (0).getValue ());
+    return new ConceptValue (aConcept.getConceptNamespace ().getValue (), aConcept.getConceptName ().getValue ());
   }
 }

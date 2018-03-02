@@ -7,11 +7,11 @@
     <toop:DocumentIssueDate>2006-05-04</toop:DocumentIssueDate>
     <toop:DocumentIssueTime>01:01:01.001</toop:DocumentIssueTime>
     <toop:CopyIndicator>false</toop:CopyIndicator>
-    <toop:DocumentTypeCode>data.request.registeredorganization</toop:DocumentTypeCode>
+    <toop:DocumentTypeIdentifier schemeID="toop-docid">data.request.registeredorganization</toop:DocumentTypeIdentifier>
     <toop:SpecificationIdentifier schemeID="schemeID3" schemeName="schemeName3" schemeAgencyID="schemeAgencyID3" schemeAgencyName="schemeAgencyName3" schemeVersionID="schemeVersionID3" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SpecificationIdentifier0</toop:SpecificationIdentifier>
     <toop:ProcessIdentifier schemeID="schemeID4" schemeName="schemeName4" schemeAgencyID="schemeAgencyID4" schemeAgencyName="schemeAgencyName4" schemeVersionID="schemeVersionID4" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">ProcessIdentifier0</toop:ProcessIdentifier>
     <toop:DataConsumerDocumentIdentifier schemeID="schemeID0" schemeName="schemeName0" schemeAgencyID="schemeAgencyID0" schemeAgencyName="schemeAgencyName0" schemeVersionID="schemeVersionID0" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentIdentifier0</toop:DataConsumerDocumentIdentifier>
-    <toop:DataConsumerSessionIdentifier schemeID="schemeID5" schemeName="schemeName5" schemeAgencyID="schemeAgencyID5" schemeAgencyName="schemeAgencyName5" schemeVersionID="schemeVersionID5" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SessionIdentifier0</toop:DataConsumerSessionIdentifier>
+    <toop:DataConsumerGlobalSessionIdentifier schemeID="schemeID5" schemeName="schemeName5" schemeAgencyID="schemeAgencyID5" schemeAgencyName="schemeAgencyName5" schemeVersionID="schemeVersionID5" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SessionIdentifier0</toop:DataConsumerGlobalSessionIdentifier>
     <toop:DataRequestIdentifier schemeID="schemeID19" schemeName="schemeName19" schemeAgencyID="schemeAgencyID19" schemeAgencyName="schemeAgencyName19" schemeVersionID="schemeVersionID19" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DataRequestIdentifier0</toop:DataRequestIdentifier>
     <toop:DataConsumer>
         <toop:DCUniqueIdentifier schemeID="schemeID6" schemeName="schemeName6" schemeAgencyID="schemeAgencyID6" schemeAgencyName="schemeAgencyName6" schemeVersionID="schemeVersionID6" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DCUniqueIdentifier0</toop:DCUniqueIdentifier>
@@ -41,7 +41,7 @@
             <toop:EORIIdentifier schemeID="schemeID14" schemeName="schemeName14" schemeAgencyID="schemeAgencyID14" schemeAgencyName="schemeAgencyName14" schemeVersionID="schemeVersionID14" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">EORIIdentifier0</toop:EORIIdentifier>
             <toop:SEEDIdentifier schemeID="schemeID15" schemeName="schemeName15" schemeAgencyID="schemeAgencyID15" schemeAgencyName="schemeAgencyName15" schemeVersionID="schemeVersionID15" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SEEDIdentifier0</toop:SEEDIdentifier>
             <toop:StandardIndustrialClassification listID="listID2" listAgencyID="listAgencyID2" listAgencyName="listAgencyName2" listName="listName2" listVersionID="listVersionID2" name="name2" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">0000</toop:StandardIndustrialClassification>
-            <toop:AuthorizedRepresentativeIdentifier schemeID="schemeID16" schemeName="schemeName16" schemeAgencyID="schemeAgencyID16" schemeAgencyName="schemeAgencyName16" schemeVersionID="schemeVersionID16" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">AuthorizedRepresentativeIdentifier0</toop:AuthorizedRepresentativeIdentifier>
+            <toop:AuthorisedRepresentativeIdentifier schemeID="schemeID16" schemeName="schemeName16" schemeAgencyID="schemeAgencyID16" schemeAgencyName="schemeAgencyName16" schemeVersionID="schemeVersionID16" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">AuthorizedRepresentativeIdentifier0</toop:AuthorisedRepresentativeIdentifier>
             <toop:LegalEntityLegalAddress>
                 <toop:AddressLine languageID="en-US" languageLocaleID="languageLocaleID10">AddressLine11</toop:AddressLine>
                 <toop:AddressLine languageID="en-US" languageLocaleID="languageLocaleID11">AddressLine21</toop:AddressLine>
@@ -81,20 +81,20 @@
     <toop:DataElementRequest>
       <toop:DataElementRequestIdentifier>bla</toop:DataElementRequestIdentifier>
       <toop:ConceptRequest>
-        <toop:ConceptType>DC</toop:ConceptType>
+        <toop:ConceptTypeCode>DC</toop:ConceptTypeCode>
         <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
-        <toop:Concept>elType</toop:Concept>
         <toop:ConceptNamespace>elUri</toop:ConceptNamespace>
+        <toop:ConceptName>elType</toop:ConceptName>
         <toop:ConceptRequest>
-          <toop:ConceptType>TOOP</toop:ConceptType>
+          <toop:ConceptTypeCode>TOOP</toop:ConceptTypeCode>
           <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
-          <toop:Concept>toopType</toop:Concept>
           <toop:ConceptNamespace>toopUri</toop:ConceptNamespace>
+          <toop:ConceptName>toopType</toop:ConceptName>
           <toop:ConceptRequest>
-            <toop:ConceptType>DP</toop:ConceptType>
+            <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
             <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
-            <toop:Concept>toopType</toop:Concept>
             <toop:ConceptNamespace>toopUri</toop:ConceptNamespace>
+            <toop:ConceptName>toopType</toop:ConceptName>
           </toop:ConceptRequest>
         </toop:ConceptRequest>
       </toop:ConceptRequest>

@@ -4,7 +4,6 @@ import javax.annotation.Nonnull;
 
 import com.helger.commons.annotation.Nonempty;
 
-import eu.toop.commons.dataexchange.TDECodeTypeTwoUppercaseLetters;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.CodeType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IndicatorType;
@@ -59,12 +58,4 @@ public final class ToopXSDHelper {
     ret.setValue (sValue);
     return ret;
   }
-
-  @Nonnull
-  public static TDECodeTypeTwoUppercaseLetters createCountry (@Nonnull @Nonempty final String sCountryCode) {
-    final TDECodeTypeTwoUppercaseLetters ret = new TDECodeTypeTwoUppercaseLetters ();
-    ret.setValue (sCountryCode);
-    return ret;
-  }
-
 }
