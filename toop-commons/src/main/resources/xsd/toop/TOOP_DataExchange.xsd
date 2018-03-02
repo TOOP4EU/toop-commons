@@ -148,26 +148,19 @@
   
   <!--note: TOOP_DateResponseType and TOOP_DataRequestType have many Elements in common, but these are repeated here for human readability-->
   <xsd:complexType name="TOOP_DataResponseType">
-    <xsd:sequence>
-      <xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
-      <xsd:element name="DocumentIssueDate" type="xsd:date"/>
-      <xsd:element name="DocumentIssueTime" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="CopyIndicator" type="udt:IndicatorType"  minOccurs="0" maxOccurs="1" default="false"/>
-      <xsd:element name="DocumentTypeIdentifier" type="udt:IdentifierType"/>
-      <xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/>
-      <xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
-      <xsd:element name="DataConsumerDocumentIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="DataConsumerGlobalSessionIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="DataConsumerRequestPurpose" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="DataRequestIdentifier" type="udt:IdentifierType"/>
-      <xsd:element name="DataConsumer" type="toop:DataConsumerType"/>
-      <xsd:element name="DataSubject" type="toop:DataSubjectType"/>
-      <xsd:element name="DataRequestAuthorization" type="toop:DataRequestAuthorizationType" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="DataElementRequest" type="toop:DataElementRequestType" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="DocumentRequest" type="toop:DocumentRequestType" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="DataProvider" type="toop:DataProviderType"/>
-      <xsd:element name="OOPServiceProvider" type="toop:OOPServiceProviderType" minOccurs="0" maxOccurs="1"/>
-    </xsd:sequence>
+    <xsd:annotation>
+      <xsd:documentation>
+        DataRequestIdentifier becomes mandatory
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="toop:TOOP_DataRequestType">
+        <xsd:sequence>
+          <xsd:element name="DataProvider" type="toop:DataProviderType"/>
+          <xsd:element name="OOPServiceProvider" type="toop:OOPServiceProviderType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   
   <xsd:complexType name="DataElementResponseValueType">
