@@ -161,7 +161,9 @@
         <toop:DPIdentifier schemeID="schemeID69" schemeName="schemeName69" schemeAgencyID="schemeAgencyID69" schemeAgencyName="schemeAgencyName69" schemeVersionID="schemeVersionID69" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderIdentifier0</toop:DPIdentifier>
         <toop:DPName languageID="en-US" languageLocaleID="languageLocaleID65">DPName0</toop:DPName>
         <toop:DPElectronicAddressIdentifier schemeID="schemeID70" schemeName="schemeName70" schemeAgencyID="schemeAgencyID70" schemeAgencyName="schemeAgencyName70" schemeVersionID="schemeVersionID70" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DPElectronicAddressIdentifier0</toop:DPElectronicAddressIdentifier>
-        <toop:DPContactDetails />
+        <toop:DPLegalAddress>
+            <toop:CountryCode listID="listID4" listAgencyID="listAgencyID4" listAgencyName="listAgencyName4" listName="listName4" listVersionID="listVersionID4" name="name4" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</toop:CountryCode>
+        </toop:DPLegalAddress>
     </toop:DataProvider>
     <toop:OOPServiceProvider>
         <toop:OOPServiceProviderIdentifier schemeID="schemeID69" schemeName="schemeName69" schemeAgencyID="schemeAgencyID69" schemeAgencyName="schemeAgencyName69" schemeVersionID="schemeVersionID69" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">OOPServiceProviderIdentifier0</toop:OOPServiceProviderIdentifier>
