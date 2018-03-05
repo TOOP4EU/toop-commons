@@ -64,40 +64,36 @@ public final class ToopKafkaClient {
     return s_aEnabled.get ();
   }
 
-  private static void _sendIfEnabled (@Nonnull final String sKey, @Nonnull final String sValue) {
-    s_aLogger.info ("Sending to Kafka: '" + sKey + "' / '" + sValue + "'");
+  private static void _sendIfEnabled (@Nonnull final String sValue) {
+    s_aLogger.info ("Sending to Kafka: '" + sValue + "'");
 
     // Send but don't wait for the commit!
-    ToopKafkaManager.send (sKey, sValue, null);
+    ToopKafkaManager.send ((String) null, sValue, null);
   }
 
   /**
    * Send a message, if it is enabled.
    *
-   * @param sKey
-   *          Key to send. May not be <code>null</code>.
    * @param sValue
    *          Value to send. May not be <code>null</code>.
    * @see #isEnabled()
    */
-  public static void send (@Nonnull final String sKey, @Nonnull final String sValue) {
+  public static void send (@Nonnull final String sValue) {
     if (isEnabled ())
-      _sendIfEnabled (sKey, sValue);
+      _sendIfEnabled (sValue);
   }
 
   /**
    * Send a message, if it is enabled.
    *
-   * @param sKey
-   *          Key to send. May not be <code>null</code>.
    * @param aValue
    *          Value supplier to send. Is only evaluated if enabled. May not be
    *          <code>null</code>.
    * @see #isEnabled()
    */
-  public static void send (@Nonnull final String sKey, @Nonnull final Supplier<String> aValue) {
+  public static void send (@Nonnull final Supplier<String> aValue) {
     if (isEnabled ())
-      _sendIfEnabled (sKey, aValue.get ());
+      _sendIfEnabled (aValue.get ());
   }
 
   /**

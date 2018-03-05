@@ -128,7 +128,7 @@ final class ToopKafkaManager {
    * while sending the record.
    *
    * @param sKey
-   *          Key to be send. May not be <code>null</code>.
+   *          Key to be send. May be <code>null</code>.
    * @param sValue
    *          Value to be send. May not be <code>null</code>.
    * @param aKafkaCallback
@@ -136,9 +136,8 @@ final class ToopKafkaManager {
    * @return The {@link Future} with the details on message receipt
    */
   @Nonnull
-  public static Future<RecordMetadata> send (@Nonnull final String sKey, @Nonnull final String sValue,
+  public static Future<RecordMetadata> send (@Nullable final String sKey, @Nonnull final String sValue,
                                              @Nullable final Callback aKafkaCallback) {
-    ValueEnforcer.notNull (sKey, "Key");
     ValueEnforcer.notNull (sValue, "Value");
 
     final ProducerRecord<String, String> aMessage = new ProducerRecord<> ("toop", sKey, sValue);
