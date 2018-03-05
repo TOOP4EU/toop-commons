@@ -38,8 +38,8 @@ import eu.toop.commons.doctype.EToopDocumentType;
 import eu.toop.commons.doctype.EToopProcess;
 
 public final class ToopMessageBundleBuilderTest {
-  private static final SignatureHelper SH = new SignatureHelper (FileHelper.getInputStream (new File ("src/test/resources/demo-keystore.jks")),
-                                                                 "password", null, "password");
+  private static final SignatureHelper SH = new SignatureHelper (FileHelper.getInputStream (new File ("src/test/resources/playground-keystore.jks")),
+                                                                 "toop4eu", "sms-key", "toop4eu");
 
   @Test
   public void testRequestMessage () throws IOException {
