@@ -16,6 +16,7 @@
 package eu.toop.commons.doctype;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
 
@@ -71,7 +72,15 @@ public enum EToopDocumentType {
 
   @Nonnull
   @Nonempty
-  public String getSemanticMappingNamespace () {
+  public String getSharedToopSMMNamespace () {
     return m_sSemanticMappingNS;
+  }
+
+  @Nullable
+  public static EToopDocumentType getFromIDOrNull (final String sSchemeID, final String sValue) {
+    for (final EToopDocumentType e : values ())
+      if (e.getScheme ().equals (sSchemeID) && e.getValue ().equals (sValue))
+        return e;
+    return null;
   }
 }
