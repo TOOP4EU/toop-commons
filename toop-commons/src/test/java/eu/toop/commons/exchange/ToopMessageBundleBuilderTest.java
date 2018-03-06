@@ -45,8 +45,8 @@ public final class ToopMessageBundleBuilderTest {
   public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
       final TDETOOPDataRequestType aSrcRequest = ToopMessageBuilder.createMockRequest ("toop::senderid", "SE",
-                                                                                       EToopDocumentType.DOCTYPE2.getURIEncoded (),
-                                                                                       EToopProcess.PROC.getURIEncoded (),
+                                                                                       EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
+                                                                                       EToopProcess.PROCESS_REQUEST_RESPONSE,
                                                                                        new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                                  "Acme Inc.")));
       ToopMessageBuilder.createRequestMessage (aSrcRequest, archiveOutput, SH);
@@ -65,8 +65,8 @@ public final class ToopMessageBundleBuilderTest {
   public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
       final TDETOOPDataResponseType aSrcResponse = ToopMessageBuilder.createMockResponse ("toop::senderid", "SE",
-                                                                                          EToopDocumentType.DOCTYPE2.getURIEncoded (),
-                                                                                          EToopProcess.PROC.getURIEncoded (),
+                                                                                          EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
+                                                                                          EToopProcess.PROCESS_REQUEST_RESPONSE,
                                                                                           new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                                     "Acme Inc.")));
       ToopMessageBuilder.createResponseMessage (aSrcResponse, archiveOutput, SH);

@@ -53,6 +53,8 @@ import eu.toop.commons.dataexchange.TDEDataSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
 import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
 import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import eu.toop.commons.doctype.EToopDocumentType;
+import eu.toop.commons.doctype.EToopProcess;
 import eu.toop.commons.jaxb.ToopReader;
 import eu.toop.commons.jaxb.ToopWriter;
 import eu.toop.commons.jaxb.ToopXSDHelper;
@@ -191,13 +193,13 @@ public final class ToopMessageBuilder {
   @Nonnull
   public static TDETOOPDataRequestType createMockRequest (@Nonnull @Nonempty final String sSenderParticipantID,
                                                           @Nonnull @Nonempty final String sCountryCode,
-                                                          @Nonnull @Nonempty final String sDocumentTypeID,
-                                                          @Nonnull @Nonempty final String sProcessID,
+                                                          @Nonnull final EToopDocumentType eDocumentTypeID,
+                                                          @Nonnull final EToopProcess eProcessID,
                                                           @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notEmpty (sSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
-    ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
-    ValueEnforcer.notEmpty (sProcessID, "ProcessID");
+    ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
+    ValueEnforcer.notNull (eProcessID, "ProcessID");
 
     final TDETOOPDataRequestType r = new TDETOOPDataRequestType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
@@ -205,10 +207,11 @@ public final class ToopMessageBuilder {
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     r.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
-    r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier ("toop-doctypeid", sDocumentTypeID));
+    r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+                                                                 eDocumentTypeID.getValue ()));
     r.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
-    r.setProcessIdentifier (ToopXSDHelper.createIdentifier ("toop-procid", sProcessID));
+    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getValue ()));
     r.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
     r.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     {
@@ -269,13 +272,13 @@ public final class ToopMessageBuilder {
   @Nonnull
   public static TDETOOPDataResponseType createMockResponse (@Nonnull @Nonempty final String sSenderParticipantID,
                                                             @Nonnull @Nonempty final String sCountryCode,
-                                                            @Nonnull @Nonempty final String sDocumentTypeID,
-                                                            @Nonnull @Nonempty final String sProcessID,
+                                                            @Nonnull final EToopDocumentType eDocumentTypeID,
+                                                            @Nonnull final EToopProcess eProcessID,
                                                             @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notEmpty (sSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
-    ValueEnforcer.notEmpty (sDocumentTypeID, "DocumentTypeID");
-    ValueEnforcer.notEmpty (sProcessID, "ProcessID");
+    ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
+    ValueEnforcer.notNull (eProcessID, "ProcessID");
 
     final TDETOOPDataResponseType r = new TDETOOPDataResponseType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
@@ -283,10 +286,11 @@ public final class ToopMessageBuilder {
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     r.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
-    r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier ("toop-doctypeid", sDocumentTypeID));
+    r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+                                                                 eDocumentTypeID.getValue ()));
     r.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
-    r.setProcessIdentifier (ToopXSDHelper.createIdentifier ("toop-procid", sProcessID));
+    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getValue ()));
     r.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
     r.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     {

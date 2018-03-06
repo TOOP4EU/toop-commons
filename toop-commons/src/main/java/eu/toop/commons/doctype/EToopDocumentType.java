@@ -26,18 +26,21 @@ import com.helger.commons.annotation.Nonempty;
  *
  */
 public enum EToopDocumentType {
-  DOCTYPE1 ("urn:eu.toop:docType1"),
-  DOCTYPE2 ("urn:eu.toop:docType1"),
-  DOCTYPE3 ("urn:eu.toop:docType1"),
-  DOCTYPE4 ("urn:eu.toop:docType1");
+  DOCTYPE_REGISTERED_ORGANIZATION_REQUEST ("urn:eu.toop:registered-organization:request",
+                                           "http://toop.eu/organization"),
+  DOCTYPE_REGISTERED_ORGANIZATION_RESPONSE ("urn:eu.toop:registered-organization:response",
+                                            "http://toop.eu/organization");
 
   // For R2D2 we need a scheme
   public static final String DOC_TYPE_SCHEME = "toop-doctypeid";
 
   private final String m_sDocTypeID;
+  private final String m_sSemanticMappingNS;
 
-  private EToopDocumentType (@Nonnull @Nonempty final String sDocTypeID) {
+  private EToopDocumentType (@Nonnull @Nonempty final String sDocTypeID,
+                             @Nonnull @Nonempty final String sSemanticMappingNS) {
     m_sDocTypeID = sDocTypeID;
+    m_sSemanticMappingNS = sSemanticMappingNS;
   }
 
   /**
@@ -64,5 +67,11 @@ public enum EToopDocumentType {
   @Nonempty
   public String getURIEncoded () {
     return getScheme () + "::" + getValue ();
+  }
+
+  @Nonnull
+  @Nonempty
+  public String getSemanticMappingNamespace () {
+    return m_sSemanticMappingNS;
   }
 }

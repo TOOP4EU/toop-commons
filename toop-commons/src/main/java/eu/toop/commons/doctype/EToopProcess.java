@@ -26,7 +26,7 @@ import com.helger.commons.annotation.Nonempty;
  *
  */
 public enum EToopProcess {
-  PROC ("urn:eu.toop:proc");
+  PROCESS_REQUEST_RESPONSE ("urn:eu.toop:request-response");
 
   // For R2D2 we need a scheme
   public static final String PROCESS_SCHEME = "toop-procid";
