@@ -65,7 +65,8 @@ public final class ToopKafkaClient {
   }
 
   private static void _sendIfEnabled (@Nonnull final String sValue) {
-    s_aLogger.info ("Sending to Kafka: '" + sValue + "'");
+    if (s_aLogger.isDebugEnabled ())
+      s_aLogger.debug ("Sending to Kafka: '" + sValue + "'");
 
     // Send but don't wait for the commit!
     ToopKafkaManager.send ((String) null, sValue, null);
