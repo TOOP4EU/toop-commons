@@ -16,7 +16,11 @@
 package eu.toop.kafkaclient;
 
 import org.apache.kafka.common.KafkaException;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import com.helger.commons.error.level.EErrorLevel;
 
 /**
  * Test class for class {@link ToopKafkaClient}.
@@ -24,20 +28,27 @@ import org.junit.jupiter.api.Test;
  * @author Philip Helger
  */
 public final class ToopKafkaClientTest {
+  @BeforeAll
+  public static void beforeAll () {
+    ToopKafkaClient.setEnabled (true);
+  }
+
+  @AfterAll
+  public static void afterAll () {
+    // Disable again for other tests
+    ToopKafkaClient.setEnabled (false);
+  }
+
   @Test
   public void testBasic () {
     try {
-      ToopKafkaClient.setEnabled (true);
       // Don't send too many - will take forever if no Kafka server is up and
       // running!
       for (int i = 0; i < 5; ++i)
-        ToopKafkaClient.send ("Value" + i);
+        ToopKafkaClient.send (EErrorLevel.INFO, "Value" + i);
       ToopKafkaClient.close ();
     } catch (final KafkaException ex) {
       // lets act as if we are not surprised...
-    } finally {
-      // Disable again for other tests
-      ToopKafkaClient.setEnabled (false);
     }
   }
 }

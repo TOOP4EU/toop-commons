@@ -19,12 +19,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.collection.impl.ICommonsMap;
+import com.helger.commons.error.level.EErrorLevel;
+import com.helger.commons.log.LogHelper;
 
 /**
  * Global TOOP Kafka Client. It is disabled by default.
@@ -46,7 +49,7 @@ public final class ToopKafkaClient {
   }
 
   /**
-   * Enable or disable globally.
+   * Enable or disable globally. Call this only globally on startup.
    *
    * @param bEnabled
    *          <code>true</code> to enable, <code>false</code> to disable.
@@ -75,11 +78,16 @@ public final class ToopKafkaClient {
   /**
    * Send a message, if it is enabled.
    *
+   * @param aErrorLevel
+   *          Error level to log the message. May be <code>null</code> to not log
+   *          it.
    * @param sValue
    *          Value to send. May not be <code>null</code>.
    * @see #isEnabled()
    */
-  public static void send (@Nonnull final String sValue) {
+  public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final String sValue) {
+    if (aErrorLevel != null)
+      LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue);
     if (isEnabled ())
       _sendIfEnabled (sValue);
   }
@@ -87,19 +95,24 @@ public final class ToopKafkaClient {
   /**
    * Send a message, if it is enabled.
    *
+   * @param aErrorLevel
+   *          Error level to log the message. May be <code>null</code> to not log
+   *          it.
    * @param aValue
    *          Value supplier to send. Is only evaluated if enabled. May not be
    *          <code>null</code>.
    * @see #isEnabled()
    */
-  public static void send (@Nonnull final Supplier<String> aValue) {
+  public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final Supplier<String> aValue) {
+    if (aErrorLevel != null)
+      LogHelper.log (ToopKafkaClient.class, aErrorLevel, aValue.get ());
     if (isEnabled ())
       _sendIfEnabled (aValue.get ());
   }
 
   /**
    * Shutdown at the end. Note: this only does something, if the client is
-   * enabled.
+   * enabled. Do this only once globally on application shutdown.
    *
    * @see #isEnabled()
    */
