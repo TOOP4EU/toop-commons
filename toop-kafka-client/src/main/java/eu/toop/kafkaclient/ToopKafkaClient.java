@@ -37,7 +37,8 @@ import com.helger.commons.log.LogHelper;
  */
 public final class ToopKafkaClient {
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopKafkaClient.class);
-  private static final AtomicBoolean s_aEnabled = new AtomicBoolean (false);
+  private static final AtomicBoolean s_aLoggingEnabled = new AtomicBoolean (true);
+  private static final AtomicBoolean s_aKafkaEnabled = new AtomicBoolean (false);
 
   /**
    * @return The default properties for customization. Changes to this map only
@@ -50,13 +51,32 @@ public final class ToopKafkaClient {
   }
 
   /**
+   * Enable or disable logging globally.
+   *
+   * @param bLoggingEnabled
+   *          <code>true</code> to enable, <code>false</code> to disable.
+   */
+  public static void setLoggingEnabled (final boolean bLoggingEnabled) {
+    s_aLoggingEnabled.set (bLoggingEnabled);
+    s_aLogger.info ("TOOP Logging is now " + (bLoggingEnabled ? "enabled" : "disabled"));
+  }
+
+  /**
+   * @return <code>true</code> if Logging is enabled, <code>false</code> if not.
+   *         By default is is enabled.
+   */
+  public static boolean isLoggingEnabled () {
+    return s_aLoggingEnabled.get ();
+  }
+
+  /**
    * Enable or disable globally. Call this only globally on startup.
    *
    * @param bEnabled
    *          <code>true</code> to enable, <code>false</code> to disable.
    */
   public static void setEnabled (final boolean bEnabled) {
-    s_aEnabled.set (bEnabled);
+    s_aKafkaEnabled.set (bEnabled);
     s_aLogger.info ("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
   }
 
@@ -65,10 +85,10 @@ public final class ToopKafkaClient {
    *         default is is disabled.
    */
   public static boolean isEnabled () {
-    return s_aEnabled.get ();
+    return s_aKafkaEnabled.get ();
   }
 
-  private static void _sendIfEnabled (@Nonnull final String sValue) {
+  private static void _sendIfKafkaEnabled (@Nonnull final String sValue) {
     if (s_aLogger.isDebugEnabled ())
       s_aLogger.debug ("Sending to Kafka: '" + sValue + "'");
 
@@ -87,10 +107,10 @@ public final class ToopKafkaClient {
    * @see #isEnabled()
    */
   public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final String sValue) {
-    if (aErrorLevel != null)
+    if (aErrorLevel != null && isLoggingEnabled ())
       LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue);
     if (isEnabled ())
-      _sendIfEnabled (sValue);
+      _sendIfKafkaEnabled (sValue);
   }
 
   /**
@@ -124,7 +144,7 @@ public final class ToopKafkaClient {
   public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final Supplier<String> aValue,
                            @Nullable final Throwable t) {
     String sValue = null;
-    if (aErrorLevel != null) {
+    if (aErrorLevel != null && isLoggingEnabled ()) {
       sValue = aValue.get ();
       LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue, t);
     }
@@ -133,7 +153,7 @@ public final class ToopKafkaClient {
         sValue = aValue.get ();
       if (t != null)
         sValue += " -- " + ClassHelper.getClassLocalName (t.getClass ()) + ": " + t.getMessage ();
-      _sendIfEnabled (sValue);
+      _sendIfKafkaEnabled (sValue);
     }
   }
 
