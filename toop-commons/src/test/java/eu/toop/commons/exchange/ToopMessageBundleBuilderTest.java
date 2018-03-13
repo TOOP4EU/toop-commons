@@ -32,10 +32,13 @@ import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import eu.toop.commons.concept.ConceptValue;
+import eu.toop.commons.dataexchange.TDEAddressType;
+import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
 import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
 import eu.toop.commons.doctype.EToopDocumentType;
 import eu.toop.commons.doctype.EToopProcess;
+import eu.toop.commons.jaxb.ToopXSDHelper;
 
 public final class ToopMessageBundleBuilderTest {
   private static final SignatureHelper SH = new SignatureHelper (FileHelper.getInputStream (new File ("src/test/resources/playground-keystore.jks")),
@@ -69,6 +72,38 @@ public final class ToopMessageBundleBuilderTest {
                                                                                           EToopProcess.PROCESS_REQUEST_RESPONSE,
                                                                                           new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                                     "Acme Inc.")));
+      ToopMessageBuilder.createResponseMessage (aSrcResponse, archiveOutput, SH);
+
+      try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream ()) {
+        // Read ASIC again
+        final TDETOOPDataResponseType aRead = ToopMessageBuilder.parseResponseMessage (archiveInput);
+        assertNotNull (aRead);
+
+        assertEquals (aRead, aSrcResponse);
+      }
+    }
+  }
+
+  @Test
+  public void testResponseMessageV2 () throws IOException {
+    try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
+      final TDETOOPDataRequestType aSrcRequest = ToopMessageBuilder.createMockResponse ("toop::senderid", "SE",
+                                                                                        EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
+                                                                                        EToopProcess.PROCESS_REQUEST_RESPONSE,
+                                                                                        new CommonsArrayList<> (new ConceptValue ("companyName",
+                                                                                                                                  "Acme Inc.")));
+      final TDETOOPDataResponseType aSrcResponse = ToopMessageBuilder.createResponse (aSrcRequest);
+      {
+        // Required for response
+        final TDEDataProviderType p = new TDEDataProviderType ();
+        p.setDPIdentifier (ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9999:elonia"));
+        p.setDPName (ToopXSDHelper.createText ("EloniaDP"));
+        p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("elonia@register.example.org"));
+        final TDEAddressType pa = new TDEAddressType ();
+        pa.setCountryCode (ToopXSDHelper.createCode ("SV"));
+        p.setDPLegalAddress (pa);
+        aSrcResponse.setDataProvider (p);
+      }
       ToopMessageBuilder.createResponseMessage (aSrcResponse, archiveOutput, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = archiveOutput.getAsInputStream ()) {
