@@ -25,7 +25,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.WillClose;
 import javax.annotation.concurrent.Immutable;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -386,14 +385,9 @@ public final class ToopMessageBuilder {
    */
   @Nonnull
   public static TDETOOPDataResponseType createResponse (@Nonnull final TDETOOPDataRequestType aRequest) {
-    final TDETOOPDataResponseType ret = new TDETOOPDataResponseType ();
-    if (aRequest.getDocumentUniversalUniqueIdentifier () != null)
-      ret.setDocumentUniversalUniqueIdentifier (aRequest.getDocumentUniversalUniqueIdentifier ().clone ());
-    if (aRequest.getDocumentIssueDate () != null)
-      ret.setDocumentIssueDate ((XMLGregorianCalendar) aRequest.getDocumentIssueDate ().clone ());
-    if (aRequest.getDocumentIssueTime () != null)
-      ret.setDocumentIssueDate ((XMLGregorianCalendar) aRequest.getDocumentIssueTime ().clone ());
-    // etc.
-    return ret;
+    final TDETOOPDataResponseType aResponse = new TDETOOPDataResponseType ();
+    aRequest.cloneTo (aResponse);
+    // Response specific stuff stays null
+    return aResponse;
   }
 }
