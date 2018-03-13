@@ -15,6 +15,8 @@
  */
 package eu.toop.commons.jaxb;
 
+import java.math.BigDecimal;
+
 import javax.annotation.Nonnull;
 
 import com.helger.commons.annotation.Nonempty;
@@ -22,6 +24,7 @@ import com.helger.commons.annotation.Nonempty;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.CodeType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IndicatorType;
+import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.NumericType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.TextType;
 
 public final class ToopXSDHelper {
@@ -71,6 +74,13 @@ public final class ToopXSDHelper {
     final CodeType ret = new CodeType ();
     ret.setName (sSchemeID);
     ret.setValue (sValue);
+    return ret;
+  }
+
+  @Nonnull
+  public static NumericType createNumeric (@Nonnull final BigDecimal aValue) {
+    final NumericType ret = new NumericType ();
+    ret.setValue (aValue);
     return ret;
   }
 }
