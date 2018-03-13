@@ -77,6 +77,24 @@ public enum EToopDocumentType {
   }
 
   @Nullable
+  public EToopDocumentType getMatchingResponseDocumentType () {
+    if (this == DOCTYPE_REGISTERED_ORGANIZATION_REQUEST)
+      return DOCTYPE_REGISTERED_ORGANIZATION_RESPONSE;
+
+    // add additional doc type stuff here
+    return null;
+  }
+
+  @Nullable
+  public EToopDocumentType getMatchingRequestDocumentType () {
+    if (this == DOCTYPE_REGISTERED_ORGANIZATION_RESPONSE)
+      return DOCTYPE_REGISTERED_ORGANIZATION_REQUEST;
+
+    // add additional doc type stuff here
+    return null;
+  }
+
+  @Nullable
   public static EToopDocumentType getFromIDOrNull (final String sSchemeID, final String sValue) {
     for (final EToopDocumentType e : values ())
       if (e.getScheme ().equals (sSchemeID) && e.getValue ().equals (sValue))
