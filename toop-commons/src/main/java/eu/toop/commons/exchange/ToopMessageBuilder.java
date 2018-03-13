@@ -59,6 +59,7 @@ import eu.toop.commons.jaxb.ToopReader;
 import eu.toop.commons.jaxb.ToopWriter;
 import eu.toop.commons.jaxb.ToopXSDHelper;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
+import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
 @Immutable
 public final class ToopMessageBuilder {
@@ -191,12 +192,12 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDETOOPDataRequestType createMockRequest (@Nonnull @Nonempty final String sSenderParticipantID,
+  public static TDETOOPDataRequestType createMockRequest (@Nonnull final IdentifierType aSenderParticipantID,
                                                           @Nonnull @Nonempty final String sCountryCode,
                                                           @Nonnull final EToopDocumentType eDocumentTypeID,
                                                           @Nonnull final EToopProcess eProcessID,
                                                           @Nullable final Iterable<? extends ConceptValue> aValues) {
-    ValueEnforcer.notEmpty (sSenderParticipantID, "SenderParticipantID");
+    ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
@@ -219,8 +220,7 @@ public final class ToopMessageBuilder {
       aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
       aDC.setDCName (ToopXSDHelper.createText ("Helger Enterprises"));
       // Sender participant ID
-      aDC.setDCElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("iso6523-actorid-upis",
-                                                                            sSenderParticipantID));
+      aDC.setDCElectronicAddressIdentifier (aSenderParticipantID.clone ());
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper.createCode ("AT"));
       aDC.setDCLegalAddress (aAddress);
@@ -270,12 +270,12 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDETOOPDataResponseType createMockResponse (@Nonnull @Nonempty final String sSenderParticipantID,
+  public static TDETOOPDataResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
                                                             @Nonnull @Nonempty final String sCountryCode,
                                                             @Nonnull final EToopDocumentType eDocumentTypeID,
                                                             @Nonnull final EToopProcess eProcessID,
                                                             @Nullable final Iterable<? extends ConceptValue> aValues) {
-    ValueEnforcer.notEmpty (sSenderParticipantID, "SenderParticipantID");
+    ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
@@ -298,8 +298,7 @@ public final class ToopMessageBuilder {
       aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
       aDC.setDCName (ToopXSDHelper.createText ("Helger Enterprises"));
       // Sender participant ID
-      aDC.setDCElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("iso6523-actorid-upis",
-                                                                            sSenderParticipantID));
+      aDC.setDCElectronicAddressIdentifier (aSenderParticipantID.clone ());
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper.createCode ("AT"));
       aDC.setDCLegalAddress (aAddress);

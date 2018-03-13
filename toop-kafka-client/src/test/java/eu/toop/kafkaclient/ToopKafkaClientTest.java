@@ -30,13 +30,13 @@ import com.helger.commons.error.level.EErrorLevel;
 public final class ToopKafkaClientTest {
   @BeforeAll
   public static void beforeAll () {
-    ToopKafkaClient.setEnabled (true);
+    ToopKafkaClient.setKafkaEnabled (true);
   }
 
   @AfterAll
   public static void afterAll () {
     // Disable again for other tests
-    ToopKafkaClient.setEnabled (false);
+    ToopKafkaClient.setKafkaEnabled (false);
   }
 
   @Test

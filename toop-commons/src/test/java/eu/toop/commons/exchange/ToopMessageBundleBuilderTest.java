@@ -47,7 +47,9 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
-      final TDETOOPDataRequestType aSrcRequest = ToopMessageBuilder.createMockRequest ("toop::senderid", "SE",
+      final TDETOOPDataRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopXSDHelper.createIdentifier ("toop",
+                                                                                                                       "senderid"),
+                                                                                       "SE",
                                                                                        EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
                                                                                        EToopProcess.PROCESS_REQUEST_RESPONSE,
                                                                                        new CommonsArrayList<> (new ConceptValue ("companyName",
@@ -67,7 +69,9 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
-      final TDETOOPDataResponseType aSrcResponse = ToopMessageBuilder.createMockResponse ("toop::senderid", "SE",
+      final TDETOOPDataResponseType aSrcResponse = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
+                                                                                                                          "senderid"),
+                                                                                          "SE",
                                                                                           EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
                                                                                           EToopProcess.PROCESS_REQUEST_RESPONSE,
                                                                                           new CommonsArrayList<> (new ConceptValue ("companyName",
@@ -87,7 +91,9 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testResponseMessageV2 () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
-      final TDETOOPDataRequestType aSrcRequest = ToopMessageBuilder.createMockResponse ("toop::senderid", "SE",
+      final TDETOOPDataRequestType aSrcRequest = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
+                                                                                                                        "senderid"),
+                                                                                        "SE",
                                                                                         EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
                                                                                         EToopProcess.PROCESS_REQUEST_RESPONSE,
                                                                                         new CommonsArrayList<> (new ConceptValue ("companyName",
@@ -96,7 +102,7 @@ public final class ToopMessageBundleBuilderTest {
       {
         // Required for response
         final TDEDataProviderType p = new TDEDataProviderType ();
-        p.setDPIdentifier (ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9999:elonia"));
+        p.setDPIdentifier (ToopXSDHelper.createIdentifier ("toop", "blafoo-elonia"));
         p.setDPName (ToopXSDHelper.createText ("EloniaDP"));
         p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("elonia@register.example.org"));
         final TDEAddressType pa = new TDEAddressType ();
