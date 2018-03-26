@@ -22,6 +22,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import com.helger.datetime.util.PDTXMLConverter;
@@ -48,6 +50,8 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryOb
  * @author Philip Helger
  */
 public final class ToopDataExchangeFuncTest {
+  private static final Logger s_aLogger = LoggerFactory.getLogger (ToopDataExchangeFuncTest.class);
+
   @Test
   public void testReadWriteDataRequest () {
     final TDETOOPDataRequestType aRequest = ToopReader.dataRequest ()
@@ -146,7 +150,7 @@ public final class ToopDataExchangeFuncTest {
     if (true) {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
       aCtx.addMapping ("toop", ObjectFactory._TOOPDataRequest_QNAME.getNamespaceURI ());
-      System.out.println (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
+      s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
     }
   }
 
@@ -241,7 +245,7 @@ public final class ToopDataExchangeFuncTest {
     if (true) {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
       aCtx.addMapping ("toop", ObjectFactory._TOOPDataRequest_QNAME.getNamespaceURI ());
-      System.out.println (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
+      s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
     }
   }
 }

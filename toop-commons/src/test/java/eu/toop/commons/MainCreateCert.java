@@ -66,7 +66,7 @@ import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
  * @author Philip Helger
  *
  */
-public class MainCreateCert {
+public final class MainCreateCert {
   private static final Logger s_aLogger = LoggerFactory.getLogger (MainCreateCert.class);
   private static final Provider PROVIDER = new BouncyCastleProvider ();
   private static final int RSA_KEY_LEN = 2048;
