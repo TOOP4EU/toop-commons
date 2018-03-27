@@ -67,6 +67,11 @@ public final class ConceptValue implements Serializable {
     return m_sValue.equals (sValue);
   }
 
+  @Nonnull
+  public String getConcatenatedValue (@Nonnull final String sSep) {
+    return m_sNamespace + sSep + m_sValue;
+  }
+
   @Override
   public boolean equals (final Object o) {
     if (o == this)
