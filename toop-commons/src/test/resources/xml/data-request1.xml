@@ -46,8 +46,8 @@
             <toop:CountryCode listID="listID0" listAgencyID="listAgencyID0" listAgencyName="listAgencyName0" listName="listName0" listVersionID="listVersionID0" name="name0" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</toop:CountryCode>
         </toop:DCLegalAddress>
     </toop:DataConsumer>
-    <toop:DataSubject>
-        <toop:DataSubjectTypeCode listID="listID1" listAgencyID="listAgencyID1" listAgencyName="listAgencyName1" listName="listName1" listVersionID="listVersionID1" name="name1" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DataSubjectTypeCode0</toop:DataSubjectTypeCode>
+    <toop:DataRequestSubject>
+        <toop:DataRequestSubjectTypeCode listID="listID1" listAgencyID="listAgencyID1" listAgencyName="listAgencyName1" listName="listName1" listVersionID="listVersionID1" name="name1" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">DataSubjectTypeCode0</toop:DataRequestSubjectTypeCode>
         <toop:LegalEntity>
             <toop:LegalPersonUniqueIdentifier schemeID="schemeID9" schemeName="schemeName9" schemeAgencyID="schemeAgencyID9" schemeAgencyName="schemeAgencyName9" schemeVersionID="schemeVersionID9" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">LegalPersonUniqueIdentifier0</toop:LegalPersonUniqueIdentifier>
             <toop:LegalName languageID="en-US" languageLocaleID="languageLocaleID9">LegalName0</toop:LegalName>
@@ -91,7 +91,7 @@
                 <toop:CountryCode listID="listID4" listAgencyID="listAgencyID4" listAgencyName="listAgencyName4" listName="listName4" listVersionID="listVersionID4" name="name4" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</toop:CountryCode>
             </toop:NaturalPersonLegalAddress>
         </toop:NaturalPerson>
-    </toop:DataSubject>
+    </toop:DataRequestSubject>
     <toop:DataRequestAuthorization>
         <toop:DataRequestConsentToken mimeCode="example/text">DataRequestConsentToken0</toop:DataRequestConsentToken>
     </toop:DataRequestAuthorization>

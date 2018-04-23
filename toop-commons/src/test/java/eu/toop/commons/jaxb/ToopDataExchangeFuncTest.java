@@ -38,7 +38,7 @@ import eu.toop.commons.dataexchange.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.TDEDataElementRequestType;
 import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
-import eu.toop.commons.dataexchange.TDEDataSubjectType;
+import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
 import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
 import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
@@ -54,20 +54,24 @@ public final class ToopDataExchangeFuncTest {
 
   @Test
   public void testReadWriteDataRequest () {
-    final TDETOOPDataRequestType aRequest = ToopReader.dataRequest ()
-                                                      .read (new File ("src/test/resources/xml/data-request1.xml"));
-    assertNotNull (aRequest);
-    final String sXML = ToopWriter.dataRequest ().getAsString (aRequest);
-    assertNotNull (sXML);
+    for (final String sFilename : new String[] { "data-request-example.xml", "data-request1.xml" }) {
+      final TDETOOPDataRequestType aRequest = ToopReader.dataRequest ()
+                                                        .read (new File ("src/test/resources/xml/" + sFilename));
+      assertNotNull (aRequest);
+      final String sXML = ToopWriter.dataRequest ().getAsString (aRequest);
+      assertNotNull (sXML);
+    }
   }
 
   @Test
   public void testReadWriteDataResponse () {
-    final TDETOOPDataResponseType aResponse = ToopReader.dataResponse ()
-                                                        .read (new File ("src/test/resources/xml/data-response1.xml"));
-    assertNotNull (aResponse);
-    final String sXML = ToopWriter.dataResponse ().getAsString (aResponse);
-    assertNotNull (sXML);
+    for (final String sFilename : new String[] { "data-response-example.xml", "data-response1.xml" }) {
+      final TDETOOPDataResponseType aResponse = ToopReader.dataResponse ()
+                                                          .read (new File ("src/test/resources/xml/" + sFilename));
+      assertNotNull (aResponse);
+      final String sXML = ToopWriter.dataResponse ().getAsString (aResponse);
+      assertNotNull (sXML);
+    }
   }
 
   @Test
@@ -97,8 +101,8 @@ public final class ToopDataExchangeFuncTest {
       r.setDataConsumer (aDC);
     }
     {
-      final TDEDataSubjectType aDS = new TDEDataSubjectType ();
-      aDS.setDataSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
+      final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
+      aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
       {
         final TDENaturalPersonType aNP = new TDENaturalPersonType ();
         aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
@@ -111,7 +115,7 @@ public final class ToopDataExchangeFuncTest {
         aNP.setNaturalPersonLegalAddress (aAddress);
         aDS.setNaturalPerson (aNP);
       }
-      r.setDataSubject (aDS);
+      r.setDataRequestSubject (aDS);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
@@ -181,8 +185,8 @@ public final class ToopDataExchangeFuncTest {
       r.setDataConsumer (aDC);
     }
     {
-      final TDEDataSubjectType aDS = new TDEDataSubjectType ();
-      aDS.setDataSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
+      final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
+      aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
       {
         final TDENaturalPersonType aNP = new TDENaturalPersonType ();
         aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
@@ -195,7 +199,7 @@ public final class ToopDataExchangeFuncTest {
         aNP.setNaturalPersonLegalAddress (aAddress);
         aDS.setNaturalPerson (aNP);
       }
-      r.setDataSubject (aDS);
+      r.setDataRequestSubject (aDS);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();

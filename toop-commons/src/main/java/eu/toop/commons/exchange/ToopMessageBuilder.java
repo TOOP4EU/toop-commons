@@ -49,7 +49,7 @@ import eu.toop.commons.dataexchange.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.TDEDataElementRequestType;
 import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
-import eu.toop.commons.dataexchange.TDEDataSubjectType;
+import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
 import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
 import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
@@ -227,8 +227,8 @@ public final class ToopMessageBuilder {
       r.setDataConsumer (aDC);
     }
     {
-      final TDEDataSubjectType aDS = new TDEDataSubjectType ();
-      aDS.setDataSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
+      final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
+      aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
       {
         final TDENaturalPersonType aNP = new TDENaturalPersonType ();
         aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
@@ -241,7 +241,7 @@ public final class ToopMessageBuilder {
         aNP.setNaturalPersonLegalAddress (aAddress);
         aDS.setNaturalPerson (aNP);
       }
-      r.setDataSubject (aDS);
+      r.setDataRequestSubject (aDS);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
@@ -305,8 +305,8 @@ public final class ToopMessageBuilder {
       r.setDataConsumer (aDC);
     }
     {
-      final TDEDataSubjectType aDS = new TDEDataSubjectType ();
-      aDS.setDataSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
+      final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
+      aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
       {
         final TDENaturalPersonType aNP = new TDENaturalPersonType ();
         aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
@@ -319,7 +319,7 @@ public final class ToopMessageBuilder {
         aNP.setNaturalPersonLegalAddress (aAddress);
         aDS.setNaturalPerson (aNP);
       }
-      r.setDataSubject (aDS);
+      r.setDataRequestSubject (aDS);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
