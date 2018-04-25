@@ -47,6 +47,11 @@ public final class ConceptValue implements Serializable {
     m_sValue = sValue;
   }
 
+  /**
+   *
+   * @return The namespace as provided in the constructor. Neither
+   *         <code>null</code> nor empty.
+   */
   @Nonnull
   @Nonempty
   public String getNamespace () {
