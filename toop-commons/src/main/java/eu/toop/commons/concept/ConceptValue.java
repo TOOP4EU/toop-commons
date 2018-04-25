@@ -58,20 +58,44 @@ public final class ConceptValue implements Serializable {
     return m_sNamespace;
   }
 
+  /**
+   * Check if this concept has the provided namespace or not.
+   *
+   * @param sNamespace
+   *          The namespace to compare to. May be <code>null</code>.
+   * @return <code>true</code> if the namespaces are identical.
+   */
   public boolean hasNamespace (@Nullable final String sNamespace) {
     return m_sNamespace.equals (sNamespace);
   }
 
+  /**
+   * @return The value as provided in the constructor. Neither <code>null</code>
+   *         nor empty.
+   */
   @Nonnull
   @Nonempty
   public String getValue () {
     return m_sValue;
   }
 
+  /**
+   * Check if this concept value has the provided value or not.
+   *
+   * @param sValue
+   *          The values to compare to. May be <code>null</code>.
+   * @return <code>true</code> if the values are identical.
+   */
   public boolean hasValue (@Nullable final String sValue) {
     return m_sValue.equals (sValue);
   }
 
+  /**
+   *
+   * @param sSep
+   *          The separator to be used. May not be <code>null</code>.
+   * @return namespace + separator + value
+   */
   @Nonnull
   public String getConcatenatedValue (@Nonnull final String sSep) {
     return m_sNamespace + sSep + m_sValue;
