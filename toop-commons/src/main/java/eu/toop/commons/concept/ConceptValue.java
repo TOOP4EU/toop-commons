@@ -121,6 +121,14 @@ public final class ConceptValue implements Serializable {
     return new ToStringGenerator (null).append ("Namespace", m_sNamespace).append ("Value", m_sValue).getToString ();
   }
 
+  /**
+   * Factory method to create a new {@link ConceptValue} based on the JAXB data
+   * type.
+   * 
+   * @param aConcept
+   *          JAXB data type. May not be <code>null</code>.
+   * @return New {@link ConceptValue} and never <code>null</code>.
+   */
   @Nonnull
   public static ConceptValue create (@Nonnull final TDEConceptRequestType aConcept) {
     ValueEnforcer.notNull (aConcept, "Concept");
