@@ -27,8 +27,8 @@ import com.helger.commons.string.StringHelper;
 import com.helger.jaxb.builder.IJAXBDocumentType;
 import com.helger.jaxb.builder.JAXBDocumentType;
 
-import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
-import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import eu.toop.commons.dataexchange.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
 /**
  * Enumeration with all available TOOP XML document types.
@@ -36,14 +36,14 @@ import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
  * @author Philip Helger
  */
 public enum EToopXMLDocumentType implements IJAXBDocumentType {
-  DATA_REQUEST (TDETOOPDataRequestType.class, "/xsd/toop/TOOP_DataExchange.xsd"),
-  DATA_RESPONSE (TDETOOPDataResponseType.class, "/xsd/toop/TOOP_DataExchange.xsd");
+  REQUEST (TDETOOPRequestType.class, "/xsd/toop/TOOP_DataExchange.xsd"),
+  RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange.xsd");
 
   private final JAXBDocumentType m_aDocType;
 
   private EToopXMLDocumentType (@Nonnull final Class<?> aClass, @Nonnull final String sXSDPath) {
     m_aDocType = new JAXBDocumentType (aClass, new CommonsArrayList<> (sXSDPath),
-                                       x -> StringHelper.trimEnd (x, "Type"));
+                                       x -> StringHelper.trimEnd (StringHelper.trimStart (x, "TOOP"), "Type"));
   }
 
   @Nonnull

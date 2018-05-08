@@ -19,8 +19,8 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBWriterBuilder;
 
-import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
-import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import eu.toop.commons.dataexchange.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
 public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter<JAXBTYPE>> {
   /**
@@ -34,25 +34,25 @@ public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter
   }
 
   /**
-   * Create a writer builder for {@link TDETOOPDataRequestType}.
+   * Create a writer builder for {@link TDETOOPRequestType}.
    *
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopWriter<TDETOOPDataRequestType> dataRequest () {
-    final ToopWriter<TDETOOPDataRequestType> ret = new ToopWriter<> (EToopXMLDocumentType.DATA_REQUEST);
+  public static ToopWriter<TDETOOPRequestType> request () {
+    final ToopWriter<TDETOOPRequestType> ret = new ToopWriter<> (EToopXMLDocumentType.REQUEST);
     ret.setFormattedOutput (true);
     return ret;
   }
 
   /**
-   * Create a writer builder for {@link TDETOOPDataResponseType}.
+   * Create a writer builder for {@link TDETOOPResponseType}.
    *
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopWriter<TDETOOPDataResponseType> dataResponse () {
-    final ToopWriter<TDETOOPDataResponseType> ret = new ToopWriter<> (EToopXMLDocumentType.DATA_RESPONSE);
+  public static ToopWriter<TDETOOPResponseType> response () {
+    final ToopWriter<TDETOOPResponseType> ret = new ToopWriter<> (EToopXMLDocumentType.RESPONSE);
     ret.setFormattedOutput (true);
     return ret;
   }

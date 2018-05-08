@@ -31,9 +31,9 @@
     
 -->
 
-<toop:TOOP_DataResponse xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+<toop:Response xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
- xmlns:toop="http://toop.eu/ns/dataexchange"
+ xmlns:toop="urn:eu:toop:ns:dataexchange-1p10"
  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2">
     <!-- Lovingly handmade XML instance, including comments and sample data taken from the Data Excchange Model specifications -->
     <!--Rule: The UUID MUST be created following the UUID Version 4 specification. Copies of a document must be identified with a different UUID. Compulsory use of schemeAgencyID attribute-->
@@ -106,7 +106,7 @@
 			<!--A 4-digit code describing the Standard Industrial Classification (SIC) code for the legal person-->
             <toop:StandardIndustrialClassification>3730</toop:StandardIndustrialClassification>
             <!--Rule: Use the value that is used in the element: DataSubject/NaturalPerson/PersonIdentifier-->
-            <toop:AuthorisedRepresentativeIdentifier>GB/GB/02635542Y</toop:AuthorisedRepresentativeIdentifier>
+            <toop:AuthorizedRepresentativeIdentifier>GB/GB/02635542Y</toop:AuthorizedRepresentativeIdentifier>
 			<!--Note: The address is not mandatory attribute for eIDAS but we need at least the country of the company-->
             <toop:LegalEntityLegalAddress>
                 <toop:AddressLine>Princess Street 21</toop:AddressLine>
@@ -211,4 +211,4 @@
             <toop:ContactEmailAddress>provider@uk.org</toop:ContactEmailAddress>
         </toop:DPContactDetails>
     </toop:DataProvider>
-</toop:TOOP_DataResponse>
+</toop:Response>

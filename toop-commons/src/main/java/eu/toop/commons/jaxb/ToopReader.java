@@ -19,8 +19,8 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBReaderBuilder;
 
-import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
-import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import eu.toop.commons.dataexchange.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
 public class ToopReader<JAXBTYPE> extends JAXBReaderBuilder<JAXBTYPE, ToopReader<JAXBTYPE>> {
   /**
@@ -36,22 +36,22 @@ public class ToopReader<JAXBTYPE> extends JAXBReaderBuilder<JAXBTYPE, ToopReader
   }
 
   /**
-   * Create a reader builder for {@link TDETOOPDataRequestType}.
+   * Create a reader builder for {@link TDETOOPRequestType}.
    *
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopReader<TDETOOPDataRequestType> dataRequest () {
-    return new ToopReader<> (EToopXMLDocumentType.DATA_REQUEST, TDETOOPDataRequestType.class);
+  public static ToopReader<TDETOOPRequestType> request () {
+    return new ToopReader<> (EToopXMLDocumentType.REQUEST, TDETOOPRequestType.class);
   }
 
   /**
-   * Create a reader builder for {@link TDETOOPDataResponseType}.
+   * Create a reader builder for {@link TDETOOPResponseType}.
    *
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopReader<TDETOOPDataResponseType> dataResponse () {
-    return new ToopReader<> (EToopXMLDocumentType.DATA_RESPONSE, TDETOOPDataResponseType.class);
+  public static ToopReader<TDETOOPResponseType> response () {
+    return new ToopReader<> (EToopXMLDocumentType.RESPONSE, TDETOOPResponseType.class);
   }
 }

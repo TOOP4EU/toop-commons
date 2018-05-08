@@ -40,8 +40,8 @@ import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
 import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
-import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
-import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import eu.toop.commons.dataexchange.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
 
 /**
@@ -55,10 +55,10 @@ public final class ToopDataExchangeFuncTest {
   @Test
   public void testReadWriteDataRequest () {
     for (final String sFilename : new String[] { "data-request-example.xml", "data-request1.xml" }) {
-      final TDETOOPDataRequestType aRequest = ToopReader.dataRequest ()
-                                                        .read (new File ("src/test/resources/xml/" + sFilename));
+      final TDETOOPRequestType aRequest = ToopReader.request ()
+                                                    .read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
-      final String sXML = ToopWriter.dataRequest ().getAsString (aRequest);
+      final String sXML = ToopWriter.request ().getAsString (aRequest);
       assertNotNull (sXML);
     }
   }
@@ -66,17 +66,17 @@ public final class ToopDataExchangeFuncTest {
   @Test
   public void testReadWriteDataResponse () {
     for (final String sFilename : new String[] { "data-response-example.xml", "data-response1.xml" }) {
-      final TDETOOPDataResponseType aResponse = ToopReader.dataResponse ()
-                                                          .read (new File ("src/test/resources/xml/" + sFilename));
+      final TDETOOPResponseType aResponse = ToopReader.response ()
+                                                      .read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aResponse);
-      final String sXML = ToopWriter.dataResponse ().getAsString (aResponse);
+      final String sXML = ToopWriter.response ().getAsString (aResponse);
       assertNotNull (sXML);
     }
   }
 
   @Test
   public void testCreateRequestFromScratch () {
-    final TDETOOPDataRequestType r = new TDETOOPDataRequestType ();
+    final TDETOOPRequestType r = new TDETOOPRequestType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
@@ -149,18 +149,18 @@ public final class ToopDataExchangeFuncTest {
       r.addDataElementRequest (aReq);
     }
 
-    final Document aDoc = ToopWriter.dataRequest ().getAsDocument (r);
+    final Document aDoc = ToopWriter.request ().getAsDocument (r);
     assertNotNull (aDoc);
     if (true) {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
-      aCtx.addMapping ("toop", ObjectFactory._TOOPDataRequest_QNAME.getNamespaceURI ());
+      aCtx.addMapping ("toop", ObjectFactory._Request_QNAME.getNamespaceURI ());
       s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
     }
   }
 
   @Test
   public void testCreateResponseFromScratch () {
-    final TDETOOPDataResponseType r = new TDETOOPDataResponseType ();
+    final TDETOOPResponseType r = new TDETOOPResponseType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
@@ -244,11 +244,11 @@ public final class ToopDataExchangeFuncTest {
       r.setDataProvider (p);
     }
 
-    final Document aDoc = ToopWriter.dataResponse ().getAsDocument (r);
+    final Document aDoc = ToopWriter.response ().getAsDocument (r);
     assertNotNull (aDoc);
     if (true) {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
-      aCtx.addMapping ("toop", ObjectFactory._TOOPDataRequest_QNAME.getNamespaceURI ());
+      aCtx.addMapping ("toop", ObjectFactory._Request_QNAME.getNamespaceURI ());
       s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
     }
   }

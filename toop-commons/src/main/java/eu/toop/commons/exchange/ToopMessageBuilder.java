@@ -51,8 +51,8 @@ import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
 import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
-import eu.toop.commons.dataexchange.TDETOOPDataRequestType;
-import eu.toop.commons.dataexchange.TDETOOPDataResponseType;
+import eu.toop.commons.dataexchange.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import eu.toop.commons.doctype.EToopDocumentType;
 import eu.toop.commons.doctype.EToopProcess;
 import eu.toop.commons.jaxb.ToopReader;
@@ -63,105 +63,104 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Identifi
 
 @Immutable
 public final class ToopMessageBuilder {
-  public static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPDataRequest";
-  public static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPDataResponse";
+  private static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPRequest";
+  private static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPResponse";
 
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopMessageBuilder.class);
 
   private ToopMessageBuilder () {
   }
 
-  public static void createRequestMessage (@Nonnull final TDETOOPDataRequestType aRequest,
-                                           @Nonnull final OutputStream aOS,
+  public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest, @Nonnull final OutputStream aOS,
                                            @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
     final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory ();
-    final IAsicWriter asicWriter = asicWriterFactory.newContainer (aOS);
+    final IAsicWriter aAsicWriter = asicWriterFactory.newContainer (aOS);
     {
-      final byte[] aXML = ToopWriter.dataRequest ().getAsBytes (aRequest);
-      asicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_REQUEST,
+      final byte[] aXML = ToopWriter.request ().getAsBytes (aRequest);
+      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_REQUEST,
                       CMimeType.APPLICATION_XML);
     }
-    asicWriter.sign (aSigHelper);
+    aAsicWriter.sign (aSigHelper);
     s_aLogger.info ("Successfully created request ASiC");
   }
 
-  public static void createResponseMessage (@Nonnull final TDETOOPDataResponseType aResponse,
+  public static void createResponseMessage (@Nonnull final TDETOOPResponseType aResponse,
                                             @Nonnull final OutputStream aOS,
                                             @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
-    final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory ();
-    final IAsicWriter asicWriter = asicWriterFactory.newContainer (aOS);
+    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
+    final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
     {
-      final byte[] aXML = ToopWriter.dataResponse ().getAsBytes (aResponse);
-      asicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_RESPONSE,
+      final byte[] aXML = ToopWriter.response ().getAsBytes (aResponse);
+      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_RESPONSE,
                       CMimeType.APPLICATION_XML);
     }
-    asicWriter.sign (aSigHelper);
+    aAsicWriter.sign (aSigHelper);
     s_aLogger.info ("Successfully created response ASiC");
   }
 
   /**
    * Parse the given InputStream as an ASiC container and return the contained
-   * {@link TDETOOPDataRequestType}.
+   * {@link TDETOOPRequestType}.
    *
    * @param aIS
    *          Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPDataRequestType} every time the method is called or
+   * @return New {@link TDETOOPRequestType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
    *           In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPDataRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
+  public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     final Object o = parseRequestOrResponse (aIS);
-    if (o instanceof TDETOOPDataRequestType)
-      return (TDETOOPDataRequestType) o;
+    if (o instanceof TDETOOPRequestType)
+      return (TDETOOPRequestType) o;
 
     return null;
   }
 
   /**
    * Parse the given InputStream as an ASiC container and return the contained
-   * {@link TDETOOPDataResponseType}.
+   * {@link TDETOOPResponseType}.
    *
    * @param aIS
    *          Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPDataResponseType} every time the method is called
-   *         or <code>null</code> if none is contained in the ASIC.
+   * @return New {@link TDETOOPResponseType} every time the method is called or
+   *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
    *           In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPDataResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
+  public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     final Object o = parseRequestOrResponse (aIS);
-    if (o instanceof TDETOOPDataResponseType)
-      return (TDETOOPDataResponseType) o;
+    if (o instanceof TDETOOPResponseType)
+      return (TDETOOPResponseType) o;
 
     return null;
   }
 
   /**
    * Parse the given InputStream as an ASiC container and return the contained
-   * {@link TDETOOPDataRequestType} or {@link TDETOOPDataResponseType}.
+   * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
    *
    * @param aIS
    *          Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPDataRequestType} or {@link TDETOOPDataResponseType}
-   *         every time the method is called or <code>null</code> if none is
-   *         contained in the ASIC.
+   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType} every
+   *         time the method is called or <code>null</code> if none is contained
+   *         in the ASIC.
    * @throws IOException
    *           In case of IO error
    */
@@ -176,13 +175,13 @@ public final class ToopMessageBuilder {
         if (entryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST)) {
           try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
             asicReader.writeFile (aBAOS);
-            return ToopReader.dataRequest ().read (aBAOS.getAsInputStream ());
+            return ToopReader.request ().read (aBAOS.getAsInputStream ());
           }
         }
         if (entryName.equals (ENTRY_NAME_TOOP_DATA_RESPONSE)) {
           try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
             asicReader.writeFile (aBAOS);
-            return ToopReader.dataResponse ().read (aBAOS.getAsInputStream ());
+            return ToopReader.response ().read (aBAOS.getAsInputStream ());
           }
         }
       }
@@ -192,17 +191,17 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDETOOPDataRequestType createMockRequest (@Nonnull final IdentifierType aSenderParticipantID,
-                                                          @Nonnull @Nonempty final String sCountryCode,
-                                                          @Nonnull final EToopDocumentType eDocumentTypeID,
-                                                          @Nonnull final EToopProcess eProcessID,
-                                                          @Nullable final Iterable<? extends ConceptValue> aValues) {
+  public static TDETOOPRequestType createMockRequest (@Nonnull final IdentifierType aSenderParticipantID,
+                                                      @Nonnull @Nonempty final String sCountryCode,
+                                                      @Nonnull final EToopDocumentType eDocumentTypeID,
+                                                      @Nonnull final EToopProcess eProcessID,
+                                                      @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
-    final TDETOOPDataRequestType r = new TDETOOPDataRequestType ();
+    final TDETOOPRequestType r = new TDETOOPRequestType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
@@ -270,17 +269,17 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDETOOPDataResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
-                                                            @Nonnull @Nonempty final String sCountryCode,
-                                                            @Nonnull final EToopDocumentType eDocumentTypeID,
-                                                            @Nonnull final EToopProcess eProcessID,
-                                                            @Nullable final Iterable<? extends ConceptValue> aValues) {
+  public static TDETOOPResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
+                                                        @Nonnull @Nonempty final String sCountryCode,
+                                                        @Nonnull final EToopDocumentType eDocumentTypeID,
+                                                        @Nonnull final EToopProcess eProcessID,
+                                                        @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
-    final TDETOOPDataResponseType r = new TDETOOPDataResponseType ();
+    final TDETOOPResponseType r = new TDETOOPResponseType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
@@ -383,8 +382,8 @@ public final class ToopMessageBuilder {
    * @return Destination response. Never <code>null</code>.
    */
   @Nonnull
-  public static TDETOOPDataResponseType createResponse (@Nonnull final TDETOOPDataRequestType aRequest) {
-    final TDETOOPDataResponseType aResponse = new TDETOOPDataResponseType ();
+  public static TDETOOPResponseType createResponse (@Nonnull final TDETOOPRequestType aRequest) {
+    final TDETOOPResponseType aResponse = new TDETOOPResponseType ();
     aRequest.cloneTo (aResponse);
     // Response specific stuff stays null
     return aResponse;

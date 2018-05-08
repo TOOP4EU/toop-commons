@@ -16,9 +16,9 @@
     limitations under the License.
 
 -->
-<toop:TOOP_DataResponse xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+<toop:Response xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
- xmlns:toop="http://toop.eu/ns/dataexchange"
+ xmlns:toop="urn:eu:toop:ns:dataexchange-1p10"
  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2">
     <toop:DocumentUniversalUniqueIdentifier schemeID="schemeID1" schemeName="schemeName1" schemeAgencyID="schemeAgencyID1" schemeAgencyName="schemeAgencyName1" schemeVersionID="schemeVersionID1" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">DocumentUniversalUniqueIdentifier0</toop:DocumentUniversalUniqueIdentifier>
     <toop:DocumentIssueDate>2006-05-04</toop:DocumentIssueDate>
@@ -182,4 +182,4 @@
             <toop:CountryCode listID="listID4" listAgencyID="listAgencyID4" listAgencyName="listAgencyName4" listName="listName4" listVersionID="listVersionID4" name="name4" languageID="en-US" listURI="http://www.oxygenxml.com/" listSchemeURI="http://www.oxygenxml.com/">AA</toop:CountryCode>
         </toop:DPLegalAddress>
     </toop:DataProvider>
-</toop:TOOP_DataResponse>
+</toop:Response>
