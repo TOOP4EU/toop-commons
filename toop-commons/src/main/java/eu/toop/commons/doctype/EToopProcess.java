@@ -26,10 +26,13 @@ import com.helger.commons.annotation.Nonempty;
  *
  */
 public enum EToopProcess {
-  PROCESS_REQUEST_RESPONSE ("urn:eu.toop:request-response");
+  /** Request + response for data */
+  REQUEST_RESPONSE_DATA ("urn:eu.toop.process.datarequestresponse"),
+  /** Request + response for document */
+  REQUEST_RESPONSE_DOCUMENT ("urn:eu.toop.process.documentrequestresponse");
 
   // For R2D2 we need a scheme
-  public static final String PROCESS_SCHEME = "toop-procid";
+  public static final String PROCESS_SCHEME = "toop-procid-agreement";
 
   private final String m_sProcessID;
 

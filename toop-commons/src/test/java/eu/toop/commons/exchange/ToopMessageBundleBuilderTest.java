@@ -51,7 +51,7 @@ public final class ToopMessageBundleBuilderTest {
                                                                                                                    "senderid"),
                                                                                    "SE",
                                                                                    EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
-                                                                                   EToopProcess.PROCESS_REQUEST_RESPONSE,
+                                                                                   EToopProcess.REQUEST_RESPONSE_DATA,
                                                                                    new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                              "Acme Inc.")));
       ToopMessageBuilder.createRequestMessage (aSrcRequest, archiveOutput, SH);
@@ -73,7 +73,7 @@ public final class ToopMessageBundleBuilderTest {
                                                                                                                       "senderid"),
                                                                                       "SE",
                                                                                       EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
-                                                                                      EToopProcess.PROCESS_REQUEST_RESPONSE,
+                                                                                      EToopProcess.REQUEST_RESPONSE_DATA,
                                                                                       new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                                 "Acme Inc.")));
       ToopMessageBuilder.createResponseMessage (aSrcResponse, archiveOutput, SH);
@@ -95,7 +95,7 @@ public final class ToopMessageBundleBuilderTest {
                                                                                                                     "senderid"),
                                                                                     "SE",
                                                                                     EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
-                                                                                    EToopProcess.PROCESS_REQUEST_RESPONSE,
+                                                                                    EToopProcess.REQUEST_RESPONSE_DATA,
                                                                                     new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                               "Acme Inc.")));
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createResponse (aSrcRequest);

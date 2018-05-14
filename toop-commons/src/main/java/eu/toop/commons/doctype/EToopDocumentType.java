@@ -27,13 +27,13 @@ import com.helger.commons.annotation.Nonempty;
  *
  */
 public enum EToopDocumentType {
-  DOCTYPE_REGISTERED_ORGANIZATION_REQUEST ("urn:eu.toop:registered-organization:request",
-                                           "http://toop.eu/organization"),
-  DOCTYPE_REGISTERED_ORGANIZATION_RESPONSE ("urn:eu.toop:registered-organization:response",
-                                            "http://toop.eu/organization");
+  DOCTYPE_REGISTERED_ORGANIZATION_REQUEST ("urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10",
+                                           "http://toop.eu/registered-organization"),
+  DOCTYPE_REGISTERED_ORGANIZATION_RESPONSE ("urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.response.registeredorganization::1.10",
+                                            "http://toop.eu/registered-organization");
 
   // For R2D2 we need a scheme
-  public static final String DOC_TYPE_SCHEME = "toop-doctypeid";
+  public static final String DOC_TYPE_SCHEME = "toop-doctypeid-qns";
 
   private final String m_sDocTypeID;
   private final String m_sSemanticMappingNS;
