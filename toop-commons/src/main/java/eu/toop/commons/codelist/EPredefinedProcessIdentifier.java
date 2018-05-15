@@ -12,7 +12,9 @@ import javax.annotation.Nullable;
  * Do NOT edit!
  */
 @CodingStyleguideUnaware
-public enum EPredefinedProcessIdentifier {
+public enum EPredefinedProcessIdentifier
+    implements IPredefined
+{
 
     /**
      * TOOP Request Response for Data - <code>urn:eu.toop.process.datarequestresponse</code><br>

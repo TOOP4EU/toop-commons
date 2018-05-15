@@ -12,7 +12,9 @@ import javax.annotation.Nullable;
  * Do NOT edit!
  */
 @CodingStyleguideUnaware
-public enum EPredefinedDocumentTypeIdentifier {
+public enum EPredefinedDocumentTypeIdentifier
+    implements IPredefined
+{
 
     /**
      * Registered Organization - <code>urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10</code><br>

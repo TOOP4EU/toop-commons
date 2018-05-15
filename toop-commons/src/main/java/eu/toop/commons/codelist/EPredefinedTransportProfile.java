@@ -12,7 +12,9 @@ import javax.annotation.Nullable;
  * Do NOT edit!
  */
 @CodingStyleguideUnaware
-public enum EPredefinedTransportProfile {
+public enum EPredefinedTransportProfile
+    implements IPredefined
+{
 
     /**
      * CEF AS4 1.0 - <code>bdxr-transport-ebms3-as4-v1p0</code><br>
@@ -29,7 +31,7 @@ public enum EPredefinedTransportProfile {
     private EPredefinedTransportProfile(
         @Nonnull
         @Nonempty
-        final String sBISID,
+        final String sName,
         @Nonnull
         @Nonempty
         final String sID,
@@ -37,7 +39,7 @@ public enum EPredefinedTransportProfile {
         final Version aSince, final boolean bDeprecated,
         @Nullable
         final Version aDeprecatedSince) {
-        m_sName = sBISID;
+        m_sName = sName;
         m_sID = sID;
         m_aSince = aSince;
         m_bDeprecated = bDeprecated;

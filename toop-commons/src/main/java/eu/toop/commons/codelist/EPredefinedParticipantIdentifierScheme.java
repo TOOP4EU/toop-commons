@@ -12,7 +12,9 @@ import javax.annotation.Nullable;
  * Do NOT edit!
  */
 @CodingStyleguideUnaware
-public enum EPredefinedParticipantIdentifierScheme {
+public enum EPredefinedParticipantIdentifierScheme
+    implements IPredefined
+{
 
     /**
      * Institut National de la Statistique et des Etudes Economiques, (I.N.S.E.E.) - <code>0002</code>
@@ -179,7 +181,8 @@ public enum EPredefinedParticipantIdentifierScheme {
         m_aDeprecatedSince = aDeprecatedSince;
     }
 
-    @Nullable
+    @Nonnull
+    @Nonempty
     public String getName() {
         return m_sName;
     }
