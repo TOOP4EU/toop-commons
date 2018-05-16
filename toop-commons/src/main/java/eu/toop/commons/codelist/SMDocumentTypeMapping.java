@@ -15,8 +15,10 @@
  */
 package eu.toop.commons.codelist;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.collection.impl.CommonsHashMap;
 import com.helger.commons.collection.impl.ICommonsMap;
 
@@ -38,7 +40,16 @@ public final class SMDocumentTypeMapping {
   }
 
   @Nullable
-  public static String getToopSMNamespace (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
+  public static String getToopSMNamespaceOrNull (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
     return eDocType == null ? null : s_aMap.get (eDocType);
+  }
+
+  @Nonnull
+  @Nonempty
+  public static String getToopSMNamespace (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
+    final String ret = getToopSMNamespaceOrNull (eDocType);
+    if (ret == null)
+      throw new IllegalArgumentException ("Unsupported document type " + eDocType);
+    return ret;
   }
 }
