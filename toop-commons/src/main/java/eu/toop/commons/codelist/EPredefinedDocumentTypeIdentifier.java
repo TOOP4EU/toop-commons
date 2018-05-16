@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
  */
 @CodingStyleguideUnaware
 public enum EPredefinedDocumentTypeIdentifier
-    implements IPredefined
+    implements IPredefinedIdentifier
 {
 
     /**
@@ -21,14 +21,16 @@ public enum EPredefinedDocumentTypeIdentifier
      * 
      * @since code list v1
      */
-    urn_eu_toop_ns_dataexchange_1p10__Request__urn_eu_toop_request_registeredorganization__1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10", Version.parse("1"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10", Version.parse("1"), false, null),
 
     /**
      * Registered Organization - <code>urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10</code><br>
      * 
      * @since code list v1
      */
-    urn_eu_toop_ns_dataexchange_1p10__Response__urn_eu_toop_response_registeredorganization__1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10", Version.parse("1"), false, null);
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10", Version.parse("1"), false, null);
+    public final static EPredefinedDocumentTypeIdentifier REQUEST_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10;
+    public final static EPredefinedDocumentTypeIdentifier RESPONSE_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10;
     public final static String DOC_TYPE_SCHEME = "toop-doctypeid-qns";
     private final String m_sName;
     private final String m_sID;

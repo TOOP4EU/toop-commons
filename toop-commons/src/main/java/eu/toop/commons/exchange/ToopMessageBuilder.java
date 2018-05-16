@@ -42,6 +42,8 @@ import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 import com.helger.commons.mime.CMimeType;
 import com.helger.datetime.util.PDTXMLConverter;
 
+import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
+import eu.toop.commons.codelist.EPredefinedProcessIdentifier;
 import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDEConceptRequestType;
@@ -53,8 +55,6 @@ import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
-import eu.toop.commons.doctype.EToopDocumentType;
-import eu.toop.commons.doctype.EToopProcess;
 import eu.toop.commons.jaxb.ToopReader;
 import eu.toop.commons.jaxb.ToopWriter;
 import eu.toop.commons.jaxb.ToopXSDHelper;
@@ -82,7 +82,7 @@ public final class ToopMessageBuilder {
     {
       final byte[] aXML = ToopWriter.request ().getAsBytes (aRequest);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_REQUEST,
-                      CMimeType.APPLICATION_XML);
+                       CMimeType.APPLICATION_XML);
     }
     aAsicWriter.sign (aSigHelper);
     s_aLogger.info ("Successfully created request ASiC");
@@ -100,7 +100,7 @@ public final class ToopMessageBuilder {
     {
       final byte[] aXML = ToopWriter.response ().getAsBytes (aResponse);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_RESPONSE,
-                      CMimeType.APPLICATION_XML);
+                       CMimeType.APPLICATION_XML);
     }
     aAsicWriter.sign (aSigHelper);
     s_aLogger.info ("Successfully created response ASiC");
@@ -193,8 +193,8 @@ public final class ToopMessageBuilder {
   @Nonnull
   public static TDETOOPRequestType createMockRequest (@Nonnull final IdentifierType aSenderParticipantID,
                                                       @Nonnull @Nonempty final String sCountryCode,
-                                                      @Nonnull final EToopDocumentType eDocumentTypeID,
-                                                      @Nonnull final EToopProcess eProcessID,
+                                                      @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
+                                                      @Nonnull final EPredefinedProcessIdentifier eProcessID,
                                                       @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
@@ -208,10 +208,10 @@ public final class ToopMessageBuilder {
     r.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
     r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                 eDocumentTypeID.getValue ()));
+                                                                 eDocumentTypeID.getID ()));
     r.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
-    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getValue ()));
+    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
     r.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
     r.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     {
@@ -271,8 +271,8 @@ public final class ToopMessageBuilder {
   @Nonnull
   public static TDETOOPResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
                                                         @Nonnull @Nonempty final String sCountryCode,
-                                                        @Nonnull final EToopDocumentType eDocumentTypeID,
-                                                        @Nonnull final EToopProcess eProcessID,
+                                                        @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
+                                                        @Nonnull final EPredefinedProcessIdentifier eProcessID,
                                                         @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
@@ -286,10 +286,10 @@ public final class ToopMessageBuilder {
     r.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
     r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                 eDocumentTypeID.getValue ()));
+                                                                 eDocumentTypeID.getID ()));
     r.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
-    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getValue ()));
+    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
     r.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
     r.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     {

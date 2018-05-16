@@ -31,13 +31,13 @@ import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
+import eu.toop.commons.codelist.EPredefinedProcessIdentifier;
 import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
-import eu.toop.commons.doctype.EToopDocumentType;
-import eu.toop.commons.doctype.EToopProcess;
 import eu.toop.commons.jaxb.ToopXSDHelper;
 
 public final class ToopMessageBundleBuilderTest {
@@ -50,8 +50,8 @@ public final class ToopMessageBundleBuilderTest {
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                    "senderid"),
                                                                                    "SE",
-                                                                                   EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
-                                                                                   EToopProcess.REQUEST_RESPONSE_DATA,
+                                                                                   EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                                                                                   EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                    new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                              "Acme Inc.")));
       ToopMessageBuilder.createRequestMessage (aSrcRequest, archiveOutput, SH);
@@ -72,8 +72,8 @@ public final class ToopMessageBundleBuilderTest {
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                       "senderid"),
                                                                                       "SE",
-                                                                                      EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
-                                                                                      EToopProcess.REQUEST_RESPONSE_DATA,
+                                                                                      EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                                                                                      EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                       new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                                 "Acme Inc.")));
       ToopMessageBuilder.createResponseMessage (aSrcResponse, archiveOutput, SH);
@@ -94,8 +94,8 @@ public final class ToopMessageBundleBuilderTest {
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                     "senderid"),
                                                                                     "SE",
-                                                                                    EToopDocumentType.DOCTYPE_REGISTERED_ORGANIZATION_REQUEST,
-                                                                                    EToopProcess.REQUEST_RESPONSE_DATA,
+                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                     new CommonsArrayList<> (new ConceptValue ("companyName",
                                                                                                                               "Acme Inc.")));
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createResponse (aSrcRequest);

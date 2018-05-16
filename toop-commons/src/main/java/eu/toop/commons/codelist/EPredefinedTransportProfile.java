@@ -21,7 +21,7 @@ public enum EPredefinedTransportProfile
      * 
      * @since code list v1
      */
-    bdxr_transport_ebms3_as4_v1p0("CEF AS4 1.0", "bdxr-transport-ebms3-as4-v1p0", Version.parse("1"), false, null);
+    BDXR_TRANSPORT_EBMS3_AS4_V1P0("CEF AS4 1.0", "bdxr-transport-ebms3-as4-v1p0", Version.parse("1"), false, null);
     private final String m_sName;
     private final String m_sID;
     private final Version m_aSince;
