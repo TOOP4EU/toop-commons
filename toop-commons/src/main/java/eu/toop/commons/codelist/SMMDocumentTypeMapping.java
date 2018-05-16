@@ -23,11 +23,12 @@ import com.helger.commons.collection.impl.CommonsHashMap;
 import com.helger.commons.collection.impl.ICommonsMap;
 
 /**
- * This class manages the TOOP Document type to Semantic mapping namespaces.
+ * This class manages the TOOP Document type to Semantic Mapping Module
+ * namespaces.
  *
  * @author Philip Helger
  */
-public final class SMDocumentTypeMapping {
+public final class SMMDocumentTypeMapping {
   private static final ICommonsMap<EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsHashMap<> ();
 
   static {
@@ -36,7 +37,7 @@ public final class SMDocumentTypeMapping {
     s_aMap.put (EPredefinedDocumentTypeIdentifier.RESPONSE_REGISTEREDORGANIZATION, "http://toop.eu/organization");
   }
 
-  private SMDocumentTypeMapping () {
+  private SMMDocumentTypeMapping () {
   }
 
   @Nullable
