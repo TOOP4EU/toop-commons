@@ -40,15 +40,10 @@ public final class SMMDocumentTypeMapping {
   private SMMDocumentTypeMapping () {
   }
 
-  @Nullable
-  public static String getToopSMNamespaceOrNull (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
-    return eDocType == null ? null : s_aMap.get (eDocType);
-  }
-
   @Nonnull
   @Nonempty
   public static String getToopSMNamespace (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
-    final String ret = getToopSMNamespaceOrNull (eDocType);
+    final String ret = s_aMap.get (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;

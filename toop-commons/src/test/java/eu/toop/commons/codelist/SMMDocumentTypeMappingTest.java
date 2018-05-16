@@ -15,17 +15,22 @@
  */
 package eu.toop.commons.codelist;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-public class EToopDocumentTypeTest {
+/**
+ * Test class for class {@link SMMDocumentTypeMapping}.
+ *
+ * @author Philip Helger
+ *
+ */
+public final class SMMDocumentTypeMappingTest {
   @Test
   public void testBasic () {
     for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ()) {
-      assertEquals (EPredefinedDocumentTypeIdentifier.DOC_TYPE_SCHEME, e.getScheme ());
-      assertSame (e, EPredefinedDocumentTypeIdentifier.getFromDocumentTypeIdentifierOrNull (e.getID ()));
+      assertNotNull (SMMDocumentTypeMapping.getToopSMNamespace (e),
+                     "Please register " + e + " to SMMDocumentTypeMapping");
     }
   }
 }

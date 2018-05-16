@@ -2,6 +2,7 @@ package eu.toop.commons.codelist;
 
 import com.helger.commons.annotation.CodingStyleguideUnaware;
 import com.helger.commons.annotation.Nonempty;
+import com.helger.commons.string.StringHelper;
 import com.helger.commons.version.Version;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -91,10 +92,28 @@ public enum EPredefinedProcessIdentifier
     @Nullable
     public static EPredefinedProcessIdentifier getFromProcessIdentifierOrNull(
         @Nullable
-        final String sProcessID) {
-        for (EPredefinedProcessIdentifier e: EPredefinedProcessIdentifier.values()) {
-            if (e.getID().equals(sProcessID)) {
-                return e;
+        final String sID) {
+        if (StringHelper.hasText(sID)) {
+            for (EPredefinedProcessIdentifier e: EPredefinedProcessIdentifier.values()) {
+                if (e.getID().equals(sID)) {
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Nullable
+    public static EPredefinedProcessIdentifier getFromProcessIdentifierOrNull(
+        @Nullable
+        final String sScheme,
+        @Nullable
+        final String sID) {
+        if (StringHelper.hasText(sScheme)&&StringHelper.hasText(sID)) {
+            for (EPredefinedProcessIdentifier e: EPredefinedProcessIdentifier.values()) {
+                if (e.getScheme().equals(sScheme)&&e.getID().equals(sID)) {
+                    return e;
+                }
             }
         }
         return null;

@@ -46,15 +46,10 @@ public final class ReverseDocumentTypeMapping {
   private ReverseDocumentTypeMapping () {
   }
 
-  @Nullable
-  public static EPredefinedDocumentTypeIdentifier getReverseDocumentTypeOrNull (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
-    return eDocType == null ? null : s_aMap.get (eDocType);
-  }
-
   @Nonnull
   @Nonempty
   public static EPredefinedDocumentTypeIdentifier getReverseDocumentType (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
-    final EPredefinedDocumentTypeIdentifier ret = getReverseDocumentTypeOrNull (eDocType);
+    final EPredefinedDocumentTypeIdentifier ret = s_aMap.get (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;
