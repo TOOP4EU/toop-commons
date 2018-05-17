@@ -41,7 +41,7 @@ import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import eu.toop.commons.jaxb.ToopXSDHelper;
 
 public final class ToopMessageBundleBuilderTest {
-  private static final SignatureHelper SH = new SignatureHelper (FileHelper.getInputStream (new File ("src/test/resources/playground-keystore.jks")),
+  private static final SignatureHelper SH = new SignatureHelper (FileHelper.getInputStream (new File ("src/test/resources/playground-keystore-v1.jks")),
                                                                  "toop4eu", "sms-key", "toop4eu");
 
   @Test
