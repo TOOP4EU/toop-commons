@@ -47,9 +47,11 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testRequestMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
-      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopXSDHelper.createIdentifier ("toop",
+      final String sCountryCode = "SE";
+      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sCountryCode),
+                                                                                   ToopXSDHelper.createIdentifier ("toop",
                                                                                                                    "senderid"),
-                                                                                   "SE",
+                                                                                   sCountryCode,
                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                    new CommonsArrayList<> (new ConceptValue ("companyName",
@@ -69,9 +71,10 @@ public final class ToopMessageBundleBuilderTest {
   @Test
   public void testResponseMessage () throws IOException {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
+      final String sCountryCode = "SE";
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                       "senderid"),
-                                                                                      "SE",
+                                                                                      sCountryCode,
                                                                                       EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                       new CommonsArrayList<> (new ConceptValue ("companyName",

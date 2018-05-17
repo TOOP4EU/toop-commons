@@ -191,11 +191,32 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDETOOPRequestType createMockRequest (@Nonnull final IdentifierType aSenderParticipantID,
+  public static TDEDataRequestSubjectType createMockDataRequestSubject (@Nonnull @Nonempty final String sCountryCode) {
+    final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
+    aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
+    {
+      final TDENaturalPersonType aNP = new TDENaturalPersonType ();
+      aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+      aNP.setFamilyName (ToopXSDHelper.createText ("Helger"));
+      aNP.setFirstName (ToopXSDHelper.createText ("Philip"));
+      aNP.setBirthDate (PDTXMLConverter.getXMLCalendarDateNow ());
+      final TDEAddressType aAddress = new TDEAddressType ();
+      // Destination country to use
+      aAddress.setCountryCode (ToopXSDHelper.createCode (sCountryCode));
+      aNP.setNaturalPersonLegalAddress (aAddress);
+      aDS.setNaturalPerson (aNP);
+    }
+    return aDS;
+  }
+
+  @Nonnull
+  public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
+                                                      @Nonnull final IdentifierType aSenderParticipantID,
                                                       @Nonnull @Nonempty final String sCountryCode,
                                                       @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                       @Nonnull final EPredefinedProcessIdentifier eProcessID,
                                                       @Nullable final Iterable<? extends ConceptValue> aValues) {
+    ValueEnforcer.notNull (aRequestSubject, "RequestSubject");
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
@@ -226,21 +247,7 @@ public final class ToopMessageBuilder {
       r.setDataConsumer (aDC);
     }
     {
-      final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
-      aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
-      {
-        final TDENaturalPersonType aNP = new TDENaturalPersonType ();
-        aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
-        aNP.setFamilyName (ToopXSDHelper.createText ("Helger"));
-        aNP.setFirstName (ToopXSDHelper.createText ("Philip"));
-        aNP.setBirthDate (PDTXMLConverter.getXMLCalendarDateNow ());
-        final TDEAddressType aAddress = new TDEAddressType ();
-        // Destination country to use
-        aAddress.setCountryCode (ToopXSDHelper.createCode (sCountryCode));
-        aNP.setNaturalPersonLegalAddress (aAddress);
-        aDS.setNaturalPerson (aNP);
-      }
-      r.setDataRequestSubject (aDS);
+      r.setDataRequestSubject (aRequestSubject);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
