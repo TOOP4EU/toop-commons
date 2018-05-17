@@ -15,6 +15,8 @@
  */
 package eu.toop.commons.playground;
 
+import javax.annotation.concurrent.Immutable;
+
 import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.io.resource.IReadableResource;
 import com.helger.security.keystore.EKeyStoreType;
@@ -25,9 +27,10 @@ import com.helger.security.keystore.IKeyStoreType;
  *
  * @author Philip Helger
  */
-public class CToopPlayground {
+@Immutable
+public final class CToopPlayground {
   public static final IKeyStoreType TYPE_PLAYGROUND_TRUST_STORE = EKeyStoreType.JKS;
-  public static final IReadableResource PATH_PLAYGROUND_TRUST_STORE = new ClassPathResource ("/truststore/playground-truststore.jks");
+  public static final IReadableResource PATH_PLAYGROUND_TRUST_STORE = new ClassPathResource ("/truststore/playground-truststore-v2.jks");
   public static final String PASSWORD_PLAYGROUND_TRUST_STORE = "toop4eu";
 
   private CToopPlayground () {
