@@ -9,4 +9,6 @@ Contained aliases:
     * AS4 AP gateway CA: `toop pilots test access points ca`
     * DC and DP CA: `toop pilots test competent authorities ca`
  * CEF Root CA: `connectivity test root ca`
-     * SMP CA: `toop pilots test smp ca (connectivity test root ca)`
+    * SMP CA: `toop pilots test smp ca (connectivity test root ca)`
+ * SML TLS Root CA: `globalsign root ca`
+    * SML TLS CA: `globalsign organization validation ca - sha256 - g2 (globalsign root ca)`
