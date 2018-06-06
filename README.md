@@ -1,6 +1,8 @@
 # toop-commons
 Shared common TOOP components, codelists etc.
 
+Latest release: **0.9.1** from 2018-06-06
+
 # Development environment
 
 * Java 1.8 latest
@@ -58,11 +60,11 @@ docker stop zookeeper
 This folder contains the configuration of the Playground TOOP Directory - see http://193.10.8.211:7071
 
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
-Required PEPPOL Directory version after 2018-03-06.
+Required PEPPOL Directory version after 2018-06-06.
 
 ## smp-config
 
 This folder contains the configuration of the Playground TOOP SMP - see http://193.10.8.211
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
-Required phoss SMP 5.0.4-SNAPSHOT version after 2018-03-06.
+Required phoss SMP 5.0.4-SNAPSHOT version after 2018-06-06.
  
