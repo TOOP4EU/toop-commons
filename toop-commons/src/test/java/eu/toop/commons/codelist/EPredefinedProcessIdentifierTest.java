@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
  * @author Philip Helger
  *
  */
-public final class EPredefinedProcesIdentifierTest {
+public final class EPredefinedProcessIdentifierTest {
   @Test
   public void testBasic () {
     for (final EPredefinedProcessIdentifier e : EPredefinedProcessIdentifier.values ()) {
