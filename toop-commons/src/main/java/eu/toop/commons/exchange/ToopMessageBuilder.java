@@ -77,8 +77,8 @@ public final class ToopMessageBuilder {
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
-    final AsicWriterFactory asicWriterFactory = AsicWriterFactory.newFactory ();
-    final IAsicWriter aAsicWriter = asicWriterFactory.newContainer (aOS);
+    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
+    final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
     {
       final byte[] aXML = ToopWriter.request ().getAsBytes (aRequest);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_REQUEST,
@@ -122,9 +122,9 @@ public final class ToopMessageBuilder {
   public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object o = parseRequestOrResponse (aIS);
-    if (o instanceof TDETOOPRequestType)
-      return (TDETOOPRequestType) o;
+    final Object aObj = parseRequestOrResponse (aIS);
+    if (aObj instanceof TDETOOPRequestType)
+      return (TDETOOPRequestType) aObj;
 
     return null;
   }
@@ -145,9 +145,9 @@ public final class ToopMessageBuilder {
   public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object o = parseRequestOrResponse (aIS);
-    if (o instanceof TDETOOPResponseType)
-      return (TDETOOPResponseType) o;
+    final Object aObj = parseRequestOrResponse (aIS);
+    if (aObj instanceof TDETOOPResponseType)
+      return (TDETOOPResponseType) aObj;
 
     return null;
   }
@@ -169,18 +169,18 @@ public final class ToopMessageBuilder {
   public static Object parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    try (final IAsicReader asicReader = AsicReaderFactory.newFactory ().open (aIS)) {
-      String entryName;
-      while ((entryName = asicReader.getNextFile ()) != null) {
-        if (entryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST)) {
+    try (final IAsicReader aAsicReader = AsicReaderFactory.newFactory ().open (aIS)) {
+      String sEntryName;
+      while ((sEntryName = aAsicReader.getNextFile ()) != null) {
+        if (sEntryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST)) {
           try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
-            asicReader.writeFile (aBAOS);
+            aAsicReader.writeFile (aBAOS);
             return ToopReader.request ().read (aBAOS.getAsInputStream ());
           }
         }
-        if (entryName.equals (ENTRY_NAME_TOOP_DATA_RESPONSE)) {
+        if (sEntryName.equals (ENTRY_NAME_TOOP_DATA_RESPONSE)) {
           try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
-            asicReader.writeFile (aBAOS);
+            aAsicReader.writeFile (aBAOS);
             return ToopReader.response ().read (aBAOS.getAsInputStream ());
           }
         }
@@ -192,8 +192,8 @@ public final class ToopMessageBuilder {
 
   @Nonnull
   public static TDEDataRequestSubjectType createMockDataRequestSubject (@Nonnull @Nonempty final String sCountryCode) {
-    final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
-    aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
+    final TDEDataRequestSubjectType aRet = new TDEDataRequestSubjectType ();
+    aRet.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
     {
       final TDENaturalPersonType aNP = new TDENaturalPersonType ();
       aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
@@ -204,9 +204,9 @@ public final class ToopMessageBuilder {
       // Destination country to use
       aAddress.setCountryCode (ToopXSDHelper.createCode (sCountryCode));
       aNP.setNaturalPersonLegalAddress (aAddress);
-      aDS.setNaturalPerson (aNP);
+      aRet.setNaturalPerson (aNP);
     }
-    return aDS;
+    return aRet;
   }
 
   @Nonnull
@@ -222,19 +222,19 @@ public final class ToopMessageBuilder {
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
-    final TDETOOPRequestType r = new TDETOOPRequestType ();
-    r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
-    r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
-    r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
-    r.setCopyIndicator (ToopXSDHelper.createIndicator (false));
+    final TDETOOPRequestType aRet = new TDETOOPRequestType ();
+    aRet.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
+    aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
+    aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
+    aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
-    r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+    aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
                                                                  eDocumentTypeID.getID ()));
-    r.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+    aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
-    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
-    r.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
-    r.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+    aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
+    aRet.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
+    aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     {
       final TDEDataConsumerType aDC = new TDEDataConsumerType ();
       aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
@@ -244,10 +244,10 @@ public final class ToopMessageBuilder {
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper.createCode ("AT"));
       aDC.setDCLegalAddress (aAddress);
-      r.setDataConsumer (aDC);
+      aRet.setDataConsumer (aDC);
     }
     {
-      r.setDataRequestSubject (aRequestSubject);
+      aRet.setDataRequestSubject (aRequestSubject);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
@@ -255,7 +255,7 @@ public final class ToopMessageBuilder {
       aBO.setValue ("11101010101010001110101".getBytes (StandardCharsets.ISO_8859_1));
       aBO.setMimeCode ("application/octet-stream");
       aAuth.setDataRequestConsentToken (aBO);
-      r.setDataRequestAuthorization (aAuth);
+      aRet.setDataRequestAuthorization (aAuth);
     }
 
     for (final ConceptValue aCV : aValues) {
@@ -270,9 +270,9 @@ public final class ToopMessageBuilder {
         aReq.setConceptRequest (aSrcConcept);
       }
 
-      r.addDataElementRequest (aReq);
+      aRet.addDataElementRequest (aReq);
     }
-    return r;
+    return aRet;
   }
 
   @Nonnull
@@ -286,19 +286,19 @@ public final class ToopMessageBuilder {
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
-    final TDETOOPResponseType r = new TDETOOPResponseType ();
-    r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
-    r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
-    r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
-    r.setCopyIndicator (ToopXSDHelper.createIndicator (false));
+    final TDETOOPResponseType aRet = new TDETOOPResponseType ();
+    aRet.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
+    aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
+    aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
+    aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
-    r.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+    aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
                                                                  eDocumentTypeID.getID ()));
-    r.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+    aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
-    r.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
-    r.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
-    r.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+    aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
+    aRet.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
+    aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     {
       final TDEDataConsumerType aDC = new TDEDataConsumerType ();
       aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
@@ -308,7 +308,7 @@ public final class ToopMessageBuilder {
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper.createCode ("AT"));
       aDC.setDCLegalAddress (aAddress);
-      r.setDataConsumer (aDC);
+      aRet.setDataConsumer (aDC);
     }
     {
       final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
@@ -325,7 +325,7 @@ public final class ToopMessageBuilder {
         aNP.setNaturalPersonLegalAddress (aAddress);
         aDS.setNaturalPerson (aNP);
       }
-      r.setDataRequestSubject (aDS);
+      aRet.setDataRequestSubject (aDS);
     }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
@@ -333,7 +333,7 @@ public final class ToopMessageBuilder {
       aBO.setValue ("11101010101010001110101".getBytes (StandardCharsets.ISO_8859_1));
       aBO.setMimeCode ("application/octet-stream");
       aAuth.setDataRequestConsentToken (aBO);
-      r.setDataRequestAuthorization (aAuth);
+      aRet.setDataRequestAuthorization (aAuth);
     }
 
     for (final ConceptValue aCV : aValues) {
@@ -364,21 +364,21 @@ public final class ToopMessageBuilder {
         aReq.setConceptRequest (aSrcConcept);
       }
 
-      r.addDataElementRequest (aReq);
+      aRet.addDataElementRequest (aReq);
     }
 
     {
-      final TDEDataProviderType p = new TDEDataProviderType ();
-      p.setDPIdentifier (ToopXSDHelper.createIdentifier ("atbla"));
-      p.setDPName (ToopXSDHelper.createText ("Register1"));
-      p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("me@register.example.org"));
-      final TDEAddressType pa = new TDEAddressType ();
-      pa.setCountryCode (ToopXSDHelper.createCode ("XK"));
-      p.setDPLegalAddress (pa);
-      r.setDataProvider (p);
+      final TDEDataProviderType aDP = new TDEDataProviderType ();
+      aDP.setDPIdentifier (ToopXSDHelper.createIdentifier ("atbla"));
+      aDP.setDPName (ToopXSDHelper.createText ("Register1"));
+      aDP.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("me@register.example.org"));
+      final TDEAddressType aAddress = new TDEAddressType ();
+      aAddress.setCountryCode (ToopXSDHelper.createCode ("XK"));
+      aDP.setDPLegalAddress (aAddress);
+      aRet.setDataProvider (aDP);
     }
 
-    return r;
+    return aRet;
   }
 
   /**
