@@ -15,11 +15,15 @@
  */
 package eu.toop.kafkaclient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.apache.kafka.common.KafkaException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.helger.commons.collection.impl.ICommonsMap;
 import com.helger.commons.error.level.EErrorLevel;
 
 /**
@@ -50,5 +54,14 @@ public final class ToopKafkaClientTest {
     } catch (final KafkaException ex) {
       // lets act as if we are not surprised...
     }
+  }
+
+  @Test
+  public void testDefaultProperties () {
+    final ICommonsMap<String, String> aProps = ToopKafkaClient.defaultProperties ();
+    assertNotNull (aProps);
+    // Ensure mutable map
+    aProps.put ("foo", "bar");
+    assertEquals ("bar", ToopKafkaClient.defaultProperties ().get ("foo"));
   }
 }
