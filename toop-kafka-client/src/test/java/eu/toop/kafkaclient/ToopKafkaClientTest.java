@@ -50,9 +50,10 @@ public final class ToopKafkaClientTest {
       // running!
       for (int i = 0; i < 5; ++i)
         ToopKafkaClient.send (EErrorLevel.INFO, "Value" + i);
-      ToopKafkaClient.close ();
     } catch (final KafkaException ex) {
       // lets act as if we are not surprised...
+    } finally {
+      ToopKafkaClient.close ();
     }
   }
 
