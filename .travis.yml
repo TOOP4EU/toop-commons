@@ -30,7 +30,6 @@ install:
 
 script:
   - mvn test -B -P coverage sonar:sonar
-#  - sonar-scanner
 
 cache:
   directories:
