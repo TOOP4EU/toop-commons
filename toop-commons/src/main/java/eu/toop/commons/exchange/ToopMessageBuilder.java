@@ -72,7 +72,7 @@ public final class ToopMessageBuilder {
   }
 
   public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest, @Nonnull final OutputStream aOS,
-                                           @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+                                           @Nonnull final SignatureHelper aSigHelper) throws IOException {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -90,7 +90,7 @@ public final class ToopMessageBuilder {
 
   public static void createResponseMessage (@Nonnull final TDETOOPResponseType aResponse,
                                             @Nonnull final OutputStream aOS,
-                                            @Nonnull final SignatureHelper aSigHelper) throws IOException, IllegalStateException {
+                                            @Nonnull final SignatureHelper aSigHelper) throws IOException {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -229,7 +229,7 @@ public final class ToopMessageBuilder {
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
     aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                 eDocumentTypeID.getID ()));
+                                                                    eDocumentTypeID.getID ()));
     aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
     aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
@@ -293,7 +293,7 @@ public final class ToopMessageBuilder {
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
     aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                 eDocumentTypeID.getID ()));
+                                                                    eDocumentTypeID.getID ()));
     aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
     aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));

@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
-import com.helger.commons.collection.impl.CommonsHashMap;
+import com.helger.commons.collection.impl.CommonsEnumMap;
 import com.helger.commons.collection.impl.ICommonsMap;
 
 /**
@@ -29,7 +29,7 @@ import com.helger.commons.collection.impl.ICommonsMap;
  * @author Philip Helger
  */
 public final class SMMDocumentTypeMapping {
-  private static final ICommonsMap<EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsHashMap<> ();
+  private static final ICommonsMap<EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsEnumMap<> (EPredefinedDocumentTypeIdentifier.class);
 
   static {
     // Fill the map

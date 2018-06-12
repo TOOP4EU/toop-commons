@@ -48,11 +48,9 @@ final class ToopKafkaManager {
 
   static {
     // Instead of 16K
-    if (false)
-      s_aProps.put ("batch.size", "1");
+    // s_aProps.put ("batch.size", "1");
     // Server URL - MUST be configured
-    if (false)
-      s_aProps.put ("bootstrap.servers", "193.10.8.211:7073");
+    // s_aProps.put ("bootstrap.servers", "193.10.8.211:7073");
     // Default: 5secs
     s_aProps.put ("max.block.ms", "5000");
   }
@@ -85,10 +83,10 @@ final class ToopKafkaManager {
    *
    * @return The non-<code>null</code> producer to be used.
    * @throws KafkaException
-   *           in case of invalid properties (like non-existing server domain9
+   *           in case of invalid properties (like non-existing server domain)
    */
   @Nonnull
-  public static KafkaProducer<String, String> getOrCreateProducer () throws KafkaException {
+  public static KafkaProducer<String, String> getOrCreateProducer () {
     // Read-lock first
     KafkaProducer<String, String> ret = s_aRWLock.readLocked ( () -> s_aProducer);
     if (ret == null) {

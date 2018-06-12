@@ -40,6 +40,9 @@ public final class ToopKafkaClient {
   private static final AtomicBoolean s_aLoggingEnabled = new AtomicBoolean (true);
   private static final AtomicBoolean s_aKafkaEnabled = new AtomicBoolean (false);
 
+  private ToopKafkaClient () {
+  }
+
   /**
    * @return The default properties for customization. Changes to this map only
    *         effect new connections! Never <code>null</code>.
@@ -58,7 +61,8 @@ public final class ToopKafkaClient {
    */
   public static void setLoggingEnabled (final boolean bLoggingEnabled) {
     s_aLoggingEnabled.set (bLoggingEnabled);
-    s_aLogger.info ("TOOP Logging is now " + (bLoggingEnabled ? "enabled" : "disabled"));
+    if (s_aLogger.isInfoEnabled ())
+      s_aLogger.info ("TOOP Logging is now " + (bLoggingEnabled ? "enabled" : "disabled"));
   }
 
   /**
@@ -77,7 +81,8 @@ public final class ToopKafkaClient {
    */
   public static void setKafkaEnabled (final boolean bEnabled) {
     s_aKafkaEnabled.set (bEnabled);
-    s_aLogger.info ("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
+    if (s_aLogger.isInfoEnabled ())
+      s_aLogger.info ("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
   }
 
   /**
@@ -166,7 +171,8 @@ public final class ToopKafkaClient {
   public static void close () {
     if (isKafkaEnabled ()) {
       ToopKafkaManager.shutdown ();
-      s_aLogger.info ("Successfully shutdown Kafka client");
+      if (s_aLogger.isInfoEnabled ())
+        s_aLogger.info ("Successfully shutdown Kafka client");
     }
   }
 }
