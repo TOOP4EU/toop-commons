@@ -45,9 +45,9 @@ public enum EPredefinedProcessIdentifier
      * @since code list v1
      */
     URN_EU_TOOP_PROCESS_DOCUMENTREQUESTRESPONSE("TOOP Request Response for Documents", "urn:eu.toop.process.documentrequestresponse", Version.parse("1"), false, null);
-    public final static EPredefinedProcessIdentifier DATAREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_DATAREQUESTRESPONSE;
-    public final static EPredefinedProcessIdentifier DOCUMENTREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_DOCUMENTREQUESTRESPONSE;
-    public final static String PROCESS_SCHEME = "toop-procid-agreement";
+    public static final EPredefinedProcessIdentifier DATAREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_DATAREQUESTRESPONSE;
+    public static final EPredefinedProcessIdentifier DOCUMENTREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_DOCUMENTREQUESTRESPONSE;
+    public static final String PROCESS_SCHEME = "toop-procid-agreement";
     private final String m_sName;
     private final String m_sID;
     private final Version m_aSince;

@@ -45,9 +45,9 @@ public enum EPredefinedDocumentTypeIdentifier
      * @since code list v1
      */
     URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10", Version.parse("1"), false, null);
-    public final static EPredefinedDocumentTypeIdentifier REQUEST_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10;
-    public final static EPredefinedDocumentTypeIdentifier RESPONSE_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10;
-    public final static String DOC_TYPE_SCHEME = "toop-doctypeid-qns";
+    public static final EPredefinedDocumentTypeIdentifier REQUEST_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10;
+    public static final EPredefinedDocumentTypeIdentifier RESPONSE_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10;
+    public static final String DOC_TYPE_SCHEME = "toop-doctypeid-qns";
     private final String m_sName;
     private final String m_sID;
     private final Version m_aSince;
