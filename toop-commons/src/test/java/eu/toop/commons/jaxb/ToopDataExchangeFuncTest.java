@@ -31,6 +31,7 @@ import com.helger.xml.namespace.MapBasedNamespaceContext;
 import com.helger.xml.serialize.write.XMLWriter;
 import com.helger.xml.serialize.write.XMLWriterSettings;
 
+import eu.toop.commons.concept.EConceptType;
 import eu.toop.commons.dataexchange.ObjectFactory;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDEConceptRequestType;
@@ -55,8 +56,7 @@ public final class ToopDataExchangeFuncTest {
   @Test
   public void testReadWriteDataRequest () {
     for (final String sFilename : new String[] { "data-request-example.xml", "data-request1.xml" }) {
-      final TDETOOPRequestType aRequest = ToopReader.request ()
-                                                    .read (new File ("src/test/resources/xml/" + sFilename));
+      final TDETOOPRequestType aRequest = ToopReader.request ().read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
       final String sXML = ToopWriter.request ().getAsString (aRequest);
       assertNotNull (sXML);
@@ -130,14 +130,14 @@ public final class ToopDataExchangeFuncTest {
       aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
       {
         final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
-        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode ("DC"));
+        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
         aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
         aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier ("elUri"));
         aSrcConcept.setConceptName (ToopXSDHelper.createText ("elType"));
 
         {
           final TDEConceptRequestType aToopConcept = new TDEConceptRequestType ();
-          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode ("TOOP"));
+          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.TC.getID ()));
           aToopConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
           aToopConcept.setConceptNamespace (ToopXSDHelper.createIdentifier ("toopUri"));
           aToopConcept.setConceptName (ToopXSDHelper.createText ("toopType"));
@@ -214,14 +214,14 @@ public final class ToopDataExchangeFuncTest {
       aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
       {
         final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
-        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode ("DC"));
+        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
         aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
         aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier ("elUri"));
         aSrcConcept.setConceptName (ToopXSDHelper.createText ("elType"));
 
         {
           final TDEConceptRequestType aToopConcept = new TDEConceptRequestType ();
-          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode ("TOOP"));
+          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.TC.getID ()));
           aToopConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
           aToopConcept.setConceptNamespace (ToopXSDHelper.createIdentifier ("toopUri"));
           aToopConcept.setConceptName (ToopXSDHelper.createText ("toopType"));

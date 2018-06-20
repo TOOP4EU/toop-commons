@@ -45,6 +45,7 @@ import com.helger.datetime.util.PDTXMLConverter;
 import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 import eu.toop.commons.codelist.EPredefinedProcessIdentifier;
 import eu.toop.commons.concept.ConceptValue;
+import eu.toop.commons.concept.EConceptType;
 import eu.toop.commons.dataexchange.TDEAddressType;
 import eu.toop.commons.dataexchange.TDEConceptRequestType;
 import eu.toop.commons.dataexchange.TDEDataConsumerType;
@@ -263,7 +264,7 @@ public final class ToopMessageBuilder {
       aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
       {
         final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
-        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode ("DC"));
+        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
         aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
         aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace ()));
         aSrcConcept.setConceptName (ToopXSDHelper.createText (aCV.getValue ()));
@@ -341,19 +342,19 @@ public final class ToopMessageBuilder {
       aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
       {
         final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
-        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode ("DC"));
+        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
         aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
         aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace ()));
         aSrcConcept.setConceptName (ToopXSDHelper.createText (aCV.getValue ()));
         {
           final TDEConceptRequestType aToopConcept = new TDEConceptRequestType ();
-          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode ("TOOP"));
+          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.TC.getID ()));
           aToopConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
           aToopConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace () + "-toop"));
           aToopConcept.setConceptName (ToopXSDHelper.createText ("toop." + aCV.getValue ()));
           {
             final TDEConceptRequestType aDPConcept = new TDEConceptRequestType ();
-            aDPConcept.setConceptTypeCode (ToopXSDHelper.createCode ("TOOP"));
+            aDPConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DP.getID ()));
             aDPConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
             aDPConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace () + "-dp"));
             aDPConcept.setConceptName (ToopXSDHelper.createText ("dp." + aCV.getValue ()));
