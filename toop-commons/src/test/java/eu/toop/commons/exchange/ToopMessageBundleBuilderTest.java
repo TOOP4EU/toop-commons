@@ -19,16 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
 import com.helger.asic.SignatureHelper;
 import com.helger.commons.collection.impl.CommonsArrayList;
-import com.helger.commons.io.file.FileHelper;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
+import com.helger.security.keystore.EKeyStoreType;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
@@ -41,7 +40,7 @@ import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import eu.toop.commons.jaxb.ToopXSDHelper;
 
 public final class ToopMessageBundleBuilderTest {
-  private static final SignatureHelper SH = new SignatureHelper (FileHelper.getInputStream (new File ("src/test/resources/playground-keystore-v1.jks")),
+  private static final SignatureHelper SH = new SignatureHelper (EKeyStoreType.JKS, "playground-keystore-v1.jks",
                                                                  "toop4eu", "sms-key", "toop4eu");
 
   @Test
