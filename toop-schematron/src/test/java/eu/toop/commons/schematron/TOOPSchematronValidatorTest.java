@@ -39,11 +39,17 @@ public final class TOOPSchematronValidatorTest
   public void testBasic ()
   {
     final TOOPSchematronValidator v = new TOOPSchematronValidator ();
-    final ICommonsList <SVRLFailedAssert> aFAs = v.validateTOOPMessage (new FileSystemResource ("src/test/resources/xml/data-request-example.xml"));
-    assertNotNull (aFAs);
-    for (final SVRLFailedAssert aFA : aFAs)
-      LOGGER.info (aFA.toString ());
-    if (false)
+
+    for (final String sFilename : new String [] { "data-request-example.xml", "data-request1.xml" })
+    {
+      LOGGER.info ("Checking " + sFilename);
+
+      final ICommonsList <SVRLFailedAssert> aFAs = v.validateTOOPMessage (new FileSystemResource ("src/test/resources/xml/" +
+                                                                                                  sFilename));
+      assertNotNull (aFAs);
+      for (final SVRLFailedAssert aFA : aFAs)
+        LOGGER.info (aFA.toString ());
       assertTrue (aFAs.isEmpty ());
+    }
   }
 }
