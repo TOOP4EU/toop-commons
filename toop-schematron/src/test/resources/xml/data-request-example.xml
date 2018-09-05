@@ -49,16 +49,16 @@
     <toop:CopyIndicator>false</toop:CopyIndicator>
     <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers" (tbd). The current values are 'toop.eu.data.request.registeredorganization', 'toop.eu.data.response.registeredorganization`. Compulsory use of attributes schemeID "toop-docid".-->
     <!--DC ACTION:  mark this as a "toop.eu.data.request.registeredorganization"-->
-    <toop:DocumentTypeIdentifier schemeID="toop-docid">urn:eu.toop.data.request.registeredorganization</toop:DocumentTypeIdentifier>
+    <toop:DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10</toop:DocumentTypeIdentifier>
     <!--Rule: A Toop data request MUST have the specification identifier "www.toop.eu:bis:data_exchange_model:v1.0"-->
-    <toop:SpecificationIdentifier>www.toop.eu:bis:data_exchange_model:v1.0</toop:SpecificationIdentifier>
+    <toop:SpecificationIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p10::Request</toop:SpecificationIdentifier>
     <!--Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers" (tbd).-->
-    <toop:ProcessIdentifier>urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
+    <toop:ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
     <!--Use the schemeAgencyID attribute to identify the organisation responsible for the document.-->
 	<!--DC ACTION: If needed, assign an identifier which enables you to refer to this request within your system. The identifier will be kept in the response -->
 	<toop:DataConsumerDocumentIdentifier schemeAgencyID="***TO_BE_DEFINED***">101-287.56666</toop:DataConsumerDocumentIdentifier>
 	<!--DC ACTION: If needed, assign an identifier which enables you to refer to a group of request which belong together. The identifier will be kept in the response  -->
-    <toop:DataConsumerGlobalSessionIdentifier>394956</toop:DataConsumerGlobalSessionIdentifier>
+    <toop:DataConsumerGlobalSessionIdentifier schemeAgencyID="bla">394956</toop:DataConsumerGlobalSessionIdentifier>
     <!--Please describe the purpose in english and use the language attribute "en"-->
     <toop:DataConsumerRequestPurpose  languageID="en-US">Qualification Procedure in Public Procurement</toop:DataConsumerRequestPurpose>
     <toop:DataConsumer>
@@ -66,7 +66,7 @@
         <toop:DCUniqueIdentifier schemeAgencyID="schemeAgencyID1">DE999999999</toop:DCUniqueIdentifier>
         <toop:DCName>MyCompany</toop:DCName>
         <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"" (tbd)"-->
-        <toop:DCElectronicAddressIdentifier schemeID="***TO_BE_DEFINED***">0088:4035811991014</toop:DCElectronicAddressIdentifier>
+        <toop:DCElectronicAddressIdentifier schemeID="iso6523-actorid-upis">0088:4035811991014</toop:DCElectronicAddressIdentifier>
         <toop:DCLegalAddress>
             <toop:AddressLine>Koenigstrasse 22</toop:AddressLine>
             <toop:AddressLine>Floor 2</toop:AddressLine>

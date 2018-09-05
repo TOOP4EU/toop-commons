@@ -170,7 +170,8 @@
     <!--Check the format of a e-mail address-->
     <pattern>
         <rule context="toop:ContactEmailAddress">
-            <assert test="matches(text(),'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}','i')"  flag='warning' id="invalid_email">
+            <!-- [ph] changed RegEx -->
+            <assert test="matches(text(),'[a-z0-9!#\$%&amp;''*+/=?^_`{{|}}~-]+(?:\.[a-z0-9!#\$%&amp;''*+/=?^_`{{|}}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?','i')"  flag='warning' id="invalid_email">
                 The e-mail address format looks invalid.
             </assert>
         </rule>
