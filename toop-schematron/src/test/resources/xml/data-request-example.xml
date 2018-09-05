@@ -66,7 +66,7 @@
         <toop:DCUniqueIdentifier schemeAgencyID="schemeAgencyID1">DE999999999</toop:DCUniqueIdentifier>
         <toop:DCName>MyCompany</toop:DCName>
         <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"" (tbd)"-->
-        <toop:DCElectronicAddressIdentifier schemeID="iso6523-actorid-upis">0088:4035811991014</toop:DCElectronicAddressIdentifier>
+        <toop:DCElectronicAddressIdentifier schemeAgencyID="0088" schemeID="iso6523-actorid-upis">0088:4035811991014</toop:DCElectronicAddressIdentifier>
         <toop:DCLegalAddress>
             <toop:AddressLine>Koenigstrasse 22</toop:AddressLine>
             <toop:AddressLine>Floor 2</toop:AddressLine>
@@ -96,13 +96,13 @@
             <!--Attribute describing the identifier referred to in Article 3(1) of Directive 2009/101/EG of the European Parliament and of the Council.-->
 			<toop:BusinessCodes>GB7552671243</toop:BusinessCodes>
             <!--A 20-character identifier (defined by ISO 17442) to distinct legal entities that engage in financial transactions.-->
-            <toop:LegalEntityIdentifier>ES123567983568437254K</toop:LegalEntityIdentifier>
+            <toop:LegalEntityIdentifier>ES123567983568437254</toop:LegalEntityIdentifier>
             <!--A number assigned by a customs authority or designated authority or authorities in a Member State to economic operators and other persons in accordance with the rules laid down in Part I, Title I, Chapter 6 of the CCIP-->
             <toop:EORIIdentifier>GB123456789000</toop:EORIIdentifier>
             <!--Attribute describing the System for Exchange of Excise Data (SEED) Excise Number for the legal person--> 
 			<toop:SEEDIdentifier>GB00000987ABC</toop:SEEDIdentifier>
             <!--A 4-digit code describing the Standard Industrial Classification (SIC) code for the legal person-->
-			<toop:StandardIndustrialClassification>3730</toop:StandardIndustrialClassification>
+			<toop:StandardIndustrialClassification>0113</toop:StandardIndustrialClassification>
             <!--Rule: Use the value that is used in the element: DataSubject/NaturalPerson/PersonIdentifier-->
             <toop:AuthorizedRepresentativeIdentifier>GB/GB/02635542Y</toop:AuthorizedRepresentativeIdentifier>
             <!--DC Action: The address is not mandatory attribute for eIDAS but the DC has to fill at least the country of the company-->
@@ -130,7 +130,7 @@
             <toop:BirthDate>1939-10-27</toop:BirthDate>
             <toop:BirthFamilyName>Cheese</toop:BirthFamilyName>
             <toop:BirthPlace>Weston-super-Mare</toop:BirthPlace>
-            <toop:GenderCode>Male</toop:GenderCode>
+            <toop:GenderCode>M</toop:GenderCode>
 			<!--DC Action: The address is not mandatory attribute for eIDAS but the DC has to fill at least the country of the natural person-->
             <toop:NaturalPersonLegalAddress>
                 <toop:AddressLine>Queens Street 22</toop:AddressLine>
@@ -166,7 +166,7 @@
         <!--DC Action: Add the name of the Data Consumer concept.-->
 		<toop:ConceptName>Rechtsform</toop:ConceptName>
         <toop:ConceptRequest>
-          <toop:ConceptTypeCode>TOOP</toop:ConceptTypeCode>
+          <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
           <!--DC Action: as in this example the type code is mapped from a Data Consumer Concept to a TOOP Concept, the SemanticMappingExecutionIndicator is set to "true"-->
 		  <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
           <!--Semantic Mapping: The Semantic Mapping adds the complete path to the TOOP concept inlcuding its namespace.--> 
