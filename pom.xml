@@ -85,6 +85,13 @@
       </dependency>
       <dependency>
         <groupId>com.helger</groupId>
+        <artifactId>ph-schematron-parent-pom</artifactId>
+        <version>5.0.5</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger</groupId>
         <artifactId>ph-asic</artifactId>
         <version>1.2.0</version>
       </dependency>
@@ -97,6 +104,11 @@
       </dependency>
       <dependency>
         <groupId>eu.toop</groupId>
+        <artifactId>toop-schematron</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>eu.toop</groupId>
         <artifactId>toop-kafka-client</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -105,6 +117,7 @@
 
   <modules>
     <module>toop-commons</module>
+    <module>toop-schematron</module>
     <module>toop-kafka-client</module>
   </modules>
   
