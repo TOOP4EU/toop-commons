@@ -43,6 +43,7 @@ import com.helger.xml.transform.LoggingTransformErrorListener;
  * TOOP Schematron validator
  *
  * @author Philip Helger
+ * @since 0.9.2
  */
 public class TOOPSchematronValidator
 {
@@ -55,8 +56,37 @@ public class TOOPSchematronValidator
   @ReturnsMutableCopy
   public ICommonsList <SVRLFailedAssert> validateTOOPMessage (@Nonnull final IReadableResource aXML)
   {
+    // Parse XML to DOM
+    final Document aXMLDoc;
+    try
+    {
+      aXMLDoc = DOMReader.readXMLDOM (aXML);
+    }
+    catch (final SAXException ex)
+    {
+      throw new IllegalStateException ("Failed to read the provided XML", ex);
+    }
+    if (aXMLDoc == null)
+      throw new IllegalStateException ("Failed to read the provided XML");
+
+    return validateTOOPMessage (aXMLDoc);
+  }
+
+  /**
+   * Validate the provided DOM representation of a TOOP Request or Response.
+   *
+   * @param aXMLDoc
+   *        The XML DOM node to be validated. May not be <code>null</code>.
+   * @return The list of all failed asserts
+   */
+  @Nonnull
+  @ReturnsMutableCopy
+  public ICommonsList <SVRLFailedAssert> validateTOOPMessage (@Nonnull final Document aXMLDoc)
+  {
     final IReadableResource aSCH = new ClassPathResource ("schematron/TOOP_BusinessRules_DataExchange.sch");
     final SchematronResourceSCH aSchematron = new SchematronResourceSCH (aSCH);
+
+    // The URI resolver is necessary for the XSLT to resolve the codelists
     aSchematron.setURIResolver (new DefaultTransformURIResolver ()
     {
       @Override
@@ -73,22 +103,10 @@ public class TOOPSchematronValidator
     if (!aSchematron.isValidSchematron ())
       throw new IllegalStateException ("Failed to compile Schematron");
 
-    // Parse XML to DOM
-    final Document aXMLDoc;
     try
     {
-      aXMLDoc = DOMReader.readXMLDOM (aXML);
-    }
-    catch (final SAXException ex)
-    {
-      throw new IllegalStateException ("Failed to read the provided XML", ex);
-    }
-    if (aXMLDoc == null)
-      throw new IllegalStateException ("Failed to read the provided XML");
-
-    try
-    {
-      final SchematronOutputType aSOT = aSchematron.applySchematronValidationToSVRL (aXMLDoc, aXML.getPath ());
+      // No base URI needed since Schematron contains no includes
+      final SchematronOutputType aSOT = aSchematron.applySchematronValidationToSVRL (aXMLDoc, null);
       return SVRLHelper.getAllFailedAssertions (aSOT);
     }
     catch (final Exception ex)
