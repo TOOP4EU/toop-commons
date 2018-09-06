@@ -41,6 +41,7 @@ A project with common shared components. It e.g. contains the XML Schemas for th
 ## toop-schematron (since v0.9.2)
 
 This project contains a Java wrapper to perform Schematron validation of TOOP messages following the TOOP data model using predefined TOOP Schematron rules.
+The current rules are for version 10 of the data model.
 
 ## toop-kafka-client
 
