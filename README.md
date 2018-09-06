@@ -34,6 +34,14 @@ If a proxy server is necessary, please make sure it is configured appropriately.
 
 # Contained projects
 
+## toop-commons
+
+A project with common shared components. It e.g. contains the XML Schemas for the TOOP data model.
+
+## toop-schematron (since v0.9.2)
+
+This project contains a Java wrapper to perform Schematron validation of TOOP messages following the TOOP data model using predefined TOOP Schematron rules.
+
 ## toop-kafka-client
 
 This is the client that is used to abstract the messaging to the central *Package Tracker* which is essentially an Apache Kafka server that is than queried by a UI from the playground. 
