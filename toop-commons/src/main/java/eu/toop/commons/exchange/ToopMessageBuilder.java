@@ -75,7 +75,7 @@ public final class ToopMessageBuilder {
   }
 
   public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest, @Nonnull final OutputStream aOS,
-      @Nonnull final SignatureHelper aSigHelper) throws IOException {
+                                           @Nonnull final SignatureHelper aSigHelper) throws IOException {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -85,14 +85,15 @@ public final class ToopMessageBuilder {
     {
       final byte[] aXML = ToopWriter.request ().getAsBytes (aRequest);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_REQUEST,
-          CMimeType.APPLICATION_XML);
+                       CMimeType.APPLICATION_XML);
     }
     aAsicWriter.sign (aSigHelper);
     s_aLogger.info ("Successfully created request ASiC");
   }
 
   public static void createResponseMessage (@Nonnull final TDETOOPResponseType aResponse,
-      @Nonnull final OutputStream aOS, @Nonnull final SignatureHelper aSigHelper) throws IOException {
+                                            @Nonnull final OutputStream aOS,
+                                            @Nonnull final SignatureHelper aSigHelper) throws IOException {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -102,7 +103,7 @@ public final class ToopMessageBuilder {
     {
       final byte[] aXML = ToopWriter.response ().getAsBytes (aResponse);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_RESPONSE,
-          CMimeType.APPLICATION_XML);
+                       CMimeType.APPLICATION_XML);
     }
     aAsicWriter.sign (aSigHelper);
     s_aLogger.info ("Successfully created response ASiC");
@@ -144,8 +145,7 @@ public final class ToopMessageBuilder {
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS)
-      throws IOException {
+  public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     final Object aObj = parseRequestOrResponse (aIS);
@@ -233,10 +233,11 @@ public final class ToopMessageBuilder {
 
   @Nonnull
   public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
-      @Nonnull final IdentifierType aSenderParticipantID, @Nonnull @Nonempty final String sCountryCode,
-      @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
-      @Nonnull final EPredefinedProcessIdentifier eProcessID,
-      @Nullable final Iterable<? extends ConceptValue> aValues) {
+                                                      @Nonnull final IdentifierType aSenderParticipantID,
+                                                      @Nonnull @Nonempty final String sCountryCode,
+                                                      @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
+                                                      @Nonnull final EPredefinedProcessIdentifier eProcessID,
+                                                      @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notNull (aRequestSubject, "RequestSubject");
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
@@ -249,8 +250,8 @@ public final class ToopMessageBuilder {
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
-    aRet.setDocumentTypeIdentifier (
-        ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (), eDocumentTypeID.getID ()));
+    aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+                                                                    eDocumentTypeID.getID ()));
     aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
     aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
@@ -298,9 +299,10 @@ public final class ToopMessageBuilder {
 
   @Nonnull
   public static TDETOOPResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
-      @Nonnull @Nonempty final String sCountryCode, @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
-      @Nonnull final EPredefinedProcessIdentifier eProcessID,
-      @Nullable final Iterable<? extends ConceptValue> aValues) {
+                                                        @Nonnull @Nonempty final String sCountryCode,
+                                                        @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
+                                                        @Nonnull final EPredefinedProcessIdentifier eProcessID,
+                                                        @Nullable final Iterable<? extends ConceptValue> aValues) {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
@@ -312,8 +314,8 @@ public final class ToopMessageBuilder {
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
     // Document type ID
-    aRet.setDocumentTypeIdentifier (
-        ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (), eDocumentTypeID.getID ()));
+    aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+                                                                    eDocumentTypeID.getID ()));
     aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
     // Process ID
     aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
