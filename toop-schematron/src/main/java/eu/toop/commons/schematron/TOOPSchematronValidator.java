@@ -15,16 +15,10 @@
  */
 package eu.toop.commons.schematron;
 
-import java.util.Locale;
-
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
-import javax.xml.transform.Source;
-import javax.xml.transform.TransformerException;
 
 import org.oclc.purl.dsdl.svrl.SchematronOutputType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -32,13 +26,11 @@ import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.io.resource.IReadableResource;
-import com.helger.commons.string.StringHelper;
+import com.helger.schematron.ISchematronResource;
 import com.helger.schematron.svrl.SVRLFailedAssert;
 import com.helger.schematron.svrl.SVRLHelper;
-import com.helger.schematron.xslt.SchematronResourceSCH;
+import com.helger.schematron.xslt.SchematronResourceXSLT;
 import com.helger.xml.serialize.read.DOMReader;
-import com.helger.xml.transform.DefaultTransformURIResolver;
-import com.helger.xml.transform.LoggingTransformErrorListener;
 
 /**
  * TOOP Schematron validator. Validate DOM documents or other resources using
@@ -54,14 +46,13 @@ public class TOOPSchematronValidator
    * The resource with the rules. Important: this Schematron requires additional
    * code lists in a relative directory!
    */
-  public static final IReadableResource SCHEMATRON_RES = new ClassPathResource ("schematron/TOOP_BusinessRules_DataExchange.sch");
-  private static final Logger LOGGER = LoggerFactory.getLogger (TOOPSchematronValidator.class);
+  public static final IReadableResource SCHEMATRON_RES_XSLT = new ClassPathResource ("xslt/TOOP_BusinessRules_DataExchange.xslt");
 
   public TOOPSchematronValidator ()
   {}
 
   /**
-   * Create a new {@link SchematronResourceSCH} that is configured correctly so
+   * Create a new {@link ISchematronResource} that is configured correctly so
    * that it can be used to validate TOOP messages. This method is only used
    * internally and is extracted to allow potential modifications in derived
    * classes.
@@ -71,27 +62,11 @@ public class TOOPSchematronValidator
    * @see #validateTOOPMessage(IReadableResource)
    */
   @Nonnull
-  public SchematronResourceSCH createSchematronResource ()
+  public ISchematronResource createSchematronResource ()
   {
-    final SchematronResourceSCH aSchematron = new SchematronResourceSCH (SCHEMATRON_RES);
-
-    // The URI resolver is necessary for the XSLT to resolve the codelists
-    aSchematron.setURIResolver (new DefaultTransformURIResolver ()
-    {
-      @Override
-      protected Source internalResolve (final String sHref, final String sBase) throws TransformerException
-      {
-        final String sRealBase = StringHelper.hasText (sBase) ? sBase : SCHEMATRON_RES.getAsURL ().toExternalForm ();
-        final Source ret = super.internalResolve (sHref, sRealBase);
-        if (LOGGER.isDebugEnabled ())
-          LOGGER.debug ("URIResolver resolved " + sHref + " to " + ret);
-        return ret;
-      }
-    });
-    aSchematron.setErrorListener (new LoggingTransformErrorListener (Locale.US));
+    final SchematronResourceXSLT aSchematron = new SchematronResourceXSLT (SCHEMATRON_RES_XSLT);
     if (!aSchematron.isValidSchematron ())
-      throw new IllegalStateException ("Failed to compile Schematron " + SCHEMATRON_RES.getPath ());
-
+      throw new IllegalStateException ("Failed to compile Schematron/XSLT " + SCHEMATRON_RES_XSLT.getPath ());
     return aSchematron;
   }
 
@@ -128,7 +103,7 @@ public class TOOPSchematronValidator
   {
     try
     {
-      final SchematronResourceSCH aSchematron = createSchematronResource ();
+      final ISchematronResource aSchematron = createSchematronResource ();
       // No base URI needed since Schematron contains no includes
       final SchematronOutputType aSOT = aSchematron.applySchematronValidationToSVRL (aXMLDoc, null);
       return SVRLHelper.getAllFailedAssertions (aSOT);
