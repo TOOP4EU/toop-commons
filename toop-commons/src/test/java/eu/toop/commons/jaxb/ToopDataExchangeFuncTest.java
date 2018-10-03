@@ -55,7 +55,8 @@ public final class ToopDataExchangeFuncTest {
 
   @Test
   public void testReadWriteDataRequest () {
-    for (final String sFilename : new String[] { "data-request-example.xml", "data-request1.xml" }) {
+    for (final String sFilename : new String[] { "data-request-example.xml", "data-request1.xml",
+                                                 "commander-request1.xml" }) {
       final TDETOOPRequestType aRequest = ToopReader.request ().read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
       final String sXML = ToopWriter.request ().getAsString (aRequest);
