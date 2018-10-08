@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBWriterBuilder;
 
+import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
@@ -53,6 +54,18 @@ public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter
   @Nonnull
   public static ToopWriter<TDETOOPResponseType> response () {
     final ToopWriter<TDETOOPResponseType> ret = new ToopWriter<> (EToopXMLDocumentType.RESPONSE);
+    ret.setFormattedOutput (true);
+    return ret;
+  }
+
+  /**
+   * Create a writer builder for {@link TDETOOPErrorMessageType}.
+   *
+   * @return The builder and never <code>null</code>
+   */
+  @Nonnull
+  public static ToopWriter<TDETOOPErrorMessageType> errorMessage () {
+    final ToopWriter<TDETOOPErrorMessageType> ret = new ToopWriter<> (EToopXMLDocumentType.ERROR_MESSAGE);
     ret.setFormattedOutput (true);
     return ret;
   }

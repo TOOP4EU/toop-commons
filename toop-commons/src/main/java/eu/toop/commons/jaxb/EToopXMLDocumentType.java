@@ -27,6 +27,7 @@ import com.helger.commons.string.StringHelper;
 import com.helger.jaxb.builder.IJAXBDocumentType;
 import com.helger.jaxb.builder.JAXBDocumentType;
 
+import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
@@ -37,7 +38,8 @@ import eu.toop.commons.dataexchange.TDETOOPResponseType;
  */
 public enum EToopXMLDocumentType implements IJAXBDocumentType {
   REQUEST (TDETOOPRequestType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
-  RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd");
+  RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
+  ERROR_MESSAGE (TDETOOPErrorMessageType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd");
 
   private final JAXBDocumentType m_aDocType;
 

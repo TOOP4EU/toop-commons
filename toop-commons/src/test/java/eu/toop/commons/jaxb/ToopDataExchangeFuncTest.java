@@ -41,6 +41,7 @@ import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
 import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
+import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
@@ -60,6 +61,17 @@ public final class ToopDataExchangeFuncTest {
       final TDETOOPRequestType aRequest = ToopReader.request ().read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
       final String sXML = ToopWriter.request ().getAsString (aRequest);
+      assertNotNull (sXML);
+    }
+  }
+
+  @Test
+  public void testReadWriteErrorMessage () {
+    for (final String sFilename : new String[] { "data-error1.xml" }) {
+      final TDETOOPErrorMessageType aRequest = ToopReader.errorMessage ()
+                                                         .read (new File ("src/test/resources/xml/" + sFilename));
+      assertNotNull (aRequest);
+      final String sXML = ToopWriter.errorMessage ().getAsString (aRequest);
       assertNotNull (sXML);
     }
   }
