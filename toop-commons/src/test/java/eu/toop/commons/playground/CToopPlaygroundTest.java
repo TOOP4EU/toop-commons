@@ -15,10 +15,10 @@
  */
 package eu.toop.commons.playground;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.helger.security.keystore.KeyStoreHelper;
 import com.helger.security.keystore.LoadedKeyStore;

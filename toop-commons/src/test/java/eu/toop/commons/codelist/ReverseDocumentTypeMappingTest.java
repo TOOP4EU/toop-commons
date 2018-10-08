@@ -15,9 +15,9 @@
  */
 package eu.toop.commons.codelist;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test class for class {@link ReverseDocumentTypeMapping}.
@@ -29,8 +29,8 @@ public final class ReverseDocumentTypeMappingTest {
   @Test
   public void testBasic () {
     for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ()) {
-      assertNotNull (ReverseDocumentTypeMapping.getReverseDocumentType (e),
-                     "Please register " + e + " to ReverseDocumentTypeMapping");
+      assertNotNull ("Please register " + e + " to ReverseDocumentTypeMapping",
+                     ReverseDocumentTypeMapping.getReverseDocumentType (e));
     }
   }
 }

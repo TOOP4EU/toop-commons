@@ -15,11 +15,11 @@
  */
 package eu.toop.commons.codelist;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test class for class {@link EPredefinedProcessIdentifier}.

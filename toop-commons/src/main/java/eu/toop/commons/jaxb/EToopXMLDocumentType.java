@@ -36,8 +36,8 @@ import eu.toop.commons.dataexchange.TDETOOPResponseType;
  * @author Philip Helger
  */
 public enum EToopXMLDocumentType implements IJAXBDocumentType {
-  REQUEST (TDETOOPRequestType.class, "/xsd/toop/TOOP_DataExchange.xsd"),
-  RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange.xsd");
+  REQUEST (TDETOOPRequestType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
+  RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd");
 
   private final JAXBDocumentType m_aDocType;
 

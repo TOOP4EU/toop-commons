@@ -15,13 +15,13 @@
  */
 package eu.toop.kafkaclient;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.apache.kafka.common.KafkaException;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.helger.commons.collection.impl.ICommonsMap;
 import com.helger.commons.error.level.EErrorLevel;
@@ -32,12 +32,12 @@ import com.helger.commons.error.level.EErrorLevel;
  * @author Philip Helger
  */
 public final class ToopKafkaClientTest {
-  @BeforeAll
+  @BeforeClass
   public static void beforeAll () {
     ToopKafkaClient.setKafkaEnabled (true);
   }
 
-  @AfterAll
+  @AfterClass
   public static void afterAll () {
     // Disable again for other tests
     ToopKafkaClient.setKafkaEnabled (false);
