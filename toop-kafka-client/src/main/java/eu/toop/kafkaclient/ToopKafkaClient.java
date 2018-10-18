@@ -16,6 +16,7 @@
 package eu.toop.kafkaclient;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
@@ -39,6 +40,7 @@ public final class ToopKafkaClient {
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopKafkaClient.class);
   private static final AtomicBoolean s_aLoggingEnabled = new AtomicBoolean (true);
   private static final AtomicBoolean s_aKafkaEnabled = new AtomicBoolean (false);
+  private static final AtomicReference<String> s_aKafkaTopic = new AtomicReference<> ("toop");
 
   private ToopKafkaClient () {
   }
@@ -91,6 +93,16 @@ public final class ToopKafkaClient {
    */
   public static boolean isKafkaEnabled () {
     return s_aKafkaEnabled.get ();
+  }
+
+  public static void setKafkaTopic (final String sTopic) {
+    s_aKafkaTopic.set (sTopic);
+    if (s_aLogger.isInfoEnabled ())
+      s_aLogger.info ("Kafka Client is now set to topic: " + s_aKafkaTopic);
+  }
+
+  public static String getKafkaTopic () {
+    return s_aKafkaTopic.get ();
   }
 
   private static void _sendIfKafkaEnabled (@Nonnull final String sValue) {
