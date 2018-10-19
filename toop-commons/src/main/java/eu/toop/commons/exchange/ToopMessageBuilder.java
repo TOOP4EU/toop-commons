@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
@@ -40,6 +42,8 @@ import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 import com.helger.commons.mime.CMimeType;
+import com.helger.commons.string.StringHelper;
+import com.helger.commons.text.IMultilingualText;
 import com.helger.datetime.util.PDTXMLConverter;
 
 import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
@@ -54,8 +58,10 @@ import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
 import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.TDEDocumentRequestType;
+import eu.toop.commons.dataexchange.TDEErrorType;
 import eu.toop.commons.dataexchange.TDELegalEntityType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
+import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import eu.toop.commons.jaxb.ToopReader;
@@ -423,5 +429,50 @@ public final class ToopMessageBuilder {
     aRequest.cloneTo (aResponse);
     // Response specific stuff stays null
     return aResponse;
+  }
+
+  @Nullable
+  private static IdentifierType _getClone (@Nullable final IdentifierType x) {
+    return x == null ? null : x.clone ();
+  }
+
+  /**
+   * Create an error message without a single error but with all the header fields
+   * fields.
+   *
+   * @param aRequest
+   *          Source request to copy header from. May not be <code>null</code>.
+   * @return Never <code>null</code>.
+   */
+  @Nonnull
+  public static TDETOOPErrorMessageType createErrorMessage (@Nonnull final TDETOOPRequestType aRequest) {
+    final TDETOOPErrorMessageType ret = new TDETOOPErrorMessageType ();
+    ret.setDocumentUniversalUniqueIdentifier (_getClone (aRequest.getDocumentUniversalUniqueIdentifier ()));
+    ret.setDataRequestIdentifier (_getClone (aRequest.getDataRequestIdentifier ()));
+    ret.setDocumentTypeIdentifier (_getClone (aRequest.getDocumentTypeIdentifier ()));
+    ret.setSpecificationIdentifier (_getClone (aRequest.getSpecificationIdentifier ()));
+    ret.setProcessIdentifier (_getClone (aRequest.getProcessIdentifier ()));
+    return ret;
+  }
+
+  @Nonnull
+  public static TDEErrorType createError (@Nullable final String sDPIdentifier, @Nonnull final EToopErrorOrigin eOrigin,
+                                          @Nonnull final EToopErrorCategory eCategory,
+                                          @Nonnull final EToopErrorCode eErrorCode,
+                                          @Nonnull final EToopErrorSeverity eSeverity,
+                                          @Nonnull final IMultilingualText aMLT, @Nullable final String sTechDetails) {
+    final TDEErrorType ret = new TDEErrorType ();
+    if (StringHelper.hasText (sDPIdentifier))
+      ret.setDataProviderIdentifier (ToopXSDHelper.createIdentifier (sDPIdentifier));
+    ret.setOrigin (ToopXSDHelper.createCode (eOrigin.getID ()));
+    ret.setCategory (ToopXSDHelper.createCode (eCategory.getID ()));
+    ret.setErrorCode (ToopXSDHelper.createCode (eErrorCode.getID ()));
+    ret.setSeverity (ToopXSDHelper.createCode (eSeverity.getID ()));
+    for (final Map.Entry<Locale, String> aEntry : aMLT.getAllTexts ().entrySet ())
+      ret.addErrorText (ToopXSDHelper.createText (aEntry.getKey (), aEntry.getValue ()));
+    if (StringHelper.hasText (sTechDetails))
+      ret.setTechnicalDetails (ToopXSDHelper.createText (sTechDetails));
+    ret.setTimestamp (PDTXMLConverter.getXMLCalendarNow ());
+    return ret;
   }
 }

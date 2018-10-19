@@ -16,8 +16,10 @@
 package eu.toop.commons.jaxb;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
 
@@ -57,6 +59,15 @@ public final class ToopXSDHelper {
   @Nonnull
   public static TextType createText (@Nonnull @Nonempty final String sValue) {
     final TextType ret = new TextType ();
+    ret.setValue (sValue);
+    return ret;
+  }
+
+  @Nonnull
+  public static TextType createText (@Nullable final Locale aLanguage, @Nonnull @Nonempty final String sValue) {
+    final TextType ret = new TextType ();
+    if (aLanguage != null)
+      ret.setLanguageID (aLanguage.getLanguage ());
     ret.setValue (sValue);
     return ret;
   }
