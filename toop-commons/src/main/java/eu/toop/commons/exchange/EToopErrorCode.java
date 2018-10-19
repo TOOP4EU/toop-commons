@@ -23,26 +23,52 @@ import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
- * Source: ErrorCode-CodeList.gc
+ * Source: ErrorCode-CodeList.gc<br>
+ * Content created by MainCreateErrorCodeJavaCode
  *
  * @author Philip Helger
  *
  */
 public enum EToopErrorCode implements IHasID<String> {
-  GENERIC ("GEN"),
+  /** Uncategorized error */
+  GEN ("GEN"),
+  /** The payload provided from DC/DP to the TOOP Connector is not valid */
   IF_001 ("IF-001"),
+  /** Message Validation Failed */
   IF_002 ("IF-002"),
+  /** The Semantic Mapping Service is not reachable */
   SM_001 ("SM-001"),
-  SM_002a ("SM-002a"),
-  SM_002b ("SM-002b"),
+  /**
+   * The Semantic Mapping Service could not provide a mapping on provided concepts
+   */
+  SM_002A ("SM-002a"),
+  /**
+   * The Semantic Mapping Service could not provide a mapping on provided concepts
+   */
+  SM_002B ("SM-002b"),
+  /** The TOOP Directory is not reachable */
   DD_001 ("DD-001"),
+  /**
+   * The Dynamic Discovery Service was not able to find any Participant
+   * Identifiers
+   */
   DD_002 ("DD-002"),
+  /**
+   * At least one, but not all SMP Servers where not able to find a Service
+   * Metadata
+   */
   DD_003 ("DD-003"),
+  /** None of the SMP Servers was able to find a Service Metadata */
   DD_004 ("DD-004"),
+  /** Error creating the ASIC Container */
   TC_001 ("TC-001"),
+  /** The TOOP Connector was not able to communicate with the Local AS4 gateway */
   ME_001 ("ME-001"),
+  /** The AS4 Gateway was not able to send the message */
   ME_002 ("ME-002"),
+  /** The AS4 gateway could not deliver the message to the addressed gateway */
   ME_003 ("ME-003"),
+  /** The AS4 gateway has not received a receipt */
   ME_004 ("ME-004");
 
   private final String m_sID;

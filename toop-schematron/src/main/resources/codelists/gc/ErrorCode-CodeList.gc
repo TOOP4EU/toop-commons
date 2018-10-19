@@ -4,6 +4,8 @@
 		<ShortName>ErrorCode</ShortName>
 		<LongName xml:lang="en">Error Code</LongName>
 		<Version>2018-10-01</Version>
+    <CanonicalUri>any</CanonicalUri>
+    <CanonicalVersionUri>2018-10-01</CanonicalVersionUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>
