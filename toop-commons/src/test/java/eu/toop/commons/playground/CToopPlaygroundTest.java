@@ -28,9 +28,11 @@ import com.helger.security.keystore.LoadedKeyStore;
  *
  * @author Philip Helger
  */
-public final class CToopPlaygroundTest {
+public final class CToopPlaygroundTest
+{
   @Test
-  public void testBasic () {
+  public void testBasic ()
+  {
     assertTrue (CToopPlayground.PATH_PLAYGROUND_TRUST_STORE.exists ());
     final LoadedKeyStore aKS = KeyStoreHelper.loadKeyStore (CToopPlayground.TYPE_PLAYGROUND_TRUST_STORE,
                                                             CToopPlayground.PATH_PLAYGROUND_TRUST_STORE.getPath (),

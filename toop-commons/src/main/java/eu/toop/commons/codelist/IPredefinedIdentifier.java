@@ -24,7 +24,8 @@ import com.helger.commons.annotation.Nonempty;
  *
  * @author Philip Helger
  */
-public interface IPredefinedIdentifier extends IPredefined {
+public interface IPredefinedIdentifier extends IPredefined
+{
   /**
    * @return The identifier scheme to be used. May neither be <code>null</code>
    *         nor empty.
@@ -34,12 +35,12 @@ public interface IPredefinedIdentifier extends IPredefined {
   String getScheme ();
 
   /**
-   *
    * @return The URI encoded identifier consisting of <code>scheme::id</code>
    */
   @Nonnull
   @Nonempty
-  default String getURIEncoded () {
+  default String getURIEncoded ()
+  {
     return getScheme () + "::" + getID ();
   }
 }

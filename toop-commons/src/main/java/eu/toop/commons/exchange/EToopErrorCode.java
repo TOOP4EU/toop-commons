@@ -27,9 +27,9 @@ import com.helger.commons.lang.EnumHelper;
  * Content created by MainCreateErrorCodeJavaCode
  *
  * @author Philip Helger
- *
  */
-public enum EToopErrorCode implements IHasID<String> {
+public enum EToopErrorCode implements IHasID <String>
+{
   /** Uncategorized error */
   GEN ("GEN"),
   /** The payload provided from DC/DP to the TOOP Connector is not valid */
@@ -39,11 +39,13 @@ public enum EToopErrorCode implements IHasID<String> {
   /** The Semantic Mapping Service is not reachable */
   SM_001 ("SM-001"),
   /**
-   * The Semantic Mapping Service could not provide a mapping on provided concepts
+   * The Semantic Mapping Service could not provide a mapping on provided
+   * concepts
    */
   SM_002A ("SM-002a"),
   /**
-   * The Semantic Mapping Service could not provide a mapping on provided concepts
+   * The Semantic Mapping Service could not provide a mapping on provided
+   * concepts
    */
   SM_002B ("SM-002b"),
   /** The TOOP Directory is not reachable */
@@ -62,7 +64,9 @@ public enum EToopErrorCode implements IHasID<String> {
   DD_004 ("DD-004"),
   /** Error creating the ASIC Container */
   TC_001 ("TC-001"),
-  /** The TOOP Connector was not able to communicate with the Local AS4 gateway */
+  /**
+   * The TOOP Connector was not able to communicate with the Local AS4 gateway
+   */
   ME_001 ("ME-001"),
   /** The AS4 Gateway was not able to send the message */
   ME_002 ("ME-002"),
@@ -73,18 +77,21 @@ public enum EToopErrorCode implements IHasID<String> {
 
   private final String m_sID;
 
-  private EToopErrorCode (@Nonnull @Nonempty final String sID) {
+  private EToopErrorCode (@Nonnull @Nonempty final String sID)
+  {
     m_sID = sID;
   }
 
   @Nonnull
   @Nonempty
-  public String getID () {
+  public String getID ()
+  {
     return m_sID;
   }
 
   @Nullable
-  public static EToopErrorCode getFromIDOrNull (@Nullable final String sID) {
+  public static EToopErrorCode getFromIDOrNull (@Nullable final String sID)
+  {
     return EnumHelper.getFromIDOrNull (EToopErrorCode.class, sID);
   }
 }

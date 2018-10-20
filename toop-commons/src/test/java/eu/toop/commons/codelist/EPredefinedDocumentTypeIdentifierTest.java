@@ -25,12 +25,14 @@ import org.junit.Test;
  * Test class for class {@link EPredefinedDocumentTypeIdentifier}.
  *
  * @author Philip Helger
- *
  */
-public final class EPredefinedDocumentTypeIdentifierTest {
+public final class EPredefinedDocumentTypeIdentifierTest
+{
   @Test
-  public void testBasic () {
-    for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ()) {
+  public void testBasic ()
+  {
+    for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ())
+    {
       assertNotNull (e.getName ());
       assertEquals (EPredefinedDocumentTypeIdentifier.DOC_TYPE_SCHEME, e.getScheme ());
       assertNotNull (e.getID ());

@@ -23,12 +23,14 @@ import org.junit.Test;
  * Test class for class {@link ReverseDocumentTypeMapping}.
  *
  * @author Philip Helger
- *
  */
-public final class ReverseDocumentTypeMappingTest {
+public final class ReverseDocumentTypeMappingTest
+{
   @Test
-  public void testBasic () {
-    for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ()) {
+  public void testBasic ()
+  {
+    for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ())
+    {
       assertNotNull ("Please register " + e + " to ReverseDocumentTypeMapping",
                      ReverseDocumentTypeMapping.getReverseDocumentType (e));
     }

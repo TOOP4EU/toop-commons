@@ -31,35 +31,45 @@ import com.helger.commons.error.level.EErrorLevel;
  *
  * @author Philip Helger
  */
-public final class ToopKafkaClientTest {
+public final class ToopKafkaClientTest
+{
   @BeforeClass
-  public static void beforeAll () {
+  public static void beforeAll ()
+  {
     ToopKafkaClient.setKafkaEnabled (true);
   }
 
   @AfterClass
-  public static void afterAll () {
+  public static void afterAll ()
+  {
     // Disable again for other tests
     ToopKafkaClient.setKafkaEnabled (false);
   }
 
   @Test
-  public void testBasic () {
-    try {
+  public void testBasic ()
+  {
+    try
+    {
       // Don't send too many - will take forever if no Kafka server is up and
       // running!
       for (int i = 0; i < 5; ++i)
         ToopKafkaClient.send (EErrorLevel.INFO, "Value" + i);
-    } catch (final KafkaException ex) {
+    }
+    catch (final KafkaException ex)
+    {
       // lets act as if we are not surprised...
-    } finally {
+    }
+    finally
+    {
       ToopKafkaClient.close ();
     }
   }
 
   @Test
-  public void testDefaultProperties () {
-    final ICommonsMap<String, String> aProps = ToopKafkaClient.defaultProperties ();
+  public void testDefaultProperties ()
+  {
+    final ICommonsMap <String, String> aProps = ToopKafkaClient.defaultProperties ();
     assertNotNull (aProps);
     // Ensure mutable map
     aProps.put ("foo", "bar");

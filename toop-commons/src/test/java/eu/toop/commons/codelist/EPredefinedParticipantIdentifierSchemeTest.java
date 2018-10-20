@@ -23,12 +23,14 @@ import org.junit.Test;
  * Test class for class {@link EPredefinedParticipantIdentifierScheme}.
  *
  * @author Philip Helger
- *
  */
-public final class EPredefinedParticipantIdentifierSchemeTest {
+public final class EPredefinedParticipantIdentifierSchemeTest
+{
   @Test
-  public void testBasic () {
-    for (final EPredefinedParticipantIdentifierScheme e : EPredefinedParticipantIdentifierScheme.values ()) {
+  public void testBasic ()
+  {
+    for (final EPredefinedParticipantIdentifierScheme e : EPredefinedParticipantIdentifierScheme.values ())
+    {
       assertNotNull (e.getName ());
       assertNotNull (e.getID ());
       assertNotNull (e.getSince ());

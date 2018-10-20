@@ -67,9 +67,9 @@ import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
  * child certificates.
  *
  * @author Philip Helger
- *
  */
-public final class MainCreateCert {
+public final class MainCreateCert
+{
   private static final Logger s_aLogger = LoggerFactory.getLogger (MainCreateCert.class);
   private static final Provider PROVIDER = PBCProvider.getProvider ();
   private static final int RSA_KEY_LEN = 2048;
@@ -77,22 +77,26 @@ public final class MainCreateCert {
   private static final String SIGNING_ALGO = "SHA256WithRSAEncryption";
 
   @Nonnull
-  private static Date _now () {
+  private static Date _now ()
+  {
     return new Date (System.currentTimeMillis ());
   }
 
   @Nonnull
-  private static Date _plusDays (final long nDays) {
+  private static Date _plusDays (final long nDays)
+  {
     return new Date (System.currentTimeMillis () + nDays * 24 * CGlobal.MILLISECONDS_PER_HOUR);
   }
 
   @Nonnull
-  private static X500Name _x500 (final String fqdn) {
+  private static X500Name _x500 (final String fqdn)
+  {
     return new X500Name ("CN=" + fqdn + ", O=toop4eu, C=EU");
   }
 
   @Nonnull
-  static KeyPair genRSAKeyPair () throws NoSuchAlgorithmException {
+  static KeyPair genRSAKeyPair () throws NoSuchAlgorithmException
+  {
     // Get RSA key factory:
     final KeyPairGenerator kpg = KeyPairGenerator.getInstance ("RSA", PROVIDER);
     // Generate RSA public/private key pair:
@@ -101,13 +105,20 @@ public final class MainCreateCert {
   }
 
   @Nonnull
-  static X509Certificate generateCertificate (final String fqdn, final KeyPair keypair, final Date notAfter)
-      throws Exception {
+  static X509Certificate generateCertificate (final String fqdn,
+                                              final KeyPair keypair,
+                                              final Date notAfter) throws Exception
+  {
     final PrivateKey key = keypair.getPrivate ();
     // Prepare the information required for generating an X.509 certificate.
     final X500Name owner = _x500 (fqdn);
     final X509v3CertificateBuilder builder = new JcaX509v3CertificateBuilder (owner,
-        new BigInteger (64, SecureRandom.getInstanceStrong ()), _now (), notAfter, owner, keypair.getPublic ());
+                                                                              new BigInteger (64,
+                                                                                              SecureRandom.getInstanceStrong ()),
+                                                                              _now (),
+                                                                              notAfter,
+                                                                              owner,
+                                                                              keypair.getPublic ());
 
     final ContentSigner signer = new JcaContentSignerBuilder (SIGNING_ALGO).build (key);
     final X509CertificateHolder certHolder = builder.build (signer);
@@ -118,20 +129,24 @@ public final class MainCreateCert {
   }
 
   @Nonnull
-  static PKCS10CertificationRequest createCSR (final X509Certificate cert, final KeyPair keyPair) throws Exception {
+  static PKCS10CertificationRequest createCSR (final X509Certificate cert, final KeyPair keyPair) throws Exception
+  {
     final Principal principal = cert.getSubjectDN ();
     // generate certification request
     final X500Name x500Name = new X500Name (principal.toString ());
     final PKCS10CertificationRequestBuilder p10Builder = new JcaPKCS10CertificationRequestBuilder (x500Name,
-        keyPair.getPublic ());
+                                                                                                   keyPair.getPublic ());
     final JcaContentSignerBuilder csBuilder = new JcaContentSignerBuilder (SIGNING_ALGO);
     final ContentSigner signer = csBuilder.build (keyPair.getPrivate ());
     return p10Builder.build (signer);
   }
 
   @Nonnull
-  static X509Certificate signCSR (final PKCS10CertificationRequest inputCSR, final PrivateKey caPrivate,
-      final KeyPair pair, final Date notAfter) throws Exception {
+  static X509Certificate signCSR (final PKCS10CertificationRequest inputCSR,
+                                  final PrivateKey caPrivate,
+                                  final KeyPair pair,
+                                  final Date notAfter) throws Exception
+  {
 
     final AlgorithmIdentifier sigAlgId = new DefaultSignatureAlgorithmIdentifierFinder ().find (SIGNING_ALGO);
     final AlgorithmIdentifier digAlgId = new DefaultDigestAlgorithmIdentifierFinder ().find (sigAlgId);
@@ -140,7 +155,12 @@ public final class MainCreateCert {
     final SubjectPublicKeyInfo keyInfo = SubjectPublicKeyInfo.getInstance (pair.getPublic ().getEncoded ());
 
     final X509v3CertificateBuilder myCertificateGenerator = new X509v3CertificateBuilder (_x500 (CN_ROOT),
-        new BigInteger (64, SecureRandom.getInstanceStrong ()), _now (), notAfter, inputCSR.getSubject (), keyInfo);
+                                                                                          new BigInteger (64,
+                                                                                                          SecureRandom.getInstanceStrong ()),
+                                                                                          _now (),
+                                                                                          notAfter,
+                                                                                          inputCSR.getSubject (),
+                                                                                          keyInfo);
 
     final ContentSigner sigGen = new BcRSAContentSignerBuilder (sigAlgId, digAlgId).build (foo);
 
@@ -149,14 +169,16 @@ public final class MainCreateCert {
     final org.bouncycastle.asn1.x509.Certificate eeX509CertificateStructure = holder.toASN1Structure ();
 
     // Read Certificate
-    try (final InputStream is1 = new NonBlockingByteArrayInputStream (eeX509CertificateStructure.getEncoded ())) {
+    try (final InputStream is1 = new NonBlockingByteArrayInputStream (eeX509CertificateStructure.getEncoded ()))
+    {
       final CertificateFactory cf = CertificateFactory.getInstance ("X.509", PROVIDER);
       final X509Certificate theCert = (X509Certificate) cf.generateCertificate (is1);
       return theCert;
     }
   }
 
-  public static void main (final String[] args) throws Exception {
+  public static void main (final String [] args) throws Exception
+  {
     Security.addProvider (PROVIDER);
     final String sPassword = "toop4eu";
 
@@ -170,12 +192,23 @@ public final class MainCreateCert {
     final KeyPair aRootKey = genRSAKeyPair ();
     final X509Certificate aRootCert = generateCertificate (CN_ROOT, aRootKey, _plusDays (9999));
 
-    aKS.setKeyEntry ("root-key", aRootKey.getPrivate (), sPassword.toCharArray (), new Certificate[] { aRootCert });
+    aKS.setKeyEntry ("root-key", aRootKey.getPrivate (), sPassword.toCharArray (), new Certificate [] { aRootCert });
     aTS.setCertificateEntry ("root-cert", aRootCert);
 
     // all child certificates
-    for (final String sContext : new String[] { "smp", "directory", "package-tracker", "sms", "elonia-dc",
-        "freedonia-dc", "elonia-dp", "freedonia-dp", "elonia-mp", "freedonia-mp", "elonia-as4", "freedonia-as4" }) {
+    for (final String sContext : new String [] { "smp",
+                                                 "directory",
+                                                 "package-tracker",
+                                                 "sms",
+                                                 "elonia-dc",
+                                                 "freedonia-dc",
+                                                 "elonia-dp",
+                                                 "freedonia-dp",
+                                                 "elonia-mp",
+                                                 "freedonia-mp",
+                                                 "elonia-as4",
+                                                 "freedonia-as4" })
+    {
       final Date aNotAfter = _plusDays (1000);
       final KeyPair aSMPKey = genRSAKeyPair ();
       X509Certificate aSMPCert = generateCertificate (sContext, aSMPKey, aNotAfter);
@@ -183,8 +216,10 @@ public final class MainCreateCert {
       aSMPCert = signCSR (aSMPCSR, aRootKey.getPrivate (), aSMPKey, aNotAfter);
 
       // Add to keystore
-      aKS.setKeyEntry (sContext + "-key", aSMPKey.getPrivate (), sPassword.toCharArray (),
-          new Certificate[] { aSMPCert, aRootCert });
+      aKS.setKeyEntry (sContext + "-key",
+                       aSMPKey.getPrivate (),
+                       sPassword.toCharArray (),
+                       new Certificate [] { aSMPCert, aRootCert });
       // Add to truststore
       aTS.setCertificateEntry (sContext + "-cert", aSMPCert);
     }

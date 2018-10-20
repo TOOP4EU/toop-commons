@@ -29,12 +29,14 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Indicato
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.NumericType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.TextType;
 
-public final class ToopXSDHelper {
-  private ToopXSDHelper () {
-  }
+public final class ToopXSDHelper
+{
+  private ToopXSDHelper ()
+  {}
 
   @Nonnull
-  public static IdentifierType createIdentifier (@Nonnull @Nonempty final String sValue) {
+  public static IdentifierType createIdentifier (@Nonnull @Nonempty final String sValue)
+  {
     final IdentifierType ret = new IdentifierType ();
     ret.setValue (sValue);
     return ret;
@@ -42,7 +44,8 @@ public final class ToopXSDHelper {
 
   @Nonnull
   public static IdentifierType createIdentifier (@Nonnull @Nonempty final String sSchemeID,
-                                                 @Nonnull @Nonempty final String sValue) {
+                                                 @Nonnull @Nonempty final String sValue)
+  {
     final IdentifierType ret = new IdentifierType ();
     ret.setSchemeID (sSchemeID);
     ret.setValue (sValue);
@@ -50,21 +53,24 @@ public final class ToopXSDHelper {
   }
 
   @Nonnull
-  public static IndicatorType createIndicator (@Nonnull @Nonempty final boolean bValue) {
+  public static IndicatorType createIndicator (@Nonnull @Nonempty final boolean bValue)
+  {
     final IndicatorType ret = new IndicatorType ();
     ret.setValue (bValue);
     return ret;
   }
 
   @Nonnull
-  public static TextType createText (@Nonnull @Nonempty final String sValue) {
+  public static TextType createText (@Nonnull @Nonempty final String sValue)
+  {
     final TextType ret = new TextType ();
     ret.setValue (sValue);
     return ret;
   }
 
   @Nonnull
-  public static TextType createText (@Nullable final Locale aLanguage, @Nonnull @Nonempty final String sValue) {
+  public static TextType createText (@Nullable final Locale aLanguage, @Nonnull @Nonempty final String sValue)
+  {
     final TextType ret = new TextType ();
     if (aLanguage != null)
       ret.setLanguageID (aLanguage.getLanguage ());
@@ -73,15 +79,16 @@ public final class ToopXSDHelper {
   }
 
   @Nonnull
-  public static CodeType createCode (@Nonnull @Nonempty final String sValue) {
+  public static CodeType createCode (@Nonnull @Nonempty final String sValue)
+  {
     final CodeType ret = new CodeType ();
     ret.setValue (sValue);
     return ret;
   }
 
   @Nonnull
-  public static CodeType createCode (@Nonnull @Nonempty final String sSchemeID,
-                                     @Nonnull @Nonempty final String sValue) {
+  public static CodeType createCode (@Nonnull @Nonempty final String sSchemeID, @Nonnull @Nonempty final String sValue)
+  {
     final CodeType ret = new CodeType ();
     ret.setName (sSchemeID);
     ret.setValue (sValue);
@@ -89,7 +96,8 @@ public final class ToopXSDHelper {
   }
 
   @Nonnull
-  public static NumericType createNumeric (@Nonnull final BigDecimal aValue) {
+  public static NumericType createNumeric (@Nonnull final BigDecimal aValue)
+  {
     final NumericType ret = new NumericType ();
     ret.setValue (aValue);
     return ret;

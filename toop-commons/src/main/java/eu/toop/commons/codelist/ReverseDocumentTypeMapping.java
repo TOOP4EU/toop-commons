@@ -28,27 +28,31 @@ import com.helger.commons.collection.impl.ICommonsMap;
  *
  * @author Philip Helger
  */
-public final class ReverseDocumentTypeMapping {
-  private static final ICommonsMap<EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> s_aMap = new CommonsEnumMap<> (EPredefinedDocumentTypeIdentifier.class);
+public final class ReverseDocumentTypeMapping
+{
+  private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> s_aMap = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
 
   private static void _add (@Nonnull final EPredefinedDocumentTypeIdentifier aRequest,
-                            @Nonnull final EPredefinedDocumentTypeIdentifier aResponse) {
+                            @Nonnull final EPredefinedDocumentTypeIdentifier aResponse)
+  {
     s_aMap.put (aRequest, aResponse);
     s_aMap.put (aResponse, aRequest);
   }
 
-  static {
+  static
+  {
     // Fill the map
     _add (EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
           EPredefinedDocumentTypeIdentifier.RESPONSE_REGISTEREDORGANIZATION);
   }
 
-  private ReverseDocumentTypeMapping () {
-  }
+  private ReverseDocumentTypeMapping ()
+  {}
 
   @Nonnull
   @Nonempty
-  public static EPredefinedDocumentTypeIdentifier getReverseDocumentType (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
+  public static EPredefinedDocumentTypeIdentifier getReverseDocumentType (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
+  {
     final EPredefinedDocumentTypeIdentifier ret = s_aMap.get (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);

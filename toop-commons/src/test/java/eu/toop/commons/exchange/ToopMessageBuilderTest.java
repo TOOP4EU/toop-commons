@@ -46,15 +46,20 @@ import eu.toop.commons.jaxb.ToopXSDHelper;
  * Test class for class {@link ToopMessageBuilder}.
  *
  * @author Philip Helger
- *
  */
-public final class ToopMessageBuilderTest {
-  private static final SignatureHelper SH = new SignatureHelper (EKeyStoreType.JKS, "playground-keystore-v1.jks",
-                                                                 "toop4eu", "sms-key", "toop4eu");
+public final class ToopMessageBuilderTest
+{
+  private static final SignatureHelper SH = new SignatureHelper (EKeyStoreType.JKS,
+                                                                 "playground-keystore-v1.jks",
+                                                                 "toop4eu",
+                                                                 "sms-key",
+                                                                 "toop4eu");
 
   @Test
-  public void testRequestMessage () throws IOException {
-    try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+  public void testRequestMessage () throws IOException
+  {
+    try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
+    {
       final String sCountryCode = "SE";
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sCountryCode),
                                                                                    ToopXSDHelper.createIdentifier ("toop",
@@ -62,12 +67,13 @@ public final class ToopMessageBuilderTest {
                                                                                    sCountryCode,
                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                   new CommonsArrayList<> (new ConceptValue ("companyName",
-                                                                                                                             "Acme Inc.")));
+                                                                                   new CommonsArrayList <> (new ConceptValue ("companyName",
+                                                                                                                              "Acme Inc.")));
       ToopMessageBuilder.createRequestMessage (aSrcRequest, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcRequest, aSrcRequest.clone ());
 
-      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ()) {
+      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
+      {
         // Read ASIC again
         final TDETOOPRequestType aRead = ToopMessageBuilder.parseRequestMessage (archiveInput);
         assertNotNull (aRead);
@@ -79,20 +85,23 @@ public final class ToopMessageBuilderTest {
   }
 
   @Test
-  public void testResponseMessage () throws IOException {
-    try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+  public void testResponseMessage () throws IOException
+  {
+    try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
+    {
       final String sCountryCode = "SE";
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                       "senderid"),
                                                                                       sCountryCode,
                                                                                       EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                      new CommonsArrayList<> (new ConceptValue ("companyName",
-                                                                                                                                "Acme Inc.")));
+                                                                                      new CommonsArrayList <> (new ConceptValue ("companyName",
+                                                                                                                                 "Acme Inc.")));
       ToopMessageBuilder.createResponseMessage (aSrcResponse, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
 
-      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ()) {
+      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
+      {
         // Read ASIC again
         final TDETOOPResponseType aRead = ToopMessageBuilder.parseResponseMessage (archiveInput);
         assertNotNull (aRead);
@@ -104,17 +113,19 @@ public final class ToopMessageBuilderTest {
   }
 
   @Test
-  public void testResponseMessageV2 () throws IOException {
-    try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+  public void testResponseMessageV2 () throws IOException
+  {
+    try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
+    {
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                     "senderid"),
                                                                                     "SE",
                                                                                     EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                     EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                    new CommonsArrayList<> (new ConceptValue ("companyName",
-                                                                                                                              "Acme Inc."),
-                                                                                                            new ConceptValue ("companyVATIN",
-                                                                                                                              "blafoo.vatin")));
+                                                                                    new CommonsArrayList <> (new ConceptValue ("companyName",
+                                                                                                                               "Acme Inc."),
+                                                                                                             new ConceptValue ("companyVATIN",
+                                                                                                                               "blafoo.vatin")));
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createResponse (aSrcRequest);
       {
         // Required for response
@@ -146,7 +157,8 @@ public final class ToopMessageBuilderTest {
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
       ToopMessageBuilder.createResponseMessage (aSrcResponse, aBAOS, SH);
 
-      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ()) {
+      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
+      {
         // Read ASIC again
         final TDETOOPResponseType aRead = ToopMessageBuilder.parseResponseMessage (archiveInput);
         assertNotNull (aRead);
@@ -159,20 +171,27 @@ public final class ToopMessageBuilderTest {
 
   @Test
   @SuppressFBWarnings ("NP_NONNULL_PARAM_VIOLATION")
-  public void testEmpty () throws IOException {
-    try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
+  public void testEmpty () throws IOException
+  {
+    try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
+    {
       // No data
       ToopMessageBuilder.createRequestMessage (null, archiveOutput, SH);
       fail ("Exception expected");
-    } catch (final NullPointerException ex) {
+    }
+    catch (final NullPointerException ex)
+    {
       // Expected
     }
 
-    try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ()) {
+    try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
+    {
       // No data
       ToopMessageBuilder.createResponseMessage (null, archiveOutput, SH);
       fail ("Exception expected");
-    } catch (final NullPointerException ex) {
+    }
+    catch (final NullPointerException ex)
+    {
       // Expected
     }
   }

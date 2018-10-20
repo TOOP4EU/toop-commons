@@ -28,11 +28,12 @@ import com.helger.security.keystore.IKeyStoreType;
  * @author Philip Helger
  */
 @Immutable
-public final class CToopPlayground {
+public final class CToopPlayground
+{
   public static final IKeyStoreType TYPE_PLAYGROUND_TRUST_STORE = EKeyStoreType.JKS;
   public static final IReadableResource PATH_PLAYGROUND_TRUST_STORE = new ClassPathResource ("/truststore/playground-truststore-v3.jks");
   public static final String PASSWORD_PLAYGROUND_TRUST_STORE = "toop4eu";
 
-  private CToopPlayground () {
-  }
+  private CToopPlayground ()
+  {}
 }

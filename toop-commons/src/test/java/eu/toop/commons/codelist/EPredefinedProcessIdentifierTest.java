@@ -25,12 +25,14 @@ import org.junit.Test;
  * Test class for class {@link EPredefinedProcessIdentifier}.
  *
  * @author Philip Helger
- *
  */
-public final class EPredefinedProcessIdentifierTest {
+public final class EPredefinedProcessIdentifierTest
+{
   @Test
-  public void testBasic () {
-    for (final EPredefinedProcessIdentifier e : EPredefinedProcessIdentifier.values ()) {
+  public void testBasic ()
+  {
+    for (final EPredefinedProcessIdentifier e : EPredefinedProcessIdentifier.values ())
+    {
       assertNotNull (e.getName ());
       assertEquals (EPredefinedProcessIdentifier.PROCESS_SCHEME, e.getScheme ());
       assertNotNull (e.getID ());

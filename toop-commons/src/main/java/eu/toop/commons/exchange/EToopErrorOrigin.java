@@ -27,7 +27,8 @@ import com.helger.commons.lang.EnumHelper;
  *
  * @author Philip Helger
  */
-public enum EToopErrorOrigin implements IHasID<String> {
+public enum EToopErrorOrigin implements IHasID <String>
+{
   /** 1/4 */
   REQUEST_SUBMISSION ("RequestSubmission"),
   /** 2/4 */
@@ -41,18 +42,21 @@ public enum EToopErrorOrigin implements IHasID<String> {
 
   private final String m_sID;
 
-  private EToopErrorOrigin (@Nonnull @Nonempty final String sID) {
+  private EToopErrorOrigin (@Nonnull @Nonempty final String sID)
+  {
     m_sID = sID;
   }
 
   @Nonnull
   @Nonempty
-  public String getID () {
+  public String getID ()
+  {
     return m_sID;
   }
 
   @Nullable
-  public static EToopErrorOrigin getFromIDOrNull (@Nullable final String sID) {
+  public static EToopErrorOrigin getFromIDOrNull (@Nullable final String sID)
+  {
     return EnumHelper.getFromIDOrNull (EToopErrorOrigin.class, sID);
   }
 }

@@ -27,20 +27,23 @@ import com.helger.commons.id.IHasID;
  * @author Philip Helger
  * @since 0.9.2
  */
-public enum EConceptType implements IHasID<String> {
+public enum EConceptType implements IHasID <String>
+{
   DC ("DC"),
   TC ("TC"),
   DP ("DP");
 
   private final String m_sID;
 
-  private EConceptType (@Nonnull @Nonempty final String sID) {
+  private EConceptType (@Nonnull @Nonempty final String sID)
+  {
     m_sID = sID;
   }
 
   @Nonnull
   @Nonempty
-  public String getID () {
+  public String getID ()
+  {
     return m_sID;
   }
 }

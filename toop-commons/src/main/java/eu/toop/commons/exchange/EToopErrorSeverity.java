@@ -27,24 +27,28 @@ import com.helger.commons.lang.EnumHelper;
  *
  * @author Philip Helger
  */
-public enum EToopErrorSeverity implements IHasID<String> {
+public enum EToopErrorSeverity implements IHasID <String>
+{
   WARNING ("WARNING"),
   FAILURE ("FAILURE");
 
   private final String m_sID;
 
-  private EToopErrorSeverity (@Nonnull @Nonempty final String sID) {
+  private EToopErrorSeverity (@Nonnull @Nonempty final String sID)
+  {
     m_sID = sID;
   }
 
   @Nonnull
   @Nonempty
-  public String getID () {
+  public String getID ()
+  {
     return m_sID;
   }
 
   @Nullable
-  public static EToopErrorSeverity getFromIDOrNull (@Nullable final String sID) {
+  public static EToopErrorSeverity getFromIDOrNull (@Nullable final String sID)
+  {
     return EnumHelper.getFromIDOrNull (EToopErrorSeverity.class, sID);
   }
 }

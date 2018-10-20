@@ -36,11 +36,13 @@ import eu.toop.commons.dataexchange.TDEConceptRequestType;
  */
 @Immutable
 @MustImplementEqualsAndHashcode
-public final class ConceptValue implements Serializable {
+public final class ConceptValue implements Serializable
+{
   private final String m_sNamespace;
   private final String m_sValue;
 
-  public ConceptValue (@Nonnull @Nonempty final String sNamespace, @Nonnull @Nonempty final String sValue) {
+  public ConceptValue (@Nonnull @Nonempty final String sNamespace, @Nonnull @Nonempty final String sValue)
+  {
     ValueEnforcer.notEmpty (sNamespace, "Namespace");
     ValueEnforcer.notEmpty (sValue, "Value");
     m_sNamespace = sNamespace;
@@ -48,13 +50,13 @@ public final class ConceptValue implements Serializable {
   }
 
   /**
-   *
    * @return The namespace as provided in the constructor. Neither
    *         <code>null</code> nor empty.
    */
   @Nonnull
   @Nonempty
-  public String getNamespace () {
+  public String getNamespace ()
+  {
     return m_sNamespace;
   }
 
@@ -62,10 +64,11 @@ public final class ConceptValue implements Serializable {
    * Check if this concept has the provided namespace or not.
    *
    * @param sNamespace
-   *          The namespace to compare to. May be <code>null</code>.
+   *        The namespace to compare to. May be <code>null</code>.
    * @return <code>true</code> if the namespaces are identical.
    */
-  public boolean hasNamespace (@Nullable final String sNamespace) {
+  public boolean hasNamespace (@Nullable final String sNamespace)
+  {
     return m_sNamespace.equals (sNamespace);
   }
 
@@ -75,7 +78,8 @@ public final class ConceptValue implements Serializable {
    */
   @Nonnull
   @Nonempty
-  public String getValue () {
+  public String getValue ()
+  {
     return m_sValue;
   }
 
@@ -83,26 +87,28 @@ public final class ConceptValue implements Serializable {
    * Check if this concept value has the provided value or not.
    *
    * @param sValue
-   *          The values to compare to. May be <code>null</code>.
+   *        The values to compare to. May be <code>null</code>.
    * @return <code>true</code> if the values are identical.
    */
-  public boolean hasValue (@Nullable final String sValue) {
+  public boolean hasValue (@Nullable final String sValue)
+  {
     return m_sValue.equals (sValue);
   }
 
   /**
-   *
    * @param sSep
-   *          The separator to be used. May not be <code>null</code>.
+   *        The separator to be used. May not be <code>null</code>.
    * @return namespace + separator + value
    */
   @Nonnull
-  public String getConcatenatedValue (@Nonnull final String sSep) {
+  public String getConcatenatedValue (@Nonnull final String sSep)
+  {
     return m_sNamespace + sSep + m_sValue;
   }
 
   @Override
-  public boolean equals (final Object o) {
+  public boolean equals (final Object o)
+  {
     if (o == this)
       return true;
     if (o == null || !getClass ().equals (o.getClass ()))
@@ -112,12 +118,14 @@ public final class ConceptValue implements Serializable {
   }
 
   @Override
-  public int hashCode () {
+  public int hashCode ()
+  {
     return new HashCodeGenerator (this).append (m_sNamespace).append (m_sValue).getHashCode ();
   }
 
   @Override
-  public String toString () {
+  public String toString ()
+  {
     return new ToStringGenerator (null).append ("Namespace", m_sNamespace).append ("Value", m_sValue).getToString ();
   }
 
@@ -126,11 +134,12 @@ public final class ConceptValue implements Serializable {
    * type.
    * 
    * @param aConcept
-   *          JAXB data type. May not be <code>null</code>.
+   *        JAXB data type. May not be <code>null</code>.
    * @return New {@link ConceptValue} and never <code>null</code>.
    */
   @Nonnull
-  public static ConceptValue create (@Nonnull final TDEConceptRequestType aConcept) {
+  public static ConceptValue create (@Nonnull final TDEConceptRequestType aConcept)
+  {
     ValueEnforcer.notNull (aConcept, "Concept");
     return new ConceptValue (aConcept.getConceptNamespace ().getValue (), aConcept.getConceptName ().getValue ());
   }

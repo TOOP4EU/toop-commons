@@ -23,12 +23,14 @@ import org.junit.Test;
  * Test class for class {@link SMMDocumentTypeMapping}.
  *
  * @author Philip Helger
- *
  */
-public final class SMMDocumentTypeMappingTest {
+public final class SMMDocumentTypeMappingTest
+{
   @Test
-  public void testBasic () {
-    for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ()) {
+  public void testBasic ()
+  {
+    for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ())
+    {
       assertNotNull ("Please register " + e + " to SMMDocumentTypeMapping",
                      SMMDocumentTypeMapping.getToopSMNamespace (e));
     }

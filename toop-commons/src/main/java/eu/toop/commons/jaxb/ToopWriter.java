@@ -23,14 +23,16 @@ import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
-public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter<JAXBTYPE>> {
+public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWriter <JAXBTYPE>>
+{
   /**
    * Constructor with an arbitrary document type.
    *
    * @param aDocType
-   *          Document type to be used. May not be <code>null</code>.
+   *        Document type to be used. May not be <code>null</code>.
    */
-  public ToopWriter (@Nonnull final EToopXMLDocumentType aDocType) {
+  public ToopWriter (@Nonnull final EToopXMLDocumentType aDocType)
+  {
     super (aDocType);
   }
 
@@ -40,8 +42,9 @@ public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopWriter<TDETOOPRequestType> request () {
-    final ToopWriter<TDETOOPRequestType> ret = new ToopWriter<> (EToopXMLDocumentType.REQUEST);
+  public static ToopWriter <TDETOOPRequestType> request ()
+  {
+    final ToopWriter <TDETOOPRequestType> ret = new ToopWriter <> (EToopXMLDocumentType.REQUEST);
     ret.setFormattedOutput (true);
     return ret;
   }
@@ -52,8 +55,9 @@ public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopWriter<TDETOOPResponseType> response () {
-    final ToopWriter<TDETOOPResponseType> ret = new ToopWriter<> (EToopXMLDocumentType.RESPONSE);
+  public static ToopWriter <TDETOOPResponseType> response ()
+  {
+    final ToopWriter <TDETOOPResponseType> ret = new ToopWriter <> (EToopXMLDocumentType.RESPONSE);
     ret.setFormattedOutput (true);
     return ret;
   }
@@ -64,8 +68,9 @@ public class ToopWriter<JAXBTYPE> extends JAXBWriterBuilder<JAXBTYPE, ToopWriter
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopWriter<TDETOOPErrorMessageType> errorMessage () {
-    final ToopWriter<TDETOOPErrorMessageType> ret = new ToopWriter<> (EToopXMLDocumentType.ERROR_MESSAGE);
+  public static ToopWriter <TDETOOPErrorMessageType> errorMessage ()
+  {
+    final ToopWriter <TDETOOPErrorMessageType> ret = new ToopWriter <> (EToopXMLDocumentType.ERROR_MESSAGE);
     ret.setFormattedOutput (true);
     return ret;
   }

@@ -26,9 +26,9 @@ import com.helger.commons.lang.EnumHelper;
  * Source: ErrorCategory-CodeList.gc
  *
  * @author Philip Helger
- *
  */
-public enum EToopErrorCategory implements IHasID<String> {
+public enum EToopErrorCategory implements IHasID <String>
+{
   SEMANTIC_MAPPING ("SemanticMapping"),
   PARSING ("Parsing"),
   DYNAMIC_DISCOVERY ("DynamicDiscovery"),
@@ -39,18 +39,21 @@ public enum EToopErrorCategory implements IHasID<String> {
 
   private final String m_sID;
 
-  private EToopErrorCategory (@Nonnull @Nonempty final String sID) {
+  private EToopErrorCategory (@Nonnull @Nonempty final String sID)
+  {
     m_sID = sID;
   }
 
   @Nonnull
   @Nonempty
-  public String getID () {
+  public String getID ()
+  {
     return m_sID;
   }
 
   @Nullable
-  public static EToopErrorCategory getFromIDOrNull (@Nullable final String sID) {
+  public static EToopErrorCategory getFromIDOrNull (@Nullable final String sID)
+  {
     return EnumHelper.getFromIDOrNull (EToopErrorCategory.class, sID);
   }
 }

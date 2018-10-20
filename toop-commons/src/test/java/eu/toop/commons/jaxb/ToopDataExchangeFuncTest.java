@@ -51,13 +51,17 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryOb
  *
  * @author Philip Helger
  */
-public final class ToopDataExchangeFuncTest {
+public final class ToopDataExchangeFuncTest
+{
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopDataExchangeFuncTest.class);
 
   @Test
-  public void testReadWriteDataRequest () {
-    for (final String sFilename : new String[] { "data-request-example.xml", "data-request1.xml",
-                                                 "commander-request1.xml" }) {
+  public void testReadWriteDataRequest ()
+  {
+    for (final String sFilename : new String [] { "data-request-example.xml",
+                                                  "data-request1.xml",
+                                                  "commander-request1.xml" })
+    {
       final TDETOOPRequestType aRequest = ToopReader.request ().read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
       final String sXML = ToopWriter.request ().getAsString (aRequest);
@@ -66,8 +70,10 @@ public final class ToopDataExchangeFuncTest {
   }
 
   @Test
-  public void testReadWriteErrorMessage () {
-    for (final String sFilename : new String[] { "data-error1.xml" }) {
+  public void testReadWriteErrorMessage ()
+  {
+    for (final String sFilename : new String [] { "data-error1.xml" })
+    {
       final TDETOOPErrorMessageType aRequest = ToopReader.errorMessage ()
                                                          .read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
@@ -77,8 +83,10 @@ public final class ToopDataExchangeFuncTest {
   }
 
   @Test
-  public void testReadWriteDataResponse () {
-    for (final String sFilename : new String[] { "data-response-example.xml", "data-response1.xml" }) {
+  public void testReadWriteDataResponse ()
+  {
+    for (final String sFilename : new String [] { "data-response-example.xml", "data-response1.xml" })
+    {
       final TDETOOPResponseType aResponse = ToopReader.response ()
                                                       .read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aResponse);
@@ -88,7 +96,8 @@ public final class ToopDataExchangeFuncTest {
   }
 
   @Test
-  public void testCreateRequestFromScratch () {
+  public void testCreateRequestFromScratch ()
+  {
     final TDETOOPRequestType r = new TDETOOPRequestType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
@@ -164,7 +173,8 @@ public final class ToopDataExchangeFuncTest {
 
     final Document aDoc = ToopWriter.request ().getAsDocument (r);
     assertNotNull (aDoc);
-    if (true) {
+    if (true)
+    {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
       aCtx.addMapping ("toop", ObjectFactory._Request_QNAME.getNamespaceURI ());
       s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
@@ -172,7 +182,8 @@ public final class ToopDataExchangeFuncTest {
   }
 
   @Test
-  public void testCreateResponseFromScratch () {
+  public void testCreateResponseFromScratch ()
+  {
     final TDETOOPResponseType r = new TDETOOPResponseType ();
     r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
@@ -259,7 +270,8 @@ public final class ToopDataExchangeFuncTest {
 
     final Document aDoc = ToopWriter.response ().getAsDocument (r);
     assertNotNull (aDoc);
-    if (true) {
+    if (true)
+    {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
       aCtx.addMapping ("toop", ObjectFactory._Request_QNAME.getNamespaceURI ());
       s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));

@@ -36,43 +36,51 @@ import eu.toop.commons.dataexchange.TDETOOPResponseType;
  *
  * @author Philip Helger
  */
-public enum EToopXMLDocumentType implements IJAXBDocumentType {
+public enum EToopXMLDocumentType implements IJAXBDocumentType
+{
   REQUEST (TDETOOPRequestType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
   RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
   ERROR_MESSAGE (TDETOOPErrorMessageType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd");
 
   private final JAXBDocumentType m_aDocType;
 
-  private EToopXMLDocumentType (@Nonnull final Class<?> aClass, @Nonnull final String sXSDPath) {
-    m_aDocType = new JAXBDocumentType (aClass, new CommonsArrayList<> (sXSDPath),
+  private EToopXMLDocumentType (@Nonnull final Class <?> aClass, @Nonnull final String sXSDPath)
+  {
+    m_aDocType = new JAXBDocumentType (aClass,
+                                       new CommonsArrayList <> (sXSDPath),
                                        x -> StringHelper.trimEnd (StringHelper.trimStart (x, "TOOP"), "Type"));
   }
 
   @Nonnull
-  public Class<?> getImplementationClass () {
+  public Class <?> getImplementationClass ()
+  {
     return m_aDocType.getImplementationClass ();
   }
 
   @Nonnull
   @Nonempty
   @ReturnsMutableCopy
-  public ICommonsList<String> getAllXSDPaths () {
+  public ICommonsList <String> getAllXSDPaths ()
+  {
     return m_aDocType.getAllXSDPaths ();
   }
 
   @Nonnull
-  public String getNamespaceURI () {
+  public String getNamespaceURI ()
+  {
     return m_aDocType.getNamespaceURI ();
   }
 
   @Nonnull
   @Nonempty
-  public String getLocalName () {
+  public String getLocalName ()
+  {
     return m_aDocType.getLocalName ();
   }
 
   @Nonnull
-  public Schema getSchema (@Nullable final ClassLoader aClassLoader) {
+  public Schema getSchema (@Nullable final ClassLoader aClassLoader)
+  {
     return m_aDocType.getSchema (aClassLoader);
   }
 }

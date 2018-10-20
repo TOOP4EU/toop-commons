@@ -71,17 +71,20 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryOb
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
 @Immutable
-public final class ToopMessageBuilder {
+public final class ToopMessageBuilder
+{
   private static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPRequest";
   private static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPResponse";
 
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopMessageBuilder.class);
 
-  private ToopMessageBuilder () {
-  }
+  private ToopMessageBuilder ()
+  {}
 
-  public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest, @Nonnull final OutputStream aOS,
-                                           @Nonnull final SignatureHelper aSigHelper) throws IOException {
+  public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest,
+                                           @Nonnull final OutputStream aOS,
+                                           @Nonnull final SignatureHelper aSigHelper) throws IOException
+  {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -89,8 +92,9 @@ public final class ToopMessageBuilder {
     final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
     final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
     {
-      final byte[] aXML = ToopWriter.request ().getAsBytes (aRequest);
-      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_REQUEST,
+      final byte [] aXML = ToopWriter.request ().getAsBytes (aRequest);
+      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
+                       ENTRY_NAME_TOOP_DATA_REQUEST,
                        CMimeType.APPLICATION_XML);
     }
     aAsicWriter.sign (aSigHelper);
@@ -99,7 +103,8 @@ public final class ToopMessageBuilder {
 
   public static void createResponseMessage (@Nonnull final TDETOOPResponseType aResponse,
                                             @Nonnull final OutputStream aOS,
-                                            @Nonnull final SignatureHelper aSigHelper) throws IOException {
+                                            @Nonnull final SignatureHelper aSigHelper) throws IOException
+  {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -107,8 +112,9 @@ public final class ToopMessageBuilder {
     final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
     final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
     {
-      final byte[] aXML = ToopWriter.response ().getAsBytes (aResponse);
-      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML), ENTRY_NAME_TOOP_DATA_RESPONSE,
+      final byte [] aXML = ToopWriter.response ().getAsBytes (aResponse);
+      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
+                       ENTRY_NAME_TOOP_DATA_RESPONSE,
                        CMimeType.APPLICATION_XML);
     }
     aAsicWriter.sign (aSigHelper);
@@ -120,15 +126,16 @@ public final class ToopMessageBuilder {
    * {@link TDETOOPRequestType}.
    *
    * @param aIS
-   *          Input stream to read from. May not be <code>null</code>.
+   *        Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPRequestType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
-   *           In case of IO error
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
+  public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     final Object aObj = parseRequestOrResponse (aIS);
@@ -143,15 +150,16 @@ public final class ToopMessageBuilder {
    * {@link TDETOOPResponseType}.
    *
    * @param aIS
-   *          Input stream to read from. May not be <code>null</code>.
+   *        Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPResponseType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
-   *           In case of IO error
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException {
+  public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     final Object aObj = parseRequestOrResponse (aIS);
@@ -166,29 +174,36 @@ public final class ToopMessageBuilder {
    * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
    *
    * @param aIS
-   *          Input stream to read from. May not be <code>null</code>.
+   *        Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType} every
    *         time the method is called or <code>null</code> if none is contained
    *         in the ASIC.
    * @throws IOException
-   *           In case of IO error
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static Object parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException {
+  public static Object parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    try (final IAsicReader aAsicReader = AsicReaderFactory.newFactory ().open (aIS)) {
+    try (final IAsicReader aAsicReader = AsicReaderFactory.newFactory ().open (aIS))
+    {
       String sEntryName;
-      while ((sEntryName = aAsicReader.getNextFile ()) != null) {
-        if (sEntryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST)) {
-          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+      while ((sEntryName = aAsicReader.getNextFile ()) != null)
+      {
+        if (sEntryName.equals (ENTRY_NAME_TOOP_DATA_REQUEST))
+        {
+          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
+          {
             aAsicReader.writeFile (aBAOS);
             return ToopReader.request ().read (aBAOS.getAsInputStream ());
           }
         }
-        if (sEntryName.equals (ENTRY_NAME_TOOP_DATA_RESPONSE)) {
-          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ()) {
+        if (sEntryName.equals (ENTRY_NAME_TOOP_DATA_RESPONSE))
+        {
+          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
+          {
             aAsicReader.writeFile (aBAOS);
             return ToopReader.response ().read (aBAOS.getAsInputStream ());
           }
@@ -200,7 +215,8 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDEAddressType createMockAddressType (@Nonnull @Nonempty final String sCountryCode) {
+  public static TDEAddressType createMockAddressType (@Nonnull @Nonempty final String sCountryCode)
+  {
     final TDEAddressType aAddress = new TDEAddressType ();
     aAddress.addAddressLine (ToopXSDHelper.createText ("Hintere Zollamtstraße 4"));
     aAddress.addAddressLine (ToopXSDHelper.createText ("1030 Wien"));
@@ -214,7 +230,8 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDEDataRequestSubjectType createMockDataRequestSubject (@Nonnull @Nonempty final String sCountryCode) {
+  public static TDEDataRequestSubjectType createMockDataRequestSubject (@Nonnull @Nonempty final String sCountryCode)
+  {
     final TDEDataRequestSubjectType aRet = new TDEDataRequestSubjectType ();
     aRet.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
     {
@@ -243,7 +260,8 @@ public final class ToopMessageBuilder {
                                                       @Nonnull @Nonempty final String sCountryCode,
                                                       @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                       @Nonnull final EPredefinedProcessIdentifier eProcessID,
-                                                      @Nullable final Iterable<? extends ConceptValue> aValues) {
+                                                      @Nullable final Iterable <? extends ConceptValue> aValues)
+  {
     ValueEnforcer.notNull (aRequestSubject, "RequestSubject");
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
@@ -286,7 +304,8 @@ public final class ToopMessageBuilder {
       aRet.setDataRequestAuthorization (aAuth);
     }
 
-    for (final ConceptValue aCV : aValues) {
+    for (final ConceptValue aCV : aValues)
+    {
       final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
       aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
       {
@@ -308,7 +327,8 @@ public final class ToopMessageBuilder {
                                                         @Nonnull @Nonempty final String sCountryCode,
                                                         @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                         @Nonnull final EPredefinedProcessIdentifier eProcessID,
-                                                        @Nullable final Iterable<? extends ConceptValue> aValues) {
+                                                        @Nullable final Iterable <? extends ConceptValue> aValues)
+  {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
     ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
@@ -364,7 +384,8 @@ public final class ToopMessageBuilder {
       aRet.setDataRequestAuthorization (aAuth);
     }
 
-    for (final ConceptValue aCV : aValues) {
+    for (final ConceptValue aCV : aValues)
+    {
       final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
       aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
       {
@@ -420,11 +441,12 @@ public final class ToopMessageBuilder {
    * Create a new response with all cloned values from the request.
    *
    * @param aRequest
-   *          Source request. May not be <code>null</code>.
+   *        Source request. May not be <code>null</code>.
    * @return Destination response. Never <code>null</code>.
    */
   @Nonnull
-  public static TDETOOPResponseType createResponse (@Nonnull final TDETOOPRequestType aRequest) {
+  public static TDETOOPResponseType createResponse (@Nonnull final TDETOOPRequestType aRequest)
+  {
     final TDETOOPResponseType aResponse = new TDETOOPResponseType ();
     aRequest.cloneTo (aResponse);
     // Response specific stuff stays null
@@ -432,20 +454,22 @@ public final class ToopMessageBuilder {
   }
 
   @Nullable
-  private static IdentifierType _getClone (@Nullable final IdentifierType x) {
+  private static IdentifierType _getClone (@Nullable final IdentifierType x)
+  {
     return x == null ? null : x.clone ();
   }
 
   /**
-   * Create an error message without a single error but with all the header fields
-   * fields.
+   * Create an error message without a single error but with all the header
+   * fields fields.
    *
    * @param aRequest
-   *          Source request to copy header from. May not be <code>null</code>.
+   *        Source request to copy header from. May not be <code>null</code>.
    * @return Never <code>null</code>.
    */
   @Nonnull
-  public static TDETOOPErrorMessageType createErrorMessage (@Nonnull final TDETOOPRequestType aRequest) {
+  public static TDETOOPErrorMessageType createErrorMessage (@Nonnull final TDETOOPRequestType aRequest)
+  {
     final TDETOOPErrorMessageType ret = new TDETOOPErrorMessageType ();
     ret.setDocumentUniversalUniqueIdentifier (_getClone (aRequest.getDocumentUniversalUniqueIdentifier ()));
     ret.setDataRequestIdentifier (_getClone (aRequest.getDataRequestIdentifier ()));
@@ -456,11 +480,14 @@ public final class ToopMessageBuilder {
   }
 
   @Nonnull
-  public static TDEErrorType createError (@Nullable final String sDPIdentifier, @Nonnull final EToopErrorOrigin eOrigin,
+  public static TDEErrorType createError (@Nullable final String sDPIdentifier,
+                                          @Nonnull final EToopErrorOrigin eOrigin,
                                           @Nonnull final EToopErrorCategory eCategory,
                                           @Nonnull final EToopErrorCode eErrorCode,
                                           @Nonnull final EToopErrorSeverity eSeverity,
-                                          @Nonnull final IMultilingualText aMLT, @Nullable final String sTechDetails) {
+                                          @Nonnull final IMultilingualText aMLT,
+                                          @Nullable final String sTechDetails)
+  {
     final TDEErrorType ret = new TDEErrorType ();
     if (StringHelper.hasText (sDPIdentifier))
       ret.setDataProviderIdentifier (ToopXSDHelper.createIdentifier (sDPIdentifier));
@@ -468,7 +495,7 @@ public final class ToopMessageBuilder {
     ret.setCategory (ToopXSDHelper.createCode (eCategory.getID ()));
     ret.setErrorCode (ToopXSDHelper.createCode (eErrorCode.getID ()));
     ret.setSeverity (ToopXSDHelper.createCode (eSeverity.getID ()));
-    for (final Map.Entry<Locale, String> aEntry : aMLT.getAllTexts ().entrySet ())
+    for (final Map.Entry <Locale, String> aEntry : aMLT.getAllTexts ().entrySet ())
       ret.addErrorText (ToopXSDHelper.createText (aEntry.getKey (), aEntry.getValue ()));
     if (StringHelper.hasText (sTechDetails))
       ret.setTechnicalDetails (ToopXSDHelper.createText (sTechDetails));

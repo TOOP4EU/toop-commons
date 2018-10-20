@@ -27,9 +27,9 @@ import com.helger.commons.version.Version;
  *
  * @author Philip Helger
  */
-public interface IPredefined extends IHasID<String>, IHasName {
+public interface IPredefined extends IHasID <String>, IHasName
+{
   /**
-   *
    * @return The code list version when the item was added. Never
    *         <code>null</code>.
    */
@@ -37,7 +37,6 @@ public interface IPredefined extends IHasID<String>, IHasName {
   Version getSince ();
 
   /**
-   *
    * @return <code>true</code> if this code list entry is deprecated in the code
    *         list.
    * @see #getDeprecatedSince()
@@ -45,7 +44,6 @@ public interface IPredefined extends IHasID<String>, IHasName {
   boolean isDeprecated ();
 
   /**
-   *
    * @return The code list version when the item was deprecated. May be
    *         <code>null</code>. Must not be <code>null</code> if
    *         {@link #isDeprecated()} returns <code>true</code>.

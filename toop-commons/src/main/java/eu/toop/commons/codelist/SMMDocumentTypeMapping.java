@@ -28,21 +28,24 @@ import com.helger.commons.collection.impl.ICommonsMap;
  *
  * @author Philip Helger
  */
-public final class SMMDocumentTypeMapping {
-  private static final ICommonsMap<EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsEnumMap<> (EPredefinedDocumentTypeIdentifier.class);
+public final class SMMDocumentTypeMapping
+{
+  private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
 
-  static {
+  static
+  {
     // Fill the map
     s_aMap.put (EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION, "http://toop.eu/organization");
     s_aMap.put (EPredefinedDocumentTypeIdentifier.RESPONSE_REGISTEREDORGANIZATION, "http://toop.eu/organization");
   }
 
-  private SMMDocumentTypeMapping () {
-  }
+  private SMMDocumentTypeMapping ()
+  {}
 
   @Nonnull
   @Nonempty
-  public static String getToopSMNamespace (@Nullable final EPredefinedDocumentTypeIdentifier eDocType) {
+  public static String getToopSMNamespace (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
+  {
     final String ret = s_aMap.get (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
