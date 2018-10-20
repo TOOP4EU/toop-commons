@@ -35,8 +35,10 @@ public final class SMMDocumentTypeMapping
   static
   {
     // Fill the map
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION, "http://toop.eu/organization");
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.RESPONSE_REGISTEREDORGANIZATION, "http://toop.eu/organization");
+    s_aMap.put (EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                "http://toop.eu/registered-organization");
+    s_aMap.put (EPredefinedDocumentTypeIdentifier.RESPONSE_REGISTEREDORGANIZATION,
+                "http://toop.eu/registered-organization");
   }
 
   private SMMDocumentTypeMapping ()
