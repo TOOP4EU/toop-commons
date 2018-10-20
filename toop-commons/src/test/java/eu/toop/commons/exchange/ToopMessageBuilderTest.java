@@ -70,7 +70,7 @@ public final class ToopMessageBuilderTest
                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                    new CommonsArrayList <> (new ConceptValue ("companyName",
                                                                                                                               "Acme Inc.")));
-      ToopMessageBuilder.createRequestMessage (aSrcRequest, aBAOS, SH);
+      ToopMessageBuilder.createRequestMessageAsic (aSrcRequest, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcRequest, aSrcRequest.clone ());
 
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
@@ -98,7 +98,7 @@ public final class ToopMessageBuilderTest
                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                       new CommonsArrayList <> (new ConceptValue ("companyName",
                                                                                                                                  "Acme Inc.")));
-      ToopMessageBuilder.createResponseMessage (aSrcResponse, aBAOS, SH);
+      ToopMessageBuilder.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
 
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
@@ -156,7 +156,7 @@ public final class ToopMessageBuilderTest
         aSrcResponse.getDataElementRequestAtIndex (1).getConceptRequest ().addDataElementResponseValue (aResponseValue);
       }
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
-      ToopMessageBuilder.createResponseMessage (aSrcResponse, aBAOS, SH);
+      ToopMessageBuilder.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
       {
@@ -177,7 +177,7 @@ public final class ToopMessageBuilderTest
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
     {
       // No data
-      ToopMessageBuilder.createRequestMessage (null, archiveOutput, SH);
+      ToopMessageBuilder.createRequestMessageAsic (null, archiveOutput, SH);
       fail ("Exception expected");
     }
     catch (final NullPointerException ex)
@@ -188,7 +188,7 @@ public final class ToopMessageBuilderTest
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
     {
       // No data
-      ToopMessageBuilder.createResponseMessage (null, archiveOutput, SH);
+      ToopMessageBuilder.createResponseMessageAsic (null, archiveOutput, SH);
       fail ("Exception expected");
     }
     catch (final NullPointerException ex)

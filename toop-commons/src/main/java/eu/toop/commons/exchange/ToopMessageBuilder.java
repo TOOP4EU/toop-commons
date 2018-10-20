@@ -18,6 +18,7 @@ package eu.toop.commons.exchange;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Map;
@@ -80,15 +81,16 @@ public final class ToopMessageBuilder
 {
   private static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPRequest";
   private static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPResponse";
+  private static final String ENTRY_NAME_TOOP_ERROR_MESSAGE = "TOOPErrorMessage";
 
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopMessageBuilder.class);
 
   private ToopMessageBuilder ()
   {}
 
-  public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest,
-                                           @Nonnull final OutputStream aOS,
-                                           @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
+  public static void createRequestMessageAsic (@Nonnull final TDETOOPRequestType aRequest,
+                                               @Nonnull final OutputStream aOS,
+                                               @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
   {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
@@ -111,9 +113,9 @@ public final class ToopMessageBuilder
     }
   }
 
-  public static void createResponseMessage (@Nonnull final TDETOOPResponseType aResponse,
-                                            @Nonnull final OutputStream aOS,
-                                            @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
+  public static void createResponseMessageAsic (@Nonnull final TDETOOPResponseType aResponse,
+                                                @Nonnull final OutputStream aOS,
+                                                @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
   {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
@@ -129,6 +131,31 @@ public final class ToopMessageBuilder
                        CMimeType.APPLICATION_XML);
       aAsicWriter.sign (aSigHelper);
       s_aLogger.info ("Successfully created response ASiC");
+    }
+    catch (final IOException ex)
+    {
+      throw new ToopErrorException ("Error creating signed ASIC container", ex, EToopErrorCode.TC_001);
+    }
+  }
+
+  public static void createErrorMessageAsic (@Nonnull final TDETOOPErrorMessageType aErrorMsg,
+                                             @Nonnull final OutputStream aOS,
+                                             @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
+  {
+    ValueEnforcer.notNull (aErrorMsg, "ErrorMsg");
+    ValueEnforcer.notNull (aOS, "ArchiveOutput");
+    ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
+
+    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
+    try
+    {
+      final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
+      final byte [] aXML = ToopWriter.errorMessage ().getAsBytes (aErrorMsg);
+      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
+                       ENTRY_NAME_TOOP_ERROR_MESSAGE,
+                       CMimeType.APPLICATION_XML);
+      aAsicWriter.sign (aSigHelper);
+      s_aLogger.info ("Successfully created error message ASiC");
     }
     catch (final IOException ex)
     {
@@ -153,7 +180,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object aObj = parseRequestOrResponse (aIS);
+    final Object aObj = parseRequestOrResponseOrError (aIS);
     if (aObj instanceof TDETOOPRequestType)
       return (TDETOOPRequestType) aObj;
 
@@ -177,7 +204,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object aObj = parseRequestOrResponse (aIS);
+    final Object aObj = parseRequestOrResponseOrError (aIS);
     if (aObj instanceof TDETOOPResponseType)
       return (TDETOOPResponseType) aObj;
 
@@ -186,19 +213,44 @@ public final class ToopMessageBuilder
 
   /**
    * Parse the given InputStream as an ASiC container and return the contained
-   * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
+   * {@link TDETOOPErrorMessageType}.
    *
    * @param aIS
    *        Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType} every
-   *         time the method is called or <code>null</code> if none is contained
-   *         in the ASIC.
+   * @return New {@link TDETOOPErrorMessageType} every time the method is called
+   *         or <code>null</code> if none is contained in the ASIC.
    * @throws IOException
    *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static Object parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException
+  public static TDETOOPErrorMessageType parseErrorMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
+    ValueEnforcer.notNull (aIS, "archiveInput");
+
+    final Object aObj = parseRequestOrResponseOrError (aIS);
+    if (aObj instanceof TDETOOPErrorMessageType)
+      return (TDETOOPErrorMessageType) aObj;
+
+    return null;
+  }
+
+  /**
+   * Parse the given InputStream as an ASiC container and return the contained
+   * {@link TDETOOPRequestType} or {@link TDETOOPResponseType} or
+   * {@link TDETOOPErrorMessageType}.
+   *
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
+   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType} or
+   *         {@link TDETOOPErrorMessageType}. every time the method is called or
+   *         <code>null</code> if none is contained in the ASIC.
+   * @throws IOException
+   *         In case of IO error
+   */
+  @Nullable
+  @ReturnsMutableObject
+  public static Serializable parseRequestOrResponseOrError (@Nonnull @WillClose final InputStream aIS) throws IOException
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
@@ -221,6 +273,14 @@ public final class ToopMessageBuilder
           {
             aAsicReader.writeFile (aBAOS);
             return ToopReader.response ().read (aBAOS.getAsInputStream ());
+          }
+        }
+        if (sEntryName.equals (ENTRY_NAME_TOOP_ERROR_MESSAGE))
+        {
+          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
+          {
+            aAsicReader.writeFile (aBAOS);
+            return ToopReader.errorMessage ().read (aBAOS.getAsInputStream ());
           }
         }
       }
