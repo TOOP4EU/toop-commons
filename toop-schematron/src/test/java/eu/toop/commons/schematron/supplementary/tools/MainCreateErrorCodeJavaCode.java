@@ -18,6 +18,9 @@ package eu.toop.commons.schematron.supplementary.tools;
 import java.io.File;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.helger.commons.regex.RegExHelper;
 import com.helger.genericode.Genericode10Helper;
 import com.helger.genericode.builder.GenericodeReader;
@@ -26,11 +29,13 @@ import com.helger.genericode.v10.Row;
 
 /**
  * Extract error code enum content from Genericode file
- * 
+ *
  * @author Philip Helger
  */
 public final class MainCreateErrorCodeJavaCode
 {
+  private static final Logger LOGGER = LoggerFactory.getLogger (MainCreateErrorCodeJavaCode.class);
+
   public static void main (final String [] args)
   {
     final CodeListDocument aCLD = GenericodeReader.gc10CodeList ()
@@ -48,6 +53,6 @@ public final class MainCreateErrorCodeJavaCode
            .append (sID)
            .append ("\"),\n");
     }
-    System.out.println (aSB.toString ());
+    LOGGER.info (aSB.toString ());
   }
 }
