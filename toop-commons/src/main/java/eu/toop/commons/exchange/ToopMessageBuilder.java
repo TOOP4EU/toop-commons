@@ -180,7 +180,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object aObj = parseRequestOrResponseOrError (aIS);
+    final Serializable aObj = parseRequestOrResponseOrError (aIS);
     if (aObj instanceof TDETOOPRequestType)
       return (TDETOOPRequestType) aObj;
 
@@ -204,7 +204,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object aObj = parseRequestOrResponseOrError (aIS);
+    final Serializable aObj = parseRequestOrResponseOrError (aIS);
     if (aObj instanceof TDETOOPResponseType)
       return (TDETOOPResponseType) aObj;
 
@@ -228,7 +228,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Object aObj = parseRequestOrResponseOrError (aIS);
+    final Serializable aObj = parseRequestOrResponseOrError (aIS);
     if (aObj instanceof TDETOOPErrorMessageType)
       return (TDETOOPErrorMessageType) aObj;
 
