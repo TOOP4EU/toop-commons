@@ -15,8 +15,6 @@
  */
 package eu.toop.kafkaclient;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
@@ -25,9 +23,6 @@ import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.helger.commons.ValueEnforcer;
-import com.helger.commons.annotation.ReturnsMutableObject;
-import com.helger.commons.collection.impl.ICommonsMap;
 import com.helger.commons.error.level.EErrorLevel;
 import com.helger.commons.lang.ClassHelper;
 import com.helger.commons.log.LogHelper;
@@ -39,84 +34,10 @@ import com.helger.commons.log.LogHelper;
  */
 public final class ToopKafkaClient
 {
-  public static final String DEFAULT_KAFKA_TOPIC = "toop";
-
   private static final Logger LOGGER = LoggerFactory.getLogger (ToopKafkaClient.class);
-  private static final AtomicBoolean s_aLoggingEnabled = new AtomicBoolean (true);
-  private static final AtomicBoolean s_aKafkaEnabled = new AtomicBoolean (false);
-  private static final AtomicReference <String> s_aKafkaTopic = new AtomicReference <> (DEFAULT_KAFKA_TOPIC);
 
   private ToopKafkaClient ()
   {}
-
-  /**
-   * @return The default properties for customization. Changes to this map only
-   *         effect new connections! Never <code>null</code>.
-   */
-  @Nonnull
-  @ReturnsMutableObject
-  public static ICommonsMap <String, String> defaultProperties ()
-  {
-    return ToopKafkaManager.defaultProperties ();
-  }
-
-  /**
-   * Enable or disable logging globally.
-   *
-   * @param bLoggingEnabled
-   *        <code>true</code> to enable, <code>false</code> to disable.
-   */
-  public static void setLoggingEnabled (final boolean bLoggingEnabled)
-  {
-    s_aLoggingEnabled.set (bLoggingEnabled);
-    if (LOGGER.isInfoEnabled ())
-      LOGGER.info ("TOOP Logging is now " + (bLoggingEnabled ? "enabled" : "disabled"));
-  }
-
-  /**
-   * @return <code>true</code> if Logging is enabled, <code>false</code> if not.
-   *         By default is is enabled.
-   */
-  public static boolean isLoggingEnabled ()
-  {
-    return s_aLoggingEnabled.get ();
-  }
-
-  /**
-   * Enable or disable globally. Call this only globally on startup.
-   *
-   * @param bEnabled
-   *        <code>true</code> to enable, <code>false</code> to disable.
-   */
-  public static void setKafkaEnabled (final boolean bEnabled)
-  {
-    s_aKafkaEnabled.set (bEnabled);
-    if (LOGGER.isInfoEnabled ())
-      LOGGER.info ("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
-  }
-
-  /**
-   * @return <code>true</code> if client is enabled, <code>false</code> if not.
-   *         By default is is disabled.
-   */
-  public static boolean isKafkaEnabled ()
-  {
-    return s_aKafkaEnabled.get ();
-  }
-
-  public static void setKafkaTopic (@Nonnull final String sTopic)
-  {
-    ValueEnforcer.notNull (sTopic, "Topic");
-    s_aKafkaTopic.set (sTopic);
-    if (LOGGER.isInfoEnabled ())
-      LOGGER.info ("Kafka Client is now set to topic: " + s_aKafkaTopic);
-  }
-
-  @Nonnull
-  public static String getKafkaTopic ()
-  {
-    return s_aKafkaTopic.get ();
-  }
 
   private static void _sendIfKafkaEnabled (@Nonnull final String sValue)
   {
@@ -135,13 +56,13 @@ public final class ToopKafkaClient
    *        it.
    * @param sValue
    *        Value to send. May not be <code>null</code>.
-   * @see #isKafkaEnabled()
+   * @see ToopKafkaSettings#isKafkaEnabled()
    */
   public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final String sValue)
   {
-    if (aErrorLevel != null && isLoggingEnabled ())
+    if (aErrorLevel != null && ToopKafkaSettings.isLoggingEnabled ())
       LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue);
-    if (isKafkaEnabled ())
+    if (ToopKafkaSettings.isKafkaEnabled ())
       _sendIfKafkaEnabled (sValue);
   }
 
@@ -154,7 +75,7 @@ public final class ToopKafkaClient
    * @param aValue
    *        Value supplier to send. Is only evaluated if enabled. May not be
    *        <code>null</code>.
-   * @see #isKafkaEnabled()
+   * @see ToopKafkaSettings#isKafkaEnabled()
    */
   public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final Supplier <String> aValue)
   {
@@ -172,19 +93,19 @@ public final class ToopKafkaClient
    *        <code>null</code>.
    * @param t
    *        Exception to be logged. May be <code>null</code>.
-   * @see #isKafkaEnabled()
+   * @see ToopKafkaSettings#isKafkaEnabled()
    */
   public static void send (@Nullable final EErrorLevel aErrorLevel,
                            @Nonnull final Supplier <String> aValue,
                            @Nullable final Throwable t)
   {
     String sValue = null;
-    if (aErrorLevel != null && isLoggingEnabled ())
+    if (aErrorLevel != null && ToopKafkaSettings.isLoggingEnabled ())
     {
       sValue = aValue.get ();
       LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue, t);
     }
-    if (isKafkaEnabled ())
+    if (ToopKafkaSettings.isKafkaEnabled ())
     {
       if (sValue == null)
         sValue = aValue.get ();
@@ -198,11 +119,11 @@ public final class ToopKafkaClient
    * Shutdown at the end. Note: this only does something, if the client is
    * enabled. Do this only once globally on application shutdown.
    *
-   * @see #isKafkaEnabled()
+   * @see ToopKafkaSettings#isKafkaEnabled()
    */
   public static void close ()
   {
-    if (isKafkaEnabled ())
+    if (ToopKafkaSettings.isKafkaEnabled ())
     {
       ToopKafkaManager.shutdown ();
       if (LOGGER.isInfoEnabled ())

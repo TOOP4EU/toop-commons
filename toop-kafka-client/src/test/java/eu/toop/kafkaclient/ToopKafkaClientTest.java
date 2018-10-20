@@ -36,14 +36,14 @@ public final class ToopKafkaClientTest
   @BeforeClass
   public static void beforeAll ()
   {
-    ToopKafkaClient.setKafkaEnabled (true);
+    ToopKafkaSettings.setKafkaEnabled (true);
   }
 
   @AfterClass
   public static void afterAll ()
   {
     // Disable again for other tests
-    ToopKafkaClient.setKafkaEnabled (false);
+    ToopKafkaSettings.setKafkaEnabled (false);
   }
 
   @Test
@@ -69,10 +69,10 @@ public final class ToopKafkaClientTest
   @Test
   public void testDefaultProperties ()
   {
-    final ICommonsMap <String, String> aProps = ToopKafkaClient.defaultProperties ();
+    final ICommonsMap <String, String> aProps = ToopKafkaSettings.defaultProperties ();
     assertNotNull (aProps);
     // Ensure mutable map
     aProps.put ("foo", "bar");
-    assertEquals ("bar", ToopKafkaClient.defaultProperties ().get ("foo"));
+    assertEquals ("bar", ToopKafkaSettings.defaultProperties ().get ("foo"));
   }
 }
