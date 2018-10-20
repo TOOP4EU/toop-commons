@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.exchange;
+package eu.toop.commons.error;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -50,18 +50,11 @@ public enum EToopErrorCode implements IHasID <String>
   SM_002B ("SM-002b"),
   /** The TOOP Directory is not reachable */
   DD_001 ("DD-001"),
-  /**
-   * The Dynamic Discovery Service was not able to find any Participant
-   * Identifiers
-   */
   DD_002 ("DD-002"),
-  /**
-   * At least one, but not all SMP Servers where not able to find a Service
-   * Metadata
-   */
   DD_003 ("DD-003"),
-  /** None of the SMP Servers was able to find a Service Metadata */
   DD_004 ("DD-004"),
+  DD_005 ("DD-005"),
+  DD_006 ("DD-006"),
   /** Error creating the ASIC Container */
   TC_001 ("TC-001"),
   /**

@@ -13,42 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.exchange;
+package eu.toop.commons.error;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.helger.commons.annotation.Nonempty;
-import com.helger.commons.id.IHasID;
-import com.helger.commons.lang.EnumHelper;
-
-/**
- * Source: ErrorSeverity-CodeList.gc
- *
- * @author Philip Helger
- */
-public enum EToopErrorSeverity implements IHasID <String>
+public class ToopErrorException extends Exception
 {
-  WARNING ("WARNING"),
-  FAILURE ("FAILURE");
+  private final EToopErrorCode m_eCode;
 
-  private final String m_sID;
-
-  private EToopErrorSeverity (@Nonnull @Nonempty final String sID)
+  public ToopErrorException (@Nonnull final String sMsg, @Nonnull final EToopErrorCode eCode)
   {
-    m_sID = sID;
+    this (sMsg, null, eCode);
+  }
+
+  public ToopErrorException (@Nonnull final String sMsg,
+                             @Nullable final Throwable aCause,
+                             @Nonnull final EToopErrorCode eCode)
+  {
+    super (sMsg, aCause);
+    m_eCode = eCode;
   }
 
   @Nonnull
-  @Nonempty
-  public String getID ()
+  public EToopErrorCode getErrorCode ()
   {
-    return m_sID;
-  }
-
-  @Nullable
-  public static EToopErrorSeverity getFromIDOrNull (@Nullable final String sID)
-  {
-    return EnumHelper.getFromIDOrNull (EToopErrorSeverity.class, sID);
+    return m_eCode;
   }
 }

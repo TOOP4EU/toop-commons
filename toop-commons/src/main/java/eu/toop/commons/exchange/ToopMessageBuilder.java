@@ -64,6 +64,11 @@ import eu.toop.commons.dataexchange.TDENaturalPersonType;
 import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
+import eu.toop.commons.error.EToopErrorCategory;
+import eu.toop.commons.error.EToopErrorCode;
+import eu.toop.commons.error.EToopErrorOrigin;
+import eu.toop.commons.error.EToopErrorSeverity;
+import eu.toop.commons.error.ToopErrorException;
 import eu.toop.commons.jaxb.ToopReader;
 import eu.toop.commons.jaxb.ToopWriter;
 import eu.toop.commons.jaxb.ToopXSDHelper;
@@ -83,42 +88,52 @@ public final class ToopMessageBuilder
 
   public static void createRequestMessage (@Nonnull final TDETOOPRequestType aRequest,
                                            @Nonnull final OutputStream aOS,
-                                           @Nonnull final SignatureHelper aSigHelper) throws IOException
+                                           @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
   {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
     final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
-    final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
+    try
     {
+      final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
       final byte [] aXML = ToopWriter.request ().getAsBytes (aRequest);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
                        ENTRY_NAME_TOOP_DATA_REQUEST,
                        CMimeType.APPLICATION_XML);
+      aAsicWriter.sign (aSigHelper);
+      s_aLogger.info ("Successfully created request ASiC");
     }
-    aAsicWriter.sign (aSigHelper);
-    s_aLogger.info ("Successfully created request ASiC");
+    catch (final IOException ex)
+    {
+      throw new ToopErrorException ("Error creating signed ASIC container", ex, EToopErrorCode.TC_001);
+    }
   }
 
   public static void createResponseMessage (@Nonnull final TDETOOPResponseType aResponse,
                                             @Nonnull final OutputStream aOS,
-                                            @Nonnull final SignatureHelper aSigHelper) throws IOException
+                                            @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
   {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
     final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
-    final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
+    try
     {
+      final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
       final byte [] aXML = ToopWriter.response ().getAsBytes (aResponse);
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
                        ENTRY_NAME_TOOP_DATA_RESPONSE,
                        CMimeType.APPLICATION_XML);
+      aAsicWriter.sign (aSigHelper);
+      s_aLogger.info ("Successfully created response ASiC");
     }
-    aAsicWriter.sign (aSigHelper);
-    s_aLogger.info ("Successfully created response ASiC");
+    catch (final IOException ex)
+    {
+      throw new ToopErrorException ("Error creating signed ASIC container", ex, EToopErrorCode.TC_001);
+    }
   }
 
   /**

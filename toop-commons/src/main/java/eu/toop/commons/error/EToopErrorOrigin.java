@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.exchange;
+package eu.toop.commons.error;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -23,23 +23,26 @@ import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
- * Source: ErrorCategory-CodeList.gc
+ * Source: ErrorOrigin-CodeList.gc
  *
  * @author Philip Helger
  */
-public enum EToopErrorCategory implements IHasID <String>
+public enum EToopErrorOrigin implements IHasID <String>
 {
-  SEMANTIC_MAPPING ("SemanticMapping"),
-  PARSING ("Parsing"),
-  DYNAMIC_DISCOVERY ("DynamicDiscovery"),
-  E_DELIVERY ("eDelivery"),
-  RESULT_AGGREGATION ("ResultsAggregation"),
-  BUSINESS_PROCESSING ("BusinessProcessing"),
-  TECHNICAL_ERROR ("TechnicalError");
+  /** 1/4 */
+  REQUEST_SUBMISSION ("RequestSubmission"),
+  /** 2/4 */
+  REQUEST_RECEPTION ("RequestReception"),
+  /** inside DP */
+  RESPONSE_CREATION ("ResponseCreation"),
+  /** 3/4 */
+  RESPONSE_SUBMISSION ("ResponseSubmission"),
+  /** 4/4 */
+  RESPONSE_RECEPTION ("ResponseReception");
 
   private final String m_sID;
 
-  private EToopErrorCategory (@Nonnull @Nonempty final String sID)
+  private EToopErrorOrigin (@Nonnull @Nonempty final String sID)
   {
     m_sID = sID;
   }
@@ -52,8 +55,8 @@ public enum EToopErrorCategory implements IHasID <String>
   }
 
   @Nullable
-  public static EToopErrorCategory getFromIDOrNull (@Nullable final String sID)
+  public static EToopErrorOrigin getFromIDOrNull (@Nullable final String sID)
   {
-    return EnumHelper.getFromIDOrNull (EToopErrorCategory.class, sID);
+    return EnumHelper.getFromIDOrNull (EToopErrorOrigin.class, sID);
   }
 }

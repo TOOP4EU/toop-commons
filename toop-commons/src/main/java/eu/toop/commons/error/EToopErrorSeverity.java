@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.exchange;
+package eu.toop.commons.error;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -23,26 +23,18 @@ import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
- * Source: ErrorOrigin-CodeList.gc
+ * Source: ErrorSeverity-CodeList.gc
  *
  * @author Philip Helger
  */
-public enum EToopErrorOrigin implements IHasID <String>
+public enum EToopErrorSeverity implements IHasID <String>
 {
-  /** 1/4 */
-  REQUEST_SUBMISSION ("RequestSubmission"),
-  /** 2/4 */
-  REQUEST_RECEPTION ("RequestReception"),
-  /** inside DP */
-  RESPONSE_CREATION ("ResponseCreation"),
-  /** 3/4 */
-  RESPONSE_SUBMISSION ("ResponseSubmission"),
-  /** 4/4 */
-  RESPONSE_RECEPTION ("ResponseReception");
+  WARNING ("WARNING"),
+  FAILURE ("FAILURE");
 
   private final String m_sID;
 
-  private EToopErrorOrigin (@Nonnull @Nonempty final String sID)
+  private EToopErrorSeverity (@Nonnull @Nonempty final String sID)
   {
     m_sID = sID;
   }
@@ -55,8 +47,8 @@ public enum EToopErrorOrigin implements IHasID <String>
   }
 
   @Nullable
-  public static EToopErrorOrigin getFromIDOrNull (@Nullable final String sID)
+  public static EToopErrorSeverity getFromIDOrNull (@Nullable final String sID)
   {
-    return EnumHelper.getFromIDOrNull (EToopErrorOrigin.class, sID);
+    return EnumHelper.getFromIDOrNull (EToopErrorSeverity.class, sID);
   }
 }

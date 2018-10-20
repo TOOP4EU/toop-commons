@@ -40,6 +40,7 @@ import eu.toop.commons.dataexchange.TDEDataElementResponseValueType;
 import eu.toop.commons.dataexchange.TDEDataProviderType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
+import eu.toop.commons.error.ToopErrorException;
 import eu.toop.commons.jaxb.ToopXSDHelper;
 
 /**
@@ -56,7 +57,7 @@ public final class ToopMessageBuilderTest
                                                                  "toop4eu");
 
   @Test
-  public void testRequestMessage () throws IOException
+  public void testRequestMessage () throws ToopErrorException, IOException
   {
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
@@ -85,7 +86,7 @@ public final class ToopMessageBuilderTest
   }
 
   @Test
-  public void testResponseMessage () throws IOException
+  public void testResponseMessage () throws ToopErrorException, IOException
   {
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
@@ -113,7 +114,7 @@ public final class ToopMessageBuilderTest
   }
 
   @Test
-  public void testResponseMessageV2 () throws IOException
+  public void testResponseMessageV2 () throws ToopErrorException, IOException
   {
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
@@ -171,7 +172,7 @@ public final class ToopMessageBuilderTest
 
   @Test
   @SuppressFBWarnings ("NP_NONNULL_PARAM_VIOLATION")
-  public void testEmpty () throws IOException
+  public void testEmpty () throws ToopErrorException
   {
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
     {
