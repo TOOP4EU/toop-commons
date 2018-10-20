@@ -42,12 +42,7 @@ public enum EToopErrorCode implements IHasID <String>
    * The Semantic Mapping Service could not provide a mapping on provided
    * concepts
    */
-  SM_002A ("SM-002a"),
-  /**
-   * The Semantic Mapping Service could not provide a mapping on provided
-   * concepts
-   */
-  SM_002B ("SM-002b"),
+  SM_002 ("SM-002"),
   /** The TOOP Directory is not reachable */
   DD_001 ("DD-001"),
   DD_002 ("DD-002"),
