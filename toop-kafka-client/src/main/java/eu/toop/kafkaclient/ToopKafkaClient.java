@@ -16,6 +16,7 @@
 package eu.toop.kafkaclient;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
@@ -24,6 +25,7 @@ import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.collection.impl.ICommonsMap;
 import com.helger.commons.error.level.EErrorLevel;
@@ -37,9 +39,12 @@ import com.helger.commons.log.LogHelper;
  */
 public final class ToopKafkaClient
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (ToopKafkaClient.class);
+  public static final String DEFAULT_KAFKA_TOPIC = "toop";
+
+  private static final Logger LOGGER = LoggerFactory.getLogger (ToopKafkaClient.class);
   private static final AtomicBoolean s_aLoggingEnabled = new AtomicBoolean (true);
   private static final AtomicBoolean s_aKafkaEnabled = new AtomicBoolean (false);
+  private static final AtomicReference <String> s_aKafkaTopic = new AtomicReference <> (DEFAULT_KAFKA_TOPIC);
 
   private ToopKafkaClient ()
   {}
@@ -64,8 +69,8 @@ public final class ToopKafkaClient
   public static void setLoggingEnabled (final boolean bLoggingEnabled)
   {
     s_aLoggingEnabled.set (bLoggingEnabled);
-    if (s_aLogger.isInfoEnabled ())
-      s_aLogger.info ("TOOP Logging is now " + (bLoggingEnabled ? "enabled" : "disabled"));
+    if (LOGGER.isInfoEnabled ())
+      LOGGER.info ("TOOP Logging is now " + (bLoggingEnabled ? "enabled" : "disabled"));
   }
 
   /**
@@ -86,8 +91,8 @@ public final class ToopKafkaClient
   public static void setKafkaEnabled (final boolean bEnabled)
   {
     s_aKafkaEnabled.set (bEnabled);
-    if (s_aLogger.isInfoEnabled ())
-      s_aLogger.info ("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
+    if (LOGGER.isInfoEnabled ())
+      LOGGER.info ("TOOP Kafka Client is now " + (bEnabled ? "enabled" : "disabled"));
   }
 
   /**
@@ -99,10 +104,24 @@ public final class ToopKafkaClient
     return s_aKafkaEnabled.get ();
   }
 
+  public static void setKafkaTopic (@Nonnull final String sTopic)
+  {
+    ValueEnforcer.notNull (sTopic, "Topic");
+    s_aKafkaTopic.set (sTopic);
+    if (LOGGER.isInfoEnabled ())
+      LOGGER.info ("Kafka Client is now set to topic: " + s_aKafkaTopic);
+  }
+
+  @Nonnull
+  public static String getKafkaTopic ()
+  {
+    return s_aKafkaTopic.get ();
+  }
+
   private static void _sendIfKafkaEnabled (@Nonnull final String sValue)
   {
-    if (s_aLogger.isDebugEnabled ())
-      s_aLogger.debug ("Sending to Kafka: '" + sValue + "'");
+    if (LOGGER.isDebugEnabled ())
+      LOGGER.debug ("Sending to Kafka: '" + sValue + "'");
 
     // Send but don't wait for the commit!
     ToopKafkaManager.send ((String) null, sValue, null);
@@ -186,8 +205,8 @@ public final class ToopKafkaClient
     if (isKafkaEnabled ())
     {
       ToopKafkaManager.shutdown ();
-      if (s_aLogger.isInfoEnabled ())
-        s_aLogger.info ("Successfully shutdown Kafka client");
+      if (LOGGER.isInfoEnabled ())
+        LOGGER.info ("Successfully shutdown Kafka client");
     }
   }
 }

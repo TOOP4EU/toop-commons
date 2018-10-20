@@ -154,7 +154,9 @@ final class ToopKafkaManager
   {
     ValueEnforcer.notNull (sValue, "Value");
 
-    final ProducerRecord <String, String> aMessage = new ProducerRecord <> ("toop", sKey, sValue);
+    final ProducerRecord <String, String> aMessage = new ProducerRecord <> (ToopKafkaClient.getKafkaTopic (),
+                                                                            sKey,
+                                                                            sValue);
     return getOrCreateProducer ().send (aMessage, aKafkaCallback);
   }
 }
