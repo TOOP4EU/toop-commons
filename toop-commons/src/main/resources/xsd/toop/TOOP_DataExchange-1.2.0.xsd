@@ -185,6 +185,7 @@
       <xsd:extension base="toop:TOOPRequestType">
         <xsd:sequence>
           <xsd:element name="DataProvider" type="toop:DataProviderType"/>
+          <xsd:element name="Error" type="toop:ErrorType" minOccurs="0" maxOccurs="unbounded"/> 
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
