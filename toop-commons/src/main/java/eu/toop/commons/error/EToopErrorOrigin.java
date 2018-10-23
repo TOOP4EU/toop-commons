@@ -26,6 +26,7 @@ import com.helger.commons.lang.EnumHelper;
  * Source: ErrorOrigin-CodeList.gc
  *
  * @author Philip Helger
+ * @since 0.9.2
  */
 public enum EToopErrorOrigin implements IHasID <String>
 {

@@ -545,6 +545,7 @@ public final class ToopMessageBuilder
    * @param aRequest
    *        Source request to copy header from. May not be <code>null</code>.
    * @return Never <code>null</code>.
+   * @since 0.9.2
    */
   @Nonnull
   public static TDETOOPErrorMessageType createErrorMessage (@Nonnull final TDETOOPRequestType aRequest)
@@ -558,6 +559,26 @@ public final class ToopMessageBuilder
     return ret;
   }
 
+  /**
+   * Create a single error object.
+   *
+   * @param sDPIdentifier
+   *        Optional DP identifier. May be <code>null</code>.
+   * @param eOrigin
+   *        Error origin. May not be <code>null</code>.
+   * @param eCategory
+   *        Error category. May not be <code>null</code>.
+   * @param eErrorCode
+   *        Error code. May not be <code>null</code>.
+   * @param eSeverity
+   *        Error severity. May not be <code>null</code>.
+   * @param aMLT
+   *        Multilingual text to use. May not be <code>null</code>.
+   * @param sTechDetails
+   *        Optional technical details. May be <code>null</code>.
+   * @return Never <code>null</code>.
+   * @since 0.9.2
+   */
   @Nonnull
   public static TDEErrorType createError (@Nullable final String sDPIdentifier,
                                           @Nonnull final EToopErrorOrigin eOrigin,

@@ -48,6 +48,7 @@ import eu.toop.commons.jaxb.ToopXSDHelper;
  *
  * @author Philip Helger
  */
+@SuppressWarnings ("deprecation")
 public final class ToopMessageBuilderTest
 {
   private static final SignatureHelper SH = new SignatureHelper (EKeyStoreType.JKS,

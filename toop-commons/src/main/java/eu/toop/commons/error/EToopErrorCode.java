@@ -27,6 +27,7 @@ import com.helger.commons.lang.EnumHelper;
  * Content created by MainCreateErrorCodeJavaCode
  *
  * @author Philip Helger
+ * @since 0.9.2
  */
 public enum EToopErrorCode implements IHasID <String>
 {

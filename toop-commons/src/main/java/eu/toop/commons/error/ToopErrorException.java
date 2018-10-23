@@ -18,6 +18,14 @@ package eu.toop.commons.error;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.helger.commons.ValueEnforcer;
+
+/**
+ * Special exception containing an {@link EToopErrorCode}.
+ *
+ * @author Philip Helger
+ * @since 0.9.2
+ */
 public class ToopErrorException extends Exception
 {
   private final EToopErrorCode m_eCode;
@@ -32,9 +40,14 @@ public class ToopErrorException extends Exception
                              @Nonnull final EToopErrorCode eCode)
   {
     super (sMsg, aCause);
+    ValueEnforcer.notNull (eCode, "ErrorCode");
     m_eCode = eCode;
   }
 
+  /**
+   * @return The error code provided in the constructor. Never
+   *         <code>null</code>.
+   */
   @Nonnull
   public EToopErrorCode getErrorCode ()
   {

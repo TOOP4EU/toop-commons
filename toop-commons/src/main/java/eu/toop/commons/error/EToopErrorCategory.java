@@ -26,6 +26,7 @@ import com.helger.commons.lang.EnumHelper;
  * Source: ErrorCategory-CodeList.gc
  *
  * @author Philip Helger
+ * @since 0.9.2
  */
 public enum EToopErrorCategory implements IHasID <String>
 {

@@ -26,6 +26,7 @@ import com.helger.commons.lang.EnumHelper;
  * Source: ErrorSeverity-CodeList.gc
  *
  * @author Philip Helger
+ * @since 0.9.2
  */
 public enum EToopErrorSeverity implements IHasID <String>
 {

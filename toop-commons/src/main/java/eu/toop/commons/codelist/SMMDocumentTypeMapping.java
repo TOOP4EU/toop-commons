@@ -23,7 +23,7 @@ import com.helger.commons.collection.impl.CommonsEnumMap;
 import com.helger.commons.collection.impl.ICommonsMap;
 
 /**
- * This class manages the TOOP Document type to Semantic Mapping Module
+ * This class manages the TOOP Document type to Semantic Mapping Module (SMM).
  * namespaces.
  *
  * @author Philip Helger
