@@ -289,6 +289,7 @@ public final class ToopMessageBuilder
     return null;
   }
 
+  @Deprecated
   @Nonnull
   public static TDEAddressType createMockAddressType (@Nonnull @Nonempty final String sCountryCode)
   {
@@ -304,6 +305,7 @@ public final class ToopMessageBuilder
     return aAddress;
   }
 
+  @Deprecated
   @Nonnull
   public static TDEDataRequestSubjectType createMockDataRequestSubject (@Nonnull @Nonempty final String sCountryCode)
   {
@@ -329,6 +331,7 @@ public final class ToopMessageBuilder
     return aRet;
   }
 
+  @Deprecated
   @Nonnull
   public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
                                                       @Nonnull final IdentifierType aSenderParticipantID,
@@ -397,6 +400,7 @@ public final class ToopMessageBuilder
     return aRet;
   }
 
+  @Deprecated
   @Nonnull
   public static TDETOOPResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
                                                         @Nonnull @Nonempty final String sCountryCode,
