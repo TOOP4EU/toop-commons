@@ -19,7 +19,6 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBReaderBuilder;
 
-import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 
@@ -58,16 +57,5 @@ public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopRead
   public static ToopReader <TDETOOPResponseType> response ()
   {
     return new ToopReader <> (EToopXMLDocumentType.RESPONSE, TDETOOPResponseType.class);
-  }
-
-  /**
-   * Create a reader builder for {@link TDETOOPErrorMessageType}.
-   *
-   * @return The builder and never <code>null</code>
-   */
-  @Nonnull
-  public static ToopReader <TDETOOPErrorMessageType> errorMessage ()
-  {
-    return new ToopReader <> (EToopXMLDocumentType.ERROR_MESSAGE, TDETOOPErrorMessageType.class);
   }
 }

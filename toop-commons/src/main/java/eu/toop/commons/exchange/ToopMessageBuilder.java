@@ -40,6 +40,7 @@ import com.helger.asic.SignatureHelper;
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableObject;
+import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 import com.helger.commons.mime.CMimeType;
@@ -62,7 +63,6 @@ import eu.toop.commons.dataexchange.TDEDocumentRequestType;
 import eu.toop.commons.dataexchange.TDEErrorType;
 import eu.toop.commons.dataexchange.TDELegalEntityType;
 import eu.toop.commons.dataexchange.TDENaturalPersonType;
-import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
 import eu.toop.commons.error.EToopErrorCategory;
@@ -79,9 +79,10 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Identifi
 @Immutable
 public final class ToopMessageBuilder
 {
+  public static final ClassPathResource TOOP_XSD = new ClassPathResource ("/xsd/toop/TOOP_DataExchange-1.2.0.xsd",
+                                                                          ToopMessageBuilder.class.getClassLoader ());
   private static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPRequest";
   private static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPResponse";
-  private static final String ENTRY_NAME_TOOP_ERROR_MESSAGE = "TOOPErrorMessage";
 
   private static final Logger s_aLogger = LoggerFactory.getLogger (ToopMessageBuilder.class);
 
@@ -138,31 +139,6 @@ public final class ToopMessageBuilder
     }
   }
 
-  public static void createErrorMessageAsic (@Nonnull final TDETOOPErrorMessageType aErrorMsg,
-                                             @Nonnull final OutputStream aOS,
-                                             @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
-  {
-    ValueEnforcer.notNull (aErrorMsg, "ErrorMsg");
-    ValueEnforcer.notNull (aOS, "ArchiveOutput");
-    ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
-
-    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
-    try
-    {
-      final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
-      final byte [] aXML = ToopWriter.errorMessage ().getAsBytes (aErrorMsg);
-      aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
-                       ENTRY_NAME_TOOP_ERROR_MESSAGE,
-                       CMimeType.APPLICATION_XML);
-      aAsicWriter.sign (aSigHelper);
-      s_aLogger.info ("Successfully created error message ASiC");
-    }
-    catch (final IOException ex)
-    {
-      throw new ToopErrorException ("Error creating signed ASIC container", ex, EToopErrorCode.TC_001);
-    }
-  }
-
   /**
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPRequestType}.
@@ -180,7 +156,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Serializable aObj = parseRequestOrResponseOrError (aIS);
+    final Serializable aObj = parseRequestOrResponse (aIS);
     if (aObj instanceof TDETOOPRequestType)
       return (TDETOOPRequestType) aObj;
 
@@ -204,7 +180,7 @@ public final class ToopMessageBuilder
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
-    final Serializable aObj = parseRequestOrResponseOrError (aIS);
+    final Serializable aObj = parseRequestOrResponse (aIS);
     if (aObj instanceof TDETOOPResponseType)
       return (TDETOOPResponseType) aObj;
 
@@ -213,44 +189,19 @@ public final class ToopMessageBuilder
 
   /**
    * Parse the given InputStream as an ASiC container and return the contained
-   * {@link TDETOOPErrorMessageType}.
+   * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
    *
    * @param aIS
    *        Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPErrorMessageType} every time the method is called
-   *         or <code>null</code> if none is contained in the ASIC.
+   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
+   *         every time the method is called or <code>null</code> if none is
+   *         contained in the ASIC.
    * @throws IOException
    *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPErrorMessageType parseErrorMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
-  {
-    ValueEnforcer.notNull (aIS, "archiveInput");
-
-    final Serializable aObj = parseRequestOrResponseOrError (aIS);
-    if (aObj instanceof TDETOOPErrorMessageType)
-      return (TDETOOPErrorMessageType) aObj;
-
-    return null;
-  }
-
-  /**
-   * Parse the given InputStream as an ASiC container and return the contained
-   * {@link TDETOOPRequestType} or {@link TDETOOPResponseType} or
-   * {@link TDETOOPErrorMessageType}.
-   *
-   * @param aIS
-   *        Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType} or
-   *         {@link TDETOOPErrorMessageType}. every time the method is called or
-   *         <code>null</code> if none is contained in the ASIC.
-   * @throws IOException
-   *         In case of IO error
-   */
-  @Nullable
-  @ReturnsMutableObject
-  public static Serializable parseRequestOrResponseOrError (@Nonnull @WillClose final InputStream aIS) throws IOException
+  public static Serializable parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
@@ -273,14 +224,6 @@ public final class ToopMessageBuilder
           {
             aAsicReader.writeFile (aBAOS);
             return ToopReader.response ().read (aBAOS.getAsInputStream ());
-          }
-        }
-        if (sEntryName.equals (ENTRY_NAME_TOOP_ERROR_MESSAGE))
-        {
-          try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
-          {
-            aAsicReader.writeFile (aBAOS);
-            return ToopReader.errorMessage ().read (aBAOS.getAsInputStream ());
           }
         }
       }
@@ -536,27 +479,6 @@ public final class ToopMessageBuilder
   private static IdentifierType _getClone (@Nullable final IdentifierType x)
   {
     return x == null ? null : x.clone ();
-  }
-
-  /**
-   * Create an error message without a single error but with all the header
-   * fields fields.
-   *
-   * @param aRequest
-   *        Source request to copy header from. May not be <code>null</code>.
-   * @return Never <code>null</code>.
-   * @since 0.9.2
-   */
-  @Nonnull
-  public static TDETOOPErrorMessageType createErrorMessage (@Nonnull final TDETOOPRequestType aRequest)
-  {
-    final TDETOOPErrorMessageType ret = new TDETOOPErrorMessageType ();
-    ret.setDocumentUniversalUniqueIdentifier (_getClone (aRequest.getDocumentUniversalUniqueIdentifier ()));
-    ret.setDataRequestIdentifier (_getClone (aRequest.getDataRequestIdentifier ()));
-    ret.setDocumentTypeIdentifier (_getClone (aRequest.getDocumentTypeIdentifier ()));
-    ret.setSpecificationIdentifier (_getClone (aRequest.getSpecificationIdentifier ()));
-    ret.setProcessIdentifier (_getClone (aRequest.getProcessIdentifier ()));
-    return ret;
   }
 
   /**

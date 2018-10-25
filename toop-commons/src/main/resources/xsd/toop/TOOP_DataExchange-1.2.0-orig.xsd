@@ -32,6 +32,7 @@
   <!--alternative ROOT elements-->
   <xsd:element name="Request" type="toop:TOOPRequestType"/>  
   <xsd:element name="Response" type="toop:TOOPResponseType"/>  
+  <xsd:element name="ErrorMessage" type="toop:TOOPErrorMessageType"/>   
   
   <!--************************** -->
   <!--COMMON elements start here -->
@@ -183,8 +184,7 @@
     <xsd:complexContent>
       <xsd:extension base="toop:TOOPRequestType">
         <xsd:sequence>
-          <xsd:element name="DataProvider" type="toop:DataProviderType" minOccurs="0"/>
-          <xsd:element name="Error" type="toop:ErrorType" minOccurs="0" maxOccurs="unbounded"/> 
+          <xsd:element name="DataProvider" type="toop:DataProviderType"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -264,7 +264,19 @@
   <!--****************************************** -->
   <!--ERROR MESSAGE specific elements start here -->
   
- 
+  <xsd:complexType name="TOOPErrorMessageType">
+    <xsd:sequence>
+      <xsd:element name="DocumentUniversalUniqueIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="DataRequestIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DocumentTypeIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="SpecificationIdentifier" type="udt:IdentifierType"/> 
+      <xsd:element name="ProcessIdentifier" type="udt:IdentifierType"/>
+      <xsd:element name="Error" type="toop:ErrorType" minOccurs="1" maxOccurs="unbounded"/> 
+      <xsd:element name="DataProvider" type="toop:DataProviderType" minOccurs="0" maxOccurs="unbounded"/> 
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  
   <xsd:complexType name="ErrorType">
     <xsd:sequence>
       <xsd:element name="DataProviderIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>   

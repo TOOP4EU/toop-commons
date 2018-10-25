@@ -23,13 +23,14 @@ import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
+import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.string.StringHelper;
 import com.helger.jaxb.builder.IJAXBDocumentType;
 import com.helger.jaxb.builder.JAXBDocumentType;
 
-import eu.toop.commons.dataexchange.TDETOOPErrorMessageType;
 import eu.toop.commons.dataexchange.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.TDETOOPResponseType;
+import eu.toop.commons.exchange.ToopMessageBuilder;
 
 /**
  * Enumeration with all available TOOP XML document types.
@@ -38,16 +39,15 @@ import eu.toop.commons.dataexchange.TDETOOPResponseType;
  */
 public enum EToopXMLDocumentType implements IJAXBDocumentType
 {
-  REQUEST (TDETOOPRequestType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
-  RESPONSE (TDETOOPResponseType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd"),
-  ERROR_MESSAGE (TDETOOPErrorMessageType.class, "/xsd/toop/TOOP_DataExchange-1.2.0.xsd");
+  REQUEST (TDETOOPRequestType.class, ToopMessageBuilder.TOOP_XSD),
+  RESPONSE (TDETOOPResponseType.class, ToopMessageBuilder.TOOP_XSD);
 
   private final JAXBDocumentType m_aDocType;
 
-  private EToopXMLDocumentType (@Nonnull final Class <?> aClass, @Nonnull final String sXSDPath)
+  private EToopXMLDocumentType (@Nonnull final Class <?> aClass, @Nonnull final ClassPathResource aXSD)
   {
     m_aDocType = new JAXBDocumentType (aClass,
-                                       new CommonsArrayList <> (sXSDPath),
+                                       new CommonsArrayList <> (aXSD.getPath ()),
                                        x -> StringHelper.trimEnd (StringHelper.trimStart (x, "TOOP"), "Type"));
   }
 
