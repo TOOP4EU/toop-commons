@@ -16,9 +16,11 @@
 package eu.toop.commons.concept;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.id.IHasID;
+import com.helger.commons.lang.EnumHelper;
 
 /**
  * Contains the different concept types to be used in the TOOP Request and
@@ -45,5 +47,11 @@ public enum EConceptType implements IHasID <String>
   public String getID ()
   {
     return m_sID;
+  }
+
+  @Nullable
+  public static EConceptType getFromIDOrNull (@Nullable final String sID)
+  {
+    return EnumHelper.getFromIDOrNull (EConceptType.class, sID);
   }
 }

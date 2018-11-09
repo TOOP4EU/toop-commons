@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons;
+package eu.toop.commons.supplementary.tools;
 
 import java.io.File;
 import java.io.InputStream;
