@@ -44,11 +44,6 @@
     schemeName="schemeName5" schemeAgencyID="schemeAgencyID5" schemeAgencyName="schemeAgencyName5"
     schemeVersionID="schemeVersionID5" schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">SessionIdentifier0
   </toop:DataConsumerGlobalSessionIdentifier>
-  <toop:DataRequestIdentifier schemeID="schemeID19" schemeName="schemeName19"
-    schemeAgencyID="schemeAgencyID19" schemeAgencyName="schemeAgencyName19" schemeVersionID="schemeVersionID19"
-    schemeDataURI="http://www.oxygenxml.com/" schemeURI="http://www.oxygenxml.com/">1f17a4fa-a905-4d9c-8191-97d1e76985df
-    
-    </toop:DataRequestIdentifier>
   <toop:DataConsumer>
     <toop:DCUniqueIdentifier schemeID="schemeID6" schemeName="schemeName6"
       schemeAgencyID="schemeAgencyID6" schemeAgencyName="schemeAgencyName6" schemeVersionID="schemeVersionID6"
@@ -184,6 +179,8 @@
       </toop:ConceptNamespace>
       <toop:ConceptName>elType
       </toop:ConceptName>
+      <toop:ConceptDefinition>
+              The legal form under which the  company is registered.</toop:ConceptDefinition>  
       <toop:ConceptRequest>
         <toop:ConceptTypeCode>TC
         </toop:ConceptTypeCode>
