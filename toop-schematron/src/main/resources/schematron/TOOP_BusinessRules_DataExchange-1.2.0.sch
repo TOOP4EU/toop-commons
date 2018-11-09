@@ -128,7 +128,7 @@
     <!--Check if an identifier is valid according to the eIDAS specifications-->
     <pattern>
         <rule context="toop:LegalPersonUniqueIdentifier | toop:PersonIdentifier">
-            <assert test="matches(text(),'^[a-z]{2}/[a-z]{2}/(.*?)$','i')"  flag='ERROR' id="wrong_id_format">
+            <assert test="matches(normalize-space(text()),'^[a-z]{2}/[a-z]{2}/(.*?)','i')"  flag='ERROR' id="wrong_id_format">
                 Rule: The uniqueness identifier consists of:
                 1. The first part is the Nationality Code of the identifier. This is one of the ISO 3166-1 alpha-2 codes, followed by a slash ("/"))
                 2. The second part is the Nationality Code of the destination country or international organization. This is one of the ISO 3166-1 alpha-2 codes, followed by a slash ("/")
@@ -161,7 +161,7 @@
     <!--Check if the AuthorizedRepresentativeIdentifier links to the personIdentifier-->
     <pattern>
         <rule context="toop:AuthorizedRepresentativeIdentifier">
-            <assert test="text()=//toop:DataRequestSubject/toop:NaturalPerson/toop:PersonIdentifier"  flag='ERROR' id="unmatched_person_rep_id">
+            <assert test="normalize-space(text())=normalize-space(//toop:DataRequestSubject/toop:NaturalPerson/toop:PersonIdentifier)"  flag='ERROR' id="unmatched_person_rep_id">
                 Rule: Use the value that is used in the element: DataSubject/NaturalPerson/PersonIdentifier.
             </assert>
         </rule>

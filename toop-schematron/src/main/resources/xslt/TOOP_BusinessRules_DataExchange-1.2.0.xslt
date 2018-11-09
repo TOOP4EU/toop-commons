@@ -776,9 +776,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="matches(text(),'^[a-z]{2}/[a-z]{2}/(.*?)$','i')" />
+      <xsl:when test="matches(normalize-space(text()),'^[a-z]{2}/[a-z]{2}/(.*?)','i')" />
       <xsl:otherwise>
-        <svrl:failed-assert test="matches(text(),'^[a-z]{2}/[a-z]{2}/(.*?)$','i')">
+        <svrl:failed-assert test="matches(normalize-space(text()),'^[a-z]{2}/[a-z]{2}/(.*?)','i')">
           <xsl:attribute name="id">wrong_id_format</xsl:attribute>
           <xsl:attribute name="flag">ERROR</xsl:attribute>
           <xsl:attribute name="location">
@@ -869,9 +869,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="text()=//toop:DataRequestSubject/toop:NaturalPerson/toop:PersonIdentifier" />
+      <xsl:when test="normalize-space(text())=normalize-space(//toop:DataRequestSubject/toop:NaturalPerson/toop:PersonIdentifier)" />
       <xsl:otherwise>
-        <svrl:failed-assert test="text()=//toop:DataRequestSubject/toop:NaturalPerson/toop:PersonIdentifier">
+        <svrl:failed-assert test="normalize-space(text())=normalize-space(//toop:DataRequestSubject/toop:NaturalPerson/toop:PersonIdentifier)">
           <xsl:attribute name="id">unmatched_person_rep_id</xsl:attribute>
           <xsl:attribute name="flag">ERROR</xsl:attribute>
           <xsl:attribute name="location">

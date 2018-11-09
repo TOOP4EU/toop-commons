@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.io.resource.FileSystemResource;
-import com.helger.schematron.svrl.SVRLFailedAssert;
+import com.helger.schematron.svrl.AbstractSVRLMessage;
 
 /**
  * Test class for class {@link TOOPSchematronValidator}.
@@ -52,9 +52,9 @@ public final class TOOPSchematronValidatorTest
       final FileSystemResource aFS = new FileSystemResource ("src/test/resources/xml/" + sFilename);
       assertTrue (aFS.exists ());
 
-      final ICommonsList <SVRLFailedAssert> aFAs = v.validateTOOPMessage (aFS);
+      final ICommonsList <AbstractSVRLMessage> aFAs = v.validateTOOPMessage (aFS);
       assertNotNull (aFAs);
-      for (final SVRLFailedAssert aFA : aFAs)
+      for (final AbstractSVRLMessage aFA : aFAs)
         LOGGER.info (aFA.toString ());
       assertTrue (aFAs.isEmpty ());
     }

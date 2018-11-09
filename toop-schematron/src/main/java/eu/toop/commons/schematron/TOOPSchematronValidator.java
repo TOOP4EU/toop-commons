@@ -23,11 +23,12 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import com.helger.commons.annotation.ReturnsMutableCopy;
+import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.io.resource.IReadableResource;
 import com.helger.schematron.ISchematronResource;
-import com.helger.schematron.svrl.SVRLFailedAssert;
+import com.helger.schematron.svrl.AbstractSVRLMessage;
 import com.helger.schematron.svrl.SVRLHelper;
 import com.helger.schematron.xslt.SchematronResourceXSLT;
 import com.helger.xml.serialize.read.DOMReader;
@@ -72,7 +73,7 @@ public class TOOPSchematronValidator
 
   @Nonnull
   @ReturnsMutableCopy
-  public ICommonsList <SVRLFailedAssert> validateTOOPMessage (@Nonnull final IReadableResource aXML)
+  public ICommonsList <AbstractSVRLMessage> validateTOOPMessage (@Nonnull final IReadableResource aXML)
   {
     // Parse XML to DOM
     final Document aXMLDoc;
@@ -95,18 +96,21 @@ public class TOOPSchematronValidator
    *
    * @param aXMLDoc
    *        The XML DOM node to be validated. May not be <code>null</code>.
-   * @return The list of all failed asserts
+   * @return The list of all failed asserts/successful reports
    */
   @Nonnull
   @ReturnsMutableCopy
-  public ICommonsList <SVRLFailedAssert> validateTOOPMessage (@Nonnull final Document aXMLDoc)
+  public ICommonsList <AbstractSVRLMessage> validateTOOPMessage (@Nonnull final Document aXMLDoc)
   {
     try
     {
       final ISchematronResource aSchematron = createSchematronResource ();
       // No base URI needed since Schematron contains no includes
       final SchematronOutputType aSOT = aSchematron.applySchematronValidationToSVRL (aXMLDoc, null);
-      return SVRLHelper.getAllFailedAssertions (aSOT);
+      final ICommonsList <AbstractSVRLMessage> ret = new CommonsArrayList <> ();
+      ret.addAll (SVRLHelper.getAllFailedAssertions (aSOT));
+      ret.addAll (SVRLHelper.getAllSuccessfulReports (aSOT));
+      return ret;
     }
     catch (final Exception ex)
     {
