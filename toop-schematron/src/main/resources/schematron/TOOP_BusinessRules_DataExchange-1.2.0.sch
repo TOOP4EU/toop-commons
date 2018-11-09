@@ -35,7 +35,7 @@
     <!--Check the format of the UUID's-->
     <pattern>
         <rule context="toop:DocumentUniversalUniqueIdentifier | toop:DataRequestIdentifier | toop:DocumentRequestIdentifier">
-            <assert test="matches(text(),'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$','i')" flag='ERROR' id="wrong_uuid_format">
+            <assert test="matches(normalize-space(text()),'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$','i')" flag='ERROR' id="wrong_uuid_format">
                 Rule: The UUID MUST be created following the UUID Version 4 specification. 
                 Copies of a document must be identified with a different UUID. 
                 Compulsory use of schemeAgencyID attribute.</assert>
@@ -48,7 +48,7 @@
             <report test="exists(toop:DataRequestIdentifier)" flag='ERROR' id="misplaced_dr_id">
                 A Request should not contain a DataRequestIdentifier, which is used in the response to link to the request.
             </report>
-            <assert test="matches(toop:DocumentTypeIdentifier/text(),'urn:eu.toop.request.registeredorganization::1.10$')" flag='ERROR' id="mandatory_req_doc_id">
+            <assert test="matches(toop:DocumentTypeIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10')" flag='ERROR' id="mandatory_req_doc_id">
                 A Request DocumentTypeIdentifier must be 'urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10'.
             </assert>
             <report test="( (exists(//toop:DocumentResponse)) or (exists(//toop:DataElementResponseValue)) )"  flag='ERROR' id="misplaced_response">
@@ -57,7 +57,7 @@
             <report test="exists(//toop:DataProvider)" flag='ERROR' id="misplaced_data_provider">
                 A Request should not contain information about the DataProvider.
             </report>
-            <assert test="matches(toop:SpecificationIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p10::Request$')" flag='ERROR' id="mandatory_req_specs_id">
+            <assert test="matches(toop:SpecificationIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p10::Request')" flag='ERROR' id="mandatory_req_specs_id">
                 Rule: A Toop data request MUST have the specification identifier "urn:eu:toop:ns:dataexchange-1p10::Request".
             </assert>
         </rule>
@@ -71,13 +71,13 @@
                 A Response must contain a DataRequestIdentifier. 
                 UNCHECKED: Use the same value that was used in the corresponding Toop Request (path: Request/DocumentUniversalUniqueIdentifier).
             </assert>
-            <assert test="matches(toop:DocumentTypeIdentifier/text(),'urn:eu.toop.response.registeredorganization::1.10$')" flag='ERROR' id="mandatory_res_doc_id">
+            <assert test="matches(toop:DocumentTypeIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10')" flag='ERROR' id="mandatory_res_doc_id">
                 A Response DocumentTypeIdentifier must be 'urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10'.
             </assert>
-            <report test="matches(toop:DataRequestIdentifier,toop:DocumentUniversalUniqueIdentifier)"  flag='ERROR' id="duplicate_req_id">
+            <report test="matches(toop:DataRequestIdentifier/text(),toop:DocumentUniversalUniqueIdentifier/text())"  flag='ERROR' id="duplicate_req_id">
                 The DocumentUniversalUniqueIdentifier cannot be identical to the DataRequestIdentifier (which is copied from the Request).
             </report>
-            <assert test="matches(toop:SpecificationIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p10::Response$')" flag='ERROR' id="mandatory_res_specs_id">
+            <assert test="matches(toop:SpecificationIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p10::Response')" flag='ERROR' id="mandatory_res_specs_id">
                 Rule: A Toop data response MUST have the specification identifier "urn:eu:toop:ns:dataexchange-1p10::Response".
             </assert>
         </rule>
@@ -232,6 +232,20 @@
         </rule>
     </pattern>
     
+    <!--Check for the ConceptDefinition of a DC concept--> 
+    <pattern>
+        <rule context="toop:Response">
+            <let name="dataProviderCount" value="count(//toop:DataProvider)"/>  
+            <let name="errorCount" value="count(//toop:Error[toop:Severity='FAILURE'])"/>  
+            <report test="$dataProviderCount>1"  flag='ERROR' id="one_data_provider">
+                Rule: At maximum one DataProvider must be present in a Response.
+            </report>
+            <report test="($dataProviderCount=0) and ($errorCount=0)"  flag='ERROR' id="mandatory_data_provider">
+                Rule: The DataProvider in a Response is mandatory if there is no fatal error.
+            </report>
+        </rule>
+    </pattern>
+    
     
     <!-- RULES USING CODELISTS -->
     
@@ -252,7 +266,7 @@
     <pattern> 
         <let name="subjecttypecodes" value="document('..\codelists\gc\DataRequestSubjectTypeCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:DataRequestSubjectTypeCode" flag='ERROR' id='gc_check_subject_type_code'> 
-            <assert test="$subjecttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A subject type code code must always be specified using the correct code list.</assert> 
+            <assert test="$subjecttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A subject type code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -260,7 +274,7 @@
     <pattern> 
         <let name="gendertypecodes" value="document('..\codelists\gc\Gender-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:GenderCode" flag='ERROR' id='gc_check_gender_code'> 
-            <assert test="$gendertypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A gender type code code must always be specified using the correct code list.</assert> 
+            <assert test="$gendertypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A gender code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -268,7 +282,7 @@
     <pattern> 
         <let name="concepttypecodes" value="document('..\codelists\gc\ConceptTypeCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:ConceptTypeCode" flag='ERROR' id='gc_check_concept_code'> 
-            <assert test="$concepttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A concept type code code must always be specified using the correct code list.</assert> 
+            <assert test="$concepttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A concept type code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -277,7 +291,7 @@
         <let name="currencytypecodes" value="document('..\codelists\std-gc\CurrencyCode-2.1.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:ResponseAmount" flag='ERROR' id='gc_check_currency_code'> 
             <let name="varcurrencyID" value="@currencyID"/>
-            <assert test="$currencytypecodes//SimpleValue[normalize-space(.) = $varcurrencyID]">A currency type code code must always be specified using the correct code list (found:<value-of select="$varcurrencyID"/>).</assert> 
+            <assert test="$currencytypecodes//SimpleValue[normalize-space(.) = $varcurrencyID]">A currency type code must always be specified using the correct code list (found:<value-of select="$varcurrencyID"/>).</assert> 
         </rule> 
     </pattern> 
     
@@ -285,7 +299,7 @@
     <pattern> 
         <let name="industrialtypecodes" value="document('..\codelists\gc\StandardIndustrialClassCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:StandardIndustrialClassification" flag='warning' id='gc_check_industrial_code'> 
-            <assert test="$industrialtypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A standard industrial class type code code must always be specified using the correct code list.</assert> 
+            <assert test="$industrialtypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A standard industrial classification code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -293,7 +307,7 @@
     <pattern> 
         <let name="dataelementresponseerrorcodes" value="document('..\codelists\gc\DataElementResponseErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:DataElementResponseValue//toop:ErrorCode" flag='ERROR' id='gc_check_error_data_element_response'> 
-            <assert test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">An error code code must always be specified using the correct code list.</assert> 
+            <assert test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">An error code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -301,7 +315,7 @@
     <pattern> 
         <let name="documentresponseerrorcodes" value="document('..\codelists\gc\DocumentResponseErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:DocumentResponse//toop:ErrorCode" flag='ERROR' id='gc_check_error_document_response'> 
-            <assert test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">An error code code must always be specified using the correct code list.</assert> 
+            <assert test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">An error code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -309,7 +323,7 @@
     <pattern> 
         <let name="docrequesttypecodes" value="document('..\codelists\gc\DocumentRequestTypeCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:DocumentRequestTypeCode | toop:DocumentTypeCode" flag='warning' id='gc_check_doc_req_type'> 
-            <assert test="$docrequesttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A document request type code code must always be specified using the correct code list.</assert> 
+            <assert test="$docrequesttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A document type code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
@@ -317,7 +331,7 @@
     <pattern> 
         <let name="mimetypecodes" value="document('..\codelists\std-gc\BinaryObjectMimeCode-2.1.gc')//Value[@ColumnRef='code']" />
         <rule context="toop:PreferredDocumentMimeTypeCode | toop:DocumentMimeTypeCode" flag='warning' id='gc_check_doc_mime_type'> 
-            <assert test="$mimetypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A MIME type code code must always be specified using the correct code list.</assert> 
+            <assert test="$mimetypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">A mimetype code must always be specified using the correct code list.</assert> 
         </rule> 
     </pattern> 
     
