@@ -23,7 +23,6 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import com.helger.commons.annotation.ReturnsMutableCopy;
-import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.io.resource.IReadableResource;
@@ -107,10 +106,7 @@ public class TOOPSchematronValidator
       final ISchematronResource aSchematron = createSchematronResource ();
       // No base URI needed since Schematron contains no includes
       final SchematronOutputType aSOT = aSchematron.applySchematronValidationToSVRL (aXMLDoc, null);
-      final ICommonsList <AbstractSVRLMessage> ret = new CommonsArrayList <> ();
-      ret.addAll (SVRLHelper.getAllFailedAssertions (aSOT));
-      ret.addAll (SVRLHelper.getAllSuccessfulReports (aSOT));
-      return ret;
+      return SVRLHelper.getAllFailedAssertionsAndSuccessfulReports (aSOT);
     }
     catch (final Exception ex)
     {
