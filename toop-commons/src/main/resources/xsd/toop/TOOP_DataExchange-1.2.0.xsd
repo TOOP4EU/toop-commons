@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-
-    Copyright (C) 2018 toop.eu
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
+  Copyright (C) 2018 toop.eu
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
 -->
 <xsd:schema 
   xmlns:toop="urn:eu:toop:ns:dataexchange-1p10"
@@ -24,7 +19,6 @@
   version="specsVersion1.2.0"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified">  
-
   <xsd:import
     namespace="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
     schemaLocation="../common/UBL-UnqualifiedDataTypes-2.1.xsd" />
@@ -128,17 +122,15 @@
     </xsd:sequence>
   </xsd:complexType>
   
-
   <!-- **** CHECK: Force the use of the Level of Assurance attribute by using the type IdentifierWithLOA instead of Identifier--> 
   <!-- for future releases--> 
   <!--xsd:complexType name="IdentifierWithLOAType">
     <xsd:simpleContent>
-      <xsd:extension base="udt:IdentifierType">
-        <xsd:attribute name="LevelOfAssurance" type="xsd:token" use="required"/>
-      </xsd:extension>
+    <xsd:extension base="udt:IdentifierType">
+    <xsd:attribute name="LevelOfAssurance" type="xsd:token" use="required"/>
+    </xsd:extension>
     </xsd:simpleContent>
-  </xsd:complexType-->
-
+    </xsd:complexType-->
   
   
   <!--COMMON elements stop here -->
@@ -183,13 +175,13 @@
     <xsd:complexContent>
       <xsd:extension base="toop:TOOPRequestType">
         <xsd:sequence>
-          <xsd:element name="DataProvider" type="toop:DataProviderType" minOccurs="0"/>
-          <xsd:element name="Error" type="toop:ErrorType" minOccurs="0" maxOccurs="unbounded"/> 
+          <xsd:element name="DataProvider" type="toop:DataProviderType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Error" type="toop:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  
+   
   <xsd:complexType name="DataElementResponseValueType">
     <xsd:sequence>
       <xsd:element name="ErrorIndicator" type="udt:IndicatorType"  default="false"/>
@@ -256,7 +248,7 @@
       <xsd:element name="ContactEmailAddress" type="udt:TextType" minOccurs="0" maxOccurs="1"/>  
     </xsd:sequence>
   </xsd:complexType>
-   
+  
   <!--RESPONSE specific elements stop here -->
   <!--************************************ -->
   
@@ -264,7 +256,7 @@
   <!--****************************************** -->
   <!--ERROR MESSAGE specific elements start here -->
   
- 
+  
   <xsd:complexType name="ErrorType">
     <xsd:sequence>
       <xsd:element name="DataProviderIdentifier" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>   

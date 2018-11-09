@@ -4,6 +4,7 @@
 		<ShortName>ErrorSeverity</ShortName>
 		<LongName xml:lang="en">Error Severity</LongName>
 		<Version>2018-10-01</Version>
+		<CanonicalUri>urn:eu.toop.cl.errorseverity</CanonicalUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>
@@ -37,7 +38,7 @@
 				<SimpleValue>FAILURE</SimpleValue>
 			</Value>
 			<Value ColumnRef="name-Value">
-				<SimpleValue>Failure </SimpleValue>
+				<SimpleValue>Failure</SimpleValue>
 			</Value>
 		</Row>
 	</SimpleCodeList>

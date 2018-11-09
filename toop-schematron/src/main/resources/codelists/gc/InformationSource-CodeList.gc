@@ -4,6 +4,7 @@
 		<ShortName>InformationSource</ShortName>
 		<LongName xml:lang="en">Information Source</LongName>
 		<Version>2018-04-24</Version>
+		<CanonicalUri>urn:eu.toop.cl.informationsource</CanonicalUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>

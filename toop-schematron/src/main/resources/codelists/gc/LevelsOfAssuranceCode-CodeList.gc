@@ -4,6 +4,7 @@
 		<ShortName>LevelsOfAssuranceCode</ShortName>
 		<LongName xml:lang="en">Levels Of Assurance Code</LongName>
 		<Version>2018-04-24</Version>
+		<CanonicalUri>urn:eu.toop.cl.levelsofassurancecode</CanonicalUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>

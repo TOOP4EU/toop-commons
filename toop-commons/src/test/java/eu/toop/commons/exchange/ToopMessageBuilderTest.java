@@ -138,7 +138,7 @@ public final class ToopMessageBuilderTest
         final TDEAddressType pa = new TDEAddressType ();
         pa.setCountryCode (ToopXSDHelper.createCode ("SV"));
         p.setDPLegalAddress (pa);
-        aSrcResponse.setDataProvider (p);
+        aSrcResponse.addDataProvider (p);
       }
       // Add response to concept 1/2
       {

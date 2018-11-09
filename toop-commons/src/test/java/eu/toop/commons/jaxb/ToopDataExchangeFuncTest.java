@@ -57,9 +57,10 @@ public final class ToopDataExchangeFuncTest
   @Test
   public void testReadWriteDataRequest ()
   {
-    for (final String sFilename : new String [] { "data-request-example.xml",
-                                                  "data-request1.xml",
-                                                  "commander-request1.xml" })
+    for (final String sFilename : new String [] { "commander-request1.xml",
+                                                  "data-request-document-example.xml",
+                                                  "data-request-example.xml",
+                                                  "data-request1.xml" })
     {
       final TDETOOPRequestType aRequest = ToopReader.request ().read (new File ("src/test/resources/xml/" + sFilename));
       assertNotNull (aRequest);
@@ -71,9 +72,11 @@ public final class ToopDataExchangeFuncTest
   @Test
   public void testReadWriteDataResponse ()
   {
-    for (final String sFilename : new String [] { "data-response-example.xml",
-                                                  "data-response1.xml",
-                                                  "data-response-error1.xml" })
+    for (final String sFilename : new String [] { "data-response-document-example.xml",
+                                                  "data-response-error1.xml",
+                                                  "data-response-example.xml",
+                                                  "data-response-with-ERROR-example.xml",
+                                                  "data-response1.xml" })
     {
       final TDETOOPResponseType aResponse = ToopReader.response ()
                                                       .read (new File ("src/test/resources/xml/" + sFilename));
@@ -253,7 +256,7 @@ public final class ToopDataExchangeFuncTest
       final TDEAddressType pa = new TDEAddressType ();
       pa.setCountryCode (ToopXSDHelper.createCode ("XK"));
       p.setDPLegalAddress (pa);
-      r.setDataProvider (p);
+      r.addDataProvider (p);
     }
 
     final Document aDoc = ToopWriter.response ().getAsDocument (r);

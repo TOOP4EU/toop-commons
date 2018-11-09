@@ -31,7 +31,7 @@ import com.helger.security.keystore.LoadedKeyStore;
 public final class CToopPlaygroundTest
 {
   @Test
-  public void testBasic ()
+  public void testLoadKeyStores ()
   {
     assertTrue (CToopPlayground.PATH_PLAYGROUND_TRUST_STORE.exists ());
     final LoadedKeyStore aKS = KeyStoreHelper.loadKeyStore (CToopPlayground.TYPE_PLAYGROUND_TRUST_STORE,

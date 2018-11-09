@@ -453,7 +453,7 @@ public final class ToopMessageBuilder
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper.createCode ("XK"));
       aDP.setDPLegalAddress (aAddress);
-      aRet.setDataProvider (aDP);
+      aRet.addDataProvider (aDP);
     }
 
     return aRet;

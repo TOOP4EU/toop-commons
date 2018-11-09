@@ -4,6 +4,7 @@
 		<ShortName>DocumentResponseErrorCode</ShortName>
 		<LongName xml:lang="en">Document Response Error Code</LongName>
 		<Version>2018-03-28T00:00:00.000</Version>
+		<CanonicalUri>urn:eu.toop.cl.documentresponseerrorcode</CanonicalUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>

@@ -4,6 +4,7 @@
 		<ShortName>ErrorOrigin</ShortName>
 		<LongName xml:lang="en">Error Origin</LongName>
 		<Version>2018-10-01</Version>
+		<CanonicalUri>urn:eu.toop.cl.errororigin</CanonicalUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>

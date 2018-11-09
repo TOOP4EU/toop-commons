@@ -31,44 +31,48 @@
     
 -->
 
+<!--with some XML editors you can uncomment next row to link this instance to the Schematron (change the path if needed)-->
+<!--<?xml-model href="../schematron/TOOP_BusinessRules_DataExchange.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+
 <toop:Response xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
  xmlns:toop="urn:eu:toop:ns:dataexchange-1p10"
  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2">
-    <!-- Lovingly handmade XML instance, including comments and sample data taken from the Data Excchange Model specifications -->
+    <!--Example XML instance, including comments and sample data taken from the Data Exchange Model specifications, checked with latest Schematron rules -->
     <!--Rule: The UUID MUST be created following the UUID Version 4 specification. Copies of a document must be identified with a different UUID. Compulsory use of schemeAgencyID attribute-->
     <!--DP ACTION: generate a new UUID-->
-    <toop:DocumentUniversalUniqueIdentifier schemeAgencyID="***TO_BE_DEFINED***">e7262b82-bd2c-41d8-9839-f39dbda124da</toop:DocumentUniversalUniqueIdentifier>
+    <toop:DocumentUniversalUniqueIdentifier schemeAgencyID="**DEFINED_BY_DP**">e7262b82-bd2c-41d8-9839-f39dbda124da</toop:DocumentUniversalUniqueIdentifier>
     <!--Rule: A date using the following format: YYYY + “-“ + MM + “-“ + DD (as defined for xsd:date)-->
     <!--DP ACTION: insert the current date (could be a different day, if a request is issued just before midnight...)-->
     <toop:DocumentIssueDate>2018-02-22</toop:DocumentIssueDate>
     <!--DP ACTION: insert the current timestamp (in this example, just a few seconds after the request is sent)-->
     <toop:DocumentIssueTime>09:55:28</toop:DocumentIssueTime>
-    <!--The Copy Indicator component is used if the same document is forwarded several times to the same or to different destinations. The default value is "false". Use it in combination with the Document Universal Unique Identifier. Copies should be indicated with "true" have have a different "Document Univeral Unique Identifier".-->
+    <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers". Compulsory use of attribute schemeID "toop-doctypeid-qns".-->
     <toop:CopyIndicator>false</toop:CopyIndicator>
-    <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers" (tbd). The current values are 'toop.eu.data.request.registeredorganization', 'toop.eu.data.response.registeredorganization`. Compulsory use of attributes schemeID "toop-docid".-->
+    <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers". The current values are 'toop.eu.data.request.registeredorganization', 'toop.eu.data.response.registeredorganization`. Compulsory use of attributes schemeID "toop-docid".-->
     <!--DP ACTION:  mark this as a "toop.eu.data.response.registeredorganization"-->
-    <toop:DocumentTypeIdentifier schemeID="toop-docid">urn:eu.toop.data.response.registeredorganization</toop:DocumentTypeIdentifier>
-    <!--Rule: A Toop data request MUST have the specification identifier "www.toop.eu:bis:data_exchange_model:v1.0"-->
-    <toop:SpecificationIdentifier>www.toop.eu:bis:data_exchange_model:v1.0</toop:SpecificationIdentifier>
-    <!--Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers" (tbd).-->
-    <toop:ProcessIdentifier>urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
+    <toop:DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10</toop:DocumentTypeIdentifier>
+    <!--Rule: A response MUST have the specification identifier "urn:eu:toop:ns:dataexchange-1p10::Response"-->
+    <toop:SpecificationIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p10::Response</toop:SpecificationIdentifier>
+    <!--Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers".-->
+    <toop:ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
     <!--Use the schemeAgencyID attribute to identify the organisation responsible for the document.-->
     <!--Note: Do not change this identifier. It was assigned by the DC to identify this document internally-->
-	<toop:DataConsumerDocumentIdentifier schemeAgencyID="***TO_BE_DEFINED***">101-287.56666</toop:DataConsumerDocumentIdentifier>
+    <toop:DataConsumerDocumentIdentifier schemeAgencyID="**DEFINED_BY_DC**">101-287.56666</toop:DataConsumerDocumentIdentifier>
     <!--Note: Do not change this identifier. It was assigned by the DC to identify multiple request that belong together. -->
-	<toop:DataConsumerGlobalSessionIdentifier>394956</toop:DataConsumerGlobalSessionIdentifier>
+    <toop:DataConsumerGlobalSessionIdentifier schemeAgencyID="**DEFINED_BY_DC**">394956</toop:DataConsumerGlobalSessionIdentifier>
     <!--Please describe the purpose in english and use the language attribute "en"-->
-    <toop:DataConsumerRequestPurpose  languageID="en-US">Qualification Procedure in Public Procurement</toop:DataConsumerRequestPurpose>
+    <toop:DataConsumerRequestPurpose  languageID="en">Qualification Procedure in Public Procurement</toop:DataConsumerRequestPurpose>
     <!--Rule: Use the same value that was used in the corresponding Toop Data Request (path: ToopDataRequest/DocumentUniveralUniqueIdentifier)--> 
     <!--DP ACTION:  copy the UUID value from the corresponding TOOP Data Request here-->
-    <toop:DataRequestIdentifier>1f17a4fa-a905-4d9c-8191-97d1e76985df</toop:DataRequestIdentifier>
+    <toop:DataRequestIdentifier schemeAgencyID="**DEFINED_BY_DP**">1f17a4fa-a905-4d9c-8191-97d1e76985df</toop:DataRequestIdentifier>
+    
     <toop:DataConsumer>
         <!--Rule: The preferred identifier is the national VAT number.  Compulsory use of the attribute schemeAgencyID.-->
-        <toop:DCUniqueIdentifier schemeAgencyID="schemeAgencyID1">DE999999999</toop:DCUniqueIdentifier>
+        <toop:DCUniqueIdentifier schemeAgencyID="**DEFINED_BY_DC**">DE999999999</toop:DCUniqueIdentifier>
         <toop:DCName>MyCompany</toop:DCName>
-        <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"" (tbd)"-->
-        <toop:DCElectronicAddressIdentifier schemeID="***TO_BE_DEFINED***">0088:4035811991014</toop:DCElectronicAddressIdentifier>
+        <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"""-->
+        <toop:DCElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0088:4035811991014</toop:DCElectronicAddressIdentifier>
         <toop:DCLegalAddress>
             <toop:AddressLine>Koenigstrasse 22</toop:AddressLine>
             <toop:AddressLine>Floor 2</toop:AddressLine>
@@ -98,13 +102,13 @@
             <!--Attribute describing the identifier referred to in Article 3(1) of Directive 2009/101/EG of the European Parliament and of the Council.-->
 			<toop:BusinessCodes>GB7552671243</toop:BusinessCodes>
             <!--A 20-character identifier (defined by ISO 17442) to distinct legal entities that engage in financial transactions.-->
-            <toop:LegalEntityIdentifier>ES123567983568437254K</toop:LegalEntityIdentifier>
+            <toop:LegalEntityIdentifier>ES123567983568437254</toop:LegalEntityIdentifier>
             <!--A number assigned by a customs authority or designated authority or authorities in a Member State to economic operators and other persons in accordance with the rules laid down in Part I, Title I, Chapter 6 of the CCIP-->
             <toop:EORIIdentifier>GB123456789000</toop:EORIIdentifier>
 			<!--Attribute describing the System for Exchange of Excise Data (SEED) Excise Number for the legal person--> 
             <toop:SEEDIdentifier>GB00000987ABC</toop:SEEDIdentifier>
 			<!--A 4-digit code describing the Standard Industrial Classification (SIC) code for the legal person-->
-            <toop:StandardIndustrialClassification>3730</toop:StandardIndustrialClassification>
+            <toop:StandardIndustrialClassification>6010</toop:StandardIndustrialClassification>
             <!--Rule: Use the value that is used in the element: DataSubject/NaturalPerson/PersonIdentifier-->
             <toop:AuthorizedRepresentativeIdentifier>GB/GB/02635542Y</toop:AuthorizedRepresentativeIdentifier>
 			<!--Note: The address is not mandatory attribute for eIDAS but we need at least the country of the company-->
@@ -132,7 +136,7 @@
             <toop:BirthDate>1939-10-27</toop:BirthDate>
             <toop:BirthFamilyName>Cheese</toop:BirthFamilyName>
             <toop:BirthPlace>Weston-super-Mare</toop:BirthPlace>
-            <toop:GenderCode>Male</toop:GenderCode>
+            <toop:GenderCode>M</toop:GenderCode>
 			<!--Note: The address is not mandatory attribute for eIDAS but we need at least the country of the natural person-->
             <toop:NaturalPersonLegalAddress>
                 <toop:AddressLine>Queens Street 22</toop:AddressLine>
@@ -154,7 +158,7 @@
     <toop:DataElementRequest>
         <!--Even if this is an optional element, it is recommeded to use this element in order to correlate responses to a given request. However, the concept is optional as the "Concept Namespace" is the major identifier to identify concepts within the TOOP network. If your internal system is also using the Toop "Concept Namespace" to identify concepts you can use duplicate them here or leave this element empty.-->
         <toop:DataElementRequestIdentifier>REQ#1342344</toop:DataElementRequestIdentifier>
-        <!--DP ACTION: you basically need to cycle through all the ConceptRequests, and give a response or a error code for each one. For example, each DC concept will be associated to a "Skipped" error code, because the DP will not understand it-->
+        <!--DP ACTION: you basically need to cycle through all the ConceptRequests, and give a response or a error code for each one. For example, each DC concept will be associated to a "Unknown Concept" error code, because the DP will not understand it-->
         <toop:ConceptRequest>
             <!--Rule: Compulsory use of the code list "ConceptTypeCodes" with the values  "Data Consumer Concept (DC)", "Toop Concept (TC)" and "Data Provider Concept (DP)".--> 
             <toop:ConceptTypeCode>DC</toop:ConceptTypeCode>
@@ -163,22 +167,23 @@
             <!--Rule: Compulsory use of the IDs defined in the list "Concepts & Namespaces". -->
             <toop:ConceptNamespace>deu:Rechtsform</toop:ConceptNamespace>
             <toop:ConceptName>Rechtsform</toop:ConceptName>
-            <!--DP ACTION: this would be the place to provide the response value for particular data element that was requested through the concept request; However, since this is still a DC concept the value will be the ErrorCode for "Skipped" (DP_ELE_000) -->
+            <toop:ConceptDefinition>The legal form under which the  company is registered.</toop:ConceptDefinition>  
+            <!--DP ACTION: this would be the place to provide the response value for particular data element that was requested through the concept request; However, since this is still a DC concept the value will be the ErrorCode for "Unknown Concept" (DP_ELE_001) -->
             <toop:DataElementResponseValue>
                 <!--The default value is "false"-->
                 <toop:ErrorIndicator>true</toop:ErrorIndicator>
                 <!--Compulsory use of the codes defined in the list "Error Codes"-->
-                <toop:ErrorCode>DP_ELE_000</toop:ErrorCode>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
             </toop:DataElementResponseValue>
             <toop:ConceptRequest>
-                <toop:ConceptTypeCode>TOOP</toop:ConceptTypeCode>
+                <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
                 <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
                 <toop:ConceptNamespace>toop:ToopLegalForm</toop:ConceptNamespace>
                 <toop:ConceptName>ToopLegalForm</toop:ConceptName>
-                <!--DP ACTION: this would be  the place to provide the response value for particular data element that was requested through the concept request; However, since this is this still a TOOP concept the value is not known by the DP, the value will still be the ErrorCode for "Skipped" (DP_ELE_000)-->
+                <!--DP ACTION: this would be  the place to provide the response value for particular data element that was requested through the concept request; However, since this is this still a TOOP concept the value is not known by the DP, the value will still be the ErrorCode for "Unknown Concept" (DP_ELE_001)-->
                 <toop:DataElementResponseValue>
                     <toop:ErrorIndicator>true</toop:ErrorIndicator>
-                    <toop:ErrorCode>DP_ELE_000</toop:ErrorCode>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
                 </toop:DataElementResponseValue>
                 <toop:ConceptRequest>
                     <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
@@ -199,10 +204,10 @@
     <!--DP ACTION: provide this block of information about the Data Provider-->
     <toop:DataProvider>
         <!--Rule: The preferred identifier is the national VAT number.  Compulsory use of the attribute schemeAgencyID.-->
-        <toop:DPIdentifier schemeAgencyID="***TO_BE_DEFINED***">123456789</toop:DPIdentifier>
+        <toop:DPIdentifier schemeAgencyID="**DEFINED_BY_DC**">123456789</toop:DPIdentifier>
         <toop:DPName>UK-DataProvider</toop:DPName>
         <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the "Toop Policy for using Identifiers"-->
-        <toop:DPElectronicAddressIdentifier>0072:4035811991014</toop:DPElectronicAddressIdentifier>
+        <toop:DPElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0072:4035811991014</toop:DPElectronicAddressIdentifier>
         <toop:DPLegalAddress>
             <!--The country of the data provider MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
             <toop:CountryCode>GB</toop:CountryCode>

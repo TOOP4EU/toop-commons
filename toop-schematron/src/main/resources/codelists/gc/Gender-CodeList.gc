@@ -4,6 +4,7 @@
 		<ShortName>Gender</ShortName>
 		<LongName xml:lang="en">Gender Code</LongName>
 		<Version>2018-03-28</Version>
+		<CanonicalUri>urn:hl7.gendercode</CanonicalUri>
 		<LocationUri>http://www.oid-info.com/get/2.16.840.1.113883.5.1</LocationUri>
 		<Agency>
 			<LongName xml:lang="en">Health Level 7</LongName>
