@@ -40,16 +40,26 @@ public enum EToopErrorCode implements IHasID <String>
   /** The Semantic Mapping Service is not reachable */
   SM_001 ("SM-001"),
   /**
-   * The Semantic Mapping Service could not provide a mapping on provided
-   * concepts
+   * The Semantic Mapping Service could not provide a mapping on provided concepts
    */
   SM_002 ("SM-002"),
   /** The TOOP Directory is not reachable */
   DD_001 ("DD-001"),
+  /**
+   * The Dynamic Discovery Service was not able to find any Participant
+   * Identifiers
+   */
   DD_002 ("DD-002"),
+  /** Error validating a signature from SMP */
   DD_003 ("DD-003"),
+  /** TODO no name */
   DD_004 ("DD-004"),
+  /**
+   * At least one, but not all SMP Servers where not able to find a Service
+   * Metadata
+   */
   DD_005 ("DD-005"),
+  /** None of the SMP Servers was able to find a Service Metadata */
   DD_006 ("DD-006"),
   /** Error creating the ASIC Container */
   TC_001 ("TC-001"),
