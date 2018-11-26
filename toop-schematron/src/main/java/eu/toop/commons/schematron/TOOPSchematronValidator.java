@@ -20,7 +20,6 @@ import javax.annotation.concurrent.ThreadSafe;
 
 import org.oclc.purl.dsdl.svrl.SchematronOutputType;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.collection.impl.ICommonsList;
@@ -52,10 +51,9 @@ public class TOOPSchematronValidator
   {}
 
   /**
-   * Create a new {@link ISchematronResource} that is configured correctly so
-   * that it can be used to validate TOOP messages. This method is only used
-   * internally and is extracted to allow potential modifications in derived
-   * classes.
+   * Create a new {@link ISchematronResource} that is configured correctly so that
+   * it can be used to validate TOOP messages. This method is only used internally
+   * and is extracted to allow potential modifications in derived classes.
    *
    * @return A new instance every time.
    * @see #validateTOOPMessage(Document)
@@ -75,15 +73,7 @@ public class TOOPSchematronValidator
   public ICommonsList <AbstractSVRLMessage> validateTOOPMessage (@Nonnull final IReadableResource aXML)
   {
     // Parse XML to DOM
-    final Document aXMLDoc;
-    try
-    {
-      aXMLDoc = DOMReader.readXMLDOM (aXML);
-    }
-    catch (final SAXException ex)
-    {
-      throw new IllegalStateException ("Failed to read the provided XML", ex);
-    }
+    final Document aXMLDoc = DOMReader.readXMLDOM (aXML);
     if (aXMLDoc == null)
       throw new IllegalStateException ("Failed to read the provided XML");
 

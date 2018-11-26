@@ -143,12 +143,10 @@ public final class ToopMessageBuilder
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPRequestType}.
    *
-   * @param aIS
-   *        Input stream to read from. May not be <code>null</code>.
+   * @param aIS Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPRequestType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
-   * @throws IOException
-   *         In case of IO error
+   * @throws IOException In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
@@ -167,12 +165,10 @@ public final class ToopMessageBuilder
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPResponseType}.
    *
-   * @param aIS
-   *        Input stream to read from. May not be <code>null</code>.
+   * @param aIS Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPResponseType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
-   * @throws IOException
-   *         In case of IO error
+   * @throws IOException In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
@@ -191,13 +187,11 @@ public final class ToopMessageBuilder
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
    *
-   * @param aIS
-   *        Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
-   *         every time the method is called or <code>null</code> if none is
-   *         contained in the ASIC.
-   * @throws IOException
-   *         In case of IO error
+   * @param aIS Input stream to read from. May not be <code>null</code>.
+   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}. every
+   *         time the method is called or <code>null</code> if none is contained
+   *         in the ASIC.
+   * @throws IOException In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
@@ -462,8 +456,7 @@ public final class ToopMessageBuilder
   /**
    * Create a new response with all cloned values from the request.
    *
-   * @param aRequest
-   *        Source request. May not be <code>null</code>.
+   * @param aRequest Source request. May not be <code>null</code>.
    * @return Destination response. Never <code>null</code>.
    */
   @Nonnull
@@ -484,20 +477,13 @@ public final class ToopMessageBuilder
   /**
    * Create a single error object.
    *
-   * @param sDPIdentifier
-   *        Optional DP identifier. May be <code>null</code>.
-   * @param eOrigin
-   *        Error origin. May not be <code>null</code>.
-   * @param eCategory
-   *        Error category. May not be <code>null</code>.
-   * @param eErrorCode
-   *        Error code. May not be <code>null</code>.
-   * @param eSeverity
-   *        Error severity. May not be <code>null</code>.
-   * @param aMLT
-   *        Multilingual text to use. May not be <code>null</code>.
-   * @param sTechDetails
-   *        Optional technical details. May be <code>null</code>.
+   * @param sDPIdentifier Optional DP identifier. May be <code>null</code>.
+   * @param eOrigin Error origin. May not be <code>null</code>.
+   * @param eCategory Error category. May not be <code>null</code>.
+   * @param eErrorCode Error code. May not be <code>null</code>.
+   * @param eSeverity Error severity. May not be <code>null</code>.
+   * @param aMLT Multilingual text to use. May not be <code>null</code>.
+   * @param sTechDetails Optional technical details. May be <code>null</code>.
    * @return Never <code>null</code>.
    * @since 0.9.2
    */
@@ -517,7 +503,7 @@ public final class ToopMessageBuilder
     ret.setCategory (ToopXSDHelper.createCode (eCategory.getID ()));
     ret.setErrorCode (ToopXSDHelper.createCode (eErrorCode.getID ()));
     ret.setSeverity (ToopXSDHelper.createCode (eSeverity.getID ()));
-    for (final Map.Entry <Locale, String> aEntry : aMLT.getAllTexts ().entrySet ())
+    for (final Map.Entry <Locale, String> aEntry : aMLT.texts ().entrySet ())
       ret.addErrorText (ToopXSDHelper.createText (aEntry.getKey (), aEntry.getValue ()));
     if (StringHelper.hasText (sTechDetails))
       ret.setTechnicalDetails (ToopXSDHelper.createText (sTechDetails));
