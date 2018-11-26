@@ -24,7 +24,7 @@ PJXADOF92DwETgY9IvRoiJHVXfrvlgu4O3amVUDCWlArpe3dxeQHps="
 
 install:
 #  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -U -P jdeps
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -U -e
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -U
 
 cache:
   directories:
