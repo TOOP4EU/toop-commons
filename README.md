@@ -66,14 +66,13 @@ docker stop zookeeper
 
 ## dir-config
 
-This folder contains the configuration of the Playground TOOP Directory - see http://193.10.8.211:7071
+This folder contains the configuration of the Playground TOOP Directory - see http://directory.acc.exchange.toop.eu
 
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
 Required PEPPOL Directory version after 2018-06-06.
 
 ## smp-config
 
-This folder contains the configuration of the Playground TOOP SMP - see http://193.10.8.211
+This folder contains the configuration of the Playground TOOP SMP - see http://smp.acc.exchange.toop.eu
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
-Required phoss SMP 5.0.4-SNAPSHOT version after 2018-06-06.
- 
+Requires at least phoss SMP 5.0.5.
