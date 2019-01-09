@@ -112,7 +112,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <generateDirectory>${project.build.directory}/generated-sources/toop-exchange</generateDirectory>
+              <generateDirectory>${project.build.directory}/generated-sources/toop-exchange-120</generateDirectory>
               <schemaDirectory>${basedir}/src/main/resources/xsd/toop</schemaDirectory>
               <schemaIncludes>
                 <schemaInclude>TOOP_DataExchange-1.2.0.xsd</schemaInclude>
@@ -128,7 +128,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <generateDirectory>${project.build.directory}/generated-sources/toop-exchange</generateDirectory>
+              <generateDirectory>${project.build.directory}/generated-sources/toop-exchange-140</generateDirectory>
               <schemaDirectory>${basedir}/src/main/resources/xsd/toop</schemaDirectory>
               <schemaIncludes>
                 <schemaInclude>TOOP_DataExchange-1.4.0.xsd</schemaInclude>
