@@ -32,17 +32,17 @@ import com.helger.xml.serialize.write.XMLWriter;
 import com.helger.xml.serialize.write.XMLWriterSettings;
 
 import eu.toop.commons.concept.EConceptType;
-import eu.toop.commons.dataexchange.ObjectFactory;
-import eu.toop.commons.dataexchange.TDEAddressType;
-import eu.toop.commons.dataexchange.TDEConceptRequestType;
-import eu.toop.commons.dataexchange.TDEDataConsumerType;
-import eu.toop.commons.dataexchange.TDEDataElementRequestType;
-import eu.toop.commons.dataexchange.TDEDataProviderType;
-import eu.toop.commons.dataexchange.TDEDataRequestAuthorizationType;
-import eu.toop.commons.dataexchange.TDEDataRequestSubjectType;
-import eu.toop.commons.dataexchange.TDENaturalPersonType;
-import eu.toop.commons.dataexchange.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v120.ObjectFactory;
+import eu.toop.commons.dataexchange.v120.TDEAddressType;
+import eu.toop.commons.dataexchange.v120.TDEConceptRequestType;
+import eu.toop.commons.dataexchange.v120.TDEDataConsumerType;
+import eu.toop.commons.dataexchange.v120.TDEDataElementRequestType;
+import eu.toop.commons.dataexchange.v120.TDEDataProviderType;
+import eu.toop.commons.dataexchange.v120.TDEDataRequestAuthorizationType;
+import eu.toop.commons.dataexchange.v120.TDEDataRequestSubjectType;
+import eu.toop.commons.dataexchange.v120.TDENaturalPersonType;
+import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
 
 /**

@@ -19,16 +19,15 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBWriterBuilder;
 
-import eu.toop.commons.dataexchange.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
 
 public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWriter <JAXBTYPE>>
 {
   /**
    * Constructor with an arbitrary document type.
    *
-   * @param aDocType
-   *        Document type to be used. May not be <code>null</code>.
+   * @param aDocType Document type to be used. May not be <code>null</code>.
    */
   public ToopWriter (@Nonnull final EToopXMLDocumentType aDocType)
   {

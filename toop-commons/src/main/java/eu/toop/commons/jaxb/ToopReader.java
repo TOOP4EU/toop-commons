@@ -19,18 +19,16 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBReaderBuilder;
 
-import eu.toop.commons.dataexchange.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
 
 public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopReader <JAXBTYPE>>
 {
   /**
    * Constructor with an arbitrary document type.
    *
-   * @param aDocType
-   *        Document type to be used. May not be <code>null</code>.
-   * @param aImplClass
-   *        Implementation class to use. May not be <code>null</code>.
+   * @param aDocType Document type to be used. May not be <code>null</code>.
+   * @param aImplClass Implementation class to use. May not be <code>null</code>.
    */
   public ToopReader (@Nonnull final EToopXMLDocumentType aDocType, @Nonnull final Class <JAXBTYPE> aImplClass)
   {

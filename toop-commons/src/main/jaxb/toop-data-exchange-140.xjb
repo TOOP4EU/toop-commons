@@ -22,9 +22,9 @@
           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <globalBindings typesafeEnumMaxMembers="2000" typesafeEnumMemberName="generateError" />
-  <bindings schemaLocation="../resources/xsd/toop/TOOP_DataExchange-1.2.0.xsd" node="/xsd:schema">
+  <bindings schemaLocation="../resources/xsd/toop/TOOP_DataExchange-1.4.0.xsd" node="/xsd:schema">
     <schemaBindings>
-      <package name="eu.toop.commons.dataexchange.v120" />
+      <package name="eu.toop.commons.dataexchange.v140" />
       <nameXmlTransform>
         <typeName prefix="TDE" />
       </nameXmlTransform>

@@ -24,7 +24,7 @@
   <globalBindings typesafeEnumMaxMembers="2000" typesafeEnumMemberName="generateError" />
   <bindings schemaLocation="../resources/xsd/toop/TOOP_DataExchange-1.1.0.xsd" node="/xsd:schema">
     <schemaBindings>
-      <package name="eu.toop.commons.dataexchange" />
+      <package name="eu.toop.commons.dataexchange.v110" />
       <nameXmlTransform>
         <typeName prefix="TDE" />
       </nameXmlTransform>
