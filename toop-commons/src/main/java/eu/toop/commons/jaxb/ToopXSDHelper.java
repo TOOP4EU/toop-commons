@@ -43,6 +43,12 @@ public final class ToopXSDHelper
   {}
 
   @Nonnull
+  private static String _getLOAValue (@Nullable final EToopLevelOfAssurance eLOA)
+  {
+    return (eLOA != null ? eLOA : EToopLevelOfAssurance.NONE).getID ();
+  }
+
+  @Nonnull
   public static IdentifierType createIdentifier (@Nonnull @Nonempty final String sValue)
   {
     final IdentifierType ret = new IdentifierType ();
@@ -72,8 +78,7 @@ public final class ToopXSDHelper
   {
     final TDEIdentifierWithLOAType ret = new TDEIdentifierWithLOAType ();
     ret.setValue (sValue);
-    if (eLOA != null)
-      ret.setLevelOfAssurance (eLOA.getID ());
+    ret.setLevelOfAssurance (_getLOAValue (eLOA));
     return ret;
   }
 
@@ -115,8 +120,7 @@ public final class ToopXSDHelper
   {
     final TDETextWithLOAType ret = new TDETextWithLOAType ();
     ret.setValue (sValue);
-    if (eLOA != null)
-      ret.setLevelOfAssurance (eLOA.getID ());
+    ret.setLevelOfAssurance (_getLOAValue (eLOA));
     return ret;
   }
 
@@ -149,8 +153,7 @@ public final class ToopXSDHelper
   {
     final TDECodeWithLOAType ret = new TDECodeWithLOAType ();
     ret.setValue (sValue);
-    if (eLOA != null)
-      ret.setLevelOfAssurance (eLOA.getID ());
+    ret.setLevelOfAssurance (_getLOAValue (eLOA));
     return ret;
   }
 
@@ -174,8 +177,7 @@ public final class ToopXSDHelper
   {
     final TDEDateWithLOAType ret = new TDEDateWithLOAType ();
     ret.setValue (aCal);
-    if (eLOA != null)
-      ret.setLevelOfAssurance (eLOA.getID ());
+    ret.setLevelOfAssurance (_getLOAValue (eLOA));
     return ret;
   }
 
