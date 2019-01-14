@@ -19,8 +19,8 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBReaderBuilder;
 
-import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
 
 public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopReader <JAXBTYPE>>
 {

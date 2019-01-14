@@ -20,9 +20,17 @@ import java.util.Locale;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.helger.commons.annotation.Nonempty;
+import com.helger.commons.mime.IMimeType;
+import com.helger.datetime.util.PDTXMLConverter;
 
+import eu.toop.commons.dataexchange.v140.TDECodeWithLOAType;
+import eu.toop.commons.dataexchange.v140.TDEDateWithLOAType;
+import eu.toop.commons.dataexchange.v140.TDEIdentifierWithLOAType;
+import eu.toop.commons.dataexchange.v140.TDEPreferredDocumentMimeTypeCodeType;
+import eu.toop.commons.dataexchange.v140.TDETextWithLOAType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.CodeType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IndicatorType;
@@ -53,6 +61,23 @@ public final class ToopXSDHelper
   }
 
   @Nonnull
+  public static TDEIdentifierWithLOAType createIdentifierWithLOA (@Nonnull @Nonempty final String sValue)
+  {
+    return createIdentifierWithLOA (sValue, null);
+  }
+
+  @Nonnull
+  public static TDEIdentifierWithLOAType createIdentifierWithLOA (@Nonnull @Nonempty final String sValue,
+                                                                  @Nullable final EToopLevelOfAssurance eLOA)
+  {
+    final TDEIdentifierWithLOAType ret = new TDEIdentifierWithLOAType ();
+    ret.setValue (sValue);
+    if (eLOA != null)
+      ret.setLevelOfAssurance (eLOA.getID ());
+    return ret;
+  }
+
+  @Nonnull
   public static IndicatorType createIndicator (@Nonnull @Nonempty final boolean bValue)
   {
     final IndicatorType ret = new IndicatorType ();
@@ -79,6 +104,23 @@ public final class ToopXSDHelper
   }
 
   @Nonnull
+  public static TDETextWithLOAType createTextWithLOA (@Nonnull @Nonempty final String sValue)
+  {
+    return createTextWithLOA (sValue, null);
+  }
+
+  @Nonnull
+  public static TDETextWithLOAType createTextWithLOA (@Nonnull @Nonempty final String sValue,
+                                                      @Nullable final EToopLevelOfAssurance eLOA)
+  {
+    final TDETextWithLOAType ret = new TDETextWithLOAType ();
+    ret.setValue (sValue);
+    if (eLOA != null)
+      ret.setLevelOfAssurance (eLOA.getID ());
+    return ret;
+  }
+
+  @Nonnull
   public static CodeType createCode (@Nonnull @Nonempty final String sValue)
   {
     final CodeType ret = new CodeType ();
@@ -96,10 +138,64 @@ public final class ToopXSDHelper
   }
 
   @Nonnull
+  public static TDECodeWithLOAType createCodeWithLOA (@Nonnull @Nonempty final String sValue)
+  {
+    return createCodeWithLOA (sValue, null);
+  }
+
+  @Nonnull
+  public static TDECodeWithLOAType createCodeWithLOA (@Nonnull @Nonempty final String sValue,
+                                                      @Nullable final EToopLevelOfAssurance eLOA)
+  {
+    final TDECodeWithLOAType ret = new TDECodeWithLOAType ();
+    ret.setValue (sValue);
+    if (eLOA != null)
+      ret.setLevelOfAssurance (eLOA.getID ());
+    return ret;
+  }
+
+  @Nonnull
   public static NumericType createNumeric (@Nonnull final BigDecimal aValue)
   {
     final NumericType ret = new NumericType ();
     ret.setValue (aValue);
+    return ret;
+  }
+
+  @Nonnull
+  public static TDEDateWithLOAType createDateWithLOA (@Nonnull final XMLGregorianCalendar aCal)
+  {
+    return createDateWithLOA (aCal, null);
+  }
+
+  @Nonnull
+  public static TDEDateWithLOAType createDateWithLOA (@Nonnull final XMLGregorianCalendar aCal,
+                                                      @Nullable final EToopLevelOfAssurance eLOA)
+  {
+    final TDEDateWithLOAType ret = new TDEDateWithLOAType ();
+    ret.setValue (aCal);
+    if (eLOA != null)
+      ret.setLevelOfAssurance (eLOA.getID ());
+    return ret;
+  }
+
+  @Nonnull
+  public static TDEDateWithLOAType createDateWithLOANow ()
+  {
+    return createDateWithLOA (PDTXMLConverter.getXMLCalendarDateNow (), null);
+  }
+
+  @Nonnull
+  public static TDEDateWithLOAType createDateWithLOANow (@Nullable final EToopLevelOfAssurance eLOA)
+  {
+    return createDateWithLOA (PDTXMLConverter.getXMLCalendarDateNow (), eLOA);
+  }
+
+  @Nonnull
+  public static TDEPreferredDocumentMimeTypeCodeType createMimeTypeCode (@Nonnull final IMimeType aValue)
+  {
+    final TDEPreferredDocumentMimeTypeCodeType ret = new TDEPreferredDocumentMimeTypeCodeType ();
+    ret.setValue (aValue.getAsString ());
     return ret;
   }
 }

@@ -35,11 +35,11 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 import eu.toop.commons.codelist.EPredefinedProcessIdentifier;
 import eu.toop.commons.concept.ConceptValue;
-import eu.toop.commons.dataexchange.v120.TDEAddressType;
-import eu.toop.commons.dataexchange.v120.TDEDataElementResponseValueType;
-import eu.toop.commons.dataexchange.v120.TDEDataProviderType;
-import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v140.TDEAddressType;
+import eu.toop.commons.dataexchange.v140.TDEDataElementResponseValueType;
+import eu.toop.commons.dataexchange.v140.TDEDataProviderType;
+import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
 import eu.toop.commons.error.ToopErrorException;
 import eu.toop.commons.jaxb.ToopXSDHelper;
 
@@ -136,7 +136,7 @@ public final class ToopMessageBuilderTest
         p.setDPName (ToopXSDHelper.createText ("EloniaDP"));
         p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("elonia@register.example.org"));
         final TDEAddressType pa = new TDEAddressType ();
-        pa.setCountryCode (ToopXSDHelper.createCode ("SV"));
+        pa.setCountryCode (ToopXSDHelper.createCodeWithLOA ("SV"));
         p.setDPLegalAddress (pa);
         aSrcResponse.addDataProvider (p);
       }

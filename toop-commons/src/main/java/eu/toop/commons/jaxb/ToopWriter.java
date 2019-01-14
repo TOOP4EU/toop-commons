@@ -19,8 +19,8 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBWriterBuilder;
 
-import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
 
 public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWriter <JAXBTYPE>>
 {

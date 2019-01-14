@@ -52,19 +52,20 @@ import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 import eu.toop.commons.codelist.EPredefinedProcessIdentifier;
 import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.concept.EConceptType;
-import eu.toop.commons.dataexchange.v120.TDEAddressType;
-import eu.toop.commons.dataexchange.v120.TDEConceptRequestType;
-import eu.toop.commons.dataexchange.v120.TDEDataConsumerType;
-import eu.toop.commons.dataexchange.v120.TDEDataElementRequestType;
-import eu.toop.commons.dataexchange.v120.TDEDataProviderType;
-import eu.toop.commons.dataexchange.v120.TDEDataRequestAuthorizationType;
-import eu.toop.commons.dataexchange.v120.TDEDataRequestSubjectType;
-import eu.toop.commons.dataexchange.v120.TDEDocumentRequestType;
-import eu.toop.commons.dataexchange.v120.TDEErrorType;
-import eu.toop.commons.dataexchange.v120.TDELegalEntityType;
-import eu.toop.commons.dataexchange.v120.TDENaturalPersonType;
-import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
+import eu.toop.commons.dataexchange.v140.TDEAddressType;
+import eu.toop.commons.dataexchange.v140.TDEConceptRequestType;
+import eu.toop.commons.dataexchange.v140.TDEDataConsumerType;
+import eu.toop.commons.dataexchange.v140.TDEDataElementRequestType;
+import eu.toop.commons.dataexchange.v140.TDEDataProviderType;
+import eu.toop.commons.dataexchange.v140.TDEDataRequestAuthorizationType;
+import eu.toop.commons.dataexchange.v140.TDEDataRequestSubjectType;
+import eu.toop.commons.dataexchange.v140.TDEDocumentRequestType;
+import eu.toop.commons.dataexchange.v140.TDEErrorType;
+import eu.toop.commons.dataexchange.v140.TDELegalPersonType;
+import eu.toop.commons.dataexchange.v140.TDENaturalPersonType;
+import eu.toop.commons.dataexchange.v140.TDERoutingInformationType;
+import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
 import eu.toop.commons.error.EToopErrorCategory;
 import eu.toop.commons.error.EToopErrorCode;
 import eu.toop.commons.error.EToopErrorOrigin;
@@ -79,7 +80,7 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Identifi
 @Immutable
 public final class ToopMessageBuilder
 {
-  public static final ClassPathResource TOOP_XSD = new ClassPathResource ("/xsd/toop/TOOP_DataExchange-1.2.0.xsd",
+  public static final ClassPathResource TOOP_XSD = new ClassPathResource ("/xsd/toop/TOOP_DataExchange-1.4.0.xsd",
                                                                           ToopMessageBuilder.class.getClassLoader ());
   private static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPRequest";
   private static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPResponse";
@@ -102,6 +103,9 @@ public final class ToopMessageBuilder
     {
       final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
       final byte [] aXML = ToopWriter.request ().getAsBytes (aRequest);
+      if (aXML == null)
+        throw new ToopErrorException ("Error marshalling the TOOP Request", EToopErrorCode.TC_001);
+
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
                        ENTRY_NAME_TOOP_DATA_REQUEST,
                        CMimeType.APPLICATION_XML);
@@ -127,6 +131,9 @@ public final class ToopMessageBuilder
     {
       final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
       final byte [] aXML = ToopWriter.response ().getAsBytes (aResponse);
+      if (aXML == null)
+        throw new ToopErrorException ("Error marshalling the TOOP Response", EToopErrorCode.TC_001);
+
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
                        ENTRY_NAME_TOOP_DATA_RESPONSE,
                        CMimeType.APPLICATION_XML);
@@ -231,14 +238,14 @@ public final class ToopMessageBuilder
   public static TDEAddressType createMockAddressType (@Nonnull @Nonempty final String sCountryCode)
   {
     final TDEAddressType aAddress = new TDEAddressType ();
-    aAddress.addAddressLine (ToopXSDHelper.createText ("Hintere Zollamtstraße 4"));
-    aAddress.addAddressLine (ToopXSDHelper.createText ("1030 Wien"));
-    aAddress.setStreetName (ToopXSDHelper.createText ("Hintere Zollamtstraße"));
-    aAddress.setStreetNumber (ToopXSDHelper.createText ("4"));
-    aAddress.setCity (ToopXSDHelper.createText ("Wien"));
-    aAddress.setPostCode (ToopXSDHelper.createText ("1030"));
+    aAddress.addAddressLine (ToopXSDHelper.createTextWithLOA ("Hintere Zollamtstraße 4"));
+    aAddress.addAddressLine (ToopXSDHelper.createTextWithLOA ("1030 Wien"));
+    aAddress.setStreetName (ToopXSDHelper.createTextWithLOA ("Hintere Zollamtstraße"));
+    aAddress.setStreetNumber (ToopXSDHelper.createTextWithLOA ("4"));
+    aAddress.setCity (ToopXSDHelper.createTextWithLOA ("Wien"));
+    aAddress.setPostCode (ToopXSDHelper.createTextWithLOA ("1030"));
     // Destination country to use
-    aAddress.setCountryCode (ToopXSDHelper.createCode (sCountryCode));
+    aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA (sCountryCode));
     return aAddress;
   }
 
@@ -249,19 +256,19 @@ public final class ToopMessageBuilder
     final TDEDataRequestSubjectType aRet = new TDEDataRequestSubjectType ();
     aRet.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
     {
-      final TDELegalEntityType aLE = new TDELegalEntityType ();
-      aLE.setLegalPersonUniqueIdentifier (ToopXSDHelper.createIdentifier ("upid"));
-      aLE.setLegalName (ToopXSDHelper.createText ("ACME Inc."));
-      aLE.setLegalEntityLegalAddress (createMockAddressType (sCountryCode));
-      aRet.setLegalEntity (aLE);
+      final TDELegalPersonType aLE = new TDELegalPersonType ();
+      aLE.setLegalPersonUniqueIdentifier (ToopXSDHelper.createIdentifierWithLOA ("upid"));
+      aLE.setLegalName (ToopXSDHelper.createTextWithLOA ("ACME Inc."));
+      aLE.setLegalPersonLegalAddress (createMockAddressType (sCountryCode));
+      aRet.setLegalPerson (aLE);
     }
 
     {
       final TDENaturalPersonType aNP = new TDENaturalPersonType ();
-      aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
-      aNP.setFamilyName (ToopXSDHelper.createText ("Helger"));
-      aNP.setFirstName (ToopXSDHelper.createText ("Philip"));
-      aNP.setBirthDate (PDTXMLConverter.getXMLCalendarDateNow ());
+      aNP.setPersonIdentifier (ToopXSDHelper.createIdentifierWithLOA ("bla"));
+      aNP.setFamilyName (ToopXSDHelper.createTextWithLOA ("Helger"));
+      aNP.setFirstName (ToopXSDHelper.createTextWithLOA ("Philip"));
+      aNP.setBirthDate (ToopXSDHelper.createDateWithLOANow ());
       aNP.setNaturalPersonLegalAddress (createMockAddressType (sCountryCode));
       aRet.setNaturalPerson (aNP);
     }
@@ -288,14 +295,22 @@ public final class ToopMessageBuilder
     aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
-    // Document type ID
-    aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                    eDocumentTypeID.getID ()));
     aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
-    // Process ID
-    aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
     aRet.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
     aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+
+    {
+      final TDERoutingInformationType aRoutingInfo = new TDERoutingInformationType ();
+      // Document type ID
+      aRoutingInfo.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+                                                                              eDocumentTypeID.getID ()));
+      // Process ID
+      aRoutingInfo.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
+      // Destination country code
+      aRoutingInfo.setDataProviderCountryCode (ToopXSDHelper.createCode ("AT"));
+      aRet.setRoutingInformation (aRoutingInfo);
+    }
+
     {
       final TDEDataConsumerType aDC = new TDEDataConsumerType ();
       aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
@@ -303,7 +318,7 @@ public final class ToopMessageBuilder
       // Sender participant ID
       aDC.setDCElectronicAddressIdentifier (aSenderParticipantID.clone ());
       final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCode ("AT"));
+      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("AT"));
       aDC.setDCLegalAddress (aAddress);
       aRet.setDataConsumer (aDC);
     }
@@ -355,14 +370,22 @@ public final class ToopMessageBuilder
     aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
-    // Document type ID
-    aRet.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                    eDocumentTypeID.getID ()));
     aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
-    // Process ID
-    aRet.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
     aRet.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
     aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+
+    {
+      final TDERoutingInformationType aRoutingInfo = new TDERoutingInformationType ();
+      // Document type ID
+      aRoutingInfo.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
+                                                                              eDocumentTypeID.getID ()));
+      // Process ID
+      aRoutingInfo.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
+      // Destination country code
+      aRoutingInfo.setDataProviderCountryCode (ToopXSDHelper.createCode ("AT"));
+      aRet.setRoutingInformation (aRoutingInfo);
+    }
+
     {
       final TDEDataConsumerType aDC = new TDEDataConsumerType ();
       aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
@@ -370,7 +393,7 @@ public final class ToopMessageBuilder
       // Sender participant ID
       aDC.setDCElectronicAddressIdentifier (aSenderParticipantID.clone ());
       final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCode ("AT"));
+      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("AT"));
       aDC.setDCLegalAddress (aAddress);
       aRet.setDataConsumer (aDC);
     }
@@ -379,13 +402,13 @@ public final class ToopMessageBuilder
       aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
       {
         final TDENaturalPersonType aNP = new TDENaturalPersonType ();
-        aNP.setPersonIdentifier (ToopXSDHelper.createIdentifier ("bla"));
-        aNP.setFamilyName (ToopXSDHelper.createText ("Helger"));
-        aNP.setFirstName (ToopXSDHelper.createText ("Philip"));
-        aNP.setBirthDate (PDTXMLConverter.getXMLCalendarDateNow ());
+        aNP.setPersonIdentifier (ToopXSDHelper.createIdentifierWithLOA ("bla"));
+        aNP.setFamilyName (ToopXSDHelper.createTextWithLOA ("Helger"));
+        aNP.setFirstName (ToopXSDHelper.createTextWithLOA ("Philip"));
+        aNP.setBirthDate (ToopXSDHelper.createDateWithLOANow ());
         final TDEAddressType aAddress = new TDEAddressType ();
         // Destination country to use
-        aAddress.setCountryCode (ToopXSDHelper.createCode (sCountryCode));
+        aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA (sCountryCode));
         aNP.setNaturalPersonLegalAddress (aAddress);
         aDS.setNaturalPerson (aNP);
       }
@@ -435,7 +458,7 @@ public final class ToopMessageBuilder
       final TDEDocumentRequestType aDR = new TDEDocumentRequestType ();
       aDR.setDocumentRequestIdentifier (ToopXSDHelper.createIdentifier ("CertificatePDF-1234"));
       aDR.setDocumentRequestTypeCode (ToopXSDHelper.createCode ("pdf"));
-      aDR.setPreferredDocumentMimeTypeCode (ToopXSDHelper.createCode (CMimeType.APPLICATION_PDF.getAsString ()));
+      aDR.addPreferredDocumentMimeTypeCode (ToopXSDHelper.createMimeTypeCode (CMimeType.APPLICATION_PDF));
       aRet.addDocumentRequest (aDR);
     }
 
@@ -445,7 +468,7 @@ public final class ToopMessageBuilder
       aDP.setDPName (ToopXSDHelper.createText ("Register1"));
       aDP.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("me@register.example.org"));
       final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCode ("XK"));
+      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("XK"));
       aDP.setDPLegalAddress (aAddress);
       aRet.addDataProvider (aDP);
     }

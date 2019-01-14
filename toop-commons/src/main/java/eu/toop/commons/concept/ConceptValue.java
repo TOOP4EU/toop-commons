@@ -27,7 +27,7 @@ import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.hashcode.HashCodeGenerator;
 import com.helger.commons.string.ToStringGenerator;
 
-import eu.toop.commons.dataexchange.v120.TDEConceptRequestType;
+import eu.toop.commons.dataexchange.v140.TDEConceptRequestType;
 
 /**
  * This is a single value that consist of a namespace and a concept name.

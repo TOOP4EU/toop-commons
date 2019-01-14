@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-
-    Copyright (C) 2018-2019 toop.eu
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
+  Copyright (C) 2018 toop.eu
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
 -->
 <xsd:schema 
   xmlns:toop="urn:eu:toop:ns:dataexchange-1p40"
@@ -111,7 +106,7 @@
     <xsd:sequence>
       <xsd:element name="DocumentRequestIdentifier" type="udt:IdentifierType"/>  
       <xsd:element name="DocumentRequestTypeCode" type="udt:CodeType" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="PreferredDocumentMimeTypeCode" type="toop:PreferredDocumentMymeTypeCodeType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PreferredDocumentMimeTypeCode" type="toop:PreferredDocumentMimeTypeCodeType" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="DocumentURI" type="udt:IdentifierType" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="DocumentResponse" type="toop:DocumentResponseType" minOccurs="0" maxOccurs="1"/>  <!--NOTE: the DocumentResponse is mandatory in the Response message, but its current cardinality is 0..1 for compatibility with the Request message-->
     </xsd:sequence>
@@ -174,7 +169,7 @@
   
 
   
-  <xsd:complexType name="PreferredDocumentMymeTypeCodeType">
+  <xsd:complexType name="PreferredDocumentMimeTypeCodeType">
     <xsd:simpleContent>
       <xsd:extension base="udt:CodeType">
         <xsd:attribute name="priority" type="xsd:decimal" use="optional"/>
