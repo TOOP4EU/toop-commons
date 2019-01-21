@@ -42,8 +42,10 @@ public final class ReverseDocumentTypeMapping
   static
   {
     // Fill the map
-    _add (EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
-          EPredefinedDocumentTypeIdentifier.RESPONSE_REGISTEREDORGANIZATION);
+    _add (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10,
+          EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10);
+    _add (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
+          EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40);
   }
 
   private ReverseDocumentTypeMapping ()
