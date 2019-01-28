@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.helger.commons.error.level.EErrorLevel;
+import com.helger.commons.error.level.IErrorLevel;
 import com.helger.commons.lang.ClassHelper;
 import com.helger.commons.log.LogHelper;
 
@@ -58,7 +58,7 @@ public final class ToopKafkaClient
    *        Value to send. May not be <code>null</code>.
    * @see ToopKafkaSettings#isKafkaEnabled()
    */
-  public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final String sValue)
+  public static void send (@Nullable final IErrorLevel aErrorLevel, @Nonnull final String sValue)
   {
     if (aErrorLevel != null && ToopKafkaSettings.isLoggingEnabled ())
       LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue);
@@ -77,7 +77,7 @@ public final class ToopKafkaClient
    *        <code>null</code>.
    * @see ToopKafkaSettings#isKafkaEnabled()
    */
-  public static void send (@Nullable final EErrorLevel aErrorLevel, @Nonnull final Supplier <String> aValue)
+  public static void send (@Nullable final IErrorLevel aErrorLevel, @Nonnull final Supplier <String> aValue)
   {
     send (aErrorLevel, aValue, (Throwable) null);
   }
@@ -95,7 +95,7 @@ public final class ToopKafkaClient
    *        Exception to be logged. May be <code>null</code>.
    * @see ToopKafkaSettings#isKafkaEnabled()
    */
-  public static void send (@Nullable final EErrorLevel aErrorLevel,
+  public static void send (@Nullable final IErrorLevel aErrorLevel,
                            @Nonnull final Supplier <String> aValue,
                            @Nullable final Throwable t)
   {
