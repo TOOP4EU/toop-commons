@@ -28,17 +28,11 @@ public enum EPredefinedTransportProfile
     private final boolean m_bDeprecated;
     private final Version m_aDeprecatedSince;
 
-    private EPredefinedTransportProfile(
-        @Nonnull
-        @Nonempty
-        final String sName,
-        @Nonnull
-        @Nonempty
-        final String sID,
-        @Nonnull
-        final Version aSince, final boolean bDeprecated,
-        @Nullable
-        final Version aDeprecatedSince) {
+    private EPredefinedTransportProfile(@Nonnull @Nonempty final String sName,
+        @Nonnull @Nonempty final String sID,
+        @Nonnull final Version aSince,
+        final boolean bDeprecated,
+        @Nullable final Version aDeprecatedSince) {
         m_sName = sName;
         m_sID = sID;
         m_aSince = aSince;
@@ -73,9 +67,7 @@ public enum EPredefinedTransportProfile
     }
 
     @Nullable
-    public static EPredefinedTransportProfile getFromTransportProfileOrNull(
-        @Nullable
-        final String sTransportProfileID) {
+    public static EPredefinedTransportProfile getFromTransportProfileOrNull(@Nullable final String sTransportProfileID) {
         for (EPredefinedTransportProfile e: EPredefinedTransportProfile.values()) {
             if (e.getID().equals(sTransportProfileID)) {
                 return e;
