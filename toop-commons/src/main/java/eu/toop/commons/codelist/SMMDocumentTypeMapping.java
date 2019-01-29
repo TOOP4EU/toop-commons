@@ -30,19 +30,24 @@ import com.helger.commons.collection.impl.ICommonsMap;
  */
 public final class SMMDocumentTypeMapping
 {
+  public static final String URI_REGISTERED_ORGANIZATION = "http://toop.eu/registered-organization";
   private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
 
   static
   {
     // Fill the map
     s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10,
-                "http://toop.eu/registered-organization");
+                URI_REGISTERED_ORGANIZATION);
     s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10,
-                "http://toop.eu/registered-organization");
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
-                "http://toop.eu/registered-organization");
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
-                "http://toop.eu/registered-organization");
+                URI_REGISTERED_ORGANIZATION);
+    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40,
+                URI_REGISTERED_ORGANIZATION);
+    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40,
+                URI_REGISTERED_ORGANIZATION);
+    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40,
+                URI_REGISTERED_ORGANIZATION);
+    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40,
+                URI_REGISTERED_ORGANIZATION);
   }
 
   private SMMDocumentTypeMapping ()
