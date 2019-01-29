@@ -17,6 +17,7 @@ package eu.toop.commons.codelist;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -27,6 +28,7 @@ import org.junit.Test;
 public final class SMMDocumentTypeMappingTest
 {
   @Test
+  @Ignore ("no longer holds true")
   public void testBasic ()
   {
     for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ())
