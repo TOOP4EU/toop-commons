@@ -28,6 +28,7 @@ import com.helger.commons.collection.impl.ICommonsMap;
  *
  * @author Philip Helger
  */
+@SuppressWarnings ("deprecation")
 public final class SMMDocumentTypeMapping
 {
   public static final String URI_REGISTERED_ORGANIZATION = "http://toop.eu/registered-organization";

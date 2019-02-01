@@ -28,6 +28,7 @@ import com.helger.commons.collection.impl.ICommonsMap;
  *
  * @author Philip Helger
  */
+@SuppressWarnings ("deprecation")
 public final class ReverseDocumentTypeMapping
 {
   private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> s_aMap = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
