@@ -19,7 +19,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
-import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
@@ -29,7 +28,7 @@ import com.helger.commons.lang.EnumHelper;
  * @author Philip Helger
  * @since 0.9.2
  */
-public enum EToopErrorCode implements IHasID <String>
+public enum EToopErrorCode implements IToopErrorCode
 {
   /** Uncategorized error */
   GEN ("GEN"),

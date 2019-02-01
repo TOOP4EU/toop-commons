@@ -19,7 +19,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
-import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
@@ -29,7 +28,7 @@ import com.helger.commons.lang.EnumHelper;
  * @author Philip Helger
  * @since 0.10.0
  */
-public enum EToopDocumentResponseErrorCode implements IHasID <String>
+public enum EToopDocumentResponseErrorCode implements IToopErrorCode
 {
   /** Unknown document type */
   DP_DOC_001 ("DP_DOC_001"),
