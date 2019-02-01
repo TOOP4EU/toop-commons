@@ -32,9 +32,9 @@ import com.helger.genericode.v10.Row;
  *
  * @author Philip Helger
  */
-public final class MainCreateErrorCodeJavaCode
+public final class MainCreateJavaCode_ErrorCode_GC
 {
-  private static final Logger LOGGER = LoggerFactory.getLogger (MainCreateErrorCodeJavaCode.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (MainCreateJavaCode_ErrorCode_GC.class);
 
   public static void main (final String [] args)
   {

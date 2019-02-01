@@ -24,7 +24,7 @@ import com.helger.commons.lang.EnumHelper;
 
 /**
  * Source: ErrorCode-CodeList.gc<br>
- * Content created by MainCreateErrorCodeJavaCode
+ * Content created by MainCreateJavaCode_ErrorCode_GC
  *
  * @author Philip Helger
  * @since 0.9.2
