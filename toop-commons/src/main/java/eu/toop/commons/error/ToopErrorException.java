@@ -28,29 +28,28 @@ import com.helger.commons.ValueEnforcer;
  */
 public class ToopErrorException extends Exception
 {
-  private final EToopErrorCode m_eCode;
+  private final IToopErrorCode m_aCode;
 
-  public ToopErrorException (@Nonnull final String sMsg, @Nonnull final EToopErrorCode eCode)
+  public ToopErrorException (@Nonnull final String sMsg, @Nonnull final IToopErrorCode eCode)
   {
     this (sMsg, null, eCode);
   }
 
   public ToopErrorException (@Nonnull final String sMsg,
                              @Nullable final Throwable aCause,
-                             @Nonnull final EToopErrorCode eCode)
+                             @Nonnull final IToopErrorCode aCode)
   {
     super (sMsg, aCause);
-    ValueEnforcer.notNull (eCode, "ErrorCode");
-    m_eCode = eCode;
+    ValueEnforcer.notNull (aCode, "ErrorCode");
+    m_aCode = aCode;
   }
 
   /**
-   * @return The error code provided in the constructor. Never
-   *         <code>null</code>.
+   * @return The error code provided in the constructor. Never <code>null</code>.
    */
   @Nonnull
-  public EToopErrorCode getErrorCode ()
+  public IToopErrorCode getErrorCode ()
   {
-    return m_eCode;
+    return m_aCode;
   }
 }

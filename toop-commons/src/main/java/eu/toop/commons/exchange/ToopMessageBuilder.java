@@ -70,6 +70,7 @@ import eu.toop.commons.error.EToopErrorCategory;
 import eu.toop.commons.error.EToopErrorCode;
 import eu.toop.commons.error.EToopErrorOrigin;
 import eu.toop.commons.error.EToopErrorSeverity;
+import eu.toop.commons.error.IToopErrorCode;
 import eu.toop.commons.error.ToopErrorException;
 import eu.toop.commons.jaxb.ToopReader;
 import eu.toop.commons.jaxb.ToopWriter;
@@ -503,7 +504,7 @@ public final class ToopMessageBuilder
    * @param sDPIdentifier Optional DP identifier. May be <code>null</code>.
    * @param eOrigin Error origin. May not be <code>null</code>.
    * @param eCategory Error category. May not be <code>null</code>.
-   * @param eErrorCode Error code. May not be <code>null</code>.
+   * @param aErrorCode Error code. May not be <code>null</code>.
    * @param eSeverity Error severity. May not be <code>null</code>.
    * @param aMLT Multilingual text to use. May not be <code>null</code>.
    * @param sTechDetails Optional technical details. May be <code>null</code>.
@@ -514,7 +515,7 @@ public final class ToopMessageBuilder
   public static TDEErrorType createError (@Nullable final String sDPIdentifier,
                                           @Nonnull final EToopErrorOrigin eOrigin,
                                           @Nonnull final EToopErrorCategory eCategory,
-                                          @Nonnull final EToopErrorCode eErrorCode,
+                                          @Nonnull final IToopErrorCode aErrorCode,
                                           @Nonnull final EToopErrorSeverity eSeverity,
                                           @Nonnull final IMultilingualText aMLT,
                                           @Nullable final String sTechDetails)
@@ -524,7 +525,7 @@ public final class ToopMessageBuilder
       ret.setDataProviderIdentifier (ToopXSDHelper.createIdentifier (sDPIdentifier));
     ret.setOrigin (ToopXSDHelper.createCode (eOrigin.getID ()));
     ret.setCategory (ToopXSDHelper.createCode (eCategory.getID ()));
-    ret.setErrorCode (ToopXSDHelper.createCode (eErrorCode.getID ()));
+    ret.setErrorCode (ToopXSDHelper.createCode (aErrorCode.getID ()));
     ret.setSeverity (ToopXSDHelper.createCode (eSeverity.getID ()));
     for (final Map.Entry <Locale, String> aEntry : aMLT.texts ().entrySet ())
       ret.addErrorText (ToopXSDHelper.createText (aEntry.getKey (), aEntry.getValue ()));
