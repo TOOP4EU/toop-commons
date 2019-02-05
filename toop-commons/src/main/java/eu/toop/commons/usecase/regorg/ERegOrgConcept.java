@@ -1,4 +1,4 @@
-package eu.toop.commons.concept;
+package eu.toop.commons.usecase.regorg;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -8,7 +8,8 @@ import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
-import eu.toop.commons.codelist.SMMDocumentTypeMapping;
+import eu.toop.commons.concept.ConceptValue;
+import eu.toop.commons.usecase.SMMDocumentTypeMapping;
 
 /**
  * Predefined TOOP concepts for "registered organization".
@@ -16,7 +17,7 @@ import eu.toop.commons.codelist.SMMDocumentTypeMapping;
  * @author Philip Helger
  * @since 0.10.0
  */
-public enum EToopConceptRegisteredOrganization implements IHasID <String>
+public enum ERegOrgConcept implements IHasID <String>
 {
   ACTIVITY_DESCRIPTION ("activityDescription"),
   COMPANY_CODE ("CompanyCode"),
@@ -35,7 +36,7 @@ public enum EToopConceptRegisteredOrganization implements IHasID <String>
 
   private final String m_sID;
 
-  private EToopConceptRegisteredOrganization (@Nonnull @Nonempty final String sID)
+  private ERegOrgConcept (@Nonnull @Nonempty final String sID)
   {
     m_sID = sID;
   }
@@ -55,8 +56,8 @@ public enum EToopConceptRegisteredOrganization implements IHasID <String>
   }
 
   @Nullable
-  public static EToopConceptRegisteredOrganization getFromIDOrNull (@Nullable final String sID)
+  public static ERegOrgConcept getFromIDOrNull (@Nullable final String sID)
   {
-    return EnumHelper.getFromIDOrNull (EToopConceptRegisteredOrganization.class, sID);
+    return EnumHelper.getFromIDOrNull (ERegOrgConcept.class, sID);
   }
 }

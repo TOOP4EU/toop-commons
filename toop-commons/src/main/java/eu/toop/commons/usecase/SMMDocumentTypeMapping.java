@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.codelist;
+package eu.toop.commons.usecase;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.collection.impl.CommonsEnumMap;
 import com.helger.commons.collection.impl.ICommonsMap;
+
+import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 
 /**
  * This class manages the TOOP Document type to Semantic Mapping Module (SMM).

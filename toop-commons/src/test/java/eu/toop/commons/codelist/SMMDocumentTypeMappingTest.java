@@ -20,6 +20,8 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import eu.toop.commons.usecase.SMMDocumentTypeMapping;
+
 /**
  * Test class for class {@link SMMDocumentTypeMapping}.
  *
