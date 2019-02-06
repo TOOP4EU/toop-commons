@@ -32,15 +32,14 @@ public enum EPredefinedProcessIdentifier
     URN_EU_TOOP_PROCESS_DOCUMENTREQUESTRESPONSE("TOOP Request Response for Documents", "urn:eu.toop.process.documentrequestresponse", Version.parse("1"), false, null),
 
     /**
-     * TOOP Two Phased Request Response for Documents - <code>urn:eu.toop.process.twophasedrequestresponse 
-     * </code><br>
+     * TOOP Two Phased Request Response for Documents - <code>urn:eu.toop.process.twophasedrequestresponse</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_PROCESS_TWOPHASEDREQUESTRESPONSE_("TOOP Two Phased Request Response for Documents", "urn:eu.toop.process.twophasedrequestresponse \n", Version.parse("2"), false, null);
+    URN_EU_TOOP_PROCESS_TWOPHASEDREQUESTRESPONSE("TOOP Two Phased Request Response for Documents", "urn:eu.toop.process.twophasedrequestresponse", Version.parse("2"), false, null);
     public static final EPredefinedProcessIdentifier DATAREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_DATAREQUESTRESPONSE;
     public static final EPredefinedProcessIdentifier DOCUMENTREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_DOCUMENTREQUESTRESPONSE;
-    public static final EPredefinedProcessIdentifier TWOPHASEDREQUESTRESPONSE_ = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_TWOPHASEDREQUESTRESPONSE_;
+    public static final EPredefinedProcessIdentifier TWOPHASEDREQUESTRESPONSE = EPredefinedProcessIdentifier.URN_EU_TOOP_PROCESS_TWOPHASEDREQUESTRESPONSE;
     public static final String PROCESS_SCHEME = "toop-procid-agreement";
     private final String m_sName;
     private final String m_sID;
