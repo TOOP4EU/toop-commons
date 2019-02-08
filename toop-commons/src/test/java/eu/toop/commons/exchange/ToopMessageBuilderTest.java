@@ -63,10 +63,11 @@ public final class ToopMessageBuilderTest
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
       final String sCountryCode = "SE";
-      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sCountryCode),
+      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sCountryCode,
+                                                                                                                                    sCountryCode,
+                                                                                                                                    true),
                                                                                    ToopXSDHelper.createIdentifier ("toop",
                                                                                                                    "senderid"),
-                                                                                   sCountryCode,
                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                    new CommonsArrayList <> (new ConceptValue ("companyName",

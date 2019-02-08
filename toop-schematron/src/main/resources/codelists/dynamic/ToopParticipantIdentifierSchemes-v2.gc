@@ -7,7 +7,7 @@
   </Annotation>
   <Identification>
     <ShortName>ToopIdentifierIssuingAgencies</ShortName>
-      <Version>1</Version>
+      <Version>2</Version>
       <CanonicalUri>urn:toop.eu:names:identifier:participantidentifierschemes</CanonicalUri>
       <CanonicalVersionUri>urn:toop.eu:names:identifier:participantidentifierschemes-1.0</CanonicalVersionUri>
   </Identification>

@@ -45,7 +45,7 @@ public class TOOPSchematronValidator
    * The resource with the rules. Important: this Schematron requires additional
    * code lists in a relative directory!
    */
-  public static final IReadableResource SCHEMATRON_RES_XSLT = new ClassPathResource ("xslt/TOOP_BusinessRules_DataExchange-1.4.0.xslt");
+  public static final IReadableResource SCHEMATRON_RES_XSLT = new ClassPathResource ("xslt/TOOP_BusinessRules_DataExchange-1.4.1beta.xslt");
 
   public TOOPSchematronValidator ()
   {}

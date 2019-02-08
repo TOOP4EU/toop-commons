@@ -6,14 +6,18 @@
     </AppInfo>
   </Annotation>
   <Identification>
-    <ShortName>ToopProcessIdentifier</ShortName>
-      <Version>1</Version>
-      <CanonicalUri>urn:toop.eu:names:identifier:process</CanonicalUri>
-      <CanonicalVersionUri>urn:toop.eu:names:identifier:process-1.0</CanonicalVersionUri>
+    <ShortName>ToopTransportProfile</ShortName>
+      <Version>2</Version>
+      <CanonicalUri>urn:toop.eu:names:identifier:transport-profile</CanonicalUri>
+      <CanonicalVersionUri>urn:toop.eu:names:identifier:transport-profile-1.0</CanonicalVersionUri>
   </Identification>
   <ColumnSet>
     <Column Id="name" Use="required">
-      <ShortName>Profile name</ShortName>
+      <ShortName>Protocol name</ShortName>
+          <Data Type="string" />
+    </Column>
+      <Column Id="version" Use="required">
+      <ShortName>Profile version</ShortName>
           <Data Type="string" />
     </Column>
       <Column Id="id" Use="required">
@@ -29,12 +33,16 @@
           <Data Type="boolean" />
     </Column>
       <Column Id="deprecated-since" Use="optional">
-      <ShortName>Deprecated Since</ShortName>
+      <ShortName>Deprecated since?</ShortName>
           <Data Type="string" />
     </Column>
       <Key Id="nameKey">
-      <ShortName>Profile name</ShortName>
+      <ShortName>Protocol name</ShortName>
           <ColumnRef Ref="name" />
+    </Key>
+      <Key Id="versionKey">
+      <ShortName>Profile version</ShortName>
+          <ColumnRef Ref="version" />
     </Key>
       <Key Id="idKey">
       <ShortName>Profile ID</ShortName>
@@ -44,24 +52,13 @@
   <SimpleCodeList>
     <Row>
       <Value ColumnRef="name">
-        <SimpleValue>TOOP Request Response for Data</SimpleValue>
+        <SimpleValue>CEF AS4</SimpleValue>
+      </Value>
+          <Value ColumnRef="version">
+        <SimpleValue>1.0</SimpleValue>
       </Value>
           <Value ColumnRef="id">
-        <SimpleValue>urn:eu.toop.process.datarequestresponse</SimpleValue>
-      </Value>
-          <Value ColumnRef="since">
-        <SimpleValue>1</SimpleValue>
-      </Value>
-          <Value ColumnRef="deprecated">
-        <SimpleValue>false</SimpleValue>
-      </Value>
-    </Row>
-      <Row>
-      <Value ColumnRef="name">
-        <SimpleValue>TOOP Request Response for Documents</SimpleValue>
-      </Value>
-          <Value ColumnRef="id">
-        <SimpleValue>urn:eu.toop.process.documentrequestresponse</SimpleValue>
+        <SimpleValue>bdxr-transport-ebms3-as4-v1p0</SimpleValue>
       </Value>
           <Value ColumnRef="since">
         <SimpleValue>1</SimpleValue>
