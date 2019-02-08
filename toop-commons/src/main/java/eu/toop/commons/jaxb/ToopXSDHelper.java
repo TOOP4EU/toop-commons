@@ -57,10 +57,22 @@ public final class ToopXSDHelper
   }
 
   @Nonnull
-  public static IdentifierType createIdentifier (@Nonnull @Nonempty final String sSchemeID,
+  public static IdentifierType createIdentifier (@Nullable final String sSchemeID,
                                                  @Nonnull @Nonempty final String sValue)
   {
     final IdentifierType ret = new IdentifierType ();
+    ret.setSchemeID (sSchemeID);
+    ret.setValue (sValue);
+    return ret;
+  }
+
+  @Nonnull
+  public static IdentifierType createIdentifier (@Nullable final String sSchemeAgencyID,
+                                                 @Nullable final String sSchemeID,
+                                                 @Nonnull @Nonempty final String sValue)
+  {
+    final IdentifierType ret = new IdentifierType ();
+    ret.setSchemeAgencyID (sSchemeAgencyID);
     ret.setSchemeID (sSchemeID);
     ret.setValue (sValue);
     return ret;

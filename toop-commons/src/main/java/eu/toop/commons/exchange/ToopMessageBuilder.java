@@ -290,25 +290,16 @@ public final class ToopMessageBuilder
     return aRet;
   }
 
-  @Deprecated
-  @Nonnull
-  public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
-                                                      @Nonnull final IdentifierType aSenderParticipantID,
-                                                      @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
-                                                      @Nonnull final EPredefinedProcessIdentifier eProcessID,
-                                                      @Nullable final Iterable <? extends ConceptValue> aValues)
+  private static void _fillRequest (@Nonnull final TDETOOPRequestType aRet,
+                                    @Nonnull final TDEDataRequestSubjectType aRequestSubject,
+                                    @Nonnull final IdentifierType aSenderParticipantID,
+                                    @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
+                                    @Nonnull final EPredefinedProcessIdentifier eProcessID,
+                                    @Nullable final Iterable <? extends ConceptValue> aValues)
   {
-    ValueEnforcer.notNull (aRequestSubject, "RequestSubject");
-    ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
-    ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
-    ValueEnforcer.notNull (eProcessID, "ProcessID");
-
-    final TDETOOPRequestType aRet = new TDETOOPRequestType ();
-    {
-      final IdentifierType aUUID = ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ());
-      aUUID.setSchemeAgencyID ("UUID");
-      aRet.setDocumentUniversalUniqueIdentifier (aUUID);
-    }
+    aRet.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier ("UUID",
+                                                                               null,
+                                                                               UUID.randomUUID ().toString ()));
     aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
@@ -317,11 +308,7 @@ public final class ToopMessageBuilder
                                                                                     .substring (0,
                                                                                                 eDocumentTypeID.getID ()
                                                                                                                .indexOf ("##"))));
-    {
-      final IdentifierType aCDI = ToopXSDHelper.createIdentifier ("DC-ID-17");
-      aCDI.setSchemeAgencyID ("whatsoever");
-      aRet.setDataConsumerDocumentIdentifier (aCDI);
-    }
+    aRet.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("whatsoever", null, "DC-ID-17"));
 
     if (false)
       aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
@@ -340,11 +327,7 @@ public final class ToopMessageBuilder
 
     {
       final TDEDataConsumerType aDC = new TDEDataConsumerType ();
-      {
-        final IdentifierType aDCID = ToopXSDHelper.createIdentifier ("ATU12345678");
-        aDCID.setSchemeAgencyID ("whatsoever");
-        aDC.setDCUniqueIdentifier (aDCID);
-      }
+      aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("whatsoever", "9914", "ATU12345678"));
       aDC.setDCName (ToopXSDHelper.createText ("Helger Enterprises"));
       {
         // Sender participant ID
@@ -369,127 +352,106 @@ public final class ToopMessageBuilder
       aRet.setDataRequestAuthorization (aAuth);
     }
 
-    for (final ConceptValue aCV : aValues)
-    {
-      final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
-      aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+    if (aValues != null)
+      for (final ConceptValue aCV : aValues)
       {
-        final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
-        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
-        aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
-        aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace ()));
-        aSrcConcept.setConceptName (ToopXSDHelper.createText (aCV.getValue ()));
-        aSrcConcept.addConceptDefinition (ToopXSDHelper.createText ("Definition of " + aCV.getValue ()));
-        aReq.setConceptRequest (aSrcConcept);
-      }
+        final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
+        aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+        {
+          final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
+          aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
+          aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
+          aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace ()));
+          aSrcConcept.setConceptName (ToopXSDHelper.createText (aCV.getValue ()));
+          aSrcConcept.addConceptDefinition (ToopXSDHelper.createText ("Definition of " + aCV.getValue ()));
+          aReq.setConceptRequest (aSrcConcept);
+        }
 
-      aRet.addDataElementRequest (aReq);
-    }
+        aRet.addDataElementRequest (aReq);
+      }
+  }
+
+  @Deprecated
+  @Nonnull
+  public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
+                                                      @Nonnull final IdentifierType aSenderParticipantID,
+                                                      @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
+                                                      @Nonnull final EPredefinedProcessIdentifier eProcessID,
+                                                      @Nullable final Iterable <? extends ConceptValue> aValues)
+  {
+    ValueEnforcer.notNull (aRequestSubject, "RequestSubject");
+    ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
+    ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
+    ValueEnforcer.notNull (eProcessID, "ProcessID");
+
+    final TDETOOPRequestType aRet = new TDETOOPRequestType ();
+    _fillRequest (aRet, aRequestSubject, aSenderParticipantID, eDocumentTypeID, eProcessID, aValues);
     return aRet;
   }
 
   @Deprecated
   @Nonnull
   public static TDETOOPResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
-                                                        @Nonnull @Nonempty final String sCountryCode,
+                                                        @Nonnull final TDEDataRequestSubjectType aRequestSubject,
                                                         @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                         @Nonnull final EPredefinedProcessIdentifier eProcessID,
                                                         @Nullable final Iterable <? extends ConceptValue> aValues)
   {
     ValueEnforcer.notNull (aSenderParticipantID, "SenderParticipantID");
-    ValueEnforcer.notEmpty (sCountryCode, "CountryCode");
+    ValueEnforcer.notNull (aRequestSubject, "RequestSubject");
     ValueEnforcer.notNull (eDocumentTypeID, "DocumentTypeID");
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
     final TDETOOPResponseType aRet = new TDETOOPResponseType ();
-    aRet.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier (UUID.randomUUID ().toString ()));
-    aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
-    aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
-    aRet.setCopyIndicator (ToopXSDHelper.createIndicator (false));
-    aRet.setSpecificationIdentifier (ToopXSDHelper.createIdentifier ("bla"));
-    aRet.setDataConsumerDocumentIdentifier (ToopXSDHelper.createIdentifier ("DC-ID-17"));
-    aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+    // Values are added below
+    _fillRequest (aRet, aRequestSubject, aSenderParticipantID, eDocumentTypeID, eProcessID, null);
 
-    {
-      final TDERoutingInformationType aRoutingInfo = new TDERoutingInformationType ();
-      // Document type ID
-      aRoutingInfo.setDocumentTypeIdentifier (ToopXSDHelper.createIdentifier (eDocumentTypeID.getScheme (),
-                                                                              eDocumentTypeID.getID ()));
-      // Process ID
-      aRoutingInfo.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
-      // Destination country code
-      aRoutingInfo.setDataProviderCountryCode (ToopXSDHelper.createCode ("AT"));
-      aRet.setRoutingInformation (aRoutingInfo);
-    }
+    aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("schas", "uuid", UUID.randomUUID ().toString ()));
 
-    {
-      final TDEDataConsumerType aDC = new TDEDataConsumerType ();
-      aDC.setDCUniqueIdentifier (ToopXSDHelper.createIdentifier ("ATU12345678"));
-      aDC.setDCName (ToopXSDHelper.createText ("Helger Enterprises"));
-      // Sender participant ID
-      aDC.setDCElectronicAddressIdentifier (aSenderParticipantID.clone ());
-      final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("AT"));
-      aDC.setDCLegalAddress (aAddress);
-      aRet.setDataConsumer (aDC);
-    }
-    {
-      final TDEDataRequestSubjectType aDS = new TDEDataRequestSubjectType ();
-      aDS.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("12345"));
-      {
-        final TDENaturalPersonType aNP = new TDENaturalPersonType ();
-        aNP.setPersonIdentifier (ToopXSDHelper.createIdentifierWithLOA ("bla"));
-        aNP.setFamilyName (ToopXSDHelper.createTextWithLOA ("Helger"));
-        aNP.setFirstName (ToopXSDHelper.createTextWithLOA ("Philip"));
-        aNP.setBirthDate (ToopXSDHelper.createDateWithLOANow ());
-        final TDEAddressType aAddress = new TDEAddressType ();
-        // Destination country to use
-        aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA (sCountryCode));
-        aNP.setNaturalPersonLegalAddress (aAddress);
-        aDS.setNaturalPerson (aNP);
-      }
-      aRet.setDataRequestSubject (aDS);
-    }
     {
       final TDEDataRequestAuthorizationType aAuth = new TDEDataRequestAuthorizationType ();
       final BinaryObjectType aBO = new BinaryObjectType ();
       aBO.setValue ("11101010101010001110101".getBytes (StandardCharsets.ISO_8859_1));
-      aBO.setMimeCode ("application/octet-stream");
+      aBO.setMimeCode (CMimeType.APPLICATION_OCTET_STREAM.getAsString ());
       aAuth.setDataRequestConsentToken (aBO);
       aRet.setDataRequestAuthorization (aAuth);
     }
 
-    for (final ConceptValue aCV : aValues)
+    if (aValues != null)
     {
-      final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
-      aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
+      for (final ConceptValue aCV : aValues)
       {
-        final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
-        aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
-        aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
-        aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace ()));
-        aSrcConcept.setConceptName (ToopXSDHelper.createText (aCV.getValue ()));
+        final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
+        aReq.setDataElementRequestIdentifier (ToopXSDHelper.createIdentifier ("bla"));
         {
-          final TDEConceptRequestType aToopConcept = new TDEConceptRequestType ();
-          aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.TC.getID ()));
-          aToopConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
-          aToopConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace () + "-toop"));
-          aToopConcept.setConceptName (ToopXSDHelper.createText ("toop." + aCV.getValue ()));
+          final TDEConceptRequestType aSrcConcept = new TDEConceptRequestType ();
+          aSrcConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DC.getID ()));
+          aSrcConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
+          aSrcConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace ()));
+          aSrcConcept.setConceptName (ToopXSDHelper.createText (aCV.getValue ()));
+          aSrcConcept.addConceptDefinition (ToopXSDHelper.createText ("Definition of " + aCV.getValue ()));
           {
-            final TDEConceptRequestType aDPConcept = new TDEConceptRequestType ();
-            aDPConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DP.getID ()));
-            aDPConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
-            aDPConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace () + "-dp"));
-            aDPConcept.setConceptName (ToopXSDHelper.createText ("dp." + aCV.getValue ()));
-            aToopConcept.addConceptRequest (aDPConcept);
+            final TDEConceptRequestType aToopConcept = new TDEConceptRequestType ();
+            aToopConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.TC.getID ()));
+            aToopConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
+            aToopConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace () + "-toop"));
+            aToopConcept.setConceptName (ToopXSDHelper.createText ("toop." + aCV.getValue ()));
+            {
+              final TDEConceptRequestType aDPConcept = new TDEConceptRequestType ();
+              aDPConcept.setConceptTypeCode (ToopXSDHelper.createCode (EConceptType.DP.getID ()));
+              aDPConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper.createIndicator (false));
+              aDPConcept.setConceptNamespace (ToopXSDHelper.createIdentifier (aCV.getNamespace () + "-dp"));
+              aDPConcept.setConceptName (ToopXSDHelper.createText ("dp." + aCV.getValue ()));
+              aToopConcept.addConceptRequest (aDPConcept);
+            }
+            aSrcConcept.addConceptRequest (aToopConcept);
           }
-          aSrcConcept.addConceptRequest (aToopConcept);
+          aReq.setConceptRequest (aSrcConcept);
         }
-        aReq.setConceptRequest (aSrcConcept);
+        aRet.addDataElementRequest (aReq);
       }
-      aRet.addDataElementRequest (aReq);
     }
-
+    else
     {
       final TDEDocumentRequestType aDR = new TDEDocumentRequestType ();
       aDR.setDocumentRequestIdentifier (ToopXSDHelper.createIdentifier ("CertificatePDF-1234"));
@@ -500,11 +462,13 @@ public final class ToopMessageBuilder
 
     {
       final TDEDataProviderType aDP = new TDEDataProviderType ();
-      aDP.setDPIdentifier (ToopXSDHelper.createIdentifier ("atbla"));
+      aDP.setDPIdentifier (ToopXSDHelper.createIdentifier ("schas", null, "atbla"));
       aDP.setDPName (ToopXSDHelper.createText ("Register1"));
-      aDP.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("me@register.example.org"));
+      aDP.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("0002",
+                                                                            "iso6523-actorid-upis",
+                                                                            "9915:test"));
       final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("XK"));
+      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("FR"));
       aDP.setDPLegalAddress (aAddress);
       aRet.addDataProvider (aDP);
     }

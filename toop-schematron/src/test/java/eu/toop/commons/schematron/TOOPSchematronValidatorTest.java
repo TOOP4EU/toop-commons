@@ -21,10 +21,25 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
 
+import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
+import com.helger.commons.error.level.EErrorLevel;
 import com.helger.commons.io.resource.FileSystemResource;
 import com.helger.schematron.svrl.AbstractSVRLMessage;
+
+import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
+import eu.toop.commons.codelist.EPredefinedProcessIdentifier;
+import eu.toop.commons.concept.ConceptValue;
+import eu.toop.commons.dataexchange.v140.TDEDataRequestSubjectType;
+import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
+import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
+import eu.toop.commons.exchange.ToopMessageBuilder;
+import eu.toop.commons.jaxb.ToopWriter;
+import eu.toop.commons.jaxb.ToopXSDHelper;
+import eu.toop.commons.usecase.regorg.ERegOrgConcept;
+import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
 /**
  * Test class for class {@link TOOPSchematronValidator}.
@@ -57,6 +72,71 @@ public final class TOOPSchematronValidatorTest
       for (final AbstractSVRLMessage aFA : aFAs)
         LOGGER.info (aFA.toString ());
       assertTrue (aFAs.isEmpty ());
+    }
+  }
+
+  @SuppressWarnings ("deprecation")
+  @Test
+  public void testValidateMockRequest ()
+  {
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject ("IT",
+                                                                                                       "AT",
+                                                                                                       false);
+    final IdentifierType aSenderParticipantID = ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9915:bla");
+
+    // Query all
+    final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
+    for (final ERegOrgConcept e : ERegOrgConcept.values ())
+      aValues.add (e.getAsConceptValue ());
+
+    final TDETOOPRequestType aRequestMsg = ToopMessageBuilder.createMockRequest (aRequestSubject,
+                                                                                 aSenderParticipantID,
+                                                                                 EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
+                                                                                 EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                 aValues);
+    assertNotNull (aRequestMsg);
+
+    final Document aDoc = ToopWriter.request ().getAsDocument (aRequestMsg);
+    assertNotNull (aDoc);
+
+    // Schematron validation
+    final TOOPSchematronValidator aValidator = new TOOPSchematronValidator ();
+    final ICommonsList <AbstractSVRLMessage> aMsgs = aValidator.validateTOOPMessage (aDoc);
+    for (final AbstractSVRLMessage aMsg : aMsgs)
+      assertTrue (aMsg.getFlag () == EErrorLevel.WARN);
+  }
+
+  @SuppressWarnings ("deprecation")
+  @Test
+  public void testValidateMockResponse ()
+  {
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject ("IT",
+                                                                                                       "AT",
+                                                                                                       false);
+    final IdentifierType aSenderParticipantID = ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9915:bla");
+
+    // Query all
+    final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
+    for (final ERegOrgConcept e : ERegOrgConcept.values ())
+      aValues.add (e.getAsConceptValue ());
+
+    final TDETOOPResponseType aResponseMsg = ToopMessageBuilder.createMockResponse (aSenderParticipantID,
+                                                                                    aRequestSubject,
+                                                                                    EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
+                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                    aValues);
+    assertNotNull (aResponseMsg);
+
+    final Document aDoc = ToopWriter.response ().getAsDocument (aResponseMsg);
+    assertNotNull (aDoc);
+
+    // Schematron validation
+    final TOOPSchematronValidator aValidator = new TOOPSchematronValidator ();
+    final ICommonsList <AbstractSVRLMessage> aMsgs = aValidator.validateTOOPMessage (aDoc);
+    for (final AbstractSVRLMessage aMsg : aMsgs)
+    {
+      LOGGER.info (aMsg.getFlag () + "@" + aMsg.getLocation () + " - " + aMsg.getTest () + " / " + aMsg.getText ());
+      assertTrue (aMsg.getFlag () == EErrorLevel.WARN);
     }
   }
 }
