@@ -19,7 +19,7 @@
 		</Column>
 		<Column Use="optional" Id="name-Value">
 			<ShortName>Name</ShortName>
-			<Data Type="string" Lang="Value"/>
+			<Data Type="string" Lang="en"/>
 		</Column>
 		<Key Id="codeKey">
 			<ShortName>CodeKey</ShortName>
