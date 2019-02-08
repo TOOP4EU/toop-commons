@@ -259,8 +259,8 @@ public final class ToopMessageBuilder
     final TDEDataRequestSubjectType aRet = new TDEDataRequestSubjectType ();
     if (bLegalPerson)
     {
-      // Codelist value
-      aRet.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("LP"));
+      // Codelist value (legacy)
+      aRet.setDataRequestSubjectTypeCode (ToopXSDHelper.createCode ("LE"));
 
       final TDELegalPersonType aLE = new TDELegalPersonType ();
       aLE.setLegalPersonUniqueIdentifier (ToopXSDHelper.createIdentifierWithLOA (sSrcCountryCode +
@@ -346,8 +346,12 @@ public final class ToopMessageBuilder
         aDC.setDCUniqueIdentifier (aDCID);
       }
       aDC.setDCName (ToopXSDHelper.createText ("Helger Enterprises"));
-      // Sender participant ID
-      aDC.setDCElectronicAddressIdentifier (aSenderParticipantID.clone ());
+      {
+        // Sender participant ID
+        final IdentifierType aID = aSenderParticipantID.clone ();
+        aID.setSchemeAgencyID ("0002");
+        aDC.setDCElectronicAddressIdentifier (aID);
+      }
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("AT"));
       aDC.setDCLegalAddress (aAddress);
