@@ -500,7 +500,9 @@ public final class ToopMessageBuilder
   }
 
   /**
-   * Create a new response with all cloned values from the request.
+   * Create a new response with all cloned values from the request. Additionally
+   * the "DataRequestIdentifier" and the "DocumentUniversalUniqueIdentifier" is
+   * set accordingly.
    *
    * @param aRequest Source request. May not be <code>null</code>.
    * @return Destination response. Never <code>null</code>.
@@ -510,7 +512,12 @@ public final class ToopMessageBuilder
   {
     final TDETOOPResponseType aResponse = new TDETOOPResponseType ();
     aRequest.cloneTo (aResponse);
-    // Response specific stuff stays null
+    // Set response specific stuff
+    aResponse.setDataRequestIdentifier (aRequest.getDocumentUniversalUniqueIdentifier ().clone ());
+    // Create a new UUID
+    aResponse.setDocumentUniversalUniqueIdentifier (ToopXSDHelper.createIdentifier ("UUID",
+                                                                                    null,
+                                                                                    UUID.randomUUID ().toString ()));
     return aResponse;
   }
 
