@@ -62,10 +62,14 @@ public final class ToopMessageBuilderTest
   {
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
-      final String sCountryCode = "SE";
-      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sCountryCode,
-                                                                                                                                    sCountryCode,
-                                                                                                                                    true),
+      final String sDCCountryCode = "SE";
+      final String sDPCountryCode = "SE";
+      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                                                    sDPCountryCode,
+                                                                                                                                    true,
+                                                                                                                                    "id"),
+                                                                                   sDCCountryCode,
+                                                                                   sDPCountryCode,
                                                                                    ToopXSDHelper.createIdentifier ("toop",
                                                                                                                    "senderid"),
                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
@@ -92,12 +96,16 @@ public final class ToopMessageBuilderTest
   {
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
-      final String sCountryCode = "SE";
+      final String sDCCountryCode = "SE";
+      final String sDPCountryCode = "SE";
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                       "senderid"),
-                                                                                      ToopMessageBuilder.createMockDataRequestSubject (sCountryCode,
-                                                                                                                                       sCountryCode,
-                                                                                                                                       true),
+                                                                                      ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                                                       sDPCountryCode,
+                                                                                                                                       true,
+                                                                                                                                       "id"),
+                                                                                      sDCCountryCode,
+                                                                                      sDPCountryCode,
                                                                                       EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                       new CommonsArrayList <> (new ConceptValue ("companyName",
@@ -122,12 +130,16 @@ public final class ToopMessageBuilderTest
   {
     try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
     {
-      final String sCountryCode = "SE";
+      final String sDCCountryCode = "SE";
+      final String sDPCountryCode = "SE";
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
                                                                                                                     "senderid"),
-                                                                                    ToopMessageBuilder.createMockDataRequestSubject (sCountryCode,
-                                                                                                                                     sCountryCode,
-                                                                                                                                     true),
+                                                                                    ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                                                     sDPCountryCode,
+                                                                                                                                     true,
+                                                                                                                                     "id"),
+                                                                                    sDCCountryCode,
+                                                                                    sDPCountryCode,
                                                                                     EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                     EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                     new CommonsArrayList <> (new ConceptValue ("companyName",

@@ -79,9 +79,12 @@ public final class TOOPSchematronValidatorTest
   @Test
   public void testValidateMockRequest ()
   {
-    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject ("IT",
-                                                                                                       "AT",
-                                                                                                       false);
+    final String sDCCountryCode = "IT";
+    final String sDPCountryCode = "AT";
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                       sDPCountryCode,
+                                                                                                       false,
+                                                                                                       "id");
     final IdentifierType aSenderParticipantID = ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
@@ -90,6 +93,8 @@ public final class TOOPSchematronValidatorTest
       aValues.add (e.getAsConceptValue ());
 
     final TDETOOPRequestType aRequestMsg = ToopMessageBuilder.createMockRequest (aRequestSubject,
+                                                                                 sDCCountryCode,
+                                                                                 sDPCountryCode,
                                                                                  aSenderParticipantID,
                                                                                  EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
                                                                                  EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
@@ -110,9 +115,12 @@ public final class TOOPSchematronValidatorTest
   @Test
   public void testValidateMockResponse ()
   {
-    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject ("IT",
-                                                                                                       "AT",
-                                                                                                       false);
+    final String sDCCountryCode = "IT";
+    final String sDPCountryCode = "AT";
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                       sDPCountryCode,
+                                                                                                       false,
+                                                                                                       "id");
     final IdentifierType aSenderParticipantID = ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
@@ -122,6 +130,8 @@ public final class TOOPSchematronValidatorTest
 
     final TDETOOPResponseType aResponseMsg = ToopMessageBuilder.createMockResponse (aSenderParticipantID,
                                                                                     aRequestSubject,
+                                                                                    sDCCountryCode,
+                                                                                    sDPCountryCode,
                                                                                     EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
                                                                                     EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                     aValues);

@@ -254,7 +254,8 @@ public final class ToopMessageBuilder
   @Nonnull
   public static TDEDataRequestSubjectType createMockDataRequestSubject (@Nonnull @Nonempty final String sSrcCountryCode,
                                                                         @Nonnull @Nonempty final String sDstCountryCode,
-                                                                        final boolean bLegalPerson)
+                                                                        final boolean bLegalPerson,
+                                                                        @Nonnull final String sUniqueIdentifier)
   {
     final TDEDataRequestSubjectType aRet = new TDEDataRequestSubjectType ();
     if (bLegalPerson)
@@ -266,7 +267,8 @@ public final class ToopMessageBuilder
       aLE.setLegalPersonUniqueIdentifier (ToopXSDHelper.createIdentifierWithLOA (sSrcCountryCode +
                                                                                  "/" +
                                                                                  sDstCountryCode +
-                                                                                 "/upid"));
+                                                                                 "/" +
+                                                                                 sUniqueIdentifier));
       aLE.setLegalName (ToopXSDHelper.createTextWithLOA ("ACME Inc."));
       aLE.setLegalPersonLegalAddress (createMockAddressType (sDstCountryCode));
       aRet.setLegalPerson (aLE);
@@ -280,7 +282,8 @@ public final class ToopMessageBuilder
       aNP.setPersonIdentifier (ToopXSDHelper.createIdentifierWithLOA (sSrcCountryCode +
                                                                       "/" +
                                                                       sDstCountryCode +
-                                                                      "/bla"));
+                                                                      "/" +
+                                                                      sUniqueIdentifier));
       aNP.setFamilyName (ToopXSDHelper.createTextWithLOA ("Helger"));
       aNP.setFirstName (ToopXSDHelper.createTextWithLOA ("Philip"));
       aNP.setBirthDate (ToopXSDHelper.createDateWithLOANow ());
@@ -292,6 +295,8 @@ public final class ToopMessageBuilder
 
   private static void _fillRequest (@Nonnull final TDETOOPRequestType aRet,
                                     @Nonnull final TDEDataRequestSubjectType aRequestSubject,
+                                    @Nonnull final String sDCCountryCode,
+                                    @Nonnull final String sDPCountryCode,
                                     @Nonnull final IdentifierType aSenderParticipantID,
                                     @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                     @Nonnull final EPredefinedProcessIdentifier eProcessID,
@@ -321,7 +326,7 @@ public final class ToopMessageBuilder
       // Process ID
       aRoutingInfo.setProcessIdentifier (ToopXSDHelper.createIdentifier (eProcessID.getScheme (), eProcessID.getID ()));
       // Destination country code
-      aRoutingInfo.setDataProviderCountryCode (ToopXSDHelper.createCode ("AT"));
+      aRoutingInfo.setDataProviderCountryCode (ToopXSDHelper.createCode (sDPCountryCode));
       aRet.setRoutingInformation (aRoutingInfo);
     }
 
@@ -336,7 +341,7 @@ public final class ToopMessageBuilder
         aDC.setDCElectronicAddressIdentifier (aID);
       }
       final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("AT"));
+      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA (sDCCountryCode));
       aDC.setDCLegalAddress (aAddress);
       aRet.setDataConsumer (aDC);
     }
@@ -374,6 +379,8 @@ public final class ToopMessageBuilder
   @Deprecated
   @Nonnull
   public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
+                                                      @Nonnull final String sDCCountryCode,
+                                                      @Nonnull final String sDPCountryCode,
                                                       @Nonnull final IdentifierType aSenderParticipantID,
                                                       @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                       @Nonnull final EPredefinedProcessIdentifier eProcessID,
@@ -385,7 +392,14 @@ public final class ToopMessageBuilder
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
     final TDETOOPRequestType aRet = new TDETOOPRequestType ();
-    _fillRequest (aRet, aRequestSubject, aSenderParticipantID, eDocumentTypeID, eProcessID, aValues);
+    _fillRequest (aRet,
+                  aRequestSubject,
+                  sDCCountryCode,
+                  sDPCountryCode,
+                  aSenderParticipantID,
+                  eDocumentTypeID,
+                  eProcessID,
+                  aValues);
     return aRet;
   }
 
@@ -393,6 +407,8 @@ public final class ToopMessageBuilder
   @Nonnull
   public static TDETOOPResponseType createMockResponse (@Nonnull final IdentifierType aSenderParticipantID,
                                                         @Nonnull final TDEDataRequestSubjectType aRequestSubject,
+                                                        @Nonnull final String sDCCountryCode,
+                                                        @Nonnull final String sDPCountryCode,
                                                         @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                         @Nonnull final EPredefinedProcessIdentifier eProcessID,
                                                         @Nullable final Iterable <? extends ConceptValue> aValues)
@@ -404,7 +420,14 @@ public final class ToopMessageBuilder
 
     final TDETOOPResponseType aRet = new TDETOOPResponseType ();
     // Values are added below
-    _fillRequest (aRet, aRequestSubject, aSenderParticipantID, eDocumentTypeID, eProcessID, null);
+    _fillRequest (aRet,
+                  aRequestSubject,
+                  sDCCountryCode,
+                  sDPCountryCode,
+                  aSenderParticipantID,
+                  eDocumentTypeID,
+                  eProcessID,
+                  null);
 
     aRet.setDataRequestIdentifier (ToopXSDHelper.createIdentifier ("schas", "uuid", UUID.randomUUID ().toString ()));
 
@@ -468,7 +491,7 @@ public final class ToopMessageBuilder
                                                                             "iso6523-actorid-upis",
                                                                             "9915:test"));
       final TDEAddressType aAddress = new TDEAddressType ();
-      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA ("FR"));
+      aAddress.setCountryCode (ToopXSDHelper.createCodeWithLOA (sDPCountryCode));
       aDP.setDPLegalAddress (aAddress);
       aRet.addDataProvider (aDP);
     }
