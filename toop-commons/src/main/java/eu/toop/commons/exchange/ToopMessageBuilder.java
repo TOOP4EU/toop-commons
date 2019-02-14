@@ -86,7 +86,7 @@ public final class ToopMessageBuilder
   private static final String ENTRY_NAME_TOOP_DATA_REQUEST = "TOOPRequest";
   private static final String ENTRY_NAME_TOOP_DATA_RESPONSE = "TOOPResponse";
 
-  private static final Logger s_aLogger = LoggerFactory.getLogger (ToopMessageBuilder.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (ToopMessageBuilder.class);
 
   private ToopMessageBuilder ()
   {}
@@ -111,7 +111,7 @@ public final class ToopMessageBuilder
                        ENTRY_NAME_TOOP_DATA_REQUEST,
                        CMimeType.APPLICATION_XML);
       aAsicWriter.sign (aSigHelper);
-      s_aLogger.info ("Successfully created request ASiC");
+      LOGGER.info ("Successfully created request ASiC");
     }
     catch (final IOException ex)
     {
@@ -139,7 +139,7 @@ public final class ToopMessageBuilder
                        ENTRY_NAME_TOOP_DATA_RESPONSE,
                        CMimeType.APPLICATION_XML);
       aAsicWriter.sign (aSigHelper);
-      s_aLogger.info ("Successfully created response ASiC");
+      LOGGER.info ("Successfully created response ASiC");
     }
     catch (final IOException ex)
     {
