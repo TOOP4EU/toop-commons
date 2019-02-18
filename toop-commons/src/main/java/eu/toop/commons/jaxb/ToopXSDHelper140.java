@@ -37,9 +37,9 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Indicato
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.NumericType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.TextType;
 
-public final class ToopXSDHelper
+public final class ToopXSDHelper140
 {
-  private ToopXSDHelper ()
+  private ToopXSDHelper140 ()
   {}
 
   @Nonnull

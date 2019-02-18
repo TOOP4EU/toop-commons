@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gc:CodeList xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Identification>
+		<ShortName>DocumentRequestTypeCode</ShortName>
+		<LongName xml:lang="en">Document Request Type Code</LongName>
+		<Version>2018-03-28</Version>
+		<CanonicalUri>urn:eu.toop.cl.documentrequesttypecode</CanonicalUri>
+		<Agency>
+			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
+			<Identifier>TOOP</Identifier>
+		</Agency>
+	</Identification>
+	<ColumnSet>
+		<Column Id="code" Use="required">
+			<ShortName>Code</ShortName>
+			<Data Type="normalizedString" Lang="en"/>
+		</Column>
+		<Column Use="optional" Id="name-EBR-Value">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="EBR-Value"/>
+		</Column>
+		<Column Use="optional" Id="name-Albania-AL">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Albania-AL"/>
+		</Column>
+		<Column Use="optional" Id="name-Andorra-AD">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Andorra-AD"/>
+		</Column>
+		<Column Use="optional" Id="name-Austria-AT">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Austria-AT"/>
+		</Column>
+		<Column Use="optional" Id="name-Belarus-BY">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Belarus-BY"/>
+		</Column>
+		<Column Use="optional" Id="name-Belgium-BE">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Belgium-BE"/>
+		</Column>
+		<Column Use="optional" Id="name-Bosnia and Herzegovina-BA">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Bosnia and Herzegovina-BA"/>
+		</Column>
+		<Column Use="optional" Id="name-Bulgaria-BG">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Bulgaria-BG"/>
+		</Column>
+		<Column Use="optional" Id="name-Croatia-HR">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Croatia-HR"/>
+		</Column>
+		<Column Use="optional" Id="name-Cyprus-CY">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Cyprus-CY"/>
+		</Column>
+		<Column Use="optional" Id="name-Czech Republic-CZ">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Czech Republic-CZ"/>
+		</Column>
+		<Column Use="optional" Id="name-Denmark-DK">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Denmark-DK"/>
+		</Column>
+		<Column Use="optional" Id="name-Estonia-EE">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Estonia-EE"/>
+		</Column>
+		<Column Use="optional" Id="name-Faroe Islands-FO">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Faroe Islands-FO"/>
+		</Column>
+		<Column Use="optional" Id="name-Finland-FI">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Finland-FI"/>
+		</Column>
+		<Column Use="optional" Id="name-France-FR">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="France-FR"/>
+		</Column>
+		<Column Use="optional" Id="name-Germany-DE">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Germany-DE"/>
+		</Column>
+		<Column Use="optional" Id="name-Gibraltar-GI">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Gibraltar-GI"/>
+		</Column>
+		<Column Use="optional" Id="name-Greece-GR">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Greece-GR"/>
+		</Column>
+		<Column Use="optional" Id="name-Hungary-HU">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Hungary-HU"/>
+		</Column>
+		<Column Use="optional" Id="name-Iceland-IS">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Iceland-IS"/>
+		</Column>
+		<Column Use="optional" Id="name-Ireland-IE">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Ireland-IE"/>
+		</Column>
+		<Column Use="optional" Id="name-Isle of Man-IM">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Isle of Man-IM"/>
+		</Column>
+		<Column Use="optional" Id="name-Italy-IT">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Italy-IT"/>
+		</Column>
+		<Column Use="optional" Id="name-Kosovo-RS">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Kosovo-RS"/>
+		</Column>
+		<Column Use="optional" Id="name-Latvia-LV">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Latvia-LV"/>
+		</Column>
+		<Column Use="optional" Id="name-Liechtenstein-LI">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Liechtenstein-LI"/>
+		</Column>
+		<Column Use="optional" Id="name-Lithuania-LT">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Lithuania-LT"/>
+		</Column>
+		<Column Use="optional" Id="name-Luxembourg-LU">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Luxembourg-LU"/>
+		</Column>
+		<Column Use="optional" Id="name-Macedonia-MK">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Macedonia-MK"/>
+		</Column>
+		<Column Use="optional" Id="name-Malta-MT">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Malta-MT"/>
+		</Column>
+		<Column Use="optional" Id="name-Moldova-MD">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Moldova-MD"/>
+		</Column>
+		<Column Use="optional" Id="name-Monaco-MC">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Monaco-MC"/>
+		</Column>
+		<Column Use="optional" Id="name-Montenegro-ME">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Montenegro-ME"/>
+		</Column>
+		<Column Use="optional" Id="name-Netherlands-NL">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Netherlands-NL"/>
+		</Column>
+		<Column Use="optional" Id="name-Norway-NO">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Norway-NO"/>
+		</Column>
+		<Column Use="optional" Id="name-Poland-PL">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Poland-PL"/>
+		</Column>
+		<Column Use="optional" Id="name-Portugal-PT">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Portugal-PT"/>
+		</Column>
+		<Column Use="optional" Id="name-Romania-RO">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Romania-RO"/>
+		</Column>
+		<Column Use="optional" Id="name-Russia-RU">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Russia-RU"/>
+		</Column>
+		<Column Use="optional" Id="name-San Marino-SM">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="San Marino-SM"/>
+		</Column>
+		<Column Use="optional" Id="name-Serbia-RS">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Serbia-RS"/>
+		</Column>
+		<Column Use="optional" Id="name-Slovakia-SK">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Slovakia-SK"/>
+		</Column>
+		<Column Use="optional" Id="name-Slovenia-SI">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Slovenia-SI"/>
+		</Column>
+		<Column Use="optional" Id="name-Spain-ES">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Spain-ES"/>
+		</Column>
+		<Column Use="optional" Id="name-Sweden-SE">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Sweden-SE"/>
+		</Column>
+		<Column Use="optional" Id="name-Switzerland-CH">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Switzerland-CH"/>
+		</Column>
+		<Column Use="optional" Id="name-Ukraine-UA">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Ukraine-UA"/>
+		</Column>
+		<Column Use="optional" Id="name-United Kingdom-GB">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="United Kingdom-GB"/>
+		</Column>
+		<Column Use="optional" Id="name-Vatican city-VA">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Vatican city-VA"/>
+		</Column>
+		<Column Use="optional" Id="name-Yugoslavia-RS">
+			<ShortName>Name</ShortName>
+			<Data Type="string" Lang="Yugoslavia-RS"/>
+		</Column>
+		<Key Id="codeKey">
+			<ShortName>CodeKey</ShortName>
+			<ColumnRef Ref="code"/>
+		</Key>
+	</ColumnSet>
+	<SimpleCodeList>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>AA</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Annual Account</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>AR</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Annual Return</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>BS</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Balance Sheet</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CCM</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Company Charge or Mortgage</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CCN</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Company Change of Name</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CER</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Certificates</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CGS</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Certificate of Good Standing</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CIS</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Change in Status</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CO</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Change of Officers</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CR</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Certificate of Registration</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CRA</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Change of Registered Address</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CRR</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Credit Rating Report</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>CSH</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Company Shareholders</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>ECP</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Extended Company Profile</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>EP</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Exemption from Publication</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>ETR</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Extract from Trade Register</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>FD</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Financial Data</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>FP</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Financial Plan</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>INC</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Incorporation Documents</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>IP</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Insolvency Proceedings</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>IR</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Interim Report</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>MA </SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Memorandum and Articles of Association</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>NE</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Notification of Error</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>PCC</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Person Certificate with Current Assignments</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>PCH</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Person Certificate with Historical and Current Assignments</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>PL</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Profit &amp; Loss</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>PPP</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Company Prospectus</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>RCA</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Registry Courts Announcements</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>ST</SimpleValue>
+			</Value>
+			<Value ColumnRef="name-EBR-Value">
+				<SimpleValue>Statutes</SimpleValue>
+			</Value>
+		</Row>
+	</SimpleCodeList>
+</gc:CodeList>

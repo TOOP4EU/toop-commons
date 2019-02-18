@@ -41,15 +41,15 @@ import eu.toop.commons.dataexchange.v140.TDEDataProviderType;
 import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
 import eu.toop.commons.error.ToopErrorException;
-import eu.toop.commons.jaxb.ToopXSDHelper;
+import eu.toop.commons.jaxb.ToopXSDHelper140;
 
 /**
- * Test class for class {@link ToopMessageBuilder}.
+ * Test class for class {@link ToopMessageBuilder140}.
  *
  * @author Philip Helger
  */
 @SuppressWarnings ("deprecation")
-public final class ToopMessageBuilderTest
+public final class ToopMessageBuilder140Test
 {
   private static final SignatureHelper SH = new SignatureHelper (EKeyStoreType.JKS,
                                                                  "playground-keystore-v1.jks",
@@ -64,25 +64,25 @@ public final class ToopMessageBuilderTest
     {
       final String sDCCountryCode = "SE";
       final String sDPCountryCode = "SE";
-      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockRequest (ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder140.createMockRequest (ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
                                                                                                                                     sDPCountryCode,
                                                                                                                                     true,
                                                                                                                                     "id"),
                                                                                    sDCCountryCode,
                                                                                    sDPCountryCode,
-                                                                                   ToopXSDHelper.createIdentifier ("toop",
+                                                                                   ToopXSDHelper140.createIdentifier ("toop",
                                                                                                                    "senderid"),
                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                    new CommonsArrayList <> (new ConceptValue ("companyName",
                                                                                                                               "Acme Inc.")));
-      ToopMessageBuilder.createRequestMessageAsic (aSrcRequest, aBAOS, SH);
+      ToopMessageBuilder140.createRequestMessageAsic (aSrcRequest, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcRequest, aSrcRequest.clone ());
 
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
       {
         // Read ASIC again
-        final TDETOOPRequestType aRead = ToopMessageBuilder.parseRequestMessage (archiveInput);
+        final TDETOOPRequestType aRead = ToopMessageBuilder140.parseRequestMessage (archiveInput);
         assertNotNull (aRead);
 
         assertEquals (aRead, aSrcRequest);
@@ -98,9 +98,9 @@ public final class ToopMessageBuilderTest
     {
       final String sDCCountryCode = "SE";
       final String sDPCountryCode = "SE";
-      final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
+      final TDETOOPResponseType aSrcResponse = ToopMessageBuilder140.createMockResponse (ToopXSDHelper140.createIdentifier ("toop",
                                                                                                                       "senderid"),
-                                                                                      ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                      ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
                                                                                                                                        sDPCountryCode,
                                                                                                                                        true,
                                                                                                                                        "id"),
@@ -110,13 +110,13 @@ public final class ToopMessageBuilderTest
                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
                                                                                       new CommonsArrayList <> (new ConceptValue ("companyName",
                                                                                                                                  "Acme Inc.")));
-      ToopMessageBuilder.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
+      ToopMessageBuilder140.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
 
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
       {
         // Read ASIC again
-        final TDETOOPResponseType aRead = ToopMessageBuilder.parseResponseMessage (archiveInput);
+        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (archiveInput);
         assertNotNull (aRead);
 
         assertEquals (aRead, aSrcResponse);
@@ -132,9 +132,9 @@ public final class ToopMessageBuilderTest
     {
       final String sDCCountryCode = "SE";
       final String sDPCountryCode = "SE";
-      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder.createMockResponse (ToopXSDHelper.createIdentifier ("toop",
+      final TDETOOPRequestType aSrcRequest = ToopMessageBuilder140.createMockResponse (ToopXSDHelper140.createIdentifier ("toop",
                                                                                                                     "senderid"),
-                                                                                    ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+                                                                                    ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
                                                                                                                                      sDPCountryCode,
                                                                                                                                      true,
                                                                                                                                      "id"),
@@ -146,41 +146,41 @@ public final class ToopMessageBuilderTest
                                                                                                                                "Acme Inc."),
                                                                                                              new ConceptValue ("companyVATIN",
                                                                                                                                "blafoo.vatin")));
-      final TDETOOPResponseType aSrcResponse = ToopMessageBuilder.createResponse (aSrcRequest);
+      final TDETOOPResponseType aSrcResponse = ToopMessageBuilder140.createResponse (aSrcRequest);
       {
         // Required for response
         final TDEDataProviderType p = new TDEDataProviderType ();
-        p.setDPIdentifier (ToopXSDHelper.createIdentifier ("toop", "blafoo-elonia"));
-        p.setDPName (ToopXSDHelper.createText ("EloniaDP"));
-        p.setDPElectronicAddressIdentifier (ToopXSDHelper.createIdentifier ("elonia@register.example.org"));
+        p.setDPIdentifier (ToopXSDHelper140.createIdentifier ("toop", "blafoo-elonia"));
+        p.setDPName (ToopXSDHelper140.createText ("EloniaDP"));
+        p.setDPElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("elonia@register.example.org"));
         final TDEAddressType pa = new TDEAddressType ();
-        pa.setCountryCode (ToopXSDHelper.createCodeWithLOA ("SV"));
+        pa.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("SV"));
         p.setDPLegalAddress (pa);
         aSrcResponse.addDataProvider (p);
       }
       // Add response to concept 1/2
       {
         final TDEDataElementResponseValueType aResponseValue = new TDEDataElementResponseValueType ();
-        aResponseValue.setErrorIndicator (ToopXSDHelper.createIndicator (false));
-        aResponseValue.setAlternativeResponseIndicator (ToopXSDHelper.createIndicator (false));
-        aResponseValue.setResponseIdentifier (ToopXSDHelper.createIdentifier ("id4711"));
+        aResponseValue.setErrorIndicator (ToopXSDHelper140.createIndicator (false));
+        aResponseValue.setAlternativeResponseIndicator (ToopXSDHelper140.createIndicator (false));
+        aResponseValue.setResponseIdentifier (ToopXSDHelper140.createIdentifier ("id4711"));
         aSrcResponse.getDataElementRequestAtIndex (0).getConceptRequest ().addDataElementResponseValue (aResponseValue);
       }
       // Add response to concept 2/2
       {
         final TDEDataElementResponseValueType aResponseValue = new TDEDataElementResponseValueType ();
-        aResponseValue.setErrorIndicator (ToopXSDHelper.createIndicator (false));
-        aResponseValue.setAlternativeResponseIndicator (ToopXSDHelper.createIndicator (false));
-        aResponseValue.setResponseNumeric (ToopXSDHelper.createNumeric (MathHelper.toBigDecimal (47.11)));
+        aResponseValue.setErrorIndicator (ToopXSDHelper140.createIndicator (false));
+        aResponseValue.setAlternativeResponseIndicator (ToopXSDHelper140.createIndicator (false));
+        aResponseValue.setResponseNumeric (ToopXSDHelper140.createNumeric (MathHelper.toBigDecimal (47.11)));
         aSrcResponse.getDataElementRequestAtIndex (1).getConceptRequest ().addDataElementResponseValue (aResponseValue);
       }
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
-      ToopMessageBuilder.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
+      ToopMessageBuilder140.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
 
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
       {
         // Read ASIC again
-        final TDETOOPResponseType aRead = ToopMessageBuilder.parseResponseMessage (archiveInput);
+        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (archiveInput);
         assertNotNull (aRead);
 
         assertEquals (aRead, aSrcResponse);
@@ -196,7 +196,7 @@ public final class ToopMessageBuilderTest
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
     {
       // No data
-      ToopMessageBuilder.createRequestMessageAsic (null, archiveOutput, SH);
+      ToopMessageBuilder140.createRequestMessageAsic (null, archiveOutput, SH);
       fail ("Exception expected");
     }
     catch (final NullPointerException ex)
@@ -207,7 +207,7 @@ public final class ToopMessageBuilderTest
     try (final NonBlockingByteArrayOutputStream archiveOutput = new NonBlockingByteArrayOutputStream ())
     {
       // No data
-      ToopMessageBuilder.createResponseMessageAsic (null, archiveOutput, SH);
+      ToopMessageBuilder140.createResponseMessageAsic (null, archiveOutput, SH);
       fail ("Exception expected");
     }
     catch (final NullPointerException ex)

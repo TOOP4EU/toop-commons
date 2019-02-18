@@ -101,12 +101,23 @@
         <version>5.0.8</version>
         <executions>
           <execution>
+            <id>toop120</id>
             <goals>
               <goal>convert</goal>
             </goals>
             <configuration>
-              <schematronDirectory>src/main/resources/schematron</schematronDirectory>
-              <xsltDirectory>src/main/resources/xslt</xsltDirectory>
+              <schematronDirectory>src/main/resources/120/schematron</schematronDirectory>
+              <xsltDirectory>src/main/resources/120/xslt</xsltDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>toop140</id>
+            <goals>
+              <goal>convert</goal>
+            </goals>
+            <configuration>
+              <schematronDirectory>src/main/resources/140/schematron</schematronDirectory>
+              <xsltDirectory>src/main/resources/140/xslt</xsltDirectory>
             </configuration>
           </execution>
         </executions>

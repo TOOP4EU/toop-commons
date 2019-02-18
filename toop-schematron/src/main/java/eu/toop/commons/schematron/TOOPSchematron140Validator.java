@@ -32,22 +32,22 @@ import com.helger.schematron.xslt.SchematronResourceXSLT;
 import com.helger.xml.serialize.read.DOMReader;
 
 /**
- * TOOP Schematron validator. Validate DOM documents or other resources using
- * the predefined TOOP Schematron rules.
+ * TOOP Schematron validator for the 1.4.0 data model. Validate DOM documents or
+ * other resources using the predefined TOOP Schematron rules.
  *
  * @author Philip Helger
- * @since 0.9.2
+ * @since 0.10.0
  */
 @ThreadSafe
-public class TOOPSchematronValidator
+public class TOOPSchematron140Validator
 {
   /**
    * The resource with the rules. Important: this Schematron requires additional
    * code lists in a relative directory!
    */
-  public static final IReadableResource SCHEMATRON_RES_XSLT = new ClassPathResource ("xslt/TOOP_BusinessRules_DataExchange-1.4.1beta.xslt");
+  public static final IReadableResource TOOP_140_SCHEMATRON_RES_XSLT = new ClassPathResource ("140/xslt/TOOP_BusinessRules_DataExchange.xslt");
 
-  public TOOPSchematronValidator ()
+  public TOOPSchematron140Validator ()
   {}
 
   /**
@@ -62,9 +62,9 @@ public class TOOPSchematronValidator
   @Nonnull
   public ISchematronResource createSchematronResource ()
   {
-    final SchematronResourceXSLT aSchematron = new SchematronResourceXSLT (SCHEMATRON_RES_XSLT);
+    final SchematronResourceXSLT aSchematron = new SchematronResourceXSLT (TOOP_140_SCHEMATRON_RES_XSLT);
     if (!aSchematron.isValidSchematron ())
-      throw new IllegalStateException ("Failed to compile Schematron/XSLT " + SCHEMATRON_RES_XSLT.getPath ());
+      throw new IllegalStateException ("Failed to compile Schematron/XSLT " + TOOP_140_SCHEMATRON_RES_XSLT.getPath ());
     return aSchematron;
   }
 

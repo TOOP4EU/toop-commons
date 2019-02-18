@@ -35,25 +35,25 @@ import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.dataexchange.v140.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
-import eu.toop.commons.exchange.ToopMessageBuilder;
+import eu.toop.commons.exchange.ToopMessageBuilder140;
 import eu.toop.commons.jaxb.ToopWriter;
-import eu.toop.commons.jaxb.ToopXSDHelper;
+import eu.toop.commons.jaxb.ToopXSDHelper140;
 import eu.toop.commons.usecase.regorg.ERegOrgConcept;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
 /**
- * Test class for class {@link TOOPSchematronValidator}.
+ * Test class for class {@link TOOPSchematron140Validator}.
  *
  * @author Philip Helger
  */
-public final class TOOPSchematronValidatorTest
+public final class TOOPSchematron140ValidatorTest
 {
-  private static final Logger LOGGER = LoggerFactory.getLogger (TOOPSchematronValidatorTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (TOOPSchematron140ValidatorTest.class);
 
   @Test
   public void testBasic ()
   {
-    final TOOPSchematronValidator v = new TOOPSchematronValidator ();
+    final TOOPSchematron140Validator v = new TOOPSchematron140Validator ();
 
     for (final String sFilename : new String [] { "data-request-document-example.xml",
                                                   "data-request-example.xml",
@@ -81,18 +81,18 @@ public final class TOOPSchematronValidatorTest
   {
     final String sDCCountryCode = "IT";
     final String sDPCountryCode = "AT";
-    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
                                                                                                        sDPCountryCode,
                                                                                                        false,
                                                                                                        "id");
-    final IdentifierType aSenderParticipantID = ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9915:bla");
+    final IdentifierType aSenderParticipantID = ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
     final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
     for (final ERegOrgConcept e : ERegOrgConcept.values ())
       aValues.add (e.getAsConceptValue ());
 
-    final TDETOOPRequestType aRequestMsg = ToopMessageBuilder.createMockRequest (aRequestSubject,
+    final TDETOOPRequestType aRequestMsg = ToopMessageBuilder140.createMockRequest (aRequestSubject,
                                                                                  sDCCountryCode,
                                                                                  sDPCountryCode,
                                                                                  aSenderParticipantID,
@@ -101,11 +101,11 @@ public final class TOOPSchematronValidatorTest
                                                                                  aValues);
     assertNotNull (aRequestMsg);
 
-    final Document aDoc = ToopWriter.request ().getAsDocument (aRequestMsg);
+    final Document aDoc = ToopWriter.request140 ().getAsDocument (aRequestMsg);
     assertNotNull (aDoc);
 
     // Schematron validation
-    final TOOPSchematronValidator aValidator = new TOOPSchematronValidator ();
+    final TOOPSchematron140Validator aValidator = new TOOPSchematron140Validator ();
     final ICommonsList <AbstractSVRLMessage> aMsgs = aValidator.validateTOOPMessage (aDoc);
     for (final AbstractSVRLMessage aMsg : aMsgs)
       assertTrue (aMsg.getFlag () == EErrorLevel.WARN);
@@ -117,18 +117,18 @@ public final class TOOPSchematronValidatorTest
   {
     final String sDCCountryCode = "IT";
     final String sDPCountryCode = "AT";
-    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder.createMockDataRequestSubject (sDCCountryCode,
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
                                                                                                        sDPCountryCode,
                                                                                                        false,
                                                                                                        "id");
-    final IdentifierType aSenderParticipantID = ToopXSDHelper.createIdentifier ("iso6523-actorid-upis", "9915:bla");
+    final IdentifierType aSenderParticipantID = ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
     final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
     for (final ERegOrgConcept e : ERegOrgConcept.values ())
       aValues.add (e.getAsConceptValue ());
 
-    final TDETOOPResponseType aResponseMsg = ToopMessageBuilder.createMockResponse (aSenderParticipantID,
+    final TDETOOPResponseType aResponseMsg = ToopMessageBuilder140.createMockResponse (aSenderParticipantID,
                                                                                     aRequestSubject,
                                                                                     sDCCountryCode,
                                                                                     sDPCountryCode,
@@ -137,11 +137,11 @@ public final class TOOPSchematronValidatorTest
                                                                                     aValues);
     assertNotNull (aResponseMsg);
 
-    final Document aDoc = ToopWriter.response ().getAsDocument (aResponseMsg);
+    final Document aDoc = ToopWriter.response140 ().getAsDocument (aResponseMsg);
     assertNotNull (aDoc);
 
     // Schematron validation
-    final TOOPSchematronValidator aValidator = new TOOPSchematronValidator ();
+    final TOOPSchematron140Validator aValidator = new TOOPSchematron140Validator ();
     final ICommonsList <AbstractSVRLMessage> aMsgs = aValidator.validateTOOPMessage (aDoc);
     for (final AbstractSVRLMessage aMsg : aMsgs)
     {

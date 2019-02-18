@@ -19,9 +19,6 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBReaderBuilder;
 
-import eu.toop.commons.dataexchange.v140.TDETOOPRequestType;
-import eu.toop.commons.dataexchange.v140.TDETOOPResponseType;
-
 public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopReader <JAXBTYPE>>
 {
   /**
@@ -36,24 +33,54 @@ public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopRead
   }
 
   /**
-   * Create a reader builder for {@link TDETOOPRequestType}.
+   * Create a reader builder for
+   * {@link eu.toop.commons.dataexchange.v120.TDETOOPRequestType}.
    *
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopReader <TDETOOPRequestType> request ()
+  public static ToopReader <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> request120 ()
   {
-    return new ToopReader <> (EToopXMLDocumentType.REQUEST, TDETOOPRequestType.class);
+    return new ToopReader <> (EToopXMLDocumentType.REQUEST_120,
+                              eu.toop.commons.dataexchange.v120.TDETOOPRequestType.class);
   }
 
   /**
-   * Create a reader builder for {@link TDETOOPResponseType}.
+   * Create a reader builder for
+   * {@link eu.toop.commons.dataexchange.v120.TDETOOPResponseType}.
    *
    * @return The builder and never <code>null</code>
    */
   @Nonnull
-  public static ToopReader <TDETOOPResponseType> response ()
+  public static ToopReader <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> response120 ()
   {
-    return new ToopReader <> (EToopXMLDocumentType.RESPONSE, TDETOOPResponseType.class);
+    return new ToopReader <> (EToopXMLDocumentType.RESPONSE_120,
+                              eu.toop.commons.dataexchange.v120.TDETOOPResponseType.class);
+  }
+
+  /**
+   * Create a reader builder for
+   * {@link eu.toop.commons.dataexchange.v140.TDETOOPRequestType}.
+   *
+   * @return The builder and never <code>null</code>
+   */
+  @Nonnull
+  public static ToopReader <eu.toop.commons.dataexchange.v140.TDETOOPRequestType> request140 ()
+  {
+    return new ToopReader <> (EToopXMLDocumentType.REQUEST_140,
+                              eu.toop.commons.dataexchange.v140.TDETOOPRequestType.class);
+  }
+
+  /**
+   * Create a reader builder for
+   * {@link eu.toop.commons.dataexchange.v140.TDETOOPResponseType}.
+   *
+   * @return The builder and never <code>null</code>
+   */
+  @Nonnull
+  public static ToopReader <eu.toop.commons.dataexchange.v140.TDETOOPResponseType> response140 ()
+  {
+    return new ToopReader <> (EToopXMLDocumentType.RESPONSE_140,
+                              eu.toop.commons.dataexchange.v140.TDETOOPResponseType.class);
   }
 }
