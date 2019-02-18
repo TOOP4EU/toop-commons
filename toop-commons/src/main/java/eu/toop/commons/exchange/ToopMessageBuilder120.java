@@ -285,7 +285,7 @@ public final class ToopMessageBuilder120
                                                                   sUniqueIdentifier));
       aNP.setFamilyName (ToopXSDHelper120.createText ("Helger"));
       aNP.setFirstName (ToopXSDHelper120.createText ("Philip"));
-      aNP.setBirthDate (PDTXMLConverter.createNewCalendar ());
+      aNP.setBirthDate (PDTXMLConverter.getXMLCalendarDateNow ());
       aNP.setNaturalPersonLegalAddress (createMockAddressType (sDstCountryCode));
       aRet.setNaturalPerson (aNP);
     }
@@ -295,7 +295,6 @@ public final class ToopMessageBuilder120
   private static void _fillRequest (@Nonnull final TDETOOPRequestType aRet,
                                     @Nonnull final TDEDataRequestSubjectType aRequestSubject,
                                     @Nonnull final String sDCCountryCode,
-                                    @Nonnull final String sDPCountryCode,
                                     @Nonnull final IdentifierType aSenderParticipantID,
                                     @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                     @Nonnull final EPredefinedProcessIdentifier eProcessID,
@@ -375,7 +374,6 @@ public final class ToopMessageBuilder120
   @Nonnull
   public static TDETOOPRequestType createMockRequest (@Nonnull final TDEDataRequestSubjectType aRequestSubject,
                                                       @Nonnull final String sDCCountryCode,
-                                                      @Nonnull final String sDPCountryCode,
                                                       @Nonnull final IdentifierType aSenderParticipantID,
                                                       @Nonnull final EPredefinedDocumentTypeIdentifier eDocumentTypeID,
                                                       @Nonnull final EPredefinedProcessIdentifier eProcessID,
@@ -390,7 +388,6 @@ public final class ToopMessageBuilder120
     _fillRequest (aRet,
                   aRequestSubject,
                   sDCCountryCode,
-                  sDPCountryCode,
                   aSenderParticipantID,
                   eDocumentTypeID,
                   eProcessID,
@@ -418,7 +415,6 @@ public final class ToopMessageBuilder120
     _fillRequest (aRet,
                   aRequestSubject,
                   sDCCountryCode,
-                  sDPCountryCode,
                   aSenderParticipantID,
                   eDocumentTypeID,
                   eProcessID,

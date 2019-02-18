@@ -35,9 +35,9 @@ import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.dataexchange.v120.TDEDataRequestSubjectType;
 import eu.toop.commons.dataexchange.v120.TDETOOPRequestType;
 import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
-import eu.toop.commons.exchange.ToopMessageBuilder140;
+import eu.toop.commons.exchange.ToopMessageBuilder120;
 import eu.toop.commons.jaxb.ToopWriter;
-import eu.toop.commons.jaxb.ToopXSDHelper140;
+import eu.toop.commons.jaxb.ToopXSDHelper120;
 import eu.toop.commons.usecase.regorg.ERegOrgConcept;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
@@ -81,27 +81,26 @@ public final class TOOPSchematron120ValidatorTest
   {
     final String sDCCountryCode = "IT";
     final String sDPCountryCode = "AT";
-    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                       sDPCountryCode,
-                                                                                                       false,
-                                                                                                       "id");
-    final IdentifierType aSenderParticipantID = ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:bla");
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder120.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                          sDPCountryCode,
+                                                                                                          false,
+                                                                                                          "id");
+    final IdentifierType aSenderParticipantID = ToopXSDHelper120.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
     final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
     for (final ERegOrgConcept e : ERegOrgConcept.values ())
       aValues.add (e.getAsConceptValue ());
 
-    final TDETOOPRequestType aRequestMsg = ToopMessageBuilder140.createMockRequest (aRequestSubject,
-                                                                                 sDCCountryCode,
-                                                                                 sDPCountryCode,
-                                                                                 aSenderParticipantID,
-                                                                                 EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
-                                                                                 EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                 aValues);
+    final TDETOOPRequestType aRequestMsg = ToopMessageBuilder120.createMockRequest (aRequestSubject,
+                                                                                    sDCCountryCode,
+                                                                                    aSenderParticipantID,
+                                                                                    EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10,
+                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                    aValues);
     assertNotNull (aRequestMsg);
 
-    final Document aDoc = ToopWriter.request140 ().getAsDocument (aRequestMsg);
+    final Document aDoc = ToopWriter.request120 ().getAsDocument (aRequestMsg);
     assertNotNull (aDoc);
 
     // Schematron validation
@@ -117,27 +116,27 @@ public final class TOOPSchematron120ValidatorTest
   {
     final String sDCCountryCode = "IT";
     final String sDPCountryCode = "AT";
-    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                       sDPCountryCode,
-                                                                                                       false,
-                                                                                                       "id");
-    final IdentifierType aSenderParticipantID = ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:bla");
+    final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder120.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                          sDPCountryCode,
+                                                                                                          false,
+                                                                                                          "id");
+    final IdentifierType aSenderParticipantID = ToopXSDHelper120.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
     final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
     for (final ERegOrgConcept e : ERegOrgConcept.values ())
       aValues.add (e.getAsConceptValue ());
 
-    final TDETOOPResponseType aResponseMsg = ToopMessageBuilder140.createMockResponse (aSenderParticipantID,
-                                                                                    aRequestSubject,
-                                                                                    sDCCountryCode,
-                                                                                    sDPCountryCode,
-                                                                                    EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
-                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                    aValues);
+    final TDETOOPResponseType aResponseMsg = ToopMessageBuilder120.createMockResponse (aSenderParticipantID,
+                                                                                       aRequestSubject,
+                                                                                       sDCCountryCode,
+                                                                                       sDPCountryCode,
+                                                                                       EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10,
+                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                       aValues);
     assertNotNull (aResponseMsg);
 
-    final Document aDoc = ToopWriter.response140 ().getAsDocument (aResponseMsg);
+    final Document aDoc = ToopWriter.response120 ().getAsDocument (aResponseMsg);
     assertNotNull (aDoc);
 
     // Schematron validation
