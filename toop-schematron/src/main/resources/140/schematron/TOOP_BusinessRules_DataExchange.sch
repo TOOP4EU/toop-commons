@@ -304,7 +304,7 @@
     <!--Check codelist for country-->
     <pattern> 
         <let name="countrycodes" value="document('..\codelists\std-gc\CountryIdentificationCode-2.1.gc')//Value[@ColumnRef='code']" />
-        <rule context="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:CountryCode" flag='ERROR' id='gc_check_country_countrycode'> 
+        <rule context="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" flag='ERROR' id='gc_check_country_countrycode'> 
             <assert test="$countrycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">The country code must always be specified using the correct code list. Please check <value-of select="name(.)"/>.</assert> 
         </rule> 
         <rule context="toop:NaturalPersonLegalAddress//toop:CountryCode | toop:LegalPersonLegalAddress//toop:CountryCode" flag='warning' id='gc_warn_country_countrycode'> 
@@ -440,7 +440,7 @@
     
     <!--Check if the mandatory Level of Assurance has been set and includes one of the codelist values-->
     <pattern> 
-        <let name="loacodes" value="document('..\codelists\gc\LevelOfAssurance-CodeList.gc')//Value[@ColumnRef='code']" />
+        <let name="loacodes" value="document('..\codelists\gc\LevelsOfAssuranceCode-CodeList.gc')//Value[@ColumnRef='code']" />
         <rule flag='ERROR' id='gc_check_loi' 
               context="toop:LegalPerson//toop:LegalPersonUniqueIdentifier 
                       |toop:LegalPerson//toop:LegalName  
@@ -472,7 +472,7 @@
                       |toop:NaturalPersonLegalAddress//toop:Country
                       "> 
             <assert test="@levelOfAssurance" flag='ERROR'>
-                The level of assurance always has to be provided. In case you are not using eIDAS for authentication the value must be "none". Please check <value-of select="name(.)"/>.
+                The level of assurance always has to be provided. In case you are not using eIDAS for authentication the value must be "None". Please check <value-of select="name(.)"/>.
             </assert>
             <let name="thisLOA" value="@levelOfAssurance"/>
             <assert test="$loacodes//SimpleValue[normalize-space(.)] = @levelOfAssurance">

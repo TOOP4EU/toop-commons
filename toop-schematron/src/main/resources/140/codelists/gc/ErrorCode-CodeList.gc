@@ -5,7 +5,7 @@
 		<LongName xml:lang="en">Error Code</LongName>
 		<Version>2018-10-23</Version>
 		<CanonicalUri>urn:eu.toop.cl.errorcode</CanonicalUri>
-		<CanonicalVersionUri>2018-10-08</CanonicalVersionUri>
+		<CanonicalVersionUri>2018-10-23</CanonicalVersionUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>
@@ -16,7 +16,7 @@
 			<ShortName>Code</ShortName>
 			<Data Type="normalizedString" Lang="en"/>
 		</Column>
-		<Column Use="optional" Id="name-Value">
+		<Column Use="optional" Id="name-en">
 			<ShortName>Name</ShortName>
 			<Data Type="string" Lang="en"/>
 		</Column>
@@ -30,7 +30,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>GEN</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Uncategorized error</SimpleValue>
 			</Value>
 		</Row>
@@ -38,7 +38,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>IF-001</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The payload provided from DC/DP to the TOOP Connector is not valid</SimpleValue>
 			</Value>
 		</Row>
@@ -46,7 +46,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>IF-002</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Message Validation Failed</SimpleValue>
 			</Value>
 		</Row>
@@ -54,7 +54,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>SM-001</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The Semantic Mapping Service is not reachable</SimpleValue>
 			</Value>
 		</Row>
@@ -62,7 +62,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>SM-002</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The Semantic Mapping Service could not provide a mapping on provided concepts</SimpleValue>
 			</Value>
 		</Row>
@@ -70,7 +70,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DD-001</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The TOOP Directory is not reachable</SimpleValue>
 			</Value>
 		</Row>
@@ -78,15 +78,15 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DD-002</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
-				<SimpleValue>The Dynamic Discovery Service was not able to find any Participant Identifiers</SimpleValue>
+			<Value ColumnRef="name-en">
+				<SimpleValue>An SMP could not be queried</SimpleValue>
 			</Value>
 		</Row>
 		<Row>
 			<Value ColumnRef="code">
 				<SimpleValue>DD-003</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Error validating a signature from SMP</SimpleValue>
 			</Value>
 		</Row>
@@ -94,12 +94,15 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DD-004</SimpleValue>
 			</Value>
+			<Value ColumnRef="name-en">
+				<SimpleValue>The Dynamic Discovery Service was not able to find any Participant Identifiers</SimpleValue>
+			</Value>
 		</Row>
 		<Row>
 			<Value ColumnRef="code">
 				<SimpleValue>DD-005</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>At least one, but not all SMP Servers where not able to find a Service Metadata</SimpleValue>
 			</Value>
 		</Row>
@@ -107,7 +110,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DD-006</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>None of the SMP Servers was able to find a Service Metadata</SimpleValue>
 			</Value>
 		</Row>
@@ -115,7 +118,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>TC-001</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Error creating the ASIC Container</SimpleValue>
 			</Value>
 		</Row>
@@ -123,7 +126,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>ME-001</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The TOOP Connector was not able to communicate with the Local AS4 gateway</SimpleValue>
 			</Value>
 		</Row>
@@ -131,7 +134,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>ME-002</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The AS4 Gateway was not able to send the message</SimpleValue>
 			</Value>
 		</Row>
@@ -139,7 +142,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>ME-003</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The AS4 gateway could not deliver the message to the addressed gateway</SimpleValue>
 			</Value>
 		</Row>
@@ -147,7 +150,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>ME-004</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>The AS4 gateway has not received a receipt</SimpleValue>
 			</Value>
 		</Row>

@@ -29,6 +29,7 @@ import com.helger.datetime.util.PDTXMLConverter;
 import eu.toop.commons.dataexchange.v140.TDECodeWithLOAType;
 import eu.toop.commons.dataexchange.v140.TDEDateWithLOAType;
 import eu.toop.commons.dataexchange.v140.TDEIdentifierWithLOAType;
+import eu.toop.commons.dataexchange.v140.TDELOAtype;
 import eu.toop.commons.dataexchange.v140.TDEPreferredDocumentMimeTypeCodeType;
 import eu.toop.commons.dataexchange.v140.TDETextWithLOAType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.CodeType;
@@ -43,9 +44,9 @@ public final class ToopXSDHelper140
   {}
 
   @Nonnull
-  private static String _getLOAValue (@Nullable final EToopLevelOfAssurance eLOA)
+  private static TDELOAtype _getLOAValue (@Nullable final EToopLevelOfAssurance eLOA)
   {
-    return (eLOA != null ? eLOA : EToopLevelOfAssurance.NONE).getID ();
+    return eLOA != null ? TDELOAtype.fromValue (eLOA.getID ()) : TDELOAtype.NONE;
   }
 
   @Nonnull

@@ -5,6 +5,7 @@
 		<LongName xml:lang="en">Error Category</LongName>
 		<Version>2018-10-01</Version>
 		<CanonicalUri>urn:eu.toop.cl.errorcategory</CanonicalUri>
+		<CanonicalVersionUri>2018-10-01</CanonicalVersionUri>
 		<Agency>
 			<LongName xml:lang="en">The Once-Only Principle Project</LongName>
 			<Identifier>TOOP</Identifier>
@@ -15,7 +16,7 @@
 			<ShortName>Code</ShortName>
 			<Data Type="normalizedString" Lang="en"/>
 		</Column>
-		<Column Use="optional" Id="name-Value">
+		<Column Use="optional" Id="name-en">
 			<ShortName>Name</ShortName>
 			<Data Type="string" Lang="en"/>
 		</Column>
@@ -29,7 +30,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>SemanticMapping</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Semantic Mapping</SimpleValue>
 			</Value>
 		</Row>
@@ -37,7 +38,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>Parsing</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Parsing</SimpleValue>
 			</Value>
 		</Row>
@@ -45,7 +46,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DynamicDiscovery</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Dynamic Discovery</SimpleValue>
 			</Value>
 		</Row>
@@ -53,7 +54,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>eDelivery</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>eDelivery</SimpleValue>
 			</Value>
 		</Row>
@@ -61,7 +62,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>ResultsAggregation</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Results Aggregation</SimpleValue>
 			</Value>
 		</Row>
@@ -69,7 +70,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>BusinessProcessing</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Business Processing</SimpleValue>
 			</Value>
 		</Row>
@@ -77,7 +78,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>TechnicalError</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Technical Error</SimpleValue>
 			</Value>
 		</Row>

@@ -1348,8 +1348,8 @@
 <xsl:variable name="countrycodes" select="document('..\codelists\std-gc\CountryIdentificationCode-2.1.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_country_countrycode-->
-<xsl:template match="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:CountryCode" mode="M27" priority="1002">
-    <svrl:fired-rule context="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:CountryCode" id="gc_check_country_countrycode" />
+<xsl:template match="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" mode="M27" priority="1002">
+    <svrl:fired-rule context="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" id="gc_check_country_countrycode" />
 
 		<!--ASSERT -->
 <xsl:choose>
@@ -1826,7 +1826,7 @@
   </xsl:template>
 
 <!--PATTERN -->
-<xsl:variable name="loacodes" select="document('..\codelists\gc\LevelOfAssurance-CodeList.gc')//Value[@ColumnRef='code']" />
+<xsl:variable name="loacodes" select="document('..\codelists\gc\LevelsOfAssuranceCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_loi-->
 <xsl:template match="toop:LegalPerson//toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson//toop:LegalName                         |toop:LegalPerson//toop:VATRegistrationNumber                        |toop:LegalPerson//toop:TaxReferenceNumber                       |toop:LegalPerson//toop:BusinessCodes                        |toop:LegalPerson//toop:LegalEntityIdentifier                        |toop:LegalPerson//toop:EORIIdentifier                        |toop:LegalPerson//toop:SEEDIdentifier                        |toop:LegalPerson//toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress//toop:AddressLine                        |toop:LegalPersonLegalAddress//toop:StreetName                        |toop:LegalPersonLegalAddress//toop:StreetNumber                       |toop:LegalPersonLegalAddress//toop:City                        |toop:LegalPersonLegalAddress//toop:PostCode                        |toop:LegalPersonLegalAddress//toop:Country                        |toop:NaturalPerson//toop:PersonIdentifier                        |toop:NaturalPerson//toop:FamilyName                       |toop:NaturalPerson//toop:FirstName                       |toop:NaturalPerson//toop:BirthDate                       |toop:NaturalPerson//toop:BirthFamilyName                       |toop:NaturalPerson//toop:BirthPlace                       |toop:NaturalPerson//toop:GenderCode                       |toop:NaturalPersonLegalAddress//toop:AddressLine                       |toop:NaturalPersonLegalAddress//toop:StreetName                       |toop:NaturalPersonLegalAddress//toop:StreetNumber                       |toop:NaturalPersonLegalAddress//toop:City                       |toop:NaturalPersonLegalAddress//toop:PostCode                       |toop:NaturalPersonLegalAddress//toop:Country                       " mode="M43" priority="1000">
@@ -1842,7 +1842,7 @@
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
           <svrl:text>
-                The level of assurance always has to be provided. In case you are not using eIDAS for authentication the value must be "none". Please check <xsl:text />
+                The level of assurance always has to be provided. In case you are not using eIDAS for authentication the value must be "None". Please check <xsl:text />
             <xsl:value-of select="name(.)" />
             <xsl:text />.
             </svrl:text>

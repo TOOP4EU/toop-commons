@@ -34,6 +34,7 @@ import com.helger.xml.serialize.write.XMLWriterSettings;
 import eu.toop.commons.concept.EConceptType;
 import eu.toop.commons.dataexchange.v140.ObjectFactory;
 import eu.toop.commons.dataexchange.v140.TDEAddressType;
+import eu.toop.commons.dataexchange.v140.TDEAddressWithLOAType;
 import eu.toop.commons.dataexchange.v140.TDEConceptRequestType;
 import eu.toop.commons.dataexchange.v140.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.v140.TDEDataElementRequestType;
@@ -51,16 +52,16 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryOb
  *
  * @author Philip Helger
  */
-public final class ToopDataExchangeFuncTest
+public final class ToopDataExchange140FuncTest
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (ToopDataExchangeFuncTest.class);
+  private static final Logger s_aLogger = LoggerFactory.getLogger (ToopDataExchange140FuncTest.class);
 
   @Test
   public void testReadWriteDataRequest ()
   {
-    for (final String sFilename : new String [] { "commander-request1.xml",
-                                                  "data-request-document-example.xml",
-                                                  "data-request-example.xml",
+    for (final String sFilename : new String [] { "PA2-ConnectedCompanyData/data-request-document-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-request-example.xml",
+                                                  "commander-request1.xml",
                                                   "data-request1.xml" })
     {
       final TDETOOPRequestType aRequest = ToopReader.request140 ()
@@ -74,10 +75,10 @@ public final class ToopDataExchangeFuncTest
   @Test
   public void testReadWriteDataResponse ()
   {
-    for (final String sFilename : new String [] { "data-response-document-example.xml",
+    for (final String sFilename : new String [] { "PA2-ConnectedCompanyData/data-response-document-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-response-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-response-with-ERROR-example.xml",
                                                   "data-response-error1.xml",
-                                                  "data-response-example.xml",
-                                                  "data-response-with-ERROR-example.xml",
                                                   "data-response1.xml" })
     {
       final TDETOOPResponseType aResponse = ToopReader.response140 ()
@@ -103,9 +104,12 @@ public final class ToopDataExchangeFuncTest
       final TDERoutingInformationType ri = new TDERoutingInformationType ();
       // Document type ID
       ri.setDocumentTypeIdentifier (ToopXSDHelper140.createIdentifier ("toop-doctypeid",
-                                                                    "data.request.registeredorganization"));
+                                                                       "data.request.registeredorganization"));
       // Process ID
       ri.setProcessIdentifier (ToopXSDHelper140.createIdentifier ("toop-procid", "urn:toop:www.toop.eu/data-request"));
+      ri.setDataConsumerCountryCode (ToopXSDHelper140.createCode ("AT"));
+      ri.setDataConsumerElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis",
+                                                                                        "9915:test"));
       // Destination country code
       ri.setDataProviderCountryCode (ToopXSDHelper140.createCode ("AT"));
       r.setRoutingInformation (ri);
@@ -115,7 +119,6 @@ public final class ToopDataExchangeFuncTest
       aDC.setDCUniqueIdentifier (ToopXSDHelper140.createIdentifier ("ATU12345678"));
       aDC.setDCName (ToopXSDHelper140.createText ("Helger Enterprises"));
       // Sender participant ID
-      aDC.setDCElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:test"));
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("AT"));
       aDC.setDCLegalAddress (aAddress);
@@ -130,7 +133,7 @@ public final class ToopDataExchangeFuncTest
         aNP.setFamilyName (ToopXSDHelper140.createTextWithLOA ("Helger"));
         aNP.setFirstName (ToopXSDHelper140.createTextWithLOA ("Philip"));
         aNP.setBirthDate (ToopXSDHelper140.createDateWithLOANow ());
-        final TDEAddressType aAddress = new TDEAddressType ();
+        final TDEAddressWithLOAType aAddress = new TDEAddressWithLOAType ();
         // Destination country to use
         aAddress.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("DE"));
         aNP.setNaturalPersonLegalAddress (aAddress);
@@ -195,11 +198,15 @@ public final class ToopDataExchangeFuncTest
       final TDERoutingInformationType ri = new TDERoutingInformationType ();
       // Document type ID
       ri.setDocumentTypeIdentifier (ToopXSDHelper140.createIdentifier ("toop-doctypeid",
-                                                                    "data.request.registeredorganization"));
+                                                                       "data.request.registeredorganization"));
       // Process ID
       ri.setProcessIdentifier (ToopXSDHelper140.createIdentifier ("toop-procid", "urn:toop:www.toop.eu/data-request"));
+      ri.setDataConsumerCountryCode (ToopXSDHelper140.createCode ("AT"));
+      ri.setDataConsumerElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis",
+                                                                                        "9915:test"));
       // Destination country code
-      ri.setDataProviderCountryCode (ToopXSDHelper140.createCode ("AT"));
+      ri.setDataProviderCountryCode (ToopXSDHelper140.createCode ("XK"));
+      ri.setDataProviderElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("me@register.example.org"));
       r.setRoutingInformation (ri);
     }
     {
@@ -207,7 +214,6 @@ public final class ToopDataExchangeFuncTest
       aDC.setDCUniqueIdentifier (ToopXSDHelper140.createIdentifier ("ATU12345678"));
       aDC.setDCName (ToopXSDHelper140.createText ("Helger Enterprises"));
       // Sender participant ID
-      aDC.setDCElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:test"));
       final TDEAddressType aAddress = new TDEAddressType ();
       aAddress.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("AT"));
       aDC.setDCLegalAddress (aAddress);
@@ -222,7 +228,7 @@ public final class ToopDataExchangeFuncTest
         aNP.setFamilyName (ToopXSDHelper140.createTextWithLOA ("Helger"));
         aNP.setFirstName (ToopXSDHelper140.createTextWithLOA ("Philip"));
         aNP.setBirthDate (ToopXSDHelper140.createDateWithLOANow ());
-        final TDEAddressType aAddress = new TDEAddressType ();
+        final TDEAddressWithLOAType aAddress = new TDEAddressWithLOAType ();
         // Destination country to use
         aAddress.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("DE"));
         aNP.setNaturalPersonLegalAddress (aAddress);
@@ -266,7 +272,6 @@ public final class ToopDataExchangeFuncTest
       final TDEDataProviderType p = new TDEDataProviderType ();
       p.setDPIdentifier (ToopXSDHelper140.createIdentifier ("atbla"));
       p.setDPName (ToopXSDHelper140.createText ("Register1"));
-      p.setDPElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("me@register.example.org"));
       final TDEAddressType pa = new TDEAddressType ();
       pa.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("XK"));
       p.setDPLegalAddress (pa);

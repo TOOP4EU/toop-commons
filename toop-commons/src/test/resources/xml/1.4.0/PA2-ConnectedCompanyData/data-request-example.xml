@@ -64,16 +64,19 @@
         <toop:DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization::1.40</toop:DocumentTypeIdentifier>
         <!--Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers".-->
         <toop:ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
+        <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"""-->
+        <toop:DataConsumerElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0088:4035811991014</toop:DataConsumerElectronicAddressIdentifier>
+        <!--The country of the data consumer/provider MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
+        <toop:DataConsumerCountryCode>DE</toop:DataConsumerCountryCode>
         <!--DC ACTION:  use this OPTIONAL field if you want to specify a Data Provider to answer this Request"-->
         <toop:DataProviderElectronicAddressIdentifier>123456789</toop:DataProviderElectronicAddressIdentifier>
-        <toop:DataProviderCountryCode>DE</toop:DataProviderCountryCode>
+        <!--The country of the data consumer/provider MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
+        <toop:DataProviderCountryCode>GB</toop:DataProviderCountryCode>
     </toop:RoutingInformation>
     <toop:DataConsumer>
         <!--Rule: The preferred identifier is the national VAT number.  Compulsory use of the attribute schemeAgencyID.-->
         <toop:DCUniqueIdentifier schemeAgencyID="**DEFINED_BY_DC**">DE999999999</toop:DCUniqueIdentifier>
         <toop:DCName>MyCompany</toop:DCName>
-        <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"""-->
-        <toop:DCElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0088:4035811991014</toop:DCElectronicAddressIdentifier>
         <toop:DCLegalAddress>
             <toop:AddressLine>Koenigstrasse 22</toop:AddressLine>
             <toop:AddressLine>Floor 2</toop:AddressLine>
@@ -83,7 +86,6 @@
             <toop:City>Berlin</toop:City>
             <toop:PostCode>10115</toop:PostCode>
             <toop:Country>Germany</toop:Country>
-            <!--The country of the data consumer MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
             <toop:CountryCode>DE</toop:CountryCode>
         </toop:DCLegalAddress>
     </toop:DataConsumer>
@@ -97,19 +99,19 @@
             <toop:LegalName levelOfAssurance="Substantial">AnyCompanyName</toop:LegalName>
             <!--NOTE: we assume in this example that all the following alternative identifiers all are pointing to the same company, called AnyCompanyName-->
             <!--An identifier that starts with an ISO 3166-1 alpha-2 (2 letters) country code (except for Greece, which uses the ISO 639-1 language code EL for the Greek language, instead of its ISO 3166-1 alpha-2 country code GR) and then has between 2 and 13 characters. The identifiers are composed of numeric digits in most countries, but in some countries they may contain letters.-->
-            <toop:VATRegistrationNumber levelOfAssurance="none">DE730757727</toop:VATRegistrationNumber>
+            <toop:VATRegistrationNumber levelOfAssurance="None">DE730757727</toop:VATRegistrationNumber>
             <!--Attribute describing the Tax Reference number related to the legal person. Indicates a country, tax office, and an organisation-->
-            <toop:TaxReferenceNumber levelOfAssurance="none">ABZ1230789</toop:TaxReferenceNumber>
+            <toop:TaxReferenceNumber levelOfAssurance="None">ABZ1230789</toop:TaxReferenceNumber>
             <!--Attribute describing the identifier referred to in Article 3(1) of Directive 2009/101/EG of the European Parliament and of the Council.-->
-            <toop:BusinessCodes levelOfAssurance="none">GB7552671243</toop:BusinessCodes>
+            <toop:BusinessCodes levelOfAssurance="None">GB7552671243</toop:BusinessCodes>
             <!--A 20-character identifier (defined by ISO 17442) to distinct legal entities that engage in financial transactions.-->
-            <toop:LegalEntityIdentifier levelOfAssurance="none">ES123567983568437254</toop:LegalEntityIdentifier>
+            <toop:LegalEntityIdentifier levelOfAssurance="None">ES123567983568437254</toop:LegalEntityIdentifier>
             <!--A number assigned by a customs authority or designated authority or authorities in a Member State to economic operators and other persons in accordance with the rules laid down in Part I, Title I, Chapter 6 of the CCIP-->
-            <toop:EORIIdentifier levelOfAssurance="none">GB123456789000</toop:EORIIdentifier>
+            <toop:EORIIdentifier levelOfAssurance="None">GB123456789000</toop:EORIIdentifier>
             <!--Attribute describing the System for Exchange of Excise Data (SEED) Excise Number for the legal person--> 
-            <toop:SEEDIdentifier levelOfAssurance="none">GB00000987ABC</toop:SEEDIdentifier>
+            <toop:SEEDIdentifier levelOfAssurance="None">GB00000987ABC</toop:SEEDIdentifier>
             <!--A 4-digit code describing the Standard Industrial Classification (SIC) code for the legal person-->
-            <toop:StandardIndustrialClassification levelOfAssurance="none">6010</toop:StandardIndustrialClassification>
+            <toop:StandardIndustrialClassification levelOfAssurance="None">6010</toop:StandardIndustrialClassification>
             <!--Rule: Use the value that is used in the element: DataSubject/NaturalPerson/PersonIdentifier-->
             <toop:AuthorizedRepresentativeIdentifier>GB/GB/02635542Y</toop:AuthorizedRepresentativeIdentifier>
             <!--Add any identifier you need for record matching, since eIDAS may not provide the required identification information needed by the Data Provider to identify the data subject --> 
@@ -118,15 +120,15 @@
             <toop:AlternativeLegalPersonIdentifier schemeID="**DEFINED_BY_DC**">XYZ</toop:AlternativeLegalPersonIdentifier>
             <!--DC Action: The address is not mandatory attribute for eIDAS but the DC has to fill at least the country of the company-->
             <toop:LegalPersonLegalAddress>
-                <toop:AddressLine levelOfAssurance="none">Princess Street 21</toop:AddressLine>
-                <toop:AddressLine levelOfAssurance="none">Liverpool (United Kingdom) L1</toop:AddressLine>
-                <toop:StreetName levelOfAssurance="none">Princess Street </toop:StreetName>
-                <toop:StreetNumber levelOfAssurance="none">21</toop:StreetNumber>
-                <toop:City levelOfAssurance="none">Liverpool</toop:City>
-                <toop:PostCode levelOfAssurance="none">L1</toop:PostCode>
-                <toop:Country levelOfAssurance="none">United Kingdom</toop:Country>
+                <toop:AddressLine levelOfAssurance="None">Princess Street 21</toop:AddressLine>
+                <toop:AddressLine levelOfAssurance="None">Liverpool (United Kingdom) L1</toop:AddressLine>
+                <toop:StreetName levelOfAssurance="None">Princess Street </toop:StreetName>
+                <toop:StreetNumber levelOfAssurance="None">21</toop:StreetNumber>
+                <toop:City levelOfAssurance="None">Liverpool</toop:City>
+                <toop:PostCode levelOfAssurance="None">L1</toop:PostCode>
+                <toop:Country levelOfAssurance="None">United Kingdom</toop:Country>
                 <!--The country of the legal entity MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
-                <toop:CountryCode levelOfAssurance="none">GB</toop:CountryCode>
+                <toop:CountryCode levelOfAssurance="None">GB</toop:CountryCode>
             </toop:LegalPersonLegalAddress>
         </toop:LegalPerson>
         <!--DC Action: This information entity should be filled by calling the eIDAS node in the UK-->
@@ -139,22 +141,22 @@
             <toop:FirstName levelOfAssurance="Substantial">Cleese</toop:FirstName>
             <!--The Data of Birth of the natural person MUST be always specified using the following format: YYYY + “-“ + MM + “-“ + DD (as defined for xsd:date)-->
             <toop:BirthDate levelOfAssurance="Substantial">1939-10-27</toop:BirthDate>
-            <toop:BirthFamilyName levelOfAssurance="none">Cheese</toop:BirthFamilyName>
-            <toop:BirthPlace levelOfAssurance="none">Weston-super-Mare</toop:BirthPlace>
-            <toop:GenderCode levelOfAssurance="none">M</toop:GenderCode>
+            <toop:BirthFamilyName levelOfAssurance="None">Cheese</toop:BirthFamilyName>
+            <toop:BirthPlace levelOfAssurance="None">Weston-super-Mare</toop:BirthPlace>
+            <toop:GenderCode levelOfAssurance="None">M</toop:GenderCode>
             <!--Rule: Compulsory use of schemeID in these optional identifiers-->
             <toop:AlternativeNaturalPersonIdentifier schemeID="**DEFINED_BY_DC**">1234010180</toop:AlternativeNaturalPersonIdentifier>
             <!--DC Action: The address is not mandatory attribute for eIDAS but the DC has to fill at least the country of the natural person-->
             <toop:NaturalPersonLegalAddress>
-                <toop:AddressLine levelOfAssurance="none">Queens Street 22</toop:AddressLine>
-                <toop:AddressLine levelOfAssurance="none">London EC4</toop:AddressLine>
-                <toop:StreetName levelOfAssurance="none">Queens Street</toop:StreetName>
-                <toop:StreetNumber levelOfAssurance="none">22</toop:StreetNumber>
-                <toop:City levelOfAssurance="none">London</toop:City>
-                <toop:PostCode levelOfAssurance="none">EC4</toop:PostCode>
-                <toop:Country levelOfAssurance="none">United Kingdom</toop:Country>
+                <toop:AddressLine levelOfAssurance="None">Queens Street 22</toop:AddressLine>
+                <toop:AddressLine levelOfAssurance="None">London EC4</toop:AddressLine>
+                <toop:StreetName levelOfAssurance="None">Queens Street</toop:StreetName>
+                <toop:StreetNumber levelOfAssurance="None">22</toop:StreetNumber>
+                <toop:City levelOfAssurance="None">London</toop:City>
+                <toop:PostCode levelOfAssurance="None">EC4</toop:PostCode>
+                <toop:Country levelOfAssurance="None">United Kingdom</toop:Country>
                 <!--The country MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
-                <toop:CountryCode>GB</toop:CountryCode>
+                <toop:CountryCode levelOfAssurance="None">GB</toop:CountryCode>
             </toop:NaturalPersonLegalAddress>
         </toop:NaturalPerson>
     </toop:DataRequestSubject>
