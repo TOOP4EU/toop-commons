@@ -179,13 +179,13 @@
   
   <xsd:complexType name="AddressType">
     <xsd:sequence>
-      <xsd:element name="AddressLine"  minOccurs="0" maxOccurs="3"/> 
-      <xsd:element name="StreetName"  minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="StreetNumber"  minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="City"  minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="PostCode"  minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="Country"  minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="CountryCode"/>
+      <xsd:element name="AddressLine" type="udt:TextType"  minOccurs="0" maxOccurs="3"/> 
+      <xsd:element name="StreetName" type="udt:TextType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="StreetNumber" type="udt:TextType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="City" type="udt:TextType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PostCode" type="udt:TextType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Country" type="udt:TextType"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CountryCode" type="udt:CodeType"/>
     </xsd:sequence>
   </xsd:complexType>
   
