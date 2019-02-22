@@ -61,6 +61,8 @@ public final class ToopDataExchange140FuncTest
   {
     for (final String sFilename : new String [] { "PA2-ConnectedCompanyData/data-request-document-example.xml",
                                                   "PA2-ConnectedCompanyData/data-request-example.xml",
+                                                  "PA3-Maritime/MARITIME-STEP1a-request-list-of-ship-certificates.xml",
+                                                  "PA3-Maritime/MARITIME-STEP2a-data-request-document-example.xml",
                                                   "commander-request1.xml",
                                                   "data-request1.xml" })
     {
@@ -78,6 +80,8 @@ public final class ToopDataExchange140FuncTest
     for (final String sFilename : new String [] { "PA2-ConnectedCompanyData/data-response-document-example.xml",
                                                   "PA2-ConnectedCompanyData/data-response-example.xml",
                                                   "PA2-ConnectedCompanyData/data-response-with-ERROR-example.xml",
+                                                  "PA3-Maritime/MARITIME-STEP1b-response-list-of-ship-certificates.xml",
+                                                  "PA3-Maritime/MARITIME-STEP2b-data-response-document-example.xml",
                                                   "data-response-error1.xml",
                                                   "data-response1.xml" })
     {
