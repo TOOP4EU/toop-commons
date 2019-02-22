@@ -83,8 +83,7 @@
             <toop:PostCode>10115</toop:PostCode>
             <toop:Country>Germany</toop:Country>
             <!--The country of the data consumer/provider MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
-            <toop:DataConsumerCountryCode>DE</toop:DataConsumerCountryCode>
-            <toop:DataProviderCountryCode>GB</toop:DataProviderCountryCode>
+            <toop:CountryCode>DE</toop:CountryCode>
         </toop:DCLegalAddress>
     </toop:DataConsumer>  
     <toop:DataRequestSubject>
