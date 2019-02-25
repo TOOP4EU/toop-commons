@@ -14,15 +14,15 @@
   <DataConsumerGlobalSessionIdentifier>70ca8c94-7046-499c-a109-3dd114e453fb</DataConsumerGlobalSessionIdentifier>
   <DataRequestIdentifier>bla</DataRequestIdentifier>
   <RoutingInformation>
-    <DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10
-    </DocumentTypeIdentifier>
+    <DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10</DocumentTypeIdentifier>
     <ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</ProcessIdentifier>
+    <DataConsumerElectronicAddressIdentifier schemeID="iso6523-actorid-upis">9999:ESPD-ESIDIS</DataConsumerElectronicAddressIdentifier>
+    <DataConsumerCountryCode>SV</DataConsumerCountryCode>
     <DataProviderCountryCode>GR</DataProviderCountryCode>
   </RoutingInformation>
   <DataConsumer>
     <DCUniqueIdentifier>EL-GSCCP-ESPD</DCUniqueIdentifier>
     <DCName>GSCCP ESPD System</DCName>
-    <DCElectronicAddressIdentifier schemeID="iso6523-actorid-upis">9999:ESPD-ESIDIS</DCElectronicAddressIdentifier>
     <DCLegalAddress>
       <CountryCode>GR</CountryCode>
     </DCLegalAddress>
@@ -30,10 +30,10 @@
   <DataRequestSubject>
     <DataRequestSubjectTypeCode>LE</DataRequestSubjectTypeCode>
     <LegalPerson>
-      <LegalPersonUniqueIdentifier>qwerty</LegalPersonUniqueIdentifier>
-      <LegalName>MHTSOS</LegalName>
+      <LegalPersonUniqueIdentifier levelOfAssurance="None">qwerty</LegalPersonUniqueIdentifier>
+      <LegalName levelOfAssurance="None">MHTSOS</LegalName>
       <LegalPersonLegalAddress>
-        <CountryCode>SV</CountryCode>
+        <CountryCode levelOfAssurance="None">SV</CountryCode>
       </LegalPersonLegalAddress>
     </LegalPerson>
   </DataRequestSubject>

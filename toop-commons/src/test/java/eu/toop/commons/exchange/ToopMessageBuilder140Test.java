@@ -65,17 +65,17 @@ public final class ToopMessageBuilder140Test
       final String sDCCountryCode = "SE";
       final String sDPCountryCode = "SE";
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder140.createMockRequest (ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                                                    sDPCountryCode,
-                                                                                                                                    true,
-                                                                                                                                    "id"),
-                                                                                   sDCCountryCode,
-                                                                                   sDPCountryCode,
-                                                                                   ToopXSDHelper140.createIdentifier ("toop",
-                                                                                                                   "senderid"),
-                                                                                   EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
-                                                                                   EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                   new CommonsArrayList <> (new ConceptValue ("companyName",
-                                                                                                                              "Acme Inc.")));
+                                                                                                                                          sDPCountryCode,
+                                                                                                                                          true,
+                                                                                                                                          "id"),
+                                                                                      sDCCountryCode,
+                                                                                      sDPCountryCode,
+                                                                                      ToopXSDHelper140.createIdentifier ("toop",
+                                                                                                                         "senderid"),
+                                                                                      EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                                                                                      EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                      new CommonsArrayList <> (new ConceptValue ("companyName",
+                                                                                                                                 "Acme Inc.")));
       ToopMessageBuilder140.createRequestMessageAsic (aSrcRequest, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcRequest, aSrcRequest.clone ());
 
@@ -99,17 +99,17 @@ public final class ToopMessageBuilder140Test
       final String sDCCountryCode = "SE";
       final String sDPCountryCode = "SE";
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder140.createMockResponse (ToopXSDHelper140.createIdentifier ("toop",
-                                                                                                                      "senderid"),
-                                                                                      ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                                                       sDPCountryCode,
-                                                                                                                                       true,
-                                                                                                                                       "id"),
-                                                                                      sDCCountryCode,
-                                                                                      sDPCountryCode,
-                                                                                      EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
-                                                                                      EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                      new CommonsArrayList <> (new ConceptValue ("companyName",
-                                                                                                                                 "Acme Inc.")));
+                                                                                                                            "senderid"),
+                                                                                         ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                                                             sDPCountryCode,
+                                                                                                                                             true,
+                                                                                                                                             "id"),
+                                                                                         sDCCountryCode,
+                                                                                         sDPCountryCode,
+                                                                                         EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                                                                                         EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                         new CommonsArrayList <> (new ConceptValue ("companyName",
+                                                                                                                                    "Acme Inc.")));
       ToopMessageBuilder140.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
 
@@ -133,26 +133,28 @@ public final class ToopMessageBuilder140Test
       final String sDCCountryCode = "SE";
       final String sDPCountryCode = "SE";
       final TDETOOPRequestType aSrcRequest = ToopMessageBuilder140.createMockResponse (ToopXSDHelper140.createIdentifier ("toop",
-                                                                                                                    "senderid"),
-                                                                                    ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                                                     sDPCountryCode,
-                                                                                                                                     true,
-                                                                                                                                     "id"),
-                                                                                    sDCCountryCode,
-                                                                                    sDPCountryCode,
-                                                                                    EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
-                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                    new CommonsArrayList <> (new ConceptValue ("companyName",
-                                                                                                                               "Acme Inc."),
-                                                                                                             new ConceptValue ("companyVATIN",
-                                                                                                                               "blafoo.vatin")));
+                                                                                                                          "senderid"),
+                                                                                       ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
+                                                                                                                                           sDPCountryCode,
+                                                                                                                                           true,
+                                                                                                                                           "id"),
+                                                                                       sDCCountryCode,
+                                                                                       sDPCountryCode,
+                                                                                       EPredefinedDocumentTypeIdentifier.REQUEST_REGISTEREDORGANIZATION,
+                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                       new CommonsArrayList <> (new ConceptValue ("companyName",
+                                                                                                                                  "Acme Inc."),
+                                                                                                                new ConceptValue ("companyVATIN",
+                                                                                                                                  "blafoo.vatin")));
       final TDETOOPResponseType aSrcResponse = ToopMessageBuilder140.createResponse (aSrcRequest);
       {
+        aSrcRequest.getRoutingInformation ()
+                   .setDataProviderElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("elonia@register.example.org"));
+
         // Required for response
         final TDEDataProviderType p = new TDEDataProviderType ();
         p.setDPIdentifier (ToopXSDHelper140.createIdentifier ("toop", "blafoo-elonia"));
         p.setDPName (ToopXSDHelper140.createText ("EloniaDP"));
-        p.setDPElectronicAddressIdentifier (ToopXSDHelper140.createIdentifier ("elonia@register.example.org"));
         final TDEAddressType pa = new TDEAddressType ();
         pa.setCountryCode (ToopXSDHelper140.createCodeWithLOA ("SV"));
         p.setDPLegalAddress (pa);

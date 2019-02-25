@@ -3,7 +3,7 @@
 	<Identification>
 		<ShortName>DocumentResponseErrorCode</ShortName>
 		<LongName xml:lang="en">Document Response Error Code</LongName>
-		<Version>2018-03-28T00:00:00.000</Version>
+		<Version>2018-10-08</Version>
 		<CanonicalUri>urn:eu.toop.cl.documentresponseerrorcode</CanonicalUri>
 		<CanonicalVersionUri>2018-10-08</CanonicalVersionUri>
 		<Agency>
@@ -16,11 +16,7 @@
 			<ShortName>Code</ShortName>
 			<Data Type="normalizedString" Lang="en"/>
 		</Column>
-		<Column Use="optional" Id="name-Value">
-			<ShortName>Name</ShortName>
-			<Data Type="string" Lang="en"/>
-		</Column>
-		<Column Use="optional" Id="name-Description">
+		<Column Use="optional" Id="name-en">
 			<ShortName>Name</ShortName>
 			<Data Type="string" Lang="en"/>
 		</Column>
@@ -34,7 +30,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_001</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Unknown document type</SimpleValue>
 			</Value>
 		</Row>
@@ -42,7 +38,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_002</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Unauthorized</SimpleValue>
 			</Value>
 		</Row>
@@ -50,7 +46,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_003</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Unavailable</SimpleValue>
 			</Value>
 		</Row>
@@ -58,7 +54,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_004</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Internal processing error</SimpleValue>
 			</Value>
 		</Row>
@@ -66,7 +62,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_005</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Payload too large</SimpleValue>
 			</Value>
 		</Row>
@@ -74,7 +70,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_006</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Timeout</SimpleValue>
 			</Value>
 		</Row>
@@ -82,7 +78,7 @@
 			<Value ColumnRef="code">
 				<SimpleValue>DP_DOC_007</SimpleValue>
 			</Value>
-			<Value ColumnRef="name-Value">
+			<Value ColumnRef="name-en">
 				<SimpleValue>Different mime type</SimpleValue>
 			</Value>
 		</Row>

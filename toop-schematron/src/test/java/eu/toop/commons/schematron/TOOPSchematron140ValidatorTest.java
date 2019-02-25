@@ -55,12 +55,15 @@ public final class TOOPSchematron140ValidatorTest
   {
     final TOOPSchematron140Validator v = new TOOPSchematron140Validator ();
 
-    for (final String sFilename : new String [] { "data-request-document-example.xml",
-                                                  "data-request-example.xml",
-                                                  "data-request1.xml",
-                                                  "data-response-document-example.xml",
-                                                  "data-response-example.xml",
-                                                  "data-response-with-ERROR-example.xml" })
+    for (final String sFilename : new String [] { "PA2-ConnectedCompanyData/data-request-document-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-request-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-response-document-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-response-example.xml",
+                                                  "PA2-ConnectedCompanyData/data-response-with-ERROR-example.xml",
+                                                  "PA3-Maritime/MARITIME-STEP1a-request-list-of-ship-certificates.xml",
+                                                  "PA3-Maritime/MARITIME-STEP1b-response-list-of-ship-certificates.xml",
+                                                  "PA3-Maritime/MARITIME-STEP2a-data-request-document-example.xml",
+                                                  "PA3-Maritime/MARITIME-STEP2b-data-response-document-example.xml" })
     {
       LOGGER.info ("Checking " + sFilename);
 
@@ -82,9 +85,9 @@ public final class TOOPSchematron140ValidatorTest
     final String sDCCountryCode = "IT";
     final String sDPCountryCode = "AT";
     final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                       sDPCountryCode,
-                                                                                                       false,
-                                                                                                       "id");
+                                                                                                          sDPCountryCode,
+                                                                                                          false,
+                                                                                                          "id");
     final IdentifierType aSenderParticipantID = ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
@@ -93,12 +96,12 @@ public final class TOOPSchematron140ValidatorTest
       aValues.add (e.getAsConceptValue ());
 
     final TDETOOPRequestType aRequestMsg = ToopMessageBuilder140.createMockRequest (aRequestSubject,
-                                                                                 sDCCountryCode,
-                                                                                 sDPCountryCode,
-                                                                                 aSenderParticipantID,
-                                                                                 EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
-                                                                                 EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                 aValues);
+                                                                                    sDCCountryCode,
+                                                                                    sDPCountryCode,
+                                                                                    aSenderParticipantID,
+                                                                                    EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
+                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                    aValues);
     assertNotNull (aRequestMsg);
 
     final Document aDoc = ToopWriter.request140 ().getAsDocument (aRequestMsg);
@@ -118,9 +121,9 @@ public final class TOOPSchematron140ValidatorTest
     final String sDCCountryCode = "IT";
     final String sDPCountryCode = "AT";
     final TDEDataRequestSubjectType aRequestSubject = ToopMessageBuilder140.createMockDataRequestSubject (sDCCountryCode,
-                                                                                                       sDPCountryCode,
-                                                                                                       false,
-                                                                                                       "id");
+                                                                                                          sDPCountryCode,
+                                                                                                          false,
+                                                                                                          "id");
     final IdentifierType aSenderParticipantID = ToopXSDHelper140.createIdentifier ("iso6523-actorid-upis", "9915:bla");
 
     // Query all
@@ -129,12 +132,12 @@ public final class TOOPSchematron140ValidatorTest
       aValues.add (e.getAsConceptValue ());
 
     final TDETOOPResponseType aResponseMsg = ToopMessageBuilder140.createMockResponse (aSenderParticipantID,
-                                                                                    aRequestSubject,
-                                                                                    sDCCountryCode,
-                                                                                    sDPCountryCode,
-                                                                                    EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
-                                                                                    EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
-                                                                                    aValues);
+                                                                                       aRequestSubject,
+                                                                                       sDCCountryCode,
+                                                                                       sDPCountryCode,
+                                                                                       EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
+                                                                                       EPredefinedProcessIdentifier.DATAREQUESTRESPONSE,
+                                                                                       aValues);
     assertNotNull (aResponseMsg);
 
     final Document aDoc = ToopWriter.response140 ().getAsDocument (aResponseMsg);
