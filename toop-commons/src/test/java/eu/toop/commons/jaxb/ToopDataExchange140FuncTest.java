@@ -54,7 +54,7 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryOb
  */
 public final class ToopDataExchange140FuncTest
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (ToopDataExchange140FuncTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (ToopDataExchange140FuncTest.class);
 
   @Test
   public void testReadWriteDataRequest ()
@@ -183,7 +183,7 @@ public final class ToopDataExchange140FuncTest
     {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
       aCtx.addMapping ("toop", ObjectFactory._Request_QNAME.getNamespaceURI ());
-      s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
+      LOGGER.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
     }
   }
 
@@ -288,7 +288,7 @@ public final class ToopDataExchange140FuncTest
     {
       final MapBasedNamespaceContext aCtx = new MapBasedNamespaceContext ();
       aCtx.addMapping ("toop", ObjectFactory._Request_QNAME.getNamespaceURI ());
-      s_aLogger.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
+      LOGGER.info (XMLWriter.getNodeAsString (aDoc, new XMLWriterSettings ().setNamespaceContext (aCtx)));
     }
   }
 }

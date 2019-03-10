@@ -70,7 +70,7 @@ import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
  */
 public final class MainCreateCert
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (MainCreateCert.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (MainCreateCert.class);
   private static final Provider PROVIDER = PBCProvider.getProvider ();
   private static final int RSA_KEY_LEN = 2048;
   private static final String CN_ROOT = "toop-playground-root";
@@ -228,6 +228,6 @@ public final class MainCreateCert
     aKS.store (FileHelper.getOutputStream (new File ("playground-keystore.jks")), sPassword.toCharArray ());
     aTS.store (FileHelper.getOutputStream (new File ("playground-truststore.jks")), sPassword.toCharArray ());
 
-    s_aLogger.info ("Done creating keys and writing key store");
+    LOGGER.info ("Done creating keys and writing key store");
   }
 }
