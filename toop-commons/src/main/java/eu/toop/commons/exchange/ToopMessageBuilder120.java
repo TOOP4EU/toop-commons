@@ -77,7 +77,14 @@ import eu.toop.commons.jaxb.ToopXSDHelper120;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
+/**
+ * A helper class to build TOOP data model 1.2.0 stuff.
+ *
+ * @author Philip Helger
+ * @since 0.10.0
+ */
 @Immutable
+@Deprecated
 public final class ToopMessageBuilder120
 {
   public static final ClassPathResource TOOP_XSD = new ClassPathResource ("/xsd/toop/TOOP_DataExchange-1.2.0.xsd",
@@ -150,10 +157,12 @@ public final class ToopMessageBuilder120
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPRequestType}.
    *
-   * @param aIS Input stream to read from. May not be <code>null</code>.
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPRequestType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
-   * @throws IOException In case of IO error
+   * @throws IOException
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
@@ -172,10 +181,12 @@ public final class ToopMessageBuilder120
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPResponseType}.
    *
-   * @param aIS Input stream to read from. May not be <code>null</code>.
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
    * @return New {@link TDETOOPResponseType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
-   * @throws IOException In case of IO error
+   * @throws IOException
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
@@ -194,11 +205,13 @@ public final class ToopMessageBuilder120
    * Parse the given InputStream as an ASiC container and return the contained
    * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
    *
-   * @param aIS Input stream to read from. May not be <code>null</code>.
-   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}. every
-   *         time the method is called or <code>null</code> if none is contained
-   *         in the ASIC.
-   * @throws IOException In case of IO error
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
+   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
+   *         every time the method is called or <code>null</code> if none is
+   *         contained in the ASIC.
+   * @throws IOException
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
@@ -385,13 +398,7 @@ public final class ToopMessageBuilder120
     ValueEnforcer.notNull (eProcessID, "ProcessID");
 
     final TDETOOPRequestType aRet = new TDETOOPRequestType ();
-    _fillRequest (aRet,
-                  aRequestSubject,
-                  sDCCountryCode,
-                  aSenderParticipantID,
-                  eDocumentTypeID,
-                  eProcessID,
-                  aValues);
+    _fillRequest (aRet, aRequestSubject, sDCCountryCode, aSenderParticipantID, eDocumentTypeID, eProcessID, aValues);
     return aRet;
   }
 
@@ -412,13 +419,7 @@ public final class ToopMessageBuilder120
 
     final TDETOOPResponseType aRet = new TDETOOPResponseType ();
     // Values are added below
-    _fillRequest (aRet,
-                  aRequestSubject,
-                  sDCCountryCode,
-                  aSenderParticipantID,
-                  eDocumentTypeID,
-                  eProcessID,
-                  null);
+    _fillRequest (aRet, aRequestSubject, sDCCountryCode, aSenderParticipantID, eDocumentTypeID, eProcessID, null);
 
     aRet.setDataRequestIdentifier (ToopXSDHelper120.createIdentifier ("schas", "uuid", UUID.randomUUID ().toString ()));
 
@@ -495,7 +496,8 @@ public final class ToopMessageBuilder120
    * the "DataRequestIdentifier" and the "DocumentUniversalUniqueIdentifier" is
    * set accordingly.
    *
-   * @param aRequest Source request. May not be <code>null</code>.
+   * @param aRequest
+   *        Source request. May not be <code>null</code>.
    * @return Destination response. Never <code>null</code>.
    */
   @Nonnull
@@ -521,13 +523,20 @@ public final class ToopMessageBuilder120
   /**
    * Create a single error object.
    *
-   * @param sDPIdentifier Optional DP identifier. May be <code>null</code>.
-   * @param eOrigin Error origin. May not be <code>null</code>.
-   * @param eCategory Error category. May not be <code>null</code>.
-   * @param aErrorCode Error code. May not be <code>null</code>.
-   * @param eSeverity Error severity. May not be <code>null</code>.
-   * @param aMLT Multilingual text to use. May not be <code>null</code>.
-   * @param sTechDetails Optional technical details. May be <code>null</code>.
+   * @param sDPIdentifier
+   *        Optional DP identifier. May be <code>null</code>.
+   * @param eOrigin
+   *        Error origin. May not be <code>null</code>.
+   * @param eCategory
+   *        Error category. May not be <code>null</code>.
+   * @param aErrorCode
+   *        Error code. May not be <code>null</code>.
+   * @param eSeverity
+   *        Error severity. May not be <code>null</code>.
+   * @param aMLT
+   *        Multilingual text to use. May not be <code>null</code>.
+   * @param sTechDetails
+   *        Optional technical details. May be <code>null</code>.
    * @return Never <code>null</code>.
    * @since 0.9.2
    */

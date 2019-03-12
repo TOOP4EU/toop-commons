@@ -38,6 +38,12 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Indicato
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.NumericType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.TextType;
 
+/**
+ * A helper class to created basic data model 1.4.0 XSD compliant constructs.
+ *
+ * @author Philip Helger
+ * @since 0.10.0
+ */
 public final class ToopXSDHelper140
 {
   private ToopXSDHelper140 ()

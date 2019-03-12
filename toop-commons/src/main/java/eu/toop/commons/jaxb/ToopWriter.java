@@ -19,12 +19,21 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBWriterBuilder;
 
+/**
+ * A class to write TOOP request and response documents in a structured way. Use
+ * the static factory methods to create the correct instances.
+ *
+ * @author Philip Helger
+ * @param <JAXBTYPE>
+ *        The implementation type.
+ */
 public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWriter <JAXBTYPE>>
 {
   /**
    * Constructor with an arbitrary document type.
    *
-   * @param aDocType Document type to be used. May not be <code>null</code>.
+   * @param aDocType
+   *        Document type to be used. May not be <code>null</code>.
    */
   public ToopWriter (@Nonnull final EToopXMLDocumentType aDocType)
   {
@@ -38,6 +47,7 @@ public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWrit
    * @return The builder and never <code>null</code>
    */
   @Nonnull
+  @Deprecated
   public static ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> request120 ()
   {
     final ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> ret = new ToopWriter <> (EToopXMLDocumentType.REQUEST_120);
@@ -52,6 +62,7 @@ public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWrit
    * @return The builder and never <code>null</code>
    */
   @Nonnull
+  @Deprecated
   public static ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> response120 ()
   {
     final ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> ret = new ToopWriter <> (EToopXMLDocumentType.RESPONSE_120);

@@ -19,13 +19,23 @@ import javax.annotation.Nonnull;
 
 import com.helger.jaxb.builder.JAXBReaderBuilder;
 
+/**
+ * A class to read TOOP request and response documents in a structured way. Use
+ * the static factory methods to create the correct instances.
+ *
+ * @author Philip Helger
+ * @param <JAXBTYPE>
+ *        The implementation type.
+ */
 public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopReader <JAXBTYPE>>
 {
   /**
    * Constructor with an arbitrary document type.
    *
-   * @param aDocType Document type to be used. May not be <code>null</code>.
-   * @param aImplClass Implementation class to use. May not be <code>null</code>.
+   * @param aDocType
+   *        Document type to be used. May not be <code>null</code>.
+   * @param aImplClass
+   *        Implementation class to use. May not be <code>null</code>.
    */
   public ToopReader (@Nonnull final EToopXMLDocumentType aDocType, @Nonnull final Class <JAXBTYPE> aImplClass)
   {
@@ -39,6 +49,7 @@ public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopRead
    * @return The builder and never <code>null</code>
    */
   @Nonnull
+  @Deprecated
   public static ToopReader <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> request120 ()
   {
     return new ToopReader <> (EToopXMLDocumentType.REQUEST_120,
@@ -52,6 +63,7 @@ public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopRead
    * @return The builder and never <code>null</code>
    */
   @Nonnull
+  @Deprecated
   public static ToopReader <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> response120 ()
   {
     return new ToopReader <> (EToopXMLDocumentType.RESPONSE_120,

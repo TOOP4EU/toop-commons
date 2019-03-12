@@ -30,7 +30,8 @@ import com.helger.commons.string.ToStringGenerator;
 import eu.toop.commons.dataexchange.v140.TDEConceptRequestType;
 
 /**
- * This is a single value that consist of a namespace and a concept name.
+ * This is a single value that consist of a namespace and a concept name. Such a
+ * concept value is used in semantic mapping.
  *
  * @author Philip Helger
  */
@@ -63,7 +64,8 @@ public final class ConceptValue implements Serializable
   /**
    * Check if this concept has the provided namespace or not.
    *
-   * @param sNamespace The namespace to compare to. May be <code>null</code>.
+   * @param sNamespace
+   *        The namespace to compare to. May be <code>null</code>.
    * @return <code>true</code> if the namespaces are identical.
    */
   public boolean hasNamespace (@Nullable final String sNamespace)
@@ -85,7 +87,8 @@ public final class ConceptValue implements Serializable
   /**
    * Check if this concept value has the provided value or not.
    *
-   * @param sValue The values to compare to. May be <code>null</code>.
+   * @param sValue
+   *        The values to compare to. May be <code>null</code>.
    * @return <code>true</code> if the values are identical.
    */
   public boolean hasValue (@Nullable final String sValue)
@@ -94,7 +97,8 @@ public final class ConceptValue implements Serializable
   }
 
   /**
-   * @param sSep The separator to be used. May not be <code>null</code>.
+   * @param sSep
+   *        The separator to be used. May not be <code>null</code>.
    * @return namespace + separator + value
    */
   @Nonnull
@@ -130,7 +134,8 @@ public final class ConceptValue implements Serializable
    * Factory method to create a new {@link ConceptValue} based on the JAXB data
    * type.
    *
-   * @param aConcept JAXB data type. May not be <code>null</code>.
+   * @param aConcept
+   *        JAXB data type. May not be <code>null</code>.
    * @return New {@link ConceptValue} and never <code>null</code>.
    */
   @Nonnull

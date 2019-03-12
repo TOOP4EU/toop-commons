@@ -23,14 +23,16 @@ import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
- * Source: LevelOfAssurance-CodeList.gc
+ * Source: LevelOfAssuranceCode-CodeList.gc
  *
  * @author Philip Helger
  * @since 0.10.0
  */
 public enum EToopLevelOfAssurance implements IHasID <String>
 {
-  NONE ("none"),
+  NONE_120 ("none"),
+  // Casing changed in data model 1.4.0
+  NONE ("None"),
   LOW ("Low"),
   SUBSTANTIAL ("Substantial"),
   HIGH ("High");

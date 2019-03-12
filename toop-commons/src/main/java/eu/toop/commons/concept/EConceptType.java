@@ -31,8 +31,11 @@ import com.helger.commons.lang.EnumHelper;
  */
 public enum EConceptType implements IHasID <String>
 {
+  /** Data consumer */
   DC ("DC"),
+  /** TOOP Connector */
   TC ("TC"),
+  /** Data provider */
   DP ("DP");
 
   private final String m_sID;

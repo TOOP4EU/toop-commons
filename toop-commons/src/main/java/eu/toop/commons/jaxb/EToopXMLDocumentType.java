@@ -35,10 +35,13 @@ import eu.toop.commons.exchange.ToopMessageBuilder140;
  *
  * @author Philip Helger
  */
+@SuppressWarnings ("deprecation")
 public enum EToopXMLDocumentType implements IJAXBDocumentType
 {
+  @Deprecated
   REQUEST_120 (eu.toop.commons.dataexchange.v120.TDETOOPRequestType.class, ToopMessageBuilder120.TOOP_XSD),
   REQUEST_140 (eu.toop.commons.dataexchange.v140.TDETOOPRequestType.class, ToopMessageBuilder140.TOOP_XSD),
+  @Deprecated
   RESPONSE_120 (eu.toop.commons.dataexchange.v120.TDETOOPResponseType.class, ToopMessageBuilder120.TOOP_XSD),
   RESPONSE_140 (eu.toop.commons.dataexchange.v140.TDETOOPResponseType.class, ToopMessageBuilder140.TOOP_XSD);
 

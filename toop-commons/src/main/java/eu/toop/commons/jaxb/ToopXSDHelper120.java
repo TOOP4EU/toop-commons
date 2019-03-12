@@ -29,6 +29,13 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Indicato
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.NumericType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.TextType;
 
+/**
+ * A helper class to created basic data model 1.2.0 XSD compliant constructs.
+ *
+ * @author Philip Helger
+ * @since 0.10.0 - was previously <code>ToopXSDHelper</code> only
+ */
+@Deprecated
 public final class ToopXSDHelper120
 {
   private ToopXSDHelper120 ()
@@ -37,7 +44,7 @@ public final class ToopXSDHelper120
   @Nonnull
   private static String _getLOAValue (@Nullable final EToopLevelOfAssurance eLOA)
   {
-    return (eLOA != null ? eLOA : EToopLevelOfAssurance.NONE).getID ();
+    return (eLOA != null ? eLOA : EToopLevelOfAssurance.NONE_120).getID ();
   }
 
   @Nonnull
