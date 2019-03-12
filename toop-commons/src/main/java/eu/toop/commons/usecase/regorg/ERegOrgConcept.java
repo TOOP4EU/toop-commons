@@ -27,27 +27,41 @@ import eu.toop.commons.concept.ConceptValue;
 import eu.toop.commons.usecase.SMMDocumentTypeMapping;
 
 /**
- * Predefined TOOP concepts for "registered organization".
- * 
+ * Predefined TOOP concepts for "registered organization". Source
+ * http://wiki.ds.unipi.gr/display/TOOP/National+data+models - all properties
+ * (P)
+ *
  * @author Philip Helger
  * @since 0.10.0
  */
 public enum ERegOrgConcept implements IHasID <String>
 {
   ACTIVITY_DESCRIPTION ("activityDescription"),
-  COMPANY_CODE ("CompanyCode"),
+  BIRTHDAY ("birthday"),
   COMPANY_NAME ("companyName"),
+  CONTACT_NUMBER_VALUE ("contactNumberValue"),
+  COUNTRY_NAME ("countryName"),
+  EMAIL_ADDRESS_VALUE ("emailAddressValue"),
+  FAMILY_NAME ("familyName"),
+  GIVEN_NAME ("givenName"),
+  FOUNDATION_DATE ("foundationDate"),
+  HAS_CAPTIAL_TYPE ("hasCapitalType"),
   HAS_COMPANY_CODE ("hasCompanyCode"),
   HAS_COMPANY_TYPE ("hasCompanyType"),
+  HAS_CONTACT_NUMBER ("hasContactNumber"),
+  HAS_EMAIL_ADDRESS ("hasEmailAddress"),
   HAS_LEGAL_STATUS ("hasLegalStatus"),
   HAS_NACE_CODE ("hasNaceCode"),
   HAS_REGISTRATION_AUTH ("hasRegistrationAuthority"),
+  HAS_REGISTRATION_NUMBER ("hasRegistrationNumber"),
+  HAS_SOCIAL_SEC_NUMBER ("hasSSNumber"),
+  HAS_VAT_NUMBER ("hasVATNumber"),
   LEGAL_STATUS_EFFECTIVE_DATE ("legalStatusEffectiveDate"),
-  PHYSICAL_ADDRESS ("PhysicalAddress"),
+  LOCALITY ("locality"),
+  POSTAL_CODE ("postalCode"),
+  REGION ("region"),
   REGISTRATION_DATE ("registrationDate"),
-  REGISTRATION_NUMBER ("RegistrationNumber"),
-  SOCIAL_SEC_NUMBER ("SSNumber"),
-  VAT_NUMBER ("VATNumber");
+  STREET_ADDRESS ("streetAddress");
 
   private final String m_sID;
 
