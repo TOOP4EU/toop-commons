@@ -33,24 +33,24 @@ import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 @SuppressWarnings ("deprecation")
 public final class SMMDocumentTypeMapping
 {
-  public static final String URI_REGISTERED_ORGANIZATION = "http://toop.eu/registered-organization";
-  private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, String> s_aMap = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
+  public static final String SMM_DOMAIN_REGISTERED_ORGANIZATION = "http://toop.eu/registered-organization";
+  private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, String> MAP = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
 
   static
   {
     // Fill the map
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10,
-                URI_REGISTERED_ORGANIZATION);
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10,
-                URI_REGISTERED_ORGANIZATION);
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
-                URI_REGISTERED_ORGANIZATION);
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
-                URI_REGISTERED_ORGANIZATION);
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40,
-                URI_REGISTERED_ORGANIZATION);
-    s_aMap.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40,
-                URI_REGISTERED_ORGANIZATION);
+    MAP.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10,
+                SMM_DOMAIN_REGISTERED_ORGANIZATION);
+    MAP.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10,
+                SMM_DOMAIN_REGISTERED_ORGANIZATION);
+    MAP.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40,
+                SMM_DOMAIN_REGISTERED_ORGANIZATION);
+    MAP.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40,
+                SMM_DOMAIN_REGISTERED_ORGANIZATION);
+    MAP.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40,
+                SMM_DOMAIN_REGISTERED_ORGANIZATION);
+    MAP.put (EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40,
+                SMM_DOMAIN_REGISTERED_ORGANIZATION);
   }
 
   private SMMDocumentTypeMapping ()
@@ -58,9 +58,9 @@ public final class SMMDocumentTypeMapping
 
   @Nonnull
   @Nonempty
-  public static String getToopSMNamespace (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
+  public static String getToopSMDomain (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
   {
-    final String ret = s_aMap.get (eDocType);
+    final String ret = MAP.get (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;

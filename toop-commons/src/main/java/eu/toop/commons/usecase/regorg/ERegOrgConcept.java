@@ -83,7 +83,7 @@ public enum ERegOrgConcept implements IHasID <String>
   @ReturnsMutableCopy
   public ConceptValue getAsConceptValue ()
   {
-    return new ConceptValue (SMMDocumentTypeMapping.URI_REGISTERED_ORGANIZATION, m_sID);
+    return new ConceptValue (SMMDocumentTypeMapping.SMM_DOMAIN_REGISTERED_ORGANIZATION, m_sID);
   }
 
   @Nullable

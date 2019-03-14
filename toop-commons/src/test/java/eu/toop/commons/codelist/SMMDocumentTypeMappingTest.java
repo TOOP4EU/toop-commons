@@ -36,7 +36,7 @@ public final class SMMDocumentTypeMappingTest
     for (final EPredefinedDocumentTypeIdentifier e : EPredefinedDocumentTypeIdentifier.values ())
     {
       assertNotNull ("Please register " + e + " to SMMDocumentTypeMapping",
-                     SMMDocumentTypeMapping.getToopSMNamespace (e));
+                     SMMDocumentTypeMapping.getToopSMDomain (e));
     }
   }
 }
