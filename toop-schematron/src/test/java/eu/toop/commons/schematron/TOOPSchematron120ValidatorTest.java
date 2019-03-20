@@ -38,7 +38,7 @@ import eu.toop.commons.dataexchange.v120.TDETOOPResponseType;
 import eu.toop.commons.exchange.ToopMessageBuilder120;
 import eu.toop.commons.jaxb.ToopWriter;
 import eu.toop.commons.jaxb.ToopXSDHelper120;
-import eu.toop.commons.usecase.regorg.ERegOrgConcept;
+import eu.toop.commons.usecase.EToopConcept;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
 /**
@@ -89,7 +89,7 @@ public final class TOOPSchematron120ValidatorTest
 
     // Query all
     final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
-    for (final ERegOrgConcept e : ERegOrgConcept.values ())
+    for (final EToopConcept e : EToopConcept.values ())
       aValues.add (e.getAsConceptValue ());
 
     final TDETOOPRequestType aRequestMsg = ToopMessageBuilder120.createMockRequest (aRequestSubject,
@@ -124,7 +124,7 @@ public final class TOOPSchematron120ValidatorTest
 
     // Query all
     final ICommonsList <ConceptValue> aValues = new CommonsArrayList <> ();
-    for (final ERegOrgConcept e : ERegOrgConcept.values ())
+    for (final EToopConcept e : EToopConcept.values ())
       aValues.add (e.getAsConceptValue ());
 
     final TDETOOPResponseType aResponseMsg = ToopMessageBuilder120.createMockResponse (aSenderParticipantID,

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.usecase.regorg;
+package eu.toop.commons.usecase;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,7 +24,6 @@ import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 import eu.toop.commons.concept.ConceptValue;
-import eu.toop.commons.usecase.SMMDocumentTypeMapping;
 
 /**
  * Predefined TOOP concepts for "registered organization". Source
@@ -34,7 +33,7 @@ import eu.toop.commons.usecase.SMMDocumentTypeMapping;
  * @author Philip Helger
  * @since 0.10.0
  */
-public enum ERegOrgConcept implements IHasID <String>
+public enum EToopConcept implements IHasID <String>
 {
   ACTIVITY_DESCRIPTION ("activityDescription"),
   BIRTH_DATE ("birthDate"),
@@ -67,7 +66,7 @@ public enum ERegOrgConcept implements IHasID <String>
 
   private final String m_sID;
 
-  private ERegOrgConcept (@Nonnull @Nonempty final String sID)
+  private EToopConcept (@Nonnull @Nonempty final String sID)
   {
     m_sID = sID;
   }
@@ -87,8 +86,8 @@ public enum ERegOrgConcept implements IHasID <String>
   }
 
   @Nullable
-  public static ERegOrgConcept getFromIDOrNull (@Nullable final String sID)
+  public static EToopConcept getFromIDOrNull (@Nullable final String sID)
   {
-    return EnumHelper.getFromIDOrNull (ERegOrgConcept.class, sID);
+    return EnumHelper.getFromIDOrNull (EToopConcept.class, sID);
   }
 }

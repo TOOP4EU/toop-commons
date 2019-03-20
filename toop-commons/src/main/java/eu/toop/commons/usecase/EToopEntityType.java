@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.usecase.regorg;
+package eu.toop.commons.usecase;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -28,14 +28,14 @@ import com.helger.commons.lang.EnumHelper;
  * @author Philip Helger
  * @since 0.10.0
  */
-public enum ERegOrgEntityType implements IHasID <String>
+public enum EToopEntityType implements IHasID <String>
 {
   LEGAL_ENTITY ("LE"),
   NATURAL_PERSON ("NP");
 
   private final String m_sID;
 
-  private ERegOrgEntityType (@Nonnull @Nonempty final String sID)
+  private EToopEntityType (@Nonnull @Nonempty final String sID)
   {
     m_sID = sID;
   }
@@ -48,8 +48,8 @@ public enum ERegOrgEntityType implements IHasID <String>
   }
 
   @Nullable
-  public static ERegOrgEntityType getFromIDOrNull (@Nullable final String sID)
+  public static EToopEntityType getFromIDOrNull (@Nullable final String sID)
   {
-    return EnumHelper.getFromIDOrNull (ERegOrgEntityType.class, sID);
+    return EnumHelper.getFromIDOrNull (EToopEntityType.class, sID);
   }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.toop.commons.usecase.regorg;
+package eu.toop.commons.usecase;
 
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -22,20 +22,22 @@ import org.junit.Test;
 
 import com.helger.commons.string.StringHelper;
 
+import eu.toop.commons.usecase.EToopConcept;
+
 /**
- * Test class for class {@link ERegOrgConcept}.
+ * Test class for class {@link EToopConcept}.
  *
  * @author Philip Helger
  */
-public final class ERegOrgConceptTest
+public final class EToopConceptTest
 {
   @Test
   public void testBasic ()
   {
-    for (final ERegOrgConcept e : ERegOrgConcept.values ())
+    for (final EToopConcept e : EToopConcept.values ())
     {
       assertTrue (StringHelper.hasText (e.getID ()));
-      assertSame (e, ERegOrgConcept.getFromIDOrNull (e.getID ()));
+      assertSame (e, EToopConcept.getFromIDOrNull (e.getID ()));
     }
   }
 }
