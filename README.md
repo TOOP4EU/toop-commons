@@ -1,12 +1,13 @@
 # toop-commons
 Shared common TOOP components, codelists etc.
 
-Latest release: **0.9.3** from 2018-12-10 (containing data model 1.2.0)
+Latest release: **0.10.0** from 2019-04 (containing data model 1.4.0 and 1.2.0)
 
 # Development environment
 
 * Java 1.8 latest
-  * At least 1.8.0_91 is needed, so that access to "https://repo.maven.apache.org" works, because in this version the "DigitCert Global Root CA" support was added
+    * At least 1.8.0_91 is needed, so that access to "https://repo.maven.apache.org" works, because in this version the "DigitCert Global Root CA" support was added
+    * Works with Oracle JDK and Adopt OpenJDK
 * Eclipse 4.7 latest (JEE version - with m2e and egit contained)
 * Apache Maven 3.x latest (only needed if building on the commandline is necessary)
 * git Commandline client latest (only needed if building on the commandline is necessary)
@@ -75,4 +76,4 @@ Required PEPPOL Directory version after 2018-06-06.
 
 This folder contains the configuration of the Playground TOOP SMP - see http://smp.acc.exchange.toop.eu
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
-Requires at least phoss SMP 5.0.5.
+Requires at least phoss SMP 5.0.5. We recommend the latest phoss SMP version.
