@@ -25,6 +25,7 @@ import org.junit.Test;
 
 import com.helger.asic.SignatureHelper;
 import com.helger.commons.collection.impl.CommonsArrayList;
+import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.io.stream.NonBlockingByteArrayInputStream;
 import com.helger.commons.io.stream.NonBlockingByteArrayOutputStream;
 import com.helger.commons.math.MathHelper;
@@ -116,7 +117,7 @@ public final class ToopMessageBuilder140Test
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
       {
         // Read ASIC again
-        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (archiveInput);
+        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (archiveInput, null);
         assertNotNull (aRead);
 
         assertEquals (aRead, aSrcResponse);
@@ -179,11 +180,24 @@ public final class ToopMessageBuilder140Test
       CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aSrcResponse, aSrcResponse.clone ());
       ToopMessageBuilder140.createResponseMessageAsic (aSrcResponse, aBAOS, SH);
 
-      try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
+      try (final NonBlockingByteArrayInputStream aAsicIS = aBAOS.getAsInputStream ())
       {
         // Read ASIC again
-        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (archiveInput);
+        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (aAsicIS, null);
         assertNotNull (aRead);
+
+        assertEquals (aRead, aSrcResponse);
+        CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aRead, aRead.clone ());
+      }
+
+      // Read with attachments as well
+      try (final NonBlockingByteArrayInputStream aAsicIS = aBAOS.getAsInputStream ())
+      {
+        // Read ASIC again with attachments
+        final ICommonsList <AsicContainerEntry> aList = new CommonsArrayList <> ();
+        final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (aAsicIS, aList::add);
+        assertNotNull (aRead);
+        assertEquals (0, aList.size ());
 
         assertEquals (aRead, aSrcResponse);
         CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aRead, aRead.clone ());
