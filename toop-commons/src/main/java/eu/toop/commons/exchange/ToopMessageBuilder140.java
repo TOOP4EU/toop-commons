@@ -161,6 +161,25 @@ public final class ToopMessageBuilder140
    *
    * @param aIS
    *        Input stream to read from. May not be <code>null</code>.
+   * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
+   *         every time the method is called or <code>null</code> if none is
+   *         contained in the ASIC.
+   * @throws IOException
+   *         In case of IO error
+   */
+  @Nullable
+  @ReturnsMutableObject
+  public static Serializable parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
+    return parseRequestOrResponse (aIS, null);
+  }
+
+  /**
+   * Parse the given InputStream as an ASiC container and return the contained
+   * {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
+   *
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
    * @param aAttachmentProcessor
    *        An optional consumer for handling attachments in the ASiC container.
    *        Usually attachments are only present in responses (as document
@@ -241,11 +260,29 @@ public final class ToopMessageBuilder140
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     // No attachment processor needed for requests
-    final Serializable aObj = parseRequestOrResponse (aIS, null);
+    final Serializable aObj = parseRequestOrResponse (aIS);
     if (aObj instanceof TDETOOPRequestType)
       return (TDETOOPRequestType) aObj;
 
     return null;
+  }
+
+  /**
+   * Parse the given InputStream as an ASiC container and return the contained
+   * {@link TDETOOPResponseType}.
+   *
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
+   * @return New {@link TDETOOPResponseType} every time the method is called or
+   *         <code>null</code> if none is contained in the ASIC.
+   * @throws IOException
+   *         In case of IO error
+   */
+  @Nullable
+  @ReturnsMutableObject
+  public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
+    return parseResponseMessage (aIS, null);
   }
 
   /**
