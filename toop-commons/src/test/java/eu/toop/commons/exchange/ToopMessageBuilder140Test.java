@@ -194,7 +194,7 @@ public final class ToopMessageBuilder140Test
       try (final NonBlockingByteArrayInputStream aAsicIS = aBAOS.getAsInputStream ())
       {
         // Read ASIC again with attachments
-        final ICommonsList <AsicContainerEntry> aList = new CommonsArrayList <> ();
+        final ICommonsList <AsicReadEntry> aList = new CommonsArrayList <> ();
         final TDETOOPResponseType aRead = ToopMessageBuilder140.parseResponseMessage (aAsicIS, aList::add);
         assertNotNull (aRead);
         assertEquals (0, aList.size ());

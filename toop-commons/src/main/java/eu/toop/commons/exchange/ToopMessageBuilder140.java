@@ -103,6 +103,14 @@ public final class ToopMessageBuilder140
                                                @Nonnull final OutputStream aOS,
                                                @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
   {
+    createRequestMessageAsic (aRequest, aOS, aSigHelper, null);
+  }
+
+  public static void createRequestMessageAsic (@Nonnull final TDETOOPRequestType aRequest,
+                                               @Nonnull final OutputStream aOS,
+                                               @Nonnull final SignatureHelper aSigHelper,
+                                               @Nullable final Iterable <? extends AsicWriteEntry> aAttachments) throws ToopErrorException
+  {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
@@ -118,6 +126,14 @@ public final class ToopMessageBuilder140
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
                        ENTRY_NAME_TOOP_DATA_REQUEST,
                        CMimeType.APPLICATION_XML);
+
+      // Add optional attachments
+      if (aAttachments != null)
+        for (final AsicWriteEntry aEntry : aAttachments)
+          aAsicWriter.add (new NonBlockingByteArrayInputStream (aEntry.payload ()),
+                           aEntry.getEntryName (),
+                           aEntry.getMimeType ());
+
       aAsicWriter.sign (aSigHelper);
       LOGGER.info ("Successfully created request ASiC");
     }
@@ -130,6 +146,14 @@ public final class ToopMessageBuilder140
   public static void createResponseMessageAsic (@Nonnull final TDETOOPResponseType aResponse,
                                                 @Nonnull final OutputStream aOS,
                                                 @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException
+  {
+    createResponseMessageAsic (aResponse, aOS, aSigHelper, null);
+  }
+
+  public static void createResponseMessageAsic (@Nonnull final TDETOOPResponseType aResponse,
+                                                @Nonnull final OutputStream aOS,
+                                                @Nonnull final SignatureHelper aSigHelper,
+                                                @Nullable final Iterable <? extends AsicWriteEntry> aAttachments) throws ToopErrorException
   {
     ValueEnforcer.notNull (aResponse, "Response");
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
@@ -146,6 +170,14 @@ public final class ToopMessageBuilder140
       aAsicWriter.add (new NonBlockingByteArrayInputStream (aXML),
                        ENTRY_NAME_TOOP_DATA_RESPONSE,
                        CMimeType.APPLICATION_XML);
+
+      // Add optional attachments
+      if (aAttachments != null)
+        for (final AsicWriteEntry aEntry : aAttachments)
+          aAsicWriter.add (new NonBlockingByteArrayInputStream (aEntry.payload ()),
+                           aEntry.getEntryName (),
+                           aEntry.getMimeType ());
+
       aAsicWriter.sign (aSigHelper);
       LOGGER.info ("Successfully created response ASiC");
     }
@@ -193,7 +225,7 @@ public final class ToopMessageBuilder140
   @Nullable
   @ReturnsMutableObject
   public static Serializable parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS,
-                                                     @Nullable final Consumer <AsicContainerEntry> aAttachmentProcessor) throws IOException
+                                                     @Nullable final Consumer <AsicReadEntry> aAttachmentProcessor) throws IOException
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
@@ -232,7 +264,7 @@ public final class ToopMessageBuilder140
               try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
               {
                 aAsicReader.writeFile (aBAOS);
-                final AsicContainerEntry aEntry = new AsicContainerEntry (sEntryName, aBAOS.toByteArray ());
+                final AsicReadEntry aEntry = new AsicReadEntry (sEntryName, aBAOS.toByteArray ());
                 aAttachmentProcessor.accept (aEntry);
               }
             }
@@ -302,7 +334,7 @@ public final class ToopMessageBuilder140
   @Nullable
   @ReturnsMutableObject
   public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS,
-                                                          @Nullable final Consumer <AsicContainerEntry> aAttachmentProcessor) throws IOException
+                                                          @Nullable final Consumer <AsicReadEntry> aAttachmentProcessor) throws IOException
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 

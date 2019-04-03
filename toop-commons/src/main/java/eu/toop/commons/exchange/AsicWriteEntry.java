@@ -24,25 +24,31 @@ import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.hashcode.HashCodeGenerator;
+import com.helger.commons.mime.IMimeType;
 import com.helger.commons.string.ToStringGenerator;
 
 /**
- * This class contains a single ASIC container entry for external handling.
+ * This class contains a single ASIC container entry for creating ASICs.
  *
  * @author Philip Helger
  * @since 0.10.2
  */
-public class AsicContainerEntry implements Serializable
+public class AsicWriteEntry implements Serializable
 {
   private final String m_sEntryName;
   private final byte [] m_aPayload;
+  private final IMimeType m_aMimeType;
 
-  public AsicContainerEntry (@Nonnull @Nonempty final String sEntryName, @Nonnull final byte [] aPayload)
+  public AsicWriteEntry (@Nonnull @Nonempty final String sEntryName,
+                         @Nonnull final byte [] aPayload,
+                         @Nonnull final IMimeType aMimeType)
   {
     ValueEnforcer.notEmpty (sEntryName, "EntryName");
     ValueEnforcer.notNull (aPayload, "Payload");
+    ValueEnforcer.notNull (aMimeType, "MimeType");
     m_sEntryName = sEntryName;
     m_aPayload = aPayload;
+    m_aMimeType = aMimeType;
   }
 
   @Nonnull
@@ -59,6 +65,12 @@ public class AsicContainerEntry implements Serializable
     return m_aPayload;
   }
 
+  @Nonnull
+  public IMimeType getMimeType ()
+  {
+    return m_aMimeType;
+  }
+
   @Override
   public boolean equals (final Object o)
   {
@@ -66,14 +78,16 @@ public class AsicContainerEntry implements Serializable
       return true;
     if (o == null || !getClass ().equals (o.getClass ()))
       return false;
-    final AsicContainerEntry rhs = (AsicContainerEntry) o;
-    return m_sEntryName.equals (rhs.m_sEntryName) && Arrays.equals (m_aPayload, rhs.m_aPayload);
+    final AsicWriteEntry rhs = (AsicWriteEntry) o;
+    return m_sEntryName.equals (rhs.m_sEntryName) &&
+           Arrays.equals (m_aPayload, rhs.m_aPayload) &&
+           m_aMimeType.equals (rhs.m_aMimeType);
   }
 
   @Override
   public int hashCode ()
   {
-    return new HashCodeGenerator (this).append (m_sEntryName).append (m_aPayload.length).getHashCode ();
+    return new HashCodeGenerator (this).append (m_sEntryName).append (m_aPayload).append (m_aMimeType).getHashCode ();
   }
 
   @Override
@@ -81,6 +95,7 @@ public class AsicContainerEntry implements Serializable
   {
     return new ToStringGenerator (this).append ("EntryName", m_sEntryName)
                                        .append ("Payload #bytes", m_aPayload.length)
+                                       .append ("MimeType", m_aMimeType)
                                        .getToString ();
   }
 }
