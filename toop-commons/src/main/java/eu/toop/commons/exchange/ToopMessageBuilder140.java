@@ -215,7 +215,8 @@ public final class ToopMessageBuilder140
    * @param aAttachmentProcessor
    *        An optional consumer for handling attachments in the ASiC container.
    *        Usually attachments are only present in responses (as document
-   *        values). May be <code>null</code>.
+   *        values). 0-n attachments may be present, so the consumer can be
+   *        invoked more than once. May be <code>null</code>.
    * @return New {@link TDETOOPRequestType} or {@link TDETOOPResponseType}.
    *         every time the method is called or <code>null</code> if none is
    *         contained in the ASIC.
@@ -325,7 +326,8 @@ public final class ToopMessageBuilder140
    *        Input stream to read from. May not be <code>null</code>.
    * @param aAttachmentProcessor
    *        An optional consumer for handling attachments in the ASiC container.
-   *        May be <code>null</code>.
+   *        0-n attachments may be present, so the consumer can be invoked more
+   *        than once. May be <code>null</code>.
    * @return New {@link TDETOOPResponseType} every time the method is called or
    *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
