@@ -17,6 +17,7 @@ package eu.toop.commons.exchange;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -83,8 +84,10 @@ public final class ToopMessageBuilder140Test
       try (final NonBlockingByteArrayInputStream archiveInput = aBAOS.getAsInputStream ())
       {
         // Read ASIC again
-        final TDETOOPRequestType aRead = ToopMessageBuilder140.parseRequestMessage (archiveInput);
+        final ICommonsList <AsicReadEntry> aAttachments = new CommonsArrayList <> ();
+        final TDETOOPRequestType aRead = ToopMessageBuilder140.parseRequestMessage (archiveInput, aAttachments::add);
         assertNotNull (aRead);
+        assertTrue (aAttachments.isEmpty ());
 
         assertEquals (aRead, aSrcRequest);
         CommonsTestHelper.testDefaultImplementationWithEqualContentObject (aRead, aRead.clone ());

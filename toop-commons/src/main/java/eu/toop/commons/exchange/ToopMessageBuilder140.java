@@ -198,8 +198,11 @@ public final class ToopMessageBuilder140
    *         contained in the ASIC.
    * @throws IOException
    *         In case of IO error
+   * @deprecated Use {@link #parseRequestOrResponse(InputStream, Consumer)}
+   *             instead
    */
   @Nullable
+  @Deprecated
   @ReturnsMutableObject
   public static Serializable parseRequestOrResponse (@Nonnull @WillClose final InputStream aIS) throws IOException
   {
@@ -285,15 +288,40 @@ public final class ToopMessageBuilder140
    *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
    *         In case of IO error
+   * @deprecated Use {@link #parseRequestMessage(InputStream, Consumer)} instead
+   */
+  @Nullable
+  @Deprecated
+  @ReturnsMutableObject
+  public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
+  {
+    return parseRequestMessage (aIS, null);
+  }
+
+  /**
+   * Parse the given InputStream as an ASiC container and return the contained
+   * {@link TDETOOPRequestType}.
+   *
+   * @param aIS
+   *        Input stream to read from. May not be <code>null</code>.
+   * @param aAttachmentProcessor
+   *        An optional consumer for handling attachments in the ASiC container.
+   *        0-n attachments may be present, so the consumer can be invoked more
+   *        than once. May be <code>null</code>.
+   * @return New {@link TDETOOPRequestType} every time the method is called or
+   *         <code>null</code> if none is contained in the ASIC.
+   * @throws IOException
+   *         In case of IO error
    */
   @Nullable
   @ReturnsMutableObject
-  public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
+  public static TDETOOPRequestType parseRequestMessage (@Nonnull @WillClose final InputStream aIS,
+                                                        @Nullable final Consumer <AsicReadEntry> aAttachmentProcessor) throws IOException
   {
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     // No attachment processor needed for requests
-    final Serializable aObj = parseRequestOrResponse (aIS);
+    final Serializable aObj = parseRequestOrResponse (aIS, aAttachmentProcessor);
     if (aObj instanceof TDETOOPRequestType)
       return (TDETOOPRequestType) aObj;
 
@@ -310,8 +338,11 @@ public final class ToopMessageBuilder140
    *         <code>null</code> if none is contained in the ASIC.
    * @throws IOException
    *         In case of IO error
+   * @deprecated Use {@link #parseResponseMessage(InputStream, Consumer)}
+   *             instead
    */
   @Nullable
+  @Deprecated
   @ReturnsMutableObject
   public static TDETOOPResponseType parseResponseMessage (@Nonnull @WillClose final InputStream aIS) throws IOException
   {
