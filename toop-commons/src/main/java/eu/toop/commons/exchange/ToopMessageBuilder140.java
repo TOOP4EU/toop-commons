@@ -143,6 +143,7 @@ public final class ToopMessageBuilder140
     }
   }
 
+  @Deprecated
   public static void createResponseMessageAsic (@Nonnull final TDETOOPResponseType aResponse,
                                                 @Nonnull final OutputStream aOS,
                                                 @Nonnull final SignatureHelper aSigHelper) throws ToopErrorException

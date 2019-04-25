@@ -24,6 +24,7 @@ import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.hashcode.HashCodeGenerator;
+import com.helger.commons.mime.CMimeType;
 import com.helger.commons.mime.IMimeType;
 import com.helger.commons.string.ToStringGenerator;
 
@@ -97,5 +98,11 @@ public class AsicWriteEntry implements Serializable
                                        .append ("Payload #bytes", m_aPayload.length)
                                        .append ("MimeType", m_aMimeType)
                                        .getToString ();
+  }
+
+  @Nonnull
+  public static AsicWriteEntry create (@Nonnull final AsicReadEntry aEntry)
+  {
+    return new AsicWriteEntry (aEntry.getEntryName (), aEntry.payload (), CMimeType.APPLICATION_OCTET_STREAM);
   }
 }
