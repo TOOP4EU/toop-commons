@@ -21,6 +21,7 @@ import java.util.Arrays;
 import javax.annotation.Nonnull;
 
 import com.helger.commons.ValueEnforcer;
+import com.helger.commons.annotation.MustImplementEqualsAndHashcode;
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.hashcode.HashCodeGenerator;
@@ -32,6 +33,7 @@ import com.helger.commons.string.ToStringGenerator;
  * @author Philip Helger
  * @since 0.10.2
  */
+@MustImplementEqualsAndHashcode
 public class AsicReadEntry implements Serializable
 {
   private final String m_sEntryName;

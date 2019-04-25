@@ -234,7 +234,7 @@ public final class ToopMessageBuilder140
     ValueEnforcer.notNull (aIS, "archiveInput");
 
     boolean bNeedResponse = true;
-    Serializable aResponse = null;
+    Serializable aResult = null;
     try (final IAsicReader aAsicReader = AsicReaderFactory.newFactory ().open (aIS))
     {
       String sEntryName;
@@ -245,7 +245,7 @@ public final class ToopMessageBuilder140
           try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
           {
             aAsicReader.writeFile (aBAOS);
-            aResponse = ToopReader.request140 ().read (aBAOS.getAsInputStream ());
+            aResult = ToopReader.request140 ().read (aBAOS.getAsInputStream ());
             bNeedResponse = false;
           }
         }
@@ -255,7 +255,7 @@ public final class ToopMessageBuilder140
             try (final NonBlockingByteArrayOutputStream aBAOS = new NonBlockingByteArrayOutputStream ())
             {
               aAsicReader.writeFile (aBAOS);
-              aResponse = ToopReader.response140 ().read (aBAOS.getAsInputStream ());
+              aResult = ToopReader.response140 ().read (aBAOS.getAsInputStream ());
               bNeedResponse = false;
             }
           }
@@ -275,7 +275,7 @@ public final class ToopMessageBuilder140
       }
     }
 
-    return aResponse;
+    return aResult;
   }
 
   /**
