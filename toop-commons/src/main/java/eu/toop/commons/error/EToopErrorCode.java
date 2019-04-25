@@ -39,7 +39,8 @@ public enum EToopErrorCode implements IToopErrorCode
   /** The Semantic Mapping Service is not reachable */
   SM_001 ("SM-001"),
   /**
-   * The Semantic Mapping Service could not provide a mapping on provided concepts
+   * The Semantic Mapping Service could not provide a mapping on provided
+   * concepts
    */
   SM_002 ("SM-002"),
   /** The TOOP Directory is not reachable */

@@ -45,7 +45,8 @@ public class ToopErrorException extends Exception
   }
 
   /**
-   * @return The error code provided in the constructor. Never <code>null</code>.
+   * @return The error code provided in the constructor. Never
+   *         <code>null</code>.
    */
   @Nonnull
   public IToopErrorCode getErrorCode ()

@@ -24,7 +24,7 @@ public class ToopRequestWithAttachments140 implements Serializable
   private final ICommonsList <AsicReadEntry> m_aAttachments;
 
   public ToopRequestWithAttachments140 (@Nonnull final TDETOOPRequestType aRequest,
-                                     @Nonnull final ICommonsList <AsicReadEntry> aAttachments)
+                                        @Nonnull final ICommonsList <AsicReadEntry> aAttachments)
   {
     ValueEnforcer.notNull (aRequest, "Request");
     ValueEnforcer.notNull (aAttachments, "Attachments");
