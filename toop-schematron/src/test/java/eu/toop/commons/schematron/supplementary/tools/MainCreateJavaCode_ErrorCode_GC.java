@@ -39,12 +39,12 @@ public final class MainCreateJavaCode_ErrorCode_GC
   public static void main (final String [] args)
   {
     final CodeListDocument aCLD = GenericodeReader.gc10CodeList ()
-                                                  .read (new File ("src/main/resources/codelists/gc/ErrorCode-CodeList.gc"));
+                                                  .read (new File ("src/main/resources/140/codelists/gc/ErrorCode-CodeList.gc"));
     final StringBuilder aSB = new StringBuilder ();
     for (final Row aRow : aCLD.getSimpleCodeList ().getRow ())
     {
       final String sID = Genericode10Helper.getRowValue (aRow, "code");
-      final String sName = Genericode10Helper.getRowValue (aRow, "name-Value");
+      final String sName = Genericode10Helper.getRowValue (aRow, "name-en");
       if (sName != null)
         aSB.append ("/** ").append (sName).append (" */\n");
       if (sID != null)

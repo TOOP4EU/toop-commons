@@ -45,14 +45,14 @@ public enum EToopErrorCode implements IToopErrorCode
   SM_002 ("SM-002"),
   /** The TOOP Directory is not reachable */
   DD_001 ("DD-001"),
+  /** An SMP could not be queried */
+  DD_002 ("DD-002"),
+  /** Error validating a signature from SMP */
+  DD_003 ("DD-003"),
   /**
    * The Dynamic Discovery Service was not able to find any Participant
    * Identifiers
    */
-  DD_002 ("DD-002"),
-  /** Error validating a signature from SMP */
-  DD_003 ("DD-003"),
-  /** TODO no name */
   DD_004 ("DD-004"),
   /**
    * At least one, but not all SMP Servers where not able to find a Service
