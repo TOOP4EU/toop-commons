@@ -23,20 +23,32 @@ import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
 
 /**
- * Source: ErrorCategory-CodeList.gc
+ * Source: ErrorCategory-CodeList.gc<br>
+ * Content created by MainCreateJavaCode_ErrorCategory_GC
  *
  * @author Philip Helger
  * @since 0.9.2
  */
 public enum EToopErrorCategory implements IHasID <String>
 {
+  /** Semantic Mapping */
   SEMANTIC_MAPPING ("SemanticMapping"),
+  /** Parsing */
   PARSING ("Parsing"),
+  /** Dynamic Discovery */
   DYNAMIC_DISCOVERY ("DynamicDiscovery"),
+  /** eDelivery */
   E_DELIVERY ("eDelivery"),
-  RESULT_AGGREGATION ("ResultsAggregation"),
+  /** Results Aggregation */
+  RESULTS_AGGREGATION ("ResultsAggregation"),
+  /** Business Processing */
   BUSINESS_PROCESSING ("BusinessProcessing"),
+  /** Technical Error */
   TECHNICAL_ERROR ("TechnicalError");
+
+  /** Typo in enum name up to 0.10.0 */
+  @Deprecated
+  public static final EToopErrorCategory RESULT_AGGREGATION = RESULTS_AGGREGATION;
 
   private final String m_sID;
 
