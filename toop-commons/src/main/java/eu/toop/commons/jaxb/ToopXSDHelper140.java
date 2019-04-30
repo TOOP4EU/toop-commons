@@ -27,6 +27,7 @@ import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.mime.IMimeType;
 import com.helger.datetime.util.PDTXMLConverter;
 
+import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 import eu.toop.commons.dataexchange.v140.TDECodeWithLOAType;
 import eu.toop.commons.dataexchange.v140.TDEDateWithLOAType;
 import eu.toop.commons.dataexchange.v140.TDEIdentifierWithLOAType;
@@ -84,6 +85,13 @@ public final class ToopXSDHelper140
     ret.setSchemeID (sSchemeID);
     ret.setValue (sValue);
     return ret;
+  }
+
+  @Nonnull
+  public static IdentifierType createSpecificationIdentifierResponse ()
+  {
+    return createIdentifier (EPredefinedDocumentTypeIdentifier.DOC_TYPE_SCHEME,
+                             "urn:eu:toop:ns:dataexchange-1p40::Response");
   }
 
   @Nonnull

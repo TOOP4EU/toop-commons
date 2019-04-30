@@ -194,7 +194,7 @@ public final class ToopDataExchange140FuncTest
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     r.setCopyIndicator (ToopXSDHelper140.createIndicator (false));
-    r.setSpecificationIdentifier (ToopXSDHelper140.createIdentifier ("bla"));
+    r.setSpecificationIdentifier (ToopXSDHelper140.createSpecificationIdentifierResponse ());
     r.setDataConsumerDocumentIdentifier (ToopXSDHelper140.createIdentifier ("DC-ID-17"));
     r.setDataRequestIdentifier (ToopXSDHelper140.createIdentifier ("bla"));
     {

@@ -452,7 +452,7 @@ public final class ToopMessageBuilder140
     aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper140.createIndicator (false));
-    aRet.setSpecificationIdentifier (ToopXSDHelper140.createIdentifier ("toop-doctypeid-qns",
+    aRet.setSpecificationIdentifier (ToopXSDHelper140.createIdentifier (EPredefinedDocumentTypeIdentifier.DOC_TYPE_SCHEME,
                                                                         eDocumentTypeID.getID ()
                                                                                        .substring (0,
                                                                                                    eDocumentTypeID.getID ()
