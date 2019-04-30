@@ -19,7 +19,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.UUID;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -97,7 +96,7 @@ public final class ToopDataExchange140FuncTest
   public void testCreateRequestFromScratch ()
   {
     final TDETOOPRequestType r = new TDETOOPRequestType ();
-    r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifier (UUID.randomUUID ().toString ()));
+    r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifierUUID ());
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     r.setCopyIndicator (ToopXSDHelper140.createIndicator (false));
@@ -191,7 +190,7 @@ public final class ToopDataExchange140FuncTest
   public void testCreateResponseFromScratch ()
   {
     final TDETOOPResponseType r = new TDETOOPResponseType ();
-    r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifier (UUID.randomUUID ().toString ()));
+    r.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifierUUID ());
     r.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     r.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     r.setCopyIndicator (ToopXSDHelper140.createIndicator (false));

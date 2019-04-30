@@ -438,6 +438,7 @@ public final class ToopMessageBuilder140
     return aRet;
   }
 
+  @Deprecated
   private static void _fillRequest (@Nonnull final TDETOOPRequestType aRet,
                                     @Nonnull final TDEDataRequestSubjectType aRequestSubject,
                                     @Nonnull final String sDCCountryCode,
@@ -447,9 +448,7 @@ public final class ToopMessageBuilder140
                                     @Nonnull final EPredefinedProcessIdentifier eProcessID,
                                     @Nullable final Iterable <? extends ConceptValue> aValues)
   {
-    aRet.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifier ("UUID",
-                                                                                  null,
-                                                                                  UUID.randomUUID ().toString ()));
+    aRet.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifierUUID ());
     aRet.setDocumentIssueDate (PDTXMLConverter.getXMLCalendarDateNow ());
     aRet.setDocumentIssueTime (PDTXMLConverter.getXMLCalendarTimeNow ());
     aRet.setCopyIndicator (ToopXSDHelper140.createIndicator (false));
@@ -666,9 +665,7 @@ public final class ToopMessageBuilder140
     // Set response specific stuff
     aResponse.setDataRequestIdentifier (aRequest.getDocumentUniversalUniqueIdentifier ().clone ());
     // Create a new UUID
-    aResponse.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifier ("UUID",
-                                                                                       null,
-                                                                                       UUID.randomUUID ().toString ()));
+    aResponse.setDocumentUniversalUniqueIdentifier (ToopXSDHelper140.createIdentifierUUID ());
     return aResponse;
   }
 

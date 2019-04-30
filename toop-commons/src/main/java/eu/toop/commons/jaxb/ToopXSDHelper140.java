@@ -17,6 +17,7 @@ package eu.toop.commons.jaxb;
 
 import java.math.BigDecimal;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -83,6 +84,12 @@ public final class ToopXSDHelper140
     ret.setSchemeID (sSchemeID);
     ret.setValue (sValue);
     return ret;
+  }
+
+  @Nonnull
+  public static IdentifierType createIdentifierUUID ()
+  {
+    return createIdentifier ("UUID", null, UUID.randomUUID ().toString ());
   }
 
   @Nonnull
