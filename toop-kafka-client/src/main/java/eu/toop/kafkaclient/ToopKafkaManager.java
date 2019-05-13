@@ -28,6 +28,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.ReturnsMutableObject;
@@ -42,6 +44,7 @@ import com.helger.commons.concurrent.SimpleReadWriteLock;
  */
 final class ToopKafkaManager
 {
+  private static final Logger LOGGER = LoggerFactory.getLogger (ToopKafkaManager.class);
   private static final SimpleReadWriteLock s_aRWLock = new SimpleReadWriteLock ();
   @GuardedBy ("s_aRWLock")
   private static KafkaProducer <String, String> s_aProducer;
@@ -107,6 +110,8 @@ final class ToopKafkaManager
           s_aProducer = ret = new KafkaProducer <> (_getCreationProperties (),
                                                     new StringSerializer (),
                                                     new StringSerializer ());
+          if (LOGGER.isDebugEnabled ())
+            LOGGER.debug ("Successfully created new KafkaProducer");
         }
       }
       finally
@@ -128,6 +133,8 @@ final class ToopKafkaManager
       {
         s_aProducer.close ();
         s_aProducer = null;
+        if (LOGGER.isDebugEnabled ())
+          LOGGER.debug ("Successfully closed KafkaProducer");
       }
     });
   }
