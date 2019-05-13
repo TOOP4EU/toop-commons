@@ -24,7 +24,7 @@
     <version>1.1.1</version>
   </parent>
   <artifactId>toop-commons-parent-pom</artifactId>
-  <version>0.10.2-SNAPSHOT</version>
+  <version>0.10.2</version>
   <packaging>pom</packaging>
   <name>toop-commons-parent-pom</name>
   <description>Base POM to build the toop-commons projects</description>
@@ -43,7 +43,7 @@
     <connection>scm:git:git@github.com:toop4eu/toop-commons.git</connection>
     <developerConnection>scm:git:git@github.com:toop4eu/toop-commons.git</developerConnection>
     <url>http://github.com/toop4eu/toop-commons</url>
-    <tag>HEAD</tag>
+    <tag>toop-commons-parent-pom-0.10.2</tag>
   </scm>
 
   <organization>
