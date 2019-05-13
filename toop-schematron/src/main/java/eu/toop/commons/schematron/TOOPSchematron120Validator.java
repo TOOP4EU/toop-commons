@@ -28,6 +28,7 @@ import com.helger.commons.io.resource.IReadableResource;
  * @author Philip Helger
  * @since 0.9.2
  */
+@Deprecated
 @ThreadSafe
 public class TOOPSchematron120Validator extends AbstractTOOPSchematronValidator
 {

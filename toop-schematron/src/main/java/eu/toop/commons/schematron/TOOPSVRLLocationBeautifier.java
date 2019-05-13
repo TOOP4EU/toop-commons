@@ -24,6 +24,7 @@ import com.helger.schematron.svrl.ISVRLLocationBeautifierSPI;
 @IsSPIImplementation
 public final class TOOPSVRLLocationBeautifier implements ISVRLLocationBeautifierSPI
 {
+  @Deprecated
   private static final String TOOP_120_NS = eu.toop.commons.dataexchange.v120.ObjectFactory._Request_QNAME.getNamespaceURI ();
   private static final String TOOP_140_NS = eu.toop.commons.dataexchange.v140.ObjectFactory._Request_QNAME.getNamespaceURI ();
 
