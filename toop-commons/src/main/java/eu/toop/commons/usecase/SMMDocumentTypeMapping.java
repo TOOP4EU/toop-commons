@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
+import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.collection.impl.CommonsEnumMap;
 import com.helger.commons.collection.impl.ICommonsMap;
 
@@ -64,5 +65,17 @@ public final class SMMDocumentTypeMapping
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;
+  }
+
+  /**
+   * @return A copy of the map used for SMM domain mapping. Never
+   *         <code>null</code>.
+   * @since 0.10.2
+   */
+  @Nonnull
+  @ReturnsMutableObject
+  public ICommonsMap <EPredefinedDocumentTypeIdentifier, String> getAllMappings ()
+  {
+    return MAP.getClone ();
   }
 }

@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
+import com.helger.commons.annotation.ReturnsMutableObject;
 import com.helger.commons.collection.impl.CommonsEnumMap;
 import com.helger.commons.collection.impl.ICommonsMap;
 
@@ -26,20 +27,21 @@ import eu.toop.commons.codelist.EPredefinedDocumentTypeIdentifier;
 
 /**
  * This class manages the relationship between TOOP request and response
- * Document types, so that .
+ * Document types. It is used to create the appropriate "response" document type
+ * from an arbitrary source document type.
  *
  * @author Philip Helger
  */
 @SuppressWarnings ("deprecation")
 public final class ReverseDocumentTypeMapping
 {
-  private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> s_aMap = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
+  private static final ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> MAP = new CommonsEnumMap <> (EPredefinedDocumentTypeIdentifier.class);
 
   private static void _add (@Nonnull final EPredefinedDocumentTypeIdentifier aRequest,
                             @Nonnull final EPredefinedDocumentTypeIdentifier aResponse)
   {
-    s_aMap.put (aRequest, aResponse);
-    s_aMap.put (aResponse, aRequest);
+    MAP.put (aRequest, aResponse);
+    MAP.put (aResponse, aRequest);
   }
 
   static
@@ -72,9 +74,21 @@ public final class ReverseDocumentTypeMapping
   @Nonempty
   public static EPredefinedDocumentTypeIdentifier getReverseDocumentType (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
   {
-    final EPredefinedDocumentTypeIdentifier ret = s_aMap.get (eDocType);
+    final EPredefinedDocumentTypeIdentifier ret = MAP.get (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;
+  }
+
+  /**
+   * @return A copy of the map used for reverse mapping. Never
+   *         <code>null</code>.
+   * @since 0.10.2
+   */
+  @Nonnull
+  @ReturnsMutableObject
+  public ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> getAllMappings ()
+  {
+    return MAP.getClone ();
   }
 }

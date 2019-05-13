@@ -704,6 +704,12 @@ public final class ToopMessageBuilder140
                                           @Nonnull final IMultilingualText aMLT,
                                           @Nullable final String sTechDetails)
   {
+    ValueEnforcer.notNull (eOrigin, "Origin");
+    ValueEnforcer.notNull (eCategory, "Category");
+    ValueEnforcer.notNull (aErrorCode, "ErrorCode");
+    ValueEnforcer.notNull (eSeverity, "Severity");
+    ValueEnforcer.notNull (aMLT, "MLT");
+
     final TDEErrorType ret = new TDEErrorType ();
     if (StringHelper.hasText (sDPIdentifier))
       ret.setDataProviderIdentifier (ToopXSDHelper140.createIdentifier (sDPIdentifier));

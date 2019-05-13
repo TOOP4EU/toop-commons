@@ -100,9 +100,33 @@ public class AsicWriteEntry implements Serializable
                                        .getToString ();
   }
 
+  /**
+   * Create an {@link AsicWriteEntry} based on an {@link AsicReadEntry} using
+   * the default MIME type "application/octet-stream".
+   *
+   * @param aEntry
+   *        The {@link AsicReadEntry} to use. May not be <code>null</code>.
+   * @return The created {@link AsicWriteEntry} and never <code>null</code>.
+   */
   @Nonnull
   public static AsicWriteEntry create (@Nonnull final AsicReadEntry aEntry)
   {
-    return new AsicWriteEntry (aEntry.getEntryName (), aEntry.payload (), CMimeType.APPLICATION_OCTET_STREAM);
+    return create (aEntry, CMimeType.APPLICATION_OCTET_STREAM);
+  }
+
+  /**
+   * Create an {@link AsicWriteEntry} based on an {@link AsicReadEntry} using
+   * the provided MIME type.
+   *
+   * @param aEntry
+   *        The {@link AsicReadEntry} to use. May not be <code>null</code>.
+   * @param aMimeType
+   *        The MIME Type to be used. May not be <code>null</code>.
+   * @return The created {@link AsicWriteEntry} and never <code>null</code>.
+   */
+  @Nonnull
+  public static AsicWriteEntry create (@Nonnull final AsicReadEntry aEntry, @Nonnull final IMimeType aMimeType)
+  {
+    return new AsicWriteEntry (aEntry.getEntryName (), aEntry.payload (), aMimeType);
   }
 }
