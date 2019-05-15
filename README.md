@@ -1,7 +1,7 @@
 # toop-commons
 Shared common TOOP components, codelists etc.
 
-Latest release: **0.10.0** (2019-03-20) (containing data model 1.4.0 and 1.2.0)
+Latest release: **0.10.2** (2019-05-13) (containing data model 1.4.0 and 1.2.0)
 
 # Development environment
 
@@ -67,13 +67,18 @@ docker stop zookeeper
 
 ## dir-config
 
+This folder is toop.eu internal and there is no need for pilot partners to look at this.
+
 This folder contains the configuration of the Playground TOOP Directory - see http://directory.acc.exchange.toop.eu
 
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
-Required PEPPOL Directory version after 2018-06-06.
 
 ## smp-config
 
+This folder is toop.eu internal and there is no need for pilot partners to look at this.
+
 This folder contains the configuration of the Playground TOOP SMP - see http://smp.acc.exchange.toop.eu
+
 Put all files "as-is" inside the `WEB-INF/classes` folder of the deployment.
-Requires at least phoss SMP 5.0.5. We recommend the latest phoss SMP version.
+
+Requires *at least* phoss SMP 5.0.5. We recommend the latest phoss SMP version.
