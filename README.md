@@ -1,7 +1,7 @@
 # toop-commons
 Shared common TOOP components, codelists etc.
 
-Latest release: **0.10.2** (2019-05-13) (containing data model 1.4.0 and 1.2.0)
+Latest release: **0.10.3** (2019-05-15) (containing data model 1.4.0 and 1.2.0)
 
 # Development environment
 
