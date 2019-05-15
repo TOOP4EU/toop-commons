@@ -57,11 +57,17 @@ public final class SMMDocumentTypeMapping
   private SMMDocumentTypeMapping ()
   {}
 
+  @Nullable
+  public static String getToopSMDomainOrNull (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
+  {
+    return MAP.get (eDocType);
+  }
+
   @Nonnull
   @Nonempty
   public static String getToopSMDomain (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
   {
-    final String ret = MAP.get (eDocType);
+    final String ret = getToopSMDomainOrNull (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;

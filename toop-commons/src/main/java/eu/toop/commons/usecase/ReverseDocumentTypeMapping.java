@@ -70,11 +70,17 @@ public final class ReverseDocumentTypeMapping
   private ReverseDocumentTypeMapping ()
   {}
 
+  @Nullable
+  public static EPredefinedDocumentTypeIdentifier getReverseDocumentTypeOrNull (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
+  {
+    return MAP.get (eDocType);
+  }
+
   @Nonnull
   @Nonempty
   public static EPredefinedDocumentTypeIdentifier getReverseDocumentType (@Nullable final EPredefinedDocumentTypeIdentifier eDocType)
   {
-    final EPredefinedDocumentTypeIdentifier ret = MAP.get (eDocType);
+    final EPredefinedDocumentTypeIdentifier ret = getReverseDocumentTypeOrNull (eDocType);
     if (ret == null)
       throw new IllegalArgumentException ("Unsupported document type " + eDocType);
     return ret;
