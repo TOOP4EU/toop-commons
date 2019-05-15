@@ -46,6 +46,7 @@ import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.Identifi
  *
  * @author Philip Helger
  */
+@SuppressWarnings ({ "deprecation", "javadoc" })
 public final class TOOPSchematron120ValidatorTest
 {
   private static final Logger LOGGER = LoggerFactory.getLogger (TOOPSchematron120ValidatorTest.class);
@@ -75,7 +76,6 @@ public final class TOOPSchematron120ValidatorTest
     }
   }
 
-  @SuppressWarnings ("deprecation")
   @Test
   public void testValidateMockRequest ()
   {
@@ -110,7 +110,6 @@ public final class TOOPSchematron120ValidatorTest
       assertTrue (aMsg.getFlag () == EErrorLevel.WARN);
   }
 
-  @SuppressWarnings ("deprecation")
   @Test
   public void testValidateMockResponse ()
   {
