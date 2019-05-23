@@ -74,6 +74,7 @@ import eu.toop.commons.error.ToopErrorException;
 import eu.toop.commons.jaxb.ToopReader;
 import eu.toop.commons.jaxb.ToopWriter;
 import eu.toop.commons.jaxb.ToopXSDHelper120;
+import eu.toop.commons.usecase.EToopEntityType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.BinaryObjectType;
 import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.IdentifierType;
 
@@ -273,7 +274,7 @@ public final class ToopMessageBuilder120
     if (bLegalPerson)
     {
       // Codelist value (legacy)
-      aRet.setDataRequestSubjectTypeCode (ToopXSDHelper120.createCode ("LE"));
+      aRet.setDataRequestSubjectTypeCode (ToopXSDHelper120.createCode (EToopEntityType.LEGAL_ENTITY.getID ()));
 
       final TDELegalEntityType aLE = new TDELegalEntityType ();
       aLE.setLegalPersonUniqueIdentifier (ToopXSDHelper120.createIdentifier (sSrcCountryCode +
@@ -288,7 +289,7 @@ public final class ToopMessageBuilder120
     else
     {
       // Codelist value
-      aRet.setDataRequestSubjectTypeCode (ToopXSDHelper120.createCode ("NP"));
+      aRet.setDataRequestSubjectTypeCode (ToopXSDHelper120.createCode (EToopEntityType.NATURAL_PERSON.getID ()));
 
       final TDENaturalPersonType aNP = new TDENaturalPersonType ();
       aNP.setPersonIdentifier (ToopXSDHelper120.createIdentifier (sSrcCountryCode +
