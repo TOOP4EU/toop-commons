@@ -24,6 +24,8 @@ The configuration for the node resides in folder `/configEidas-toop` on the mach
 
 ## eidas-freedonia (9087)
 
+Download from https://ec.europa.eu/cefdigital/artifact/repository/eid/eu/eIDAS-node/1.4.5/eIDAS-node-1.4.5.zip - use content of "...Tomcat...zip" file, contained in that ZIP file.
+
 Explicit Tomcat at /var/lib/tomcat8/webapps
 
 3 WARs deployed:
