@@ -12,11 +12,13 @@ The source configuration was forked to https://github.com/TOOP4EU/toopEid
 
 Based on: https://github.com/uaegeani4mlab/LEPS-APIs/tree/master/eIDAS-SP-WebApp-2.0
 
-Start:
+Start container:
 docker-compose --file docker-compose.yml up -d --force-recreate
 
-Stop:
+Stop container:
 docker-compose --file docker-compose.yml stop
+
+See https://docs.docker.com/compose/gettingstarted/ for docker-compose rules
  
 The configuration for the node resides in folder `/configEidas-toop` on the machine
 

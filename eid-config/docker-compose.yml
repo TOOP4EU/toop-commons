@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  loginWebApp:
+    image: endimion13/toop-eid:0.5
+    ports:
+      - 9080:8090
+    expose:
+      - "9080"
+#    network_mode: "host"
+    environment:
+      - EIDAS_PROPERTIES=http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName,http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName,http://eidas.europa.eu/attributes/naturalperson/DateOfBirth,http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier
+      - SP_FAIL_PAGE= http://dc-freedonia.dev.exchange.toop.eu:9084/ui#!loginFailed
+      - SP_SUCCESS_PAGE=http://dc-freedonia.dev.exchange.toop.eu:9084/ui
+      - SP_METADATA_URL=http://www.host.com:9090/metadata
+      - SP_RETURN_URL=http://www.host.com:9090/eidasResponse
+      - SP_LOGO=https://www.euritas.eu/wp-content/uploads/2017/10/TOOP-Logo-1024x368.png
+      - SP_CONFIG_REPOSITORY=/configEidas/
+
+    volumes:
+      - /configEidas-toop:/configEidas
