@@ -44,34 +44,6 @@ public class ToopReader <JAXBTYPE> extends JAXBReaderBuilder <JAXBTYPE, ToopRead
 
   /**
    * Create a reader builder for
-   * {@link eu.toop.commons.dataexchange.v120.TDETOOPRequestType}.
-   *
-   * @return The builder and never <code>null</code>
-   */
-  @Nonnull
-  @Deprecated
-  public static ToopReader <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> request120 ()
-  {
-    return new ToopReader <> (EToopXMLDocumentType.REQUEST_120,
-                              eu.toop.commons.dataexchange.v120.TDETOOPRequestType.class);
-  }
-
-  /**
-   * Create a reader builder for
-   * {@link eu.toop.commons.dataexchange.v120.TDETOOPResponseType}.
-   *
-   * @return The builder and never <code>null</code>
-   */
-  @Nonnull
-  @Deprecated
-  public static ToopReader <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> response120 ()
-  {
-    return new ToopReader <> (EToopXMLDocumentType.RESPONSE_120,
-                              eu.toop.commons.dataexchange.v120.TDETOOPResponseType.class);
-  }
-
-  /**
-   * Create a reader builder for
    * {@link eu.toop.commons.dataexchange.v140.TDETOOPRequestType}.
    *
    * @return The builder and never <code>null</code>

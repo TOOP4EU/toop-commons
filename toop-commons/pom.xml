@@ -107,22 +107,6 @@
         <version>0.14.0</version>
         <executions>
           <execution>
-            <id>toop-exchange-120</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <generateDirectory>${project.build.directory}/generated-sources/toop-exchange-120</generateDirectory>
-              <schemaDirectory>${basedir}/src/main/resources/xsd/toop</schemaDirectory>
-              <schemaIncludes>
-                <schemaInclude>TOOP_DataExchange-1.2.0.xsd</schemaInclude>
-              </schemaIncludes>
-              <bindingIncludes>
-                <bindingInclude>toop-data-exchange-120.xjb</bindingInclude>
-              </bindingIncludes>
-            </configuration>
-          </execution>
-          <execution>
             <id>toop-exchange-140</id>
             <goals>
               <goal>generate</goal>

@@ -39,10 +39,11 @@ If a proxy server is necessary, please make sure it is configured appropriately.
 
 A project with common shared components. It e.g. contains the XML Schemas for the TOOP data model.
 
-## toop-schematron (since v0.9.2)
+## toop-schematron
 
 This project contains a Java wrapper to perform Schematron validation of TOOP messages following the TOOP data model using predefined TOOP Schematron rules.
-The current rules are for version 10 of the data model.
+It was introduced in v0.9.2.
+The current rules are for version 1.40 of the data model.
 
 ## toop-kafka-client
 

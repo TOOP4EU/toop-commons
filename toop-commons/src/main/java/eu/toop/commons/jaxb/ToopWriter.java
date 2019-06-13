@@ -42,36 +42,6 @@ public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWrit
 
   /**
    * Create a writer builder for
-   * {@link eu.toop.commons.dataexchange.v120.TDETOOPRequestType}.
-   *
-   * @return The builder and never <code>null</code>
-   */
-  @Nonnull
-  @Deprecated
-  public static ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> request120 ()
-  {
-    final ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPRequestType> ret = new ToopWriter <> (EToopXMLDocumentType.REQUEST_120);
-    ret.setFormattedOutput (true);
-    return ret;
-  }
-
-  /**
-   * Create a writer builder for
-   * {@link eu.toop.commons.dataexchange.v120.TDETOOPResponseType}.
-   *
-   * @return The builder and never <code>null</code>
-   */
-  @Nonnull
-  @Deprecated
-  public static ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> response120 ()
-  {
-    final ToopWriter <eu.toop.commons.dataexchange.v120.TDETOOPResponseType> ret = new ToopWriter <> (EToopXMLDocumentType.RESPONSE_120);
-    ret.setFormattedOutput (true);
-    return ret;
-  }
-
-  /**
-   * Create a writer builder for
    * {@link eu.toop.commons.dataexchange.v140.TDETOOPRequestType}.
    *
    * @return The builder and never <code>null</code>

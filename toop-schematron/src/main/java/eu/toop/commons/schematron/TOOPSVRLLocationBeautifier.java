@@ -24,15 +24,11 @@ import com.helger.schematron.svrl.ISVRLLocationBeautifierSPI;
 @IsSPIImplementation
 public final class TOOPSVRLLocationBeautifier implements ISVRLLocationBeautifierSPI
 {
-  @Deprecated
-  private static final String TOOP_120_NS = eu.toop.commons.dataexchange.v120.ObjectFactory._Request_QNAME.getNamespaceURI ();
   private static final String TOOP_140_NS = eu.toop.commons.dataexchange.v140.ObjectFactory._Request_QNAME.getNamespaceURI ();
 
   @Nullable
   public String getReplacementText (@Nonnull final String sNamespaceURI, @Nonnull final String sLocalName)
   {
-    if (sNamespaceURI.equals (TOOP_120_NS))
-      return "toop:" + sLocalName;
     if (sNamespaceURI.equals (TOOP_140_NS))
       return "toop:" + sLocalName;
     return null;
