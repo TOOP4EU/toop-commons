@@ -45,13 +45,13 @@ public final class MainCreateJavaCode_DocumentResponseErrorCode_GC
     {
       final String sID = Genericode10Helper.getRowValue (aRow, "code");
       final String sName = Genericode10Helper.getRowValue (aRow, "name-en");
-      if (sName != null)
-        aSB.append ("/** ").append (sName).append (" */\n");
-      if (sID != null)
-        aSB.append (RegExHelper.getAsIdentifier (sID.toUpperCase (Locale.US)))
-           .append (" (\"")
-           .append (sID)
-           .append ("\"),\n");
+      aSB.append ("/** ").append (sName).append (" */\n");
+      aSB.append (RegExHelper.getAsIdentifier (sID.toUpperCase (Locale.US)))
+         .append (" (\"")
+         .append (sID)
+         .append ("\", \"")
+         .append (sName)
+         .append ("\"),\n");
     }
     LOGGER.info (aSB.toString ());
   }

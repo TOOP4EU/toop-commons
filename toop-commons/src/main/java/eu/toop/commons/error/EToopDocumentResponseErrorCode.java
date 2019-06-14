@@ -31,25 +31,28 @@ import com.helger.commons.lang.EnumHelper;
 public enum EToopDocumentResponseErrorCode implements IToopErrorCode
 {
   /** Unknown document type */
-  DP_DOC_001 ("DP_DOC_001"),
+  DP_DOC_001 ("DP_DOC_001", "Unknown document type"),
   /** Unauthorized */
-  DP_DOC_002 ("DP_DOC_002"),
+  DP_DOC_002 ("DP_DOC_002", "Unauthorized"),
   /** Unavailable */
-  DP_DOC_003 ("DP_DOC_003"),
+  DP_DOC_003 ("DP_DOC_003", "Unavailable"),
   /** Internal processing error */
-  DP_DOC_004 ("DP_DOC_004"),
+  DP_DOC_004 ("DP_DOC_004", "Internal processing error"),
   /** Payload too large */
-  DP_DOC_005 ("DP_DOC_005"),
+  DP_DOC_005 ("DP_DOC_005", "Payload too large"),
   /** Timeout */
-  DP_DOC_006 ("DP_DOC_006"),
+  DP_DOC_006 ("DP_DOC_006", "Timeout"),
   /** Different mime type */
-  DP_DOC_007 ("DP_DOC_007");
+  DP_DOC_007 ("DP_DOC_007", "Different mime type");
 
   private final String m_sID;
+  private final String m_sDisplayName;
 
-  private EToopDocumentResponseErrorCode (@Nonnull @Nonempty final String sID)
+  private EToopDocumentResponseErrorCode (@Nonnull @Nonempty final String sID,
+                                          @Nonnull @Nonempty final String sDisplayName)
   {
     m_sID = sID;
+    m_sDisplayName = sDisplayName;
   }
 
   @Nonnull
@@ -57,6 +60,13 @@ public enum EToopDocumentResponseErrorCode implements IToopErrorCode
   public String getID ()
   {
     return m_sID;
+  }
+
+  @Nonnull
+  @Nonempty
+  public String getDisplayName ()
+  {
+    return m_sDisplayName;
   }
 
   @Nullable

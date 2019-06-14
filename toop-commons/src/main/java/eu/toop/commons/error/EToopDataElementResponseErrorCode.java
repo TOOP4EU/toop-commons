@@ -31,23 +31,26 @@ import com.helger.commons.lang.EnumHelper;
 public enum EToopDataElementResponseErrorCode implements IToopErrorCode
 {
   /** Unknown concept */
-  DP_ELE_001 ("DP_ELE_001"),
+  DP_ELE_001 ("DP_ELE_001", "Unknown concept"),
   /** Unauthorized */
-  DP_ELE_002 ("DP_ELE_002"),
+  DP_ELE_002 ("DP_ELE_002", "Unauthorized"),
   /** Ambiguous concept */
-  DP_ELE_003 ("DP_ELE_003"),
+  DP_ELE_003 ("DP_ELE_003", "Ambiguous concept"),
   /** Unavailable */
-  DP_ELE_004 ("DP_ELE_004"),
+  DP_ELE_004 ("DP_ELE_004", "Unavailable"),
   /** Internal processing error */
-  DP_ELE_005 ("DP_ELE_005"),
+  DP_ELE_005 ("DP_ELE_005", "Internal processing error"),
   /** Unsufficient input */
-  DP_ELE_006 ("DP_ELE_006");
+  DP_ELE_006 ("DP_ELE_006", "Unsufficient input");
 
   private final String m_sID;
+  private final String m_sDisplayName;
 
-  private EToopDataElementResponseErrorCode (@Nonnull @Nonempty final String sID)
+  private EToopDataElementResponseErrorCode (@Nonnull @Nonempty final String sID,
+                                             @Nonnull @Nonempty final String sDisplayName)
   {
     m_sID = sID;
+    m_sDisplayName = sDisplayName;
   }
 
   @Nonnull
@@ -55,6 +58,13 @@ public enum EToopDataElementResponseErrorCode implements IToopErrorCode
   public String getID ()
   {
     return m_sID;
+  }
+
+  @Nonnull
+  @Nonempty
+  public String getDisplayName ()
+  {
+    return m_sDisplayName;
   }
 
   @Nullable
