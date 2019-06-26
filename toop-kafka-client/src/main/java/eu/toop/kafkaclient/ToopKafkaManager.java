@@ -24,6 +24,7 @@ import javax.annotation.concurrent.GuardedBy;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.KafkaException;
@@ -57,7 +58,7 @@ final class ToopKafkaManager
     // Server URL - MUST be configured
     // s_aProps.put ("bootstrap.servers", "193.10.8.211:7073");
     // Default: 5secs
-    s_aDefaultProps.put ("max.block.ms", "5000");
+    s_aDefaultProps.put (ProducerConfig.MAX_BLOCK_MS_CONFIG, "5000");
   }
 
   /**
