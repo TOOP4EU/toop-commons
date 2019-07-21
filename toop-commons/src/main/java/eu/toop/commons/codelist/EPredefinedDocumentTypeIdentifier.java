@@ -33,136 +33,136 @@ public enum EPredefinedDocumentTypeIdentifier
 {
 
     /**
-     * <b>This item is deprecated since version 2 and should not be used to issue new identifiers!</b><br>Registered Organization - <code>urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10</code><br>
+     * <b>This item is deprecated since version 2 and should not be used to issue new identifiers!</b><br>Registered Organization Request - <code>urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10</code><br>
      * 
      * @since code list v1
      */
     @Deprecated
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10", Version.parse("1"), true, Version.parse("2")),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10("Registered Organization Request", "urn:eu:toop:ns:dataexchange-1p10::Request##urn:eu.toop.request.registeredorganization::1.10", Version.parse("1"), true, Version.parse("2")),
 
     /**
-     * <b>This item is deprecated since version 2 and should not be used to issue new identifiers!</b><br>Registered Organization - <code>urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10</code><br>
+     * <b>This item is deprecated since version 2 and should not be used to issue new identifiers!</b><br>Registered Organization Response - <code>urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10</code><br>
      * 
      * @since code list v1
      */
     @Deprecated
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10("Registered Organization", "urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10", Version.parse("1"), true, Version.parse("2")),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10("Registered Organization Response", "urn:eu:toop:ns:dataexchange-1p10::Response##urn:eu.toop.response.registeredorganization::1.10", Version.parse("1"), true, Version.parse("2")),
 
     /**
-     * Registered Organization List - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization-list::1.40</code><br>
+     * Registered Organization List Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40("Registered Organization List", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40("Registered Organization List Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Registered Organization List - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization-list::1.40</code><br>
+     * Registered Organization List Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40("Registered Organization List", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40("Registered Organization List Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Registered Organization - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization::1.40</code><br>
+     * Registered Organization Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40("Registered Organization", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40("Registered Organization Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization::1.40", Version.parse("2"), false, null),
 
     /**
-     * Registered Organization - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization::1.40</code><br>
+     * Registered Organization Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40("Registered Organization", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40("Registered Organization Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization::1.40", Version.parse("2"), false, null),
 
     /**
-     * Ship Certificate List - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate-list::1.40</code><br>
+     * Ship Certificate List Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_SHIPCERTIFICATE_LIST_1_40("Ship Certificate List", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_SHIPCERTIFICATE_LIST_1_40("Ship Certificate List Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Ship Certificate List - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate-list::1.40</code><br>
+     * Ship Certificate List Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_SHIPCERTIFICATE_LIST_1_40("Ship Certificate List", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_SHIPCERTIFICATE_LIST_1_40("Ship Certificate List Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Ship Certificate - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate::1.40</code><br>
+     * Ship Certificate Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_SHIPCERTIFICATE_1_40("Ship Certificate", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_SHIPCERTIFICATE_1_40("Ship Certificate Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.shipcertificate::1.40", Version.parse("2"), false, null),
 
     /**
-     * Ship Certificate - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate::1.40</code><br>
+     * Ship Certificate Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_SHIPCERTIFICATE_1_40("Ship Certificate", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_SHIPCERTIFICATE_1_40("Ship Certificate Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.shipcertificate::1.40", Version.parse("2"), false, null),
 
     /**
-     * Crew Certificate List - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate-list::1.40</code><br>
+     * Crew Certificate List Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_CREWCERTIFICATE_LIST_1_40("Crew Certificate List", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_CREWCERTIFICATE_LIST_1_40("Crew Certificate List Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Crew Certificate List - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate-list::1.40</code><br>
+     * Crew Certificate List Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_CREWCERTIFICATE_LIST_1_40("Crew Certificate List", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_CREWCERTIFICATE_LIST_1_40("Crew Certificate List Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Crew Certificate - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate::1.40</code><br>
+     * Crew Certificate Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_CREWCERTIFICATE_1_40("Crew Certificate", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_CREWCERTIFICATE_1_40("Crew Certificate Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.crewcertificate::1.40", Version.parse("2"), false, null),
 
     /**
-     * Crew Certificate - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate::1.40</code><br>
+     * Crew Certificate Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_CREWCERTIFICATE_1_40("Crew Certificate", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_CREWCERTIFICATE_1_40("Crew Certificate Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.crewcertificate::1.40", Version.parse("2"), false, null),
 
     /**
-     * Evidence List - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence-list::1.40</code><br>
+     * Evidence List Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_EVIDENCE_LIST_1_40("Evidence List", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_EVIDENCE_LIST_1_40("Evidence List Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Evidence List - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence-list::1.40</code><br>
+     * Evidence List Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence-list::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_EVIDENCE_LIST_1_40("Evidence List", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence-list::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_EVIDENCE_LIST_1_40("Evidence List Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence-list::1.40", Version.parse("2"), false, null),
 
     /**
-     * Evidence - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence::1.40</code><br>
+     * Evidence Request - <code>urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_EVIDENCE_1_40("Evidence", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence::1.40", Version.parse("2"), false, null),
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_EVIDENCE_1_40("Evidence Request", "urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.evidence::1.40", Version.parse("2"), false, null),
 
     /**
-     * Evidence - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence::1.40</code><br>
+     * Evidence Response - <code>urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence::1.40</code><br>
      * 
      * @since code list v2
      */
-    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_EVIDENCE_1_40("Evidence", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence::1.40", Version.parse("2"), false, null);
-    public static final EPredefinedDocumentTypeIdentifier REQUEST_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_10;
-    public static final EPredefinedDocumentTypeIdentifier RESPONSE_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P10_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_10;
+    URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_EVIDENCE_1_40("Evidence Response", "urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.evidence::1.40", Version.parse("2"), false, null);
     public static final EPredefinedDocumentTypeIdentifier REQUEST_REGISTEREDORGANIZATION_LIST = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_LIST_1_40;
     public static final EPredefinedDocumentTypeIdentifier RESPONSE_REGISTEREDORGANIZATION_LIST = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_LIST_1_40;
+    public static final EPredefinedDocumentTypeIdentifier REQUEST_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_REGISTEREDORGANIZATION_1_40;
+    public static final EPredefinedDocumentTypeIdentifier RESPONSE_REGISTEREDORGANIZATION = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_REGISTEREDORGANIZATION_1_40;
     public static final EPredefinedDocumentTypeIdentifier REQUEST_SHIPCERTIFICATE_LIST = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_SHIPCERTIFICATE_LIST_1_40;
     public static final EPredefinedDocumentTypeIdentifier RESPONSE_SHIPCERTIFICATE_LIST = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_RESPONSE_URN_EU_TOOP_RESPONSE_SHIPCERTIFICATE_LIST_1_40;
     public static final EPredefinedDocumentTypeIdentifier REQUEST_SHIPCERTIFICATE = EPredefinedDocumentTypeIdentifier.URN_EU_TOOP_NS_DATAEXCHANGE_1P40_REQUEST_URN_EU_TOOP_REQUEST_SHIPCERTIFICATE_1_40;
