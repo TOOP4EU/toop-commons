@@ -738,6 +738,23 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
+
+		<!--ASSERT -->
+<xsl:choose>
+      <xsl:when test="exists(toop:RoutingInformation/toop:DataProviderElectronicAddressIdentifier)" />
+      <xsl:otherwise>
+        <svrl:failed-assert test="exists(toop:RoutingInformation/toop:DataProviderElectronicAddressIdentifier)">
+          <xsl:attribute name="id">mandatory_res_dp_electronic_address_id</xsl:attribute>
+          <xsl:attribute name="flag">ERROR</xsl:attribute>
+          <xsl:attribute name="location">
+            <xsl:apply-templates mode="schematron-select-full-path" select="." />
+          </xsl:attribute>
+          <svrl:text>
+                Rule: A Toop data response MUST contain the DataProviderElectronicAddressIdentifier in the Routing information. 
+            </svrl:text>
+        </svrl:failed-assert>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates mode="M8" select="*|comment()|processing-instruction()" />
   </xsl:template>
   <xsl:template match="text()" mode="M8" priority="-1" />

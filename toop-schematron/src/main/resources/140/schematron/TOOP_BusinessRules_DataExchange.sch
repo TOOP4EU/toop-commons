@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-
+    
     Copyright (C) 2018-2019 toop.eu
-
+    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
+    
 -->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -98,6 +98,9 @@
             </report>
             <assert test="matches(toop:SpecificationIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p40::Response')" flag='ERROR' id="mandatory_res_specs_id">
                 Rule: A Toop data response MUST have the specification identifier "urn:eu:toop:ns:dataexchange-1p40::Response".
+            </assert>
+            <assert test="exists(toop:RoutingInformation/toop:DataProviderElectronicAddressIdentifier)"  flag='ERROR' id="mandatory_res_dp_electronic_address_id">
+                Rule: A Toop data response MUST contain the DataProviderElectronicAddressIdentifier in the Routing information. 
             </assert>
         </rule>
     </pattern>
