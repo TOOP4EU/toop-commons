@@ -65,6 +65,7 @@
         <toop:DataConsumerElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0088:4035811991014</toop:DataConsumerElectronicAddressIdentifier>
         <!--keep the routing data from the Request-->
         <toop:DataConsumerCountryCode>DK</toop:DataConsumerCountryCode>
+        <toop:DataProviderElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0088:dpid</toop:DataProviderElectronicAddressIdentifier>
         <!--keep the routing data from the Request-->
         <toop:DataProviderCountryCode>EE</toop:DataProviderCountryCode>
     </toop:RoutingInformation>
