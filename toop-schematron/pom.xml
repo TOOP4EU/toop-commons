@@ -101,6 +101,7 @@
           </excludes>
         </configuration>
       </plugin>
+      <!--  
       <plugin>
         <groupId>com.helger.maven</groupId>
         <artifactId>ph-schematron-maven-plugin</artifactId>
@@ -118,6 +119,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
     </plugins>
   </build>
 </project>
