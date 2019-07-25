@@ -18,9 +18,11 @@ package eu.toop.commons.exchange;
 import java.io.Serializable;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.ReturnsMutableObject;
+import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
 import com.helger.commons.hashcode.HashCodeGenerator;
 import com.helger.commons.string.ToStringGenerator;
@@ -39,12 +41,11 @@ public class ToopRequestWithAttachments140 implements Serializable
   private final ICommonsList <AsicReadEntry> m_aAttachments;
 
   public ToopRequestWithAttachments140 (@Nonnull final TDETOOPRequestType aRequest,
-                                        @Nonnull final ICommonsList <AsicReadEntry> aAttachments)
+                                        @Nullable final ICommonsList <AsicReadEntry> aAttachments)
   {
     ValueEnforcer.notNull (aRequest, "Request");
-    ValueEnforcer.notNull (aAttachments, "Attachments");
     m_aRequest = aRequest;
-    m_aAttachments = aAttachments.getClone ();
+    m_aAttachments = aAttachments == null ? new CommonsArrayList <> () : aAttachments.getClone ();
   }
 
   /**
