@@ -1,0 +1,24 @@
+version: '3' 
+services: 
+ smp:
+  container_name: "smp"
+  ports: 
+  - "80:8080"
+  volumes:
+  - /toop-dir:/toop-dir
+  image: "toop/phoss-smp:latest"
+ connector:
+  container_name: "connector"
+  ports:
+  - "8083:8080"
+  volumes:
+  - /toop-dir:/toop-dir
+  image: "toop/toop-connector-webapp:latest"
+ holodeck:
+  container_name: "holodeck"
+  ports:
+  - "8082:8888"
+  volumes:
+  - /toop-dir/hb2b-toop:/mnt/hb2b
+  image: "chasquismessaging/holodeckb2b-toop:latest"
+
