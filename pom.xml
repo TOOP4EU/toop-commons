@@ -142,6 +142,7 @@
             <exclude>**/LICENSE</exclude>
             <exclude>**/NOTICE</exclude>
             <exclude>**/*.jks</exclude>
+            <exclude>**/*.cer</exclude>
             <exclude>**/*.txt</exclude>
           </excludes>
         </configuration>
