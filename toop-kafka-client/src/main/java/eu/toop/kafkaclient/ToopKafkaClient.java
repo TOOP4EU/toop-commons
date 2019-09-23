@@ -15,6 +15,7 @@
  */
 package eu.toop.kafkaclient;
 
+import java.util.Locale;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
@@ -39,13 +40,17 @@ public final class ToopKafkaClient
   private ToopKafkaClient ()
   {}
 
-  private static void _sendIfKafkaEnabled (@Nonnull final String sValue)
+  private static void _sendIfKafkaEnabled (@Nullable final IErrorLevel aErrorLevel, @Nonnull final String sValue)
   {
     if (LOGGER.isDebugEnabled ())
       LOGGER.debug ("Sending to Kafka: '" + sValue + "'");
 
+    String aErrorLevelString = "";
+    if (aErrorLevel != null)
+      aErrorLevelString = "[" + aErrorLevel.getID().toUpperCase(Locale.ENGLISH) + "] ";
+
     // Send but don't wait for the commit!
-    ToopKafkaManager.send ((String) null, sValue, null);
+    ToopKafkaManager.send ((String) null, aErrorLevelString + sValue, null);
   }
 
   /**
@@ -63,7 +68,7 @@ public final class ToopKafkaClient
     if (aErrorLevel != null && ToopKafkaSettings.isLoggingEnabled ())
       LogHelper.log (ToopKafkaClient.class, aErrorLevel, sValue);
     if (ToopKafkaSettings.isKafkaEnabled ())
-      _sendIfKafkaEnabled (sValue);
+      _sendIfKafkaEnabled (aErrorLevel, sValue);
   }
 
   /**
@@ -111,7 +116,7 @@ public final class ToopKafkaClient
         sValue = aValue.get ();
       if (t != null)
         sValue += " -- " + ClassHelper.getClassLocalName (t.getClass ()) + ": " + t.getMessage ();
-      _sendIfKafkaEnabled (sValue);
+      _sendIfKafkaEnabled (aErrorLevel, sValue);
     }
   }
 
