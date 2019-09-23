@@ -42,15 +42,15 @@ public final class ToopKafkaClient
 
   private static void _sendIfKafkaEnabled (@Nullable final IErrorLevel aErrorLevel, @Nonnull final String sValue)
   {
-    if (LOGGER.isDebugEnabled ())
-      LOGGER.debug ("Sending to Kafka: '" + sValue + "'");
-
-    String aErrorLevelString = "";
+    String sLogText = sValue;
     if (aErrorLevel != null)
-      aErrorLevelString = "[" + aErrorLevel.getID().toUpperCase(Locale.ENGLISH) + "] ";
+      sLogText = "[" + aErrorLevel.getID ().toUpperCase (Locale.US) + "] " + sLogText;
+
+    if (LOGGER.isDebugEnabled ())
+      LOGGER.debug ("Sending to Kafka: '" + sLogText + "'");
 
     // Send but don't wait for the commit!
-    ToopKafkaManager.send ((String) null, aErrorLevelString + sValue, null);
+    ToopKafkaManager.send ((String) null, sLogText, null);
   }
 
   /**
