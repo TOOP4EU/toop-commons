@@ -37,7 +37,7 @@ import com.helger.commons.ValueEnforcer;
  *  </ul>
  *  </p>
  */
-public class Command {
+public class CliCommand {
   /**
    * The main command, the first word in the list
    */
@@ -51,7 +51,7 @@ public class Command {
   /**
    * Private constructor
    */
-  private Command() {
+  private CliCommand() {
 
   }
 
@@ -92,14 +92,14 @@ public class Command {
    * @param words word list
    * @return A new command
    */
-  public static Command parse(List<String> words) {
+  public static CliCommand parse(List<String> words) {
     return parse(words, false);
   }
 
-  public static Command parse(List<String> words, boolean hasMainCommand) {
+  public static CliCommand parse(List<String> words, boolean hasMainCommand) {
     ValueEnforcer.notEmpty(words, "The word list cannot be null or empty");
 
-    Command command = new Command();
+    CliCommand command = new CliCommand();
     if (hasMainCommand)
       command.mainCommand = words.get(0);
 

@@ -31,7 +31,7 @@ public class CommandTest {
   @Test
   public void parseEmptyCommandList() {
     try {
-      Command.parse(new ArrayList<>(), true);
+      CliCommand.parse(new ArrayList<>(), true);
       fail();
     } catch (IllegalArgumentException ex) {
       // Expected
@@ -40,7 +40,7 @@ public class CommandTest {
 
   @Test
   public void parseOneCommand() {
-    Command singleCommand = Command.parse(Arrays.asList("singleCommand"), true);
+    CliCommand singleCommand = CliCommand.parse(Arrays.asList("singleCommand"), true);
 
     assertEquals("singleCommand", singleCommand.getMainCommand());
     assertNull(singleCommand.getOptions());
@@ -51,7 +51,7 @@ public class CommandTest {
     String s = "sampleCommand optionwithoutdash1 optionwithoutdash2 -f file1 -q -t option1 option2 -c option3";
     final Method split = String.class.getMethod("split", String.class);
     String[] tokens = (String[]) split.invoke(s, "\\s");
-    Command singleCommand = Command.parse(Arrays.asList(tokens), true);
+    CliCommand singleCommand = CliCommand.parse(Arrays.asList(tokens), true);
 
     assertEquals("sampleCommand", singleCommand.getMainCommand());
     assertNotNull(singleCommand.getOptions());
