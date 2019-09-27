@@ -27,7 +27,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-public class CommandTest {
+public class CliCommandTest {
   @Test
   public void parseEmptyCommandList() {
     try {
