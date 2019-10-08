@@ -66,7 +66,7 @@ public final class ToopDataExchange140FuncTest
                                                   "data-request1.xml" })
     {
       final TDETOOPRequestType aRequest = ToopReader.request140 ()
-                                                    .read (new File ("src/test/resources/xml/1.4.0/" + sFilename));
+                                                    .read (new File ("src/test/resources/xml/1.4.1/" + sFilename));
       assertNotNull (aRequest);
       final String sXML = ToopWriter.request140 ().getAsString (aRequest);
       assertNotNull (sXML);
@@ -85,7 +85,7 @@ public final class ToopDataExchange140FuncTest
                                                   "data-response1.xml" })
     {
       final TDETOOPResponseType aResponse = ToopReader.response140 ()
-                                                      .read (new File ("src/test/resources/xml/1.4.0/" + sFilename));
+                                                      .read (new File ("src/test/resources/xml/1.4.1/" + sFilename));
       assertNotNull (aResponse);
       final String sXML = ToopWriter.response140 ().getAsString (aResponse);
       assertNotNull (sXML);

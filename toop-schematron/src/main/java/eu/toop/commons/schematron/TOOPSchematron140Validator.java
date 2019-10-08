@@ -35,7 +35,7 @@ public class TOOPSchematron140Validator extends AbstractTOOPSchematronValidator
    * The resource with the rules. Important: this Schematron requires additional
    * code lists in a relative directory!
    */
-  public static final IReadableResource TOOP_140_SCHEMATRON_RES_XSLT = new ClassPathResource ("140/xslt/TOOP_BusinessRules_DataExchange.xslt");
+  public static final IReadableResource TOOP_140_SCHEMATRON_RES_XSLT = new ClassPathResource ("141/xslt/TOOP_BusinessRules_DataExchange.xslt");
 
   public TOOPSchematron140Validator ()
   {}

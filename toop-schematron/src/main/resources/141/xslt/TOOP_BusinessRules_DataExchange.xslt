@@ -472,6 +472,13 @@
         <xsl:apply-templates />
       </svrl:active-pattern>
       <xsl:apply-templates mode="M43" select="/" />
+      <svrl:active-pattern>
+        <xsl:attribute name="document">
+          <xsl:value-of select="document-uri(/)" />
+        </xsl:attribute>
+        <xsl:apply-templates />
+      </svrl:active-pattern>
+      <xsl:apply-templates mode="M44" select="/" />
     </svrl:schematron-output>
   </xsl:template>
 
@@ -1050,7 +1057,44 @@
 
 
 	<!--RULE -->
-<xsl:template match="toop:AuthorizedRepresentativeIdentifier" mode="M17" priority="1000">
+<xsl:template match="toop:Response//toop:DataElementRequest/toop:ConceptRequest" mode="M17" priority="1000">
+    <svrl:fired-rule context="toop:Response//toop:DataElementRequest/toop:ConceptRequest" />
+    <xsl:variable name="responseValues" select="count(.//toop:DataElementResponseValue)" />
+    <xsl:variable name="conceptRequests" select="count(..//toop:ConceptRequest)" />
+
+		<!--ASSERT -->
+<xsl:choose>
+      <xsl:when test="( ($responseValues=0 or $responseValues=1) and                     (($conceptRequests=1) and(exists(./toop:DataElementResponseValue))                 or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) )                 or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) )))" />
+      <xsl:otherwise>
+        <svrl:failed-assert test="( ($responseValues=0 or $responseValues=1) and (($conceptRequests=1) and(exists(./toop:DataElementResponseValue)) or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) ) or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) )))">
+          <xsl:attribute name="id">wrong_dp_response_value_cardinality</xsl:attribute>
+          <xsl:attribute name="flag">ERROR</xsl:attribute>
+          <xsl:attribute name="location">
+            <xsl:apply-templates mode="schematron-select-full-path" select="." />
+          </xsl:attribute>
+          <svrl:text>
+                Only one DataElementeResponseValue can be added at the deepest level of a ConceptRequest (found <xsl:text />
+            <xsl:value-of select="$responseValues" />
+            <xsl:text /> value(s) and <xsl:text />
+            <xsl:value-of select="$conceptRequests" />
+            <xsl:text /> level(s)). 
+                Rule:  If the ConceptTypeCode of a ConceptRequest is set on "Data Provider" ("DP") or "TOOP Concept" ("TC") and the hierarchy of a concept request is at its maximum, the cardinality of this element MUST be set to 1…n in the TOOP Response. 
+            </svrl:text>
+        </svrl:failed-assert>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:apply-templates mode="M17" select="*|comment()|processing-instruction()" />
+  </xsl:template>
+  <xsl:template match="text()" mode="M17" priority="-1" />
+  <xsl:template match="@*|node()" mode="M17" priority="-2">
+    <xsl:apply-templates mode="M17" select="*|comment()|processing-instruction()" />
+  </xsl:template>
+
+<!--PATTERN -->
+
+
+	<!--RULE -->
+<xsl:template match="toop:AuthorizedRepresentativeIdentifier" mode="M18" priority="1000">
     <svrl:fired-rule context="toop:AuthorizedRepresentativeIdentifier" />
 
 		<!--ASSERT -->
@@ -1069,18 +1113,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M17" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M18" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M17" priority="-1" />
-  <xsl:template match="@*|node()" mode="M17" priority="-2">
-    <xsl:apply-templates mode="M17" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M18" priority="-1" />
+  <xsl:template match="@*|node()" mode="M18" priority="-2">
+    <xsl:apply-templates mode="M18" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE -->
-<xsl:template match="toop:LegalEntityIdentifier" mode="M18" priority="1000">
+<xsl:template match="toop:LegalEntityIdentifier" mode="M19" priority="1000">
     <svrl:fired-rule context="toop:LegalEntityIdentifier" />
     <xsl:variable name="varleilength" select="string-length(normalize-space(text()))" />
 
@@ -1102,18 +1146,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M18" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M19" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M18" priority="-1" />
-  <xsl:template match="@*|node()" mode="M18" priority="-2">
-    <xsl:apply-templates mode="M18" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M19" priority="-1" />
+  <xsl:template match="@*|node()" mode="M19" priority="-2">
+    <xsl:apply-templates mode="M19" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE -->
-<xsl:template match="toop:DataElementResponseValue//toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" mode="M19" priority="1000">
+<xsl:template match="toop:DataElementResponseValue//toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" mode="M20" priority="1000">
     <svrl:fired-rule context="toop:DataElementResponseValue//toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" />
 
 		<!--ASSERT -->
@@ -1134,18 +1178,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M19" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M20" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M19" priority="-1" />
-  <xsl:template match="@*|node()" mode="M19" priority="-2">
-    <xsl:apply-templates mode="M19" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M20" priority="-1" />
+  <xsl:template match="@*|node()" mode="M20" priority="-2">
+    <xsl:apply-templates mode="M20" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE -->
-<xsl:template match="toop:DataElementResponseValue//toop:ResponseAmount" mode="M20" priority="1000">
+<xsl:template match="toop:DataElementResponseValue//toop:ResponseAmount" mode="M21" priority="1000">
     <svrl:fired-rule context="toop:DataElementResponseValue//toop:ResponseAmount" />
 
 		<!--ASSERT -->
@@ -1166,18 +1210,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M20" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M21" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M20" priority="-1" />
-  <xsl:template match="@*|node()" mode="M20" priority="-2">
-    <xsl:apply-templates mode="M20" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M21" priority="-1" />
+  <xsl:template match="@*|node()" mode="M21" priority="-2">
+    <xsl:apply-templates mode="M21" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE -->
-<xsl:template match="toop:DataElementResponseValue//toop:ResponseNumeric" mode="M21" priority="1000">
+<xsl:template match="toop:DataElementResponseValue//toop:ResponseNumeric" mode="M22" priority="1000">
     <svrl:fired-rule context="toop:DataElementResponseValue//toop:ResponseNumeric" />
 
 		<!--REPORT -->
@@ -1195,18 +1239,18 @@
             </svrl:text>
       </svrl:successful-report>
     </xsl:if>
-    <xsl:apply-templates mode="M21" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M22" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M21" priority="-1" />
-  <xsl:template match="@*|node()" mode="M21" priority="-2">
-    <xsl:apply-templates mode="M21" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M22" priority="-1" />
+  <xsl:template match="@*|node()" mode="M22" priority="-2">
+    <xsl:apply-templates mode="M22" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="dataproviderids" select="//toop:DataProvider//toop:DPIdentifier" />
 
 	<!--RULE check_matching_dataprovider_id-->
-<xsl:template match="toop:Error//toop:DataProviderIdentifier" mode="M22" priority="1000">
+<xsl:template match="toop:Error//toop:DataProviderIdentifier" mode="M23" priority="1000">
     <svrl:fired-rule context="toop:Error//toop:DataProviderIdentifier" id="check_matching_dataprovider_id" />
 
 		<!--ASSERT -->
@@ -1223,18 +1267,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M22" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M23" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M22" priority="-1" />
-  <xsl:template match="@*|node()" mode="M22" priority="-2">
-    <xsl:apply-templates mode="M22" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M23" priority="-1" />
+  <xsl:template match="@*|node()" mode="M23" priority="-2">
+    <xsl:apply-templates mode="M23" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE check_errortext_unique_lang-->
-<xsl:template match="toop:Error" mode="M23" priority="1000">
+<xsl:template match="toop:Error" mode="M24" priority="1000">
     <svrl:fired-rule context="toop:Error" id="check_errortext_unique_lang" />
 
 		<!--ASSERT -->
@@ -1251,18 +1295,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M23" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M24" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M23" priority="-1" />
-  <xsl:template match="@*|node()" mode="M23" priority="-2">
-    <xsl:apply-templates mode="M23" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M24" priority="-1" />
+  <xsl:template match="@*|node()" mode="M24" priority="-2">
+    <xsl:apply-templates mode="M24" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE check_documentremarks_unique_lang-->
-<xsl:template match="toop:DocumentResponse" mode="M24" priority="1000">
+<xsl:template match="toop:DocumentResponse" mode="M25" priority="1000">
     <svrl:fired-rule context="toop:DocumentResponse" id="check_documentremarks_unique_lang" />
 
 		<!--ASSERT -->
@@ -1279,18 +1323,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M24" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M25" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M24" priority="-1" />
-  <xsl:template match="@*|node()" mode="M24" priority="-2">
-    <xsl:apply-templates mode="M24" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M25" priority="-1" />
+  <xsl:template match="@*|node()" mode="M25" priority="-2">
+    <xsl:apply-templates mode="M25" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 
 
 	<!--RULE -->
-<xsl:template match="toop:Response" mode="M25" priority="1000">
+<xsl:template match="toop:Response" mode="M26" priority="1000">
     <svrl:fired-rule context="toop:Response" />
     <xsl:variable name="dataProviderCount" select="count(//toop:DataProvider)" />
     <xsl:variable name="errorCount" select="count(//toop:Error[toop:Severity='FAILURE'])" />
@@ -1322,18 +1366,18 @@
             </svrl:text>
       </svrl:successful-report>
     </xsl:if>
-    <xsl:apply-templates mode="M25" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M26" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M25" priority="-1" />
-  <xsl:template match="@*|node()" mode="M25" priority="-2">
-    <xsl:apply-templates mode="M25" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M26" priority="-1" />
+  <xsl:template match="@*|node()" mode="M26" priority="-2">
+    <xsl:apply-templates mode="M26" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="doctypes" select="document('..\codelists\dynamic\ToopDocumentTypeIdentifiers-v2.gc')//Value[@ColumnRef='doctypeid']" />
 
 	<!--RULE mandatory_req_doc_id-->
-<xsl:template match="toop:Request/toop:RoutingInformation/toop:DocumentTypeIdentifier" mode="M26" priority="1001">
+<xsl:template match="toop:Request/toop:RoutingInformation/toop:DocumentTypeIdentifier" mode="M27" priority="1001">
     <svrl:fired-rule context="toop:Request/toop:RoutingInformation/toop:DocumentTypeIdentifier" id="mandatory_req_doc_id" />
 
 		<!--ASSERT -->
@@ -1352,11 +1396,11 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M26" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 	<!--RULE mandatory_res_doc_id-->
-<xsl:template match="toop:Response/toop:RoutingInformation/toop:DocumentTypeIdentifier" mode="M26" priority="1000">
+<xsl:template match="toop:Response/toop:RoutingInformation/toop:DocumentTypeIdentifier" mode="M27" priority="1000">
     <svrl:fired-rule context="toop:Response/toop:RoutingInformation/toop:DocumentTypeIdentifier" id="mandatory_res_doc_id" />
 
 		<!--ASSERT -->
@@ -1371,18 +1415,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M26" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M26" priority="-1" />
-  <xsl:template match="@*|node()" mode="M26" priority="-2">
-    <xsl:apply-templates mode="M26" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M27" priority="-1" />
+  <xsl:template match="@*|node()" mode="M27" priority="-2">
+    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="countrycodes" select="document('..\codelists\std-gc\CountryIdentificationCode-2.1.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_country_countrycode-->
-<xsl:template match="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" mode="M27" priority="1002">
+<xsl:template match="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" mode="M28" priority="1002">
     <svrl:fired-rule context="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" id="gc_check_country_countrycode" />
 
 		<!--ASSERT -->
@@ -1399,11 +1443,11 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M28" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 	<!--RULE gc_warn_country_countrycode-->
-<xsl:template match="toop:NaturalPersonLegalAddress//toop:CountryCode | toop:LegalPersonLegalAddress//toop:CountryCode" mode="M27" priority="1001">
+<xsl:template match="toop:NaturalPersonLegalAddress//toop:CountryCode | toop:LegalPersonLegalAddress//toop:CountryCode" mode="M28" priority="1001">
     <svrl:fired-rule context="toop:NaturalPersonLegalAddress//toop:CountryCode | toop:LegalPersonLegalAddress//toop:CountryCode" id="gc_warn_country_countrycode" />
 
 		<!--ASSERT -->
@@ -1420,11 +1464,11 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M28" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 	<!--RULE gc_check_id_countrycode-->
-<xsl:template match="toop:LegalPersonUniqueIdentifier | toop:PersonIdentifier" mode="M27" priority="1000">
+<xsl:template match="toop:LegalPersonUniqueIdentifier | toop:PersonIdentifier" mode="M28" priority="1000">
     <svrl:fired-rule context="toop:LegalPersonUniqueIdentifier | toop:PersonIdentifier" id="gc_check_id_countrycode" />
 
 		<!--ASSERT -->
@@ -1456,18 +1500,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M28" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M27" priority="-1" />
-  <xsl:template match="@*|node()" mode="M27" priority="-2">
-    <xsl:apply-templates mode="M27" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M28" priority="-1" />
+  <xsl:template match="@*|node()" mode="M28" priority="-2">
+    <xsl:apply-templates mode="M28" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="subjecttypecodes" select="document('..\codelists\gc\DataRequestSubjectTypeCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_subject_type_code-->
-<xsl:template match="toop:DataRequestSubjectTypeCode" mode="M28" priority="1000">
+<xsl:template match="toop:DataRequestSubjectTypeCode" mode="M29" priority="1000">
     <svrl:fired-rule context="toop:DataRequestSubjectTypeCode" id="gc_check_subject_type_code" />
 
 		<!--ASSERT -->
@@ -1482,18 +1526,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M28" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M29" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M28" priority="-1" />
-  <xsl:template match="@*|node()" mode="M28" priority="-2">
-    <xsl:apply-templates mode="M28" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M29" priority="-1" />
+  <xsl:template match="@*|node()" mode="M29" priority="-2">
+    <xsl:apply-templates mode="M29" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="gendertypecodes" select="document('..\codelists\gc\Gender-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_gender_code-->
-<xsl:template match="toop:GenderCode" mode="M29" priority="1000">
+<xsl:template match="toop:GenderCode" mode="M30" priority="1000">
     <svrl:fired-rule context="toop:GenderCode" id="gc_check_gender_code" />
 
 		<!--ASSERT -->
@@ -1508,18 +1552,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M29" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M30" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M29" priority="-1" />
-  <xsl:template match="@*|node()" mode="M29" priority="-2">
-    <xsl:apply-templates mode="M29" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M30" priority="-1" />
+  <xsl:template match="@*|node()" mode="M30" priority="-2">
+    <xsl:apply-templates mode="M30" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="concepttypecodes" select="document('..\codelists\gc\ConceptTypeCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_concept_code-->
-<xsl:template match="toop:ConceptTypeCode" mode="M30" priority="1000">
+<xsl:template match="toop:ConceptTypeCode" mode="M31" priority="1000">
     <svrl:fired-rule context="toop:ConceptTypeCode" id="gc_check_concept_code" />
 
 		<!--ASSERT -->
@@ -1534,18 +1578,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M30" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M31" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M30" priority="-1" />
-  <xsl:template match="@*|node()" mode="M30" priority="-2">
-    <xsl:apply-templates mode="M30" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M31" priority="-1" />
+  <xsl:template match="@*|node()" mode="M31" priority="-2">
+    <xsl:apply-templates mode="M31" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="currencytypecodes" select="document('..\codelists\std-gc\CurrencyCode-2.1.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_currency_code-->
-<xsl:template match="toop:ResponseAmount" mode="M31" priority="1000">
+<xsl:template match="toop:ResponseAmount" mode="M32" priority="1000">
     <svrl:fired-rule context="toop:ResponseAmount" id="gc_check_currency_code" />
     <xsl:variable name="varcurrencyID" select="@currencyID" />
 
@@ -1563,18 +1607,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M31" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M32" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M31" priority="-1" />
-  <xsl:template match="@*|node()" mode="M31" priority="-2">
-    <xsl:apply-templates mode="M31" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M32" priority="-1" />
+  <xsl:template match="@*|node()" mode="M32" priority="-2">
+    <xsl:apply-templates mode="M32" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="industrialtypecodes" select="document('..\codelists\gc\StandardIndustrialClassCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_industrial_code-->
-<xsl:template match="toop:StandardIndustrialClassification" mode="M32" priority="1000">
+<xsl:template match="toop:StandardIndustrialClassification" mode="M33" priority="1000">
     <svrl:fired-rule context="toop:StandardIndustrialClassification" id="gc_check_industrial_code" />
 
 		<!--ASSERT -->
@@ -1589,32 +1633,6 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M32" select="*|comment()|processing-instruction()" />
-  </xsl:template>
-  <xsl:template match="text()" mode="M32" priority="-1" />
-  <xsl:template match="@*|node()" mode="M32" priority="-2">
-    <xsl:apply-templates mode="M32" select="*|comment()|processing-instruction()" />
-  </xsl:template>
-
-<!--PATTERN -->
-<xsl:variable name="dataelementresponseerrorcodes" select="document('..\codelists\gc\DataElementResponseErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
-
-	<!--RULE gc_check_error_data_element_response-->
-<xsl:template match="toop:DataElementResponseValue//toop:ErrorCode" mode="M33" priority="1000">
-    <svrl:fired-rule context="toop:DataElementResponseValue//toop:ErrorCode" id="gc_check_error_data_element_response" />
-
-		<!--ASSERT -->
-<xsl:choose>
-      <xsl:when test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
-      <xsl:otherwise>
-        <svrl:failed-assert test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
-          <xsl:attribute name="location">
-            <xsl:apply-templates mode="schematron-select-full-path" select="." />
-          </xsl:attribute>
-          <svrl:text>An error code must always be specified using the correct code list.</svrl:text>
-        </svrl:failed-assert>
-      </xsl:otherwise>
-    </xsl:choose>
     <xsl:apply-templates mode="M33" select="*|comment()|processing-instruction()" />
   </xsl:template>
   <xsl:template match="text()" mode="M33" priority="-1" />
@@ -1623,17 +1641,17 @@
   </xsl:template>
 
 <!--PATTERN -->
-<xsl:variable name="documentresponseerrorcodes" select="document('..\codelists\gc\DocumentResponseErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
+<xsl:variable name="dataelementresponseerrorcodes" select="document('..\codelists\gc\DataElementResponseErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
-	<!--RULE gc_check_error_document_response-->
-<xsl:template match="toop:DocumentResponse//toop:ErrorCode" mode="M34" priority="1000">
-    <svrl:fired-rule context="toop:DocumentResponse//toop:ErrorCode" id="gc_check_error_document_response" />
+	<!--RULE gc_check_error_data_element_response-->
+<xsl:template match="toop:DataElementResponseValue//toop:ErrorCode" mode="M34" priority="1000">
+    <svrl:fired-rule context="toop:DataElementResponseValue//toop:ErrorCode" id="gc_check_error_data_element_response" />
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1649,10 +1667,36 @@
   </xsl:template>
 
 <!--PATTERN -->
+<xsl:variable name="documentresponseerrorcodes" select="document('..\codelists\gc\DocumentResponseErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
+
+	<!--RULE gc_check_error_document_response-->
+<xsl:template match="toop:DocumentResponse//toop:ErrorCode" mode="M35" priority="1000">
+    <svrl:fired-rule context="toop:DocumentResponse//toop:ErrorCode" id="gc_check_error_document_response" />
+
+		<!--ASSERT -->
+<xsl:choose>
+      <xsl:when test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:otherwise>
+        <svrl:failed-assert test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+          <xsl:attribute name="location">
+            <xsl:apply-templates mode="schematron-select-full-path" select="." />
+          </xsl:attribute>
+          <svrl:text>An error code must always be specified using the correct code list.</svrl:text>
+        </svrl:failed-assert>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:apply-templates mode="M35" select="*|comment()|processing-instruction()" />
+  </xsl:template>
+  <xsl:template match="text()" mode="M35" priority="-1" />
+  <xsl:template match="@*|node()" mode="M35" priority="-2">
+    <xsl:apply-templates mode="M35" select="*|comment()|processing-instruction()" />
+  </xsl:template>
+
+<!--PATTERN -->
 <xsl:variable name="docrequesttypecodes" select="document('..\codelists\gc\DocumentRequestTypeCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_doc_req_type-->
-<xsl:template match="toop:DocumentRequestTypeCode | toop:DocumentTypeCode" mode="M35" priority="1000">
+<xsl:template match="toop:DocumentRequestTypeCode | toop:DocumentTypeCode" mode="M36" priority="1000">
     <svrl:fired-rule context="toop:DocumentRequestTypeCode | toop:DocumentTypeCode" id="gc_check_doc_req_type" />
 
 		<!--ASSERT -->
@@ -1667,18 +1711,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M35" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M36" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M35" priority="-1" />
-  <xsl:template match="@*|node()" mode="M35" priority="-2">
-    <xsl:apply-templates mode="M35" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M36" priority="-1" />
+  <xsl:template match="@*|node()" mode="M36" priority="-2">
+    <xsl:apply-templates mode="M36" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="mimetypecodes" select="document('..\codelists\std-gc\BinaryObjectMimeCode-2.1.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_doc_mime_type-->
-<xsl:template match="toop:PreferredDocumentMimeTypeCode | toop:DocumentMimeTypeCode" mode="M36" priority="1000">
+<xsl:template match="toop:PreferredDocumentMimeTypeCode | toop:DocumentMimeTypeCode" mode="M37" priority="1000">
     <svrl:fired-rule context="toop:PreferredDocumentMimeTypeCode | toop:DocumentMimeTypeCode" id="gc_check_doc_mime_type" />
 
 		<!--ASSERT -->
@@ -1693,18 +1737,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M36" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M37" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M36" priority="-1" />
-  <xsl:template match="@*|node()" mode="M36" priority="-2">
-    <xsl:apply-templates mode="M36" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M37" priority="-1" />
+  <xsl:template match="@*|node()" mode="M37" priority="-2">
+    <xsl:apply-templates mode="M37" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="processidcodes" select="document('..\codelists\dynamic\ToopProcessIdentifiers-v2.gc')//Value[@ColumnRef='id']" />
 
 	<!--RULE gc_check_process_id-->
-<xsl:template match="toop:ProcessIdentifier" mode="M37" priority="1000">
+<xsl:template match="toop:ProcessIdentifier" mode="M38" priority="1000">
     <svrl:fired-rule context="toop:ProcessIdentifier" id="gc_check_process_id" />
 
 		<!--ASSERT -->
@@ -1719,18 +1763,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M37" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M38" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M37" priority="-1" />
-  <xsl:template match="@*|node()" mode="M37" priority="-2">
-    <xsl:apply-templates mode="M37" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M38" priority="-1" />
+  <xsl:template match="@*|node()" mode="M38" priority="-2">
+    <xsl:apply-templates mode="M38" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="agencyids" select="document('..\codelists\dynamic\ToopParticipantIdentifierSchemes-v2.gc')//Value[@ColumnRef='iso6523']" />
 
 	<!--RULE mandatory_schemeagency_actors-->
-<xsl:template match="toop:DCElectronicAddressIdentifier | toop:DPElectronicAddressIdentifier" mode="M38" priority="1000">
+<xsl:template match="toop:DCElectronicAddressIdentifier | toop:DPElectronicAddressIdentifier" mode="M39" priority="1000">
     <svrl:fired-rule context="toop:DCElectronicAddressIdentifier | toop:DPElectronicAddressIdentifier" id="mandatory_schemeagency_actors" />
     <xsl:variable name="thisId" select="@schemeAgencyID" />
 
@@ -1748,18 +1792,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M38" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M39" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M38" priority="-1" />
-  <xsl:template match="@*|node()" mode="M38" priority="-2">
-    <xsl:apply-templates mode="M38" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M39" priority="-1" />
+  <xsl:template match="@*|node()" mode="M39" priority="-2">
+    <xsl:apply-templates mode="M39" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="errororigincodes" select="document('..\codelists\gc\ErrorOrigin-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_error_origin-->
-<xsl:template match="toop:Error//toop:Origin" mode="M39" priority="1000">
+<xsl:template match="toop:Error//toop:Origin" mode="M40" priority="1000">
     <svrl:fired-rule context="toop:Error//toop:Origin" id="gc_check_error_origin" />
 
 		<!--ASSERT -->
@@ -1774,18 +1818,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M39" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M40" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M39" priority="-1" />
-  <xsl:template match="@*|node()" mode="M39" priority="-2">
-    <xsl:apply-templates mode="M39" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M40" priority="-1" />
+  <xsl:template match="@*|node()" mode="M40" priority="-2">
+    <xsl:apply-templates mode="M40" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="errorcategorycodes" select="document('..\codelists\gc\ErrorCategory-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_error_category-->
-<xsl:template match="toop:Error//toop:Category" mode="M40" priority="1000">
+<xsl:template match="toop:Error//toop:Category" mode="M41" priority="1000">
     <svrl:fired-rule context="toop:Error//toop:Category" id="gc_check_error_category" />
 
 		<!--ASSERT -->
@@ -1800,18 +1844,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M40" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M41" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M40" priority="-1" />
-  <xsl:template match="@*|node()" mode="M40" priority="-2">
-    <xsl:apply-templates mode="M40" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M41" priority="-1" />
+  <xsl:template match="@*|node()" mode="M41" priority="-2">
+    <xsl:apply-templates mode="M41" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="errorseveritycodes" select="document('..\codelists\gc\ErrorSeverity-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_error_severity-->
-<xsl:template match="toop:Error//toop:Severity" mode="M41" priority="1000">
+<xsl:template match="toop:Error//toop:Severity" mode="M42" priority="1000">
     <svrl:fired-rule context="toop:Error//toop:Severity" id="gc_check_error_severity" />
 
 		<!--ASSERT -->
@@ -1826,18 +1870,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M41" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M42" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M41" priority="-1" />
-  <xsl:template match="@*|node()" mode="M41" priority="-2">
-    <xsl:apply-templates mode="M41" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M42" priority="-1" />
+  <xsl:template match="@*|node()" mode="M42" priority="-2">
+    <xsl:apply-templates mode="M42" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="errorcodecodes" select="document('..\codelists\gc\ErrorCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_error_code-->
-<xsl:template match="toop:Error//toop:ErrorCode" mode="M42" priority="1000">
+<xsl:template match="toop:Error//toop:ErrorCode" mode="M43" priority="1000">
     <svrl:fired-rule context="toop:Error//toop:ErrorCode" id="gc_check_error_code" />
 
 		<!--ASSERT -->
@@ -1852,18 +1896,18 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M42" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M43" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M42" priority="-1" />
-  <xsl:template match="@*|node()" mode="M42" priority="-2">
-    <xsl:apply-templates mode="M42" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M43" priority="-1" />
+  <xsl:template match="@*|node()" mode="M43" priority="-2">
+    <xsl:apply-templates mode="M43" select="*|comment()|processing-instruction()" />
   </xsl:template>
 
 <!--PATTERN -->
 <xsl:variable name="loacodes" select="document('..\codelists\gc\LevelsOfAssuranceCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_loi-->
-<xsl:template match="toop:LegalPerson//toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson//toop:LegalName                         |toop:LegalPerson//toop:VATRegistrationNumber                        |toop:LegalPerson//toop:TaxReferenceNumber                       |toop:LegalPerson//toop:BusinessCodes                        |toop:LegalPerson//toop:LegalEntityIdentifier                        |toop:LegalPerson//toop:EORIIdentifier                        |toop:LegalPerson//toop:SEEDIdentifier                        |toop:LegalPerson//toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress//toop:AddressLine                        |toop:LegalPersonLegalAddress//toop:StreetName                        |toop:LegalPersonLegalAddress//toop:StreetNumber                       |toop:LegalPersonLegalAddress//toop:City                        |toop:LegalPersonLegalAddress//toop:PostCode                        |toop:LegalPersonLegalAddress//toop:Country                        |toop:NaturalPerson//toop:PersonIdentifier                        |toop:NaturalPerson//toop:FamilyName                       |toop:NaturalPerson//toop:FirstName                       |toop:NaturalPerson//toop:BirthDate                       |toop:NaturalPerson//toop:BirthFamilyName                       |toop:NaturalPerson//toop:BirthPlace                       |toop:NaturalPerson//toop:GenderCode                       |toop:NaturalPersonLegalAddress//toop:AddressLine                       |toop:NaturalPersonLegalAddress//toop:StreetName                       |toop:NaturalPersonLegalAddress//toop:StreetNumber                       |toop:NaturalPersonLegalAddress//toop:City                       |toop:NaturalPersonLegalAddress//toop:PostCode                       |toop:NaturalPersonLegalAddress//toop:Country                       " mode="M43" priority="1000">
+<xsl:template match="toop:LegalPerson//toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson//toop:LegalName                         |toop:LegalPerson//toop:VATRegistrationNumber                        |toop:LegalPerson//toop:TaxReferenceNumber                       |toop:LegalPerson//toop:BusinessCodes                        |toop:LegalPerson//toop:LegalEntityIdentifier                        |toop:LegalPerson//toop:EORIIdentifier                        |toop:LegalPerson//toop:SEEDIdentifier                        |toop:LegalPerson//toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress//toop:AddressLine                        |toop:LegalPersonLegalAddress//toop:StreetName                        |toop:LegalPersonLegalAddress//toop:StreetNumber                       |toop:LegalPersonLegalAddress//toop:City                        |toop:LegalPersonLegalAddress//toop:PostCode                        |toop:LegalPersonLegalAddress//toop:Country                        |toop:NaturalPerson//toop:PersonIdentifier                        |toop:NaturalPerson//toop:FamilyName                       |toop:NaturalPerson//toop:FirstName                       |toop:NaturalPerson//toop:BirthDate                       |toop:NaturalPerson//toop:BirthFamilyName                       |toop:NaturalPerson//toop:BirthPlace                       |toop:NaturalPerson//toop:GenderCode                       |toop:NaturalPersonLegalAddress//toop:AddressLine                       |toop:NaturalPersonLegalAddress//toop:StreetName                       |toop:NaturalPersonLegalAddress//toop:StreetNumber                       |toop:NaturalPersonLegalAddress//toop:City                       |toop:NaturalPersonLegalAddress//toop:PostCode                       |toop:NaturalPersonLegalAddress//toop:Country                       " mode="M44" priority="1000">
     <svrl:fired-rule context="toop:LegalPerson//toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson//toop:LegalName                         |toop:LegalPerson//toop:VATRegistrationNumber                        |toop:LegalPerson//toop:TaxReferenceNumber                       |toop:LegalPerson//toop:BusinessCodes                        |toop:LegalPerson//toop:LegalEntityIdentifier                        |toop:LegalPerson//toop:EORIIdentifier                        |toop:LegalPerson//toop:SEEDIdentifier                        |toop:LegalPerson//toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress//toop:AddressLine                        |toop:LegalPersonLegalAddress//toop:StreetName                        |toop:LegalPersonLegalAddress//toop:StreetNumber                       |toop:LegalPersonLegalAddress//toop:City                        |toop:LegalPersonLegalAddress//toop:PostCode                        |toop:LegalPersonLegalAddress//toop:Country                        |toop:NaturalPerson//toop:PersonIdentifier                        |toop:NaturalPerson//toop:FamilyName                       |toop:NaturalPerson//toop:FirstName                       |toop:NaturalPerson//toop:BirthDate                       |toop:NaturalPerson//toop:BirthFamilyName                       |toop:NaturalPerson//toop:BirthPlace                       |toop:NaturalPerson//toop:GenderCode                       |toop:NaturalPersonLegalAddress//toop:AddressLine                       |toop:NaturalPersonLegalAddress//toop:StreetName                       |toop:NaturalPersonLegalAddress//toop:StreetNumber                       |toop:NaturalPersonLegalAddress//toop:City                       |toop:NaturalPersonLegalAddress//toop:PostCode                       |toop:NaturalPersonLegalAddress//toop:Country                       " id="gc_check_loi" />
 
 		<!--ASSERT -->
@@ -1903,10 +1947,10 @@
         </svrl:failed-assert>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates mode="M43" select="*|comment()|processing-instruction()" />
+    <xsl:apply-templates mode="M44" select="*|comment()|processing-instruction()" />
   </xsl:template>
-  <xsl:template match="text()" mode="M43" priority="-1" />
-  <xsl:template match="@*|node()" mode="M43" priority="-2">
-    <xsl:apply-templates mode="M43" select="*|comment()|processing-instruction()" />
+  <xsl:template match="text()" mode="M44" priority="-1" />
+  <xsl:template match="@*|node()" mode="M44" priority="-2">
+    <xsl:apply-templates mode="M44" select="*|comment()|processing-instruction()" />
   </xsl:template>
 </xsl:stylesheet>

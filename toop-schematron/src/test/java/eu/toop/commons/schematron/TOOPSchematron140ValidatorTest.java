@@ -67,7 +67,7 @@ public final class TOOPSchematron140ValidatorTest
     {
       LOGGER.info ("Checking " + sFilename);
 
-      final FileSystemResource aFS = new FileSystemResource ("src/test/resources/xml/1.4.0/" + sFilename);
+      final FileSystemResource aFS = new FileSystemResource ("src/test/resources/xml/1.4.1/" + sFilename);
       assertTrue (aFS.exists ());
 
       final ICommonsList <AbstractSVRLMessage> aFAs = v.validateTOOPMessage (aFS);

@@ -101,20 +101,20 @@
           </excludes>
         </configuration>
       </plugin>
-      <!--  
+      <!--
       <plugin>
         <groupId>com.helger.maven</groupId>
         <artifactId>ph-schematron-maven-plugin</artifactId>
         <version>5.2.0</version>
         <executions>
           <execution>
-            <id>toop140</id>
+            <id>toop141</id>
             <goals>
               <goal>convert</goal>
             </goals>
             <configuration>
-              <schematronDirectory>src/main/resources/140/schematron</schematronDirectory>
-              <xsltDirectory>src/main/resources/140/xslt</xsltDirectory>
+              <schematronDirectory>src/main/resources/141/schematron</schematronDirectory>
+              <xsltDirectory>src/main/resources/141/xslt</xsltDirectory>
             </configuration>
           </execution>
         </executions>

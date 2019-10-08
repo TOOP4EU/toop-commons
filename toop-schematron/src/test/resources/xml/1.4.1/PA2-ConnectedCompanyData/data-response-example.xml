@@ -20,17 +20,18 @@
     
     ENTITIES IN THIS EXAMPLE:
     a British citizen, John Cleese, is using a German portal to fill a form with the data of its own company - in this case, asking for the Legal Form.
-    The portal retrieves his personal data through the UK eIDAS, and then asks for a specific German document.
+    The portal retrieves his personal data through the UK eIDAS, 
+    and then asks for required German Concepts which will become UK Concepts on the DP side through the TOOP semantic mapping. 
     This example describes how a DP from the UK is creating a TOOP data response to answer the former TOOP data request.
     
     (John is from London; its company "AnyCompanyName" is located in Liverpool; the Data Consumer portal is set in Berlin)
-    This response is connected to the example XML instance for the Request ("data-request-document-example")
+    This response is connected to the example XML instance for the Request ("data-request-example")
     Look at the DP ACTIONs to understand how the DP should create the Response based on the Request
     
 -->
 
 <!--with some XML editors you can uncomment next row to link this instance to the Schematron (change the path if needed)-->
-<!-- <?xml-model href="../schematron/TOOP_BusinessRules_DataExchange.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> -->
+<!--<?xml-model href="../schematron/TOOP_BusinessRules_DataExchange.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
 
 <toop:Response xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
@@ -39,35 +40,39 @@
     <!--Example XML instance, including comments and sample data taken from the Data Exchange Model specifications, checked with latest Schematron rules -->
     <!--Rule: The UUID MUST be created following the UUID Version 4 specification. Copies of a document must be identified with a different UUID. Compulsory use of schemeAgencyID attribute-->
     <!--DP ACTION: generate a new UUID-->
-    <toop:DocumentUniversalUniqueIdentifier schemeAgencyID="**DEFINED_BY_DP**">dec34403-f4ac-487d-b304-699f061c341b</toop:DocumentUniversalUniqueIdentifier>
+    <toop:DocumentUniversalUniqueIdentifier schemeAgencyID="**DEFINED_BY_DP**">e7262b82-bd2c-41d8-9839-f39dbda124da</toop:DocumentUniversalUniqueIdentifier>
     <!--Rule: A date using the following format: YYYY + “-“ + MM + “-“ + DD (as defined for xsd:date)-->
     <!--DP ACTION: insert the current date (could be a different day, if a request is issued just before midnight...)-->
-    <toop:DocumentIssueDate>2018-04-26</toop:DocumentIssueDate>
-    <!--DP ACTION: insert the current timestamp (in this example, just a few seconds after the request is sent)--> 
-    <toop:DocumentIssueTime>00:01:28</toop:DocumentIssueTime>
+    <toop:DocumentIssueDate>2018-02-22</toop:DocumentIssueDate>
+    <!--DP ACTION: insert the current timestamp (in this example, just a few seconds after the request is sent)-->
+    <toop:DocumentIssueTime>09:55:28</toop:DocumentIssueTime>
     <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers". Compulsory use of attribute schemeID "toop-doctypeid-qns".-->
-    <toop:CopyIndicator>false</toop:CopyIndicator> 
-    <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers". The current values are 'toop.eu.data.request.registeredorganization', 'toop.eu.data.response.registeredorganization`. Compulsory use of attributes schemeID "toop-doctypeid-qns".-->
+    <toop:CopyIndicator>false</toop:CopyIndicator>
+    <!--Rule: Compulsory use of the identifiers defined in Guideline "Toop Policy for using Identifiers". The current values are 'toop.eu.data.request.registeredorganization', 'toop.eu.data.response.registeredorganization`. Compulsory use of attributes schemeID "toop-docid".-->
     <!--Rule: A response MUST have the specification identifier "urn:eu:toop:ns:dataexchange-1p40::Response"-->
     <toop:SpecificationIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Response</toop:SpecificationIdentifier>
     <!--Use the schemeAgencyID attribute to identify the organisation responsible for the document.-->
     <!--Note: Do not change this identifier. It was assigned by the DC to identify this document internally-->
-    <toop:DataConsumerDocumentIdentifier schemeAgencyID="**DEFINED_BY_DC**">123-888.8</toop:DataConsumerDocumentIdentifier>
+    <toop:DataConsumerDocumentIdentifier schemeAgencyID="**DEFINED_BY_DC**">101-287.56666</toop:DataConsumerDocumentIdentifier>
     <!--Note: Do not change this identifier. It was assigned by the DC to identify multiple request that belong together. -->
-    <toop:DataConsumerGlobalSessionIdentifier schemeAgencyID="**DEFINED_BY_DC**">63432534</toop:DataConsumerGlobalSessionIdentifier>
+    <toop:DataConsumerGlobalSessionIdentifier schemeAgencyID="**DEFINED_BY_DC**">394956</toop:DataConsumerGlobalSessionIdentifier>
     <!--Please describe the purpose in english and use the language attribute "en"-->
     <toop:DataConsumerRequestPurpose  languageID="en">Qualification Procedure in Public Procurement</toop:DataConsumerRequestPurpose>
     <!--Rule: Use the same value that was used in the corresponding Toop Data Request (path: ToopDataRequest/DocumentUniveralUniqueIdentifier)--> 
-    <toop:DataRequestIdentifier schemeAgencyID="**DEFINED_BY_DP**">440694ca-885e-45c2-9a71-a37b6bdf6550</toop:DataRequestIdentifier> 
     <!--DP ACTION:  copy the UUID value from the corresponding TOOP Data Request here-->
+    <toop:DataRequestIdentifier schemeAgencyID="**DEFINED_BY_DP**">1f17a4fa-a905-4d9c-8191-97d1e76985df</toop:DataRequestIdentifier>
     <toop:RoutingInformation>
         <!--DP ACTION:  change the value with the one identifier used in the Response -->
         <toop:DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization::1.40</toop:DocumentTypeIdentifier>
         <!--DP ACTION:  keep the routing data from the Request-->
-        <toop:ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.documentrequestresponse</toop:ProcessIdentifier>
+        <toop:ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
         <!--Rule: An electronic address identifier MUST have a scheme identifier attribute. An electronic address identifier scheme MUST be from the list of Toop Party Identifiers described in the ""Toop Policy for using Identifiers"""-->
         <toop:DataConsumerElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">0088:4035811991014</toop:DataConsumerElectronicAddressIdentifier>
+        <!--DP ACTION:  keep the routing data from the Request-->
         <toop:DataConsumerCountryCode>DE</toop:DataConsumerCountryCode>
+        <!--DP ACTION:  keep the routing data from the Request-->
+        <toop:DataProviderElectronicAddressIdentifier>123456789</toop:DataProviderElectronicAddressIdentifier>
+        <!--The country of the data consumer/provider MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
         <toop:DataProviderCountryCode>GB</toop:DataProviderCountryCode>
     </toop:RoutingInformation>
     <toop:DataConsumer>
@@ -83,10 +88,9 @@
             <toop:City>Berlin</toop:City>
             <toop:PostCode>10115</toop:PostCode>
             <toop:Country>Germany</toop:Country>
-            <!--The country of the data consumer MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
             <toop:CountryCode>DE</toop:CountryCode>
         </toop:DCLegalAddress>
-    </toop:DataConsumer>  
+    </toop:DataConsumer>
     <toop:DataRequestSubject>
         <!--Compulsory use of the code list "data subject type code" with the value "natural person" and "legal entity"-->
         <toop:DataRequestSubjectTypeCode>LE</toop:DataRequestSubjectTypeCode>
@@ -112,6 +116,8 @@
             <toop:StandardIndustrialClassification levelOfAssurance="None">6010</toop:StandardIndustrialClassification>
             <!--Rule: Use the value that is used in the element: DataSubject/NaturalPerson/PersonIdentifier-->
             <toop:AuthorizedRepresentativeIdentifier>GB/GB/02635542Y</toop:AuthorizedRepresentativeIdentifier>
+            <toop:AlternativeLegalPersonIdentifier schemeID="BR">**DEFINED_BY_DC**</toop:AlternativeLegalPersonIdentifier>
+            <toop:AlternativeLegalPersonIdentifier schemeID="XX">**DEFINED_BY_DC**</toop:AlternativeLegalPersonIdentifier>
 			<!--Note: The address is not mandatory attribute for eIDAS but we need at least the country of the company-->
             <toop:LegalPersonLegalAddress>
                 <toop:AddressLine levelOfAssurance="None">Princess Street 21</toop:AddressLine>
@@ -137,7 +143,8 @@
             <toop:BirthDate levelOfAssurance="Substantial">1939-10-27</toop:BirthDate>
             <toop:BirthFamilyName levelOfAssurance="None">Cheese</toop:BirthFamilyName>
             <toop:BirthPlace levelOfAssurance="None">Weston-super-Mare</toop:BirthPlace>
-            <toop:GenderCode levelOfAssurance="None">M</toop:GenderCode> 
+            <toop:GenderCode levelOfAssurance="None">M</toop:GenderCode>
+            <toop:AlternativeNaturalPersonIdentifier schemeID="**DEFINED_BY_DC**">1234010180</toop:AlternativeNaturalPersonIdentifier>
 			<!--Note: The address is not mandatory attribute for eIDAS but we need at least the country of the natural person-->
             <toop:NaturalPersonLegalAddress>
                 <toop:AddressLine levelOfAssurance="None">Queens Street 22</toop:AddressLine>
@@ -150,45 +157,56 @@
                 <!--The country MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->
                 <toop:CountryCode levelOfAssurance="None">GB</toop:CountryCode>
             </toop:NaturalPersonLegalAddress>
-        </toop:NaturalPerson> 
-    </toop:DataRequestSubject>   
+        </toop:NaturalPerson>
+    </toop:DataRequestSubject>
     <toop:DataRequestAuthorization>
         <!--The token is a signed JSON-->
         <toop:DataRequestConsentToken mimeCode="example/text">eyJlaWRhc0F0dHJpYnV0ZXMiOgoKICAgWwoKICAgICAgeyDigJxuYW1l4oCdOuKAnGZhbWlseU5hbWXigJ0sCgogICAgICAgICDigJxsb2HigJ0gOiDigJxodHRwOi8vZWlkYXMuZXVyb3BhLmV1L0xvQS9sb3figJ0sCgogICAgICAgIOKAnHZhbHVl4oCdOiDigJxjcGg44oCdCgogICAgIH0sCgogICAgIHsg4oCcbmFtZeKAnTrigJxmaXJzdE5hbWXigJ0sCgogICAgICAgICDigJxsb2HigJ0gOiDigJxodHRwOi8vZWlkYXMuZXVyb3BhLmV1L0xvQS9sb3figJ0sCgogICAgICAgIOKAnHZhbHVl4oCdOiDigJxjcGg44oCdCgogICAgIH0KCiAgIF0sCgogICDigJx0aW1lc3RhbXDigJ0gOuKAnTIwMTctMDktMTZUMDg6MTE6MjEuMTkxWuKAnSwKCiAgICDigJxhdWRpZW5jZVJlc3RyaWN0aW9u4oCdOiDigJxodHRwOi8vZnJlZWRvbmlhLmVpZG1vZHVsZS9tZXRhZGF0YeKAnSwKCiAgICDigJxpc3N1ZXLigJ06IOKAnWh0dHA6Ly84NC4yMDUuMjQ4LjE4MDo4MC9FaWRhc05vZGUvQ29ubmVjdG9yUmVzcG9uZGVyTWV0YWRhdGHigJ0sCgogICAg4oCcY291bnRyeeKAnTog4oCcU1figJ0KCn0=</toop:DataRequestConsentToken>
     </toop:DataRequestAuthorization>
-    <toop:DocumentRequest> 
-        <toop:DocumentRequestIdentifier schemeAgencyID="**DEFINED_BY_DC**">e1234b82-bd2c-41d8-9839-f39dbda124da</toop:DocumentRequestIdentifier> 
-        <toop:DocumentRequestTypeCode>ETR</toop:DocumentRequestTypeCode>
-        <toop:PreferredDocumentMimeTypeCode>application/pdf</toop:PreferredDocumentMimeTypeCode>
-    <!--DP ACTION: add a block with the DocumentResponse for each DocumentRequest; if the response is not immediate you will probably need to generate all the different documents offline and then create the response when you are done-->
-    <toop:DocumentResponse>
-        <toop:DocumentName>Extract from the Commercial Register for AnyCompany</toop:DocumentName>
-        <toop:DocumentDescription>Extract from the Commercial register that contains details of all tradespeople and legal entities in the district of the registrar.</toop:DocumentDescription> 
-        <toop:DocumentValidityPeriod>3 month</toop:DocumentValidityPeriod> 
-        <toop:LegalReference>2014/24/EU</toop:LegalReference>
-        <toop:DocumentIdentifier>RE238918378</toop:DocumentIdentifier>
-        <toop:DocumentIssueDate>2018-02-22</toop:DocumentIssueDate>
-        <toop:DocumentIssuePlace>Koblenz</toop:DocumentIssuePlace>
-        <toop:DocumentRemarks languageID="en">The document is free of charge.</toop:DocumentRemarks>
-        <toop:DocumentRemarks languageID="de">Das Dokument ist kostenlos.</toop:DocumentRemarks>
-        <toop:ErrorIndicator>false</toop:ErrorIndicator>
-        <toop:ErrorCode>DP_DOC_007</toop:ErrorCode>   
-        <toop:DocumentIssuer>
-            <toop:DocumentIssuerIdentifier schemeAgencyID="**DEFINED_BY_DP**">DE666666666</toop:DocumentIssuerIdentifier>
-            <toop:DocumentIssuerName>Handelsregister Hamburg</toop:DocumentIssuerName>
-        </toop:DocumentIssuer>
-        <toop:Document>
-            <toop:DocumentURI>asic:Extract_Commercial Register_AnyCompany</toop:DocumentURI> 
-            <toop:DocumentTypeCode>ETR</toop:DocumentTypeCode>
-            <!--DP ACTION: the actual DocumentMimeTypeCode could be the preferred one shown in PreferredDocumentMimeTypeCode, but in any case this shows the correct MIME type of the sent document-->
-            <toop:DocumentMimeTypeCode>application/pdf</toop:DocumentMimeTypeCode> 
-        </toop:Document>
-    </toop:DocumentResponse>    
-    </toop:DocumentRequest> 
+    <toop:DataElementRequest>
+        <!--Even if this is an optional element, it is recommeded to use this element in order to correlate responses to a given request. However, the concept is optional as the "Concept Namespace" is the major identifier to identify concepts within the TOOP network. If your internal system is also using the Toop "Concept Namespace" to identify concepts you can use duplicate them here or leave this element empty.-->
+        <toop:DataElementRequestIdentifier>REQ#1342344</toop:DataElementRequestIdentifier>
+        <!--DP ACTION: each ConceptRequest can point to other ConceptRequests; find the deepest one and provide a DataElementResponseValue or an ErrorCode-->
+        <toop:ConceptRequest>
+            <!--Rule: Compulsory use of the code list "ConceptTypeCodes" with the values  "Data Consumer Concept (DC)", "Toop Concept (TC)" and "Data Provider Concept (DP)".--> 
+            <toop:ConceptTypeCode>DC</toop:ConceptTypeCode>
+            <!--Rule: If the Semantic Mapping Module was used to map between two Concepts with different Concept Type Codes the Semantic Mapping Indicator MUST be set on "true". "If the mapping between Concepts Types (Concept Type Code) was done locally, the "Semantic Mapping Indicator" MUST be set on false".-->
+            <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+            <!--Rule: Compulsory use of the IDs defined in the list "Concepts & Namespaces". -->
+            <toop:ConceptNamespace>deu:Rechtsform</toop:ConceptNamespace>
+            <toop:ConceptName>Rechtsform</toop:ConceptName>
+            <toop:ConceptDefinition>The legal form under which the  company is registered.</toop:ConceptDefinition>  
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>toop:ToopLegalForm</toop:ConceptNamespace>
+                <toop:ConceptName>ToopLegalForm</toop:ConceptName>
+                <toop:ConceptRequest>
+                    <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                    <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+                    <toop:ConceptNamespace>uk:LegalForm</toop:ConceptNamespace>
+                    <toop:ConceptName>LegalForm</toop:ConceptName>
+                    <!--DP ACTION: since this is the deepest level of the ConceptRequest chain, this is place to provide the response value for the initated concept request.  Use the correct data type (indicator, identifier, code etc.) for the response-->
+                    <!--NOTE: For the TOOP ConceptName "toopLegalForm" the semantic mapping should contain the corresponding ConceptNames for UK and Germany-->
+                    <toop:DataElementResponseValue>
+                        <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                        <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                        <toop:ResponseDescription>limited partnership</toop:ResponseDescription>
+                    </toop:DataElementResponseValue>
+                    <!-- in case of Error, use a DataElementResponseValue like this instead. If you cannot provide any response, you should use a Global Error instead, as shown in data-response-with-ERROR-example.xml  
+                        <toop:DataElementResponseValue>
+                        <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                        <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                    </toop:DataElementResponseValue>
+                    --> 
+                </toop:ConceptRequest>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
     <!--DP ACTION: provide this block of information about the Data Provider-->
     <toop:DataProvider>
         <!--Rule: The preferred identifier is the national VAT number.  Compulsory use of the attribute schemeAgencyID.-->
-        <toop:DPIdentifier schemeAgencyID="**DEFINED_BY_DC**">123456789</toop:DPIdentifier> 
+        <toop:DPIdentifier schemeAgencyID="**DEFINED_BY_DC**">123456789</toop:DPIdentifier>
         <toop:DPName>UK-DataProvider</toop:DPName>
         <toop:DPLegalAddress>
             <!--The country of the data provider MUST always be specified using the code list CountryCodeIdentifier (ISO 3166-1 2A:2006)-->

@@ -58,6 +58,7 @@ import eu.toop.commons.dataexchange.v140.TDEAddressWithLOAType;
 import eu.toop.commons.dataexchange.v140.TDEConceptRequestType;
 import eu.toop.commons.dataexchange.v140.TDEDataConsumerType;
 import eu.toop.commons.dataexchange.v140.TDEDataElementRequestType;
+import eu.toop.commons.dataexchange.v140.TDEDataElementResponseValueType;
 import eu.toop.commons.dataexchange.v140.TDEDataProviderType;
 import eu.toop.commons.dataexchange.v140.TDEDataRequestAuthorizationType;
 import eu.toop.commons.dataexchange.v140.TDEDataRequestSubjectType;
@@ -595,6 +596,7 @@ public final class ToopMessageBuilder140
 
     if (aValues != null)
     {
+      // Add data response values
       for (final ConceptValue aCV : aValues)
       {
         final TDEDataElementRequestType aReq = new TDEDataElementRequestType ();
@@ -618,6 +620,13 @@ public final class ToopMessageBuilder140
               aDPConcept.setSemanticMappingExecutionIndicator (ToopXSDHelper140.createIndicator (false));
               aDPConcept.setConceptNamespace (ToopXSDHelper140.createIdentifier (aCV.getNamespace () + "-dp"));
               aDPConcept.setConceptName (ToopXSDHelper140.createText ("dp." + aCV.getValue ()));
+
+              // Response value must be present
+              final TDEDataElementResponseValueType aResponseValue = new TDEDataElementResponseValueType ();
+              aResponseValue.setErrorIndicator (ToopXSDHelper140.createIndicator (false));
+              aResponseValue.setResponseCode (ToopXSDHelper140.createCode ("anyCode"));
+              aDPConcept.addDataElementResponseValue (aResponseValue);
+
               aToopConcept.addConceptRequest (aDPConcept);
             }
             aSrcConcept.addConceptRequest (aToopConcept);
@@ -629,6 +638,7 @@ public final class ToopMessageBuilder140
     }
     else
     {
+      // Add document response
       final TDEDocumentRequestType aDR = new TDEDocumentRequestType ();
       aDR.setDocumentRequestIdentifier (ToopXSDHelper140.createIdentifier ("CertificatePDF-1234"));
       aDR.setDocumentRequestTypeCode (ToopXSDHelper140.createCode ("pdf"));

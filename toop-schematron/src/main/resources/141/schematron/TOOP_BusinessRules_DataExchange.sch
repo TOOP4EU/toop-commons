@@ -188,6 +188,23 @@
         </rule>
     </pattern>
     
+    
+    <!--Check for the existence of a DataElementResponseValue only in the deepest level of a ConceptRequest ("TC" or "DP")-->
+    <pattern>
+        <rule context="toop:Response//toop:DataElementRequest/toop:ConceptRequest">
+            <let name="responseValues" value="count(.//toop:DataElementResponseValue)"/> 
+            <let name="conceptRequests" value="count(..//toop:ConceptRequest)"/> 
+            <assert test="( ($responseValues=0 or $responseValues=1) and 
+                   (($conceptRequests=1) and(exists(./toop:DataElementResponseValue))
+                or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) )
+                or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) )))"  flag='ERROR' id="wrong_dp_response_value_cardinality">
+                Only one DataElementeResponseValue can be added at the deepest level of a ConceptRequest (found <value-of select="$responseValues"/> value(s) and <value-of select="$conceptRequests"/> level(s)). 
+                Rule:  If the ConceptTypeCode of a ConceptRequest is set on "Data Provider" ("DP") or "TOOP Concept" ("TC") and the hierarchy of a concept request is at its maximum, the cardinality of this element MUST be set to 1…n in the TOOP Response. 
+            </assert>
+        </rule>
+    </pattern>
+    
+    
     <!--Check if the AuthorizedRepresentativeIdentifier links to the personIdentifier-->
     <pattern>
         <rule context="toop:AuthorizedRepresentativeIdentifier">
