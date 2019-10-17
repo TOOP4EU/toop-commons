@@ -38,6 +38,8 @@ public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWrit
   public ToopWriter (@Nonnull final EToopXMLDocumentType aDocType)
   {
     super (aDocType);
+    setFormattedOutput (true);
+    setNamespaceContext (ToopNamespaceContext.getInstance ());
   }
 
   /**
@@ -49,9 +51,7 @@ public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWrit
   @Nonnull
   public static ToopWriter <eu.toop.commons.dataexchange.v140.TDETOOPRequestType> request140 ()
   {
-    final ToopWriter <eu.toop.commons.dataexchange.v140.TDETOOPRequestType> ret = new ToopWriter <> (EToopXMLDocumentType.REQUEST_140);
-    ret.setFormattedOutput (true);
-    return ret;
+    return new ToopWriter <> (EToopXMLDocumentType.REQUEST_140);
   }
 
   /**
@@ -63,8 +63,6 @@ public class ToopWriter <JAXBTYPE> extends JAXBWriterBuilder <JAXBTYPE, ToopWrit
   @Nonnull
   public static ToopWriter <eu.toop.commons.dataexchange.v140.TDETOOPResponseType> response140 ()
   {
-    final ToopWriter <eu.toop.commons.dataexchange.v140.TDETOOPResponseType> ret = new ToopWriter <> (EToopXMLDocumentType.RESPONSE_140);
-    ret.setFormattedOutput (true);
-    return ret;
+    return new ToopWriter <> (EToopXMLDocumentType.RESPONSE_140);
   }
 }
