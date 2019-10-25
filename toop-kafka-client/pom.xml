@@ -52,7 +52,7 @@
   </developers>
   
   <properties>
-    <kafka.version>2.3.0</kafka.version>
+    <kafka.version>2.3.1</kafka.version>
   </properties>
 
   <dependencies>
