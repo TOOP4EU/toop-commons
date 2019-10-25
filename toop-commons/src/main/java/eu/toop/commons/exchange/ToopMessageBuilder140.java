@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
 
 import com.helger.asic.AsicReaderFactory;
 import com.helger.asic.AsicWriterFactory;
+import com.helger.asic.ESignatureMethod;
 import com.helger.asic.IAsicReader;
 import com.helger.asic.IAsicWriter;
 import com.helger.asic.SignatureHelper;
@@ -117,7 +118,7 @@ public final class ToopMessageBuilder140
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
-    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
+    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory (ESignatureMethod.CAdES);
     try
     {
       final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
@@ -162,7 +163,7 @@ public final class ToopMessageBuilder140
     ValueEnforcer.notNull (aOS, "ArchiveOutput");
     ValueEnforcer.notNull (aSigHelper, "SignatureHelper");
 
-    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory ();
+    final AsicWriterFactory aAsicWriterFactory = AsicWriterFactory.newFactory (ESignatureMethod.CAdES);
     try
     {
       final IAsicWriter aAsicWriter = aAsicWriterFactory.newContainer (aOS);
