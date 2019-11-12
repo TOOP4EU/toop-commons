@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<toop:Response xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:toop="urn:eu:toop:ns:dataexchange-1p40">
+    <toop:DocumentUniversalUniqueIdentifier schemeAgencyID="UUID">cf172cf7-09f7-4a33-8a41-34106990152a</toop:DocumentUniversalUniqueIdentifier>
+    <toop:DocumentIssueDate>2019-11-11</toop:DocumentIssueDate>
+    <toop:DocumentIssueTime>15:07:24.542</toop:DocumentIssueTime>
+    <toop:CopyIndicator>false</toop:CopyIndicator>
+    <toop:SpecificationIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Response</toop:SpecificationIdentifier>
+    <toop:DataConsumerDocumentIdentifier schemeAgencyID="whatsoever">request-pa1</toop:DataConsumerDocumentIdentifier>
+    <toop:DataRequestIdentifier schemeAgencyID="UUID">7d5cc223-033e-4eda-9dcc-1174193cdc05</toop:DataRequestIdentifier>
+    <toop:RoutingInformation>
+        <toop:DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Response##urn:eu.toop.response.registeredorganization::1.40</toop:DocumentTypeIdentifier>
+        <toop:ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</toop:ProcessIdentifier>
+        <toop:DataConsumerElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0002">9915:tooptest</toop:DataConsumerElectronicAddressIdentifier>
+        <toop:DataConsumerCountryCode>AT</toop:DataConsumerCountryCode>
+        <toop:DataProviderElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0007">IT02313821007</toop:DataProviderElectronicAddressIdentifier>
+        <toop:DataProviderCountryCode>IT</toop:DataProviderCountryCode>
+    </toop:RoutingInformation>
+    <toop:DataConsumer>
+        <toop:DCUniqueIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="0002">9914:ATU41542700</toop:DCUniqueIdentifier>
+        <toop:DCName>Bundesrechenzentrum GmbH</toop:DCName>
+        <toop:DCLegalAddress>
+            <toop:StreetName>Hintere Zollamtsstraße</toop:StreetName>
+            <toop:StreetNumber>4</toop:StreetNumber>
+            <toop:City>Wien</toop:City>
+            <toop:PostCode>1030</toop:PostCode>
+            <toop:CountryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="toop:CodeWithLOAType" levelOfAssurance="None">AT</toop:CountryCode>
+        </toop:DCLegalAddress>
+    </toop:DataConsumer>
+    <toop:DataRequestSubject>
+        <toop:DataRequestSubjectTypeCode>LE</toop:DataRequestSubjectTypeCode>
+        <toop:LegalPerson>
+            <toop:LegalPersonUniqueIdentifier levelOfAssurance="None">IT/AT/00851260158</toop:LegalPersonUniqueIdentifier>
+            <toop:LegalName levelOfAssurance="None"></toop:LegalName>
+            <toop:LegalPersonLegalAddress>
+                <toop:CountryCode levelOfAssurance="None">IT</toop:CountryCode>
+            </toop:LegalPersonLegalAddress>
+        </toop:LegalPerson>
+        <toop:NaturalPerson>
+            <toop:PersonIdentifier levelOfAssurance="None">IT/AT/SNGCLG37M31G889L</toop:PersonIdentifier>
+            <toop:FamilyName levelOfAssurance="None"></toop:FamilyName>
+            <toop:FirstName levelOfAssurance="None"></toop:FirstName>
+            <toop:BirthDate levelOfAssurance="None">2019-11-11</toop:BirthDate>
+            <toop:NaturalPersonLegalAddress>
+                <toop:CountryCode levelOfAssurance="None">IT</toop:CountryCode>
+            </toop:NaturalPersonLegalAddress>
+        </toop:NaturalPerson>
+    </toop:DataRequestSubject>
+    <toop:DataRequestAuthorization>
+        <toop:DataRequestConsentToken mimeCode="application/octet-stream">MTExMDEwMTAxMDEwMTAwMDExMTAxMDE=</toop:DataRequestConsentToken>
+    </toop:DataRequestAuthorization>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-activityDescription</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>activityDescription</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of activityDescription</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>DescrizioneAttivita</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-birthDate</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>birthDate</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of birthDate</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>DataDiNascita</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-capitalType</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>capitalType</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of capitalType</toop:ConceptDefinition>
+            <toop:DataElementResponseValue>
+                <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+            </toop:DataElementResponseValue>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-CompanyCode</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>CompanyCode</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of CompanyCode</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>CodiceFiscale</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>00851260158</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-companyName</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>companyName</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of companyName</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Denominazione</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>FIN-EXPO S.R.L.</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-companyType</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>companyType</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of companyType</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>FormaGiuridica</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>SOCIETA' A RESPONSABILITA' LIMITATA CON UNICO SOCIO</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-countryName</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>countryName</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of countryName</toop:ConceptDefinition>
+            <toop:DataElementResponseValue>
+                <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+            </toop:DataElementResponseValue>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-EmailAddress</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>EmailAddress</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of EmailAddress</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Email</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>FINEXPO@TICERTIFICA.IT</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-familyName</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>familyName</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of familyName</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Cognome</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-FaxNumber</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>FaxNumber</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of FaxNumber</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Fax</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-foundationDate</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>foundationDate</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of foundationDate</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>DataDiCostituzione</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-givenName</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>givenName</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of givenName</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Nome</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-hasLegalRepresentative</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>hasLegalRepresentative</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of hasLegalRepresentative</toop:ConceptDefinition>
+            <toop:DataElementResponseValue>
+                <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+            </toop:DataElementResponseValue>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-legalStatus</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>legalStatus</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of legalStatus</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>StatoAttivita</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-legalStatusEffectiveDate</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>legalStatusEffectiveDate</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of legalStatusEffectiveDate</toop:ConceptDefinition>
+            <toop:DataElementResponseValue>
+                <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+            </toop:DataElementResponseValue>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-locality</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>locality</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of locality</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Comune</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-naceCode</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>naceCode</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of naceCode</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>CodiceNACE</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-Person</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>Person</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of Person</toop:ConceptDefinition>
+            <toop:DataElementResponseValue>
+                <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+            </toop:DataElementResponseValue>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-postalCode</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>postalCode</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of postalCode</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>CAP</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-region</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>region</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of region</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Provincia</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-RegisteredOrganization</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>RegisteredOrganization</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of RegisteredOrganization</toop:ConceptDefinition>
+            <toop:DataElementResponseValue>
+                <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+            </toop:DataElementResponseValue>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-RegistrationAuthority</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>RegistrationAuthority</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of RegistrationAuthority</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>AutoritaDiRegistrazione</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-registrationDate</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>registrationDate</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of registrationDate</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>DataDiIscrizione</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-RegistrationNumber</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>RegistrationNumber</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of RegistrationNumber</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>CodiceImpresa</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>MI803217</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-SSNumber</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>SSNumber</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of SSNumber</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>ITSSNumber</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-streetAddress</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>streetAddress</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of streetAddress</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Indirizzo</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>CORSO VENEZIA 0047 MILANO (MI)</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-TelephoneNumber</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>TelephoneNumber</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of TelephoneNumber</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>Telefono</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>true</toop:ErrorIndicator>
+                    <toop:ErrorCode>DP_ELE_001</toop:ErrorCode>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataElementRequest>
+        <toop:DataElementRequestIdentifier>brz-VATNumber</toop:DataElementRequestIdentifier>
+        <toop:ConceptRequest>
+            <toop:ConceptTypeCode>TC</toop:ConceptTypeCode>
+            <toop:SemanticMappingExecutionIndicator>true</toop:SemanticMappingExecutionIndicator>
+            <toop:ConceptNamespace>http://toop.eu/registered-organization</toop:ConceptNamespace>
+            <toop:ConceptName>VATNumber</toop:ConceptName>
+            <toop:ConceptDefinition>Definition of VATNumber</toop:ConceptDefinition>
+            <toop:ConceptRequest>
+                <toop:ConceptTypeCode>DP</toop:ConceptTypeCode>
+                <toop:SemanticMappingExecutionIndicator>false</toop:SemanticMappingExecutionIndicator>
+                <toop:ConceptNamespace>http://toop.it/registroimprese</toop:ConceptNamespace>
+                <toop:ConceptName>PartitaIVA</toop:ConceptName>
+                <toop:DataElementResponseValue>
+                    <toop:ErrorIndicator>false</toop:ErrorIndicator>
+                    <toop:AlternativeResponseIndicator>false</toop:AlternativeResponseIndicator>
+                    <toop:ResponseDescription>00851260158</toop:ResponseDescription>
+                </toop:DataElementResponseValue>
+            </toop:ConceptRequest>
+        </toop:ConceptRequest>
+    </toop:DataElementRequest>
+    <toop:DataProvider>
+        <toop:DPIdentifier schemeAgencyID="**DEFINED_BY_DC**">IT02313821007</toop:DPIdentifier>
+        <toop:DPName>InfoCamere ScpA</toop:DPName>
+        <toop:DPAdministrativeUnit>unknown</toop:DPAdministrativeUnit>
+        <toop:DPLegalAddress>
+            <toop:StreetName>Via G. B. Morgagni</toop:StreetName>
+            <toop:StreetNumber>13</toop:StreetNumber>
+            <toop:City>Roma</toop:City>
+            <toop:PostCode>00161</toop:PostCode>
+            <toop:Country>Italy</toop:Country>
+            <toop:CountryCode>IT</toop:CountryCode>
+        </toop:DPLegalAddress>
+    </toop:DataProvider>
+</toop:Response>
