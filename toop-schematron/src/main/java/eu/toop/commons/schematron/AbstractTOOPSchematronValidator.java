@@ -17,7 +17,6 @@ package eu.toop.commons.schematron;
 
 import javax.annotation.Nonnull;
 
-import org.oclc.purl.dsdl.svrl.SchematronOutputType;
 import org.w3c.dom.Document;
 
 import com.helger.commons.annotation.ReturnsMutableCopy;
@@ -26,6 +25,7 @@ import com.helger.commons.io.resource.IReadableResource;
 import com.helger.schematron.ISchematronResource;
 import com.helger.schematron.svrl.AbstractSVRLMessage;
 import com.helger.schematron.svrl.SVRLHelper;
+import com.helger.schematron.svrl.jaxb.SchematronOutputType;
 import com.helger.schematron.xslt.SchematronResourceXSLT;
 import com.helger.xml.serialize.read.DOMReader;
 
