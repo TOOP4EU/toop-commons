@@ -1,21 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
-
-    Copyright (C) 2018-2019 toop.eu
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
--->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xsl:stylesheet xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:saxon="http://saxon.sf.net/" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:toop="urn:eu:toop:ns:dataexchange-1p40" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 <!--Implementers: please note that overriding process-prolog or process-root is 
     the preferred method for meta-stylesheets to use where possible. -->
@@ -1061,12 +1044,13 @@
     <svrl:fired-rule context="toop:Response//toop:DataElementRequest/toop:ConceptRequest" />
     <xsl:variable name="responseValues" select="count(.//toop:DataElementResponseValue)" />
     <xsl:variable name="conceptRequests" select="count(..//toop:ConceptRequest)" />
+    <xsl:variable name="toopErrors" select="count(//toop:Error)" />
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="( ($responseValues=0 or $responseValues=1) and                     (($conceptRequests=1) and(exists(./toop:DataElementResponseValue))                 or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) )                 or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) )))" />
+      <xsl:when test="( (($responseValues=0 or $responseValues=1) and                     (($conceptRequests=1) and(exists(./toop:DataElementResponseValue))                 or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) )                 or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) )))                                or ($toopErrors>0 and $responseValues=0)                      )" />
       <xsl:otherwise>
-        <svrl:failed-assert test="( ($responseValues=0 or $responseValues=1) and (($conceptRequests=1) and(exists(./toop:DataElementResponseValue)) or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) ) or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) )))">
+        <svrl:failed-assert test="( (($responseValues=0 or $responseValues=1) and (($conceptRequests=1) and(exists(./toop:DataElementResponseValue)) or (($conceptRequests=2) and(exists(./toop:ConceptRequest/toop:DataElementResponseValue)) ) or (($conceptRequests=3) and(exists(./toop:ConceptRequest/toop:ConceptRequest/toop:DataElementResponseValue)) ))) or ($toopErrors>0 and $responseValues=0) )">
           <xsl:attribute name="id">wrong_dp_response_value_cardinality</xsl:attribute>
           <xsl:attribute name="flag">ERROR</xsl:attribute>
           <xsl:attribute name="location">
