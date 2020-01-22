@@ -80,7 +80,7 @@ public final class SMMDocumentTypeMapping
    */
   @Nonnull
   @ReturnsMutableObject
-  public ICommonsMap <EPredefinedDocumentTypeIdentifier, String> getAllMappings ()
+  public static ICommonsMap <EPredefinedDocumentTypeIdentifier, String> getAllMappings ()
   {
     return MAP.getClone ();
   }
