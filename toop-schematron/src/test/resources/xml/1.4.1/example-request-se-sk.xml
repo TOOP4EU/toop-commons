@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Request xmlns="urn:eu:toop:ns:dataexchange-1p40">
+    <DocumentUniversalUniqueIdentifier schemeAgencyID="UUID">67859298-4186-4276-b373-a2cf6205abd3</DocumentUniversalUniqueIdentifier>
+    <DocumentIssueDate>2020-01-15+01:00</DocumentIssueDate>
+    <DocumentIssueTime>12:54:41.843+01:00</DocumentIssueTime>
+    <SpecificationIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Request</SpecificationIdentifier>
+    <RoutingInformation>
+        <DocumentTypeIdentifier schemeID="toop-doctypeid-qns">urn:eu:toop:ns:dataexchange-1p40::Request##urn:eu.toop.request.registeredorganization::1.40</DocumentTypeIdentifier>
+        <ProcessIdentifier schemeID="toop-procid-agreement">urn:eu.toop.process.datarequestresponse</ProcessIdentifier>
+        <DataConsumerElectronicAddressIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="toop-se-pilot">9999:bolagsverket1</DataConsumerElectronicAddressIdentifier>
+        <DataConsumerCountryCode>SE</DataConsumerCountryCode>
+        <DataProviderCountryCode>SK</DataProviderCountryCode>
+    </RoutingInformation>
+    <DataConsumer>
+        <DCUniqueIdentifier schemeID="iso6523-actorid-upis" schemeAgencyID="toop-se-pilot">9999:bolagsverket1</DCUniqueIdentifier>
+        <DCName>Bolagsverket</DCName>
+        <DCLegalAddress>
+            <CountryCode>SE</CountryCode>
+        </DCLegalAddress>
+    </DataConsumer>
+    <DataRequestSubject>
+        <DataRequestSubjectTypeCode>LE</DataRequestSubjectTypeCode>
+        <LegalPerson>
+            <LegalPersonUniqueIdentifier levelOfAssurance="None">SK/SE/31365078</LegalPersonUniqueIdentifier>
+            <LegalName levelOfAssurance="None"> </LegalName>
+            <LegalPersonLegalAddress>
+                <CountryCode levelOfAssurance="None">SK</CountryCode>
+            </LegalPersonLegalAddress>
+        </LegalPerson>
+        <NaturalPerson>
+            <PersonIdentifier levelOfAssurance="None">SK/SE/123</PersonIdentifier>
+            <FamilyName levelOfAssurance="None">Alm</FamilyName>
+            <FirstName levelOfAssurance="None">Ulla</FirstName>
+            <BirthDate levelOfAssurance="None">1986-10-06+01:00</BirthDate>
+            <NaturalPersonLegalAddress>
+                <CountryCode levelOfAssurance="None">SK</CountryCode>
+            </NaturalPersonLegalAddress>
+        </NaturalPerson>
+    </DataRequestSubject>
+    <DataElementRequest>
+        <ConceptRequest>
+            <ConceptTypeCode>TC</ConceptTypeCode>
+            <SemanticMappingExecutionIndicator>false</SemanticMappingExecutionIndicator>
+            <ConceptNamespace>http://toop.eu/registered-organization</ConceptNamespace>
+            <ConceptName>companyName</ConceptName>
+        </ConceptRequest>
+    </DataElementRequest>
+    <DataElementRequest>
+        <ConceptRequest>
+            <ConceptTypeCode>TC</ConceptTypeCode>
+            <SemanticMappingExecutionIndicator>false</SemanticMappingExecutionIndicator>
+            <ConceptNamespace>http://toop.eu/registered-organization</ConceptNamespace>
+            <ConceptName>streetAddress</ConceptName>
+        </ConceptRequest>
+    </DataElementRequest>
+    <DataElementRequest>
+        <ConceptRequest>
+            <ConceptTypeCode>TC</ConceptTypeCode>
+            <SemanticMappingExecutionIndicator>false</SemanticMappingExecutionIndicator>
+            <ConceptNamespace>http://toop.eu/registered-organization</ConceptNamespace>
+            <ConceptName>companyType</ConceptName>
+        </ConceptRequest>
+    </DataElementRequest>
+    <DataElementRequest>
+        <ConceptRequest>
+            <ConceptTypeCode>TC</ConceptTypeCode>
+            <SemanticMappingExecutionIndicator>false</SemanticMappingExecutionIndicator>
+            <ConceptNamespace>http://toop.eu/registered-organization</ConceptNamespace>
+            <ConceptName>legalStatus</ConceptName>
+        </ConceptRequest>
+    </DataElementRequest>
+</Request>

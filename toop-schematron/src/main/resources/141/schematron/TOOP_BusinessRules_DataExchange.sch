@@ -99,6 +99,7 @@
             <assert test="matches(toop:SpecificationIdentifier/text(),'urn:eu:toop:ns:dataexchange-1p40::Response')" flag='ERROR' id="mandatory_res_specs_id">
                 Rule: A Toop data response MUST have the specification identifier "urn:eu:toop:ns:dataexchange-1p40::Response".
             </assert>
+            <!-- Added in 1.4.1 -->
             <assert test="exists(toop:RoutingInformation/toop:DataProviderElectronicAddressIdentifier)"  flag='ERROR' id="mandatory_res_dp_electronic_address_id">
                 Rule: A Toop data response MUST contain the DataProviderElectronicAddressIdentifier in the Routing information. 
             </assert>
@@ -189,6 +190,7 @@
     </pattern>
     
     
+    <!-- Added in 1.4.1 -->
     <!--Check for the existence of a DataElementResponseValue only in the deepest level of a ConceptRequest ("TC" or "DP")-->
     <pattern>
         <rule context="toop:Response//toop:DataElementRequest/toop:ConceptRequest">

@@ -66,6 +66,7 @@ public final class TOOPSchematron140ValidatorTest
                                                   "PA3-Maritime/MARITIME-STEP2b-data-response-document-example.xml",
                                                   "data-response-example2.xml",
                                                   "data-response-example3.xml",
+                                                  "example-request-se-sk.xml",
                                                   "ToopRequest_7d5cc223-033e-4eda-9dcc-1174193cdc05.xml",
                                                   "ToopResponse_cf172cf7-09f7-4a33-8a41-34106990152a.xml" })
     {
