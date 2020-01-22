@@ -93,7 +93,7 @@ public final class ReverseDocumentTypeMapping
    */
   @Nonnull
   @ReturnsMutableObject
-  public ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> getAllMappings ()
+  public static ICommonsMap <EPredefinedDocumentTypeIdentifier, EPredefinedDocumentTypeIdentifier> getAllMappings ()
   {
     return MAP.getClone ();
   }
