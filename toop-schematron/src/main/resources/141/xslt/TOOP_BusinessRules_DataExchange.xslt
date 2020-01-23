@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-
-    Copyright (C) 2018-2020 toop.eu
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
--->
 <xsl:stylesheet xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:saxon="http://saxon.sf.net/" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:toop="urn:eu:toop:ns:dataexchange-1p40" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 <!--Implementers: please note that overriding process-prolog or process-root is 
     the preferred method for meta-stylesheets to use where possible. -->
@@ -521,9 +504,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="( (exists(//toop:Request)) or (exists(//toop:Response)) )" />
+      <xsl:when test="( (exists(./toop:Request)) or (exists(./toop:Response)) )" />
       <xsl:otherwise>
-        <svrl:failed-assert test="( (exists(//toop:Request)) or (exists(//toop:Response)) )">
+        <svrl:failed-assert test="( (exists(./toop:Request)) or (exists(./toop:Response)) )">
           <xsl:attribute name="id">mandatory_request_or_response</xsl:attribute>
           <xsl:attribute name="flag">ERROR</xsl:attribute>
           <xsl:attribute name="location">
@@ -551,9 +534,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="( (exists(//toop:LegalPerson)) or (exists(//toop:NaturalPerson)) )" />
+      <xsl:when test="( (exists(./toop:LegalPerson)) or (exists(./toop:NaturalPerson)) )" />
       <xsl:otherwise>
-        <svrl:failed-assert test="( (exists(//toop:LegalPerson)) or (exists(//toop:NaturalPerson)) )">
+        <svrl:failed-assert test="( (exists(./toop:LegalPerson)) or (exists(./toop:NaturalPerson)) )">
           <xsl:attribute name="id">mandatory_legal_or_natural_person</xsl:attribute>
           <xsl:attribute name="flag">ERROR</xsl:attribute>
           <xsl:attribute name="location">
@@ -641,8 +624,8 @@
     </xsl:if>
 
 		<!--REPORT -->
-<xsl:if test="exists(//toop:DataProvider)">
-      <svrl:successful-report test="exists(//toop:DataProvider)">
+<xsl:if test="exists(./toop:DataProvider)">
+      <svrl:successful-report test="exists(./toop:DataProvider)">
         <xsl:attribute name="id">misplaced_data_provider</xsl:attribute>
         <xsl:attribute name="flag">ERROR</xsl:attribute>
         <xsl:attribute name="location">
@@ -1057,8 +1040,8 @@
 
 
 	<!--RULE -->
-<xsl:template match="toop:Response//toop:DataElementRequest/toop:ConceptRequest" mode="M17" priority="1000">
-    <svrl:fired-rule context="toop:Response//toop:DataElementRequest/toop:ConceptRequest" />
+<xsl:template match="toop:Response/toop:DataElementRequest/toop:ConceptRequest" mode="M17" priority="1000">
+    <svrl:fired-rule context="toop:Response/toop:DataElementRequest/toop:ConceptRequest" />
     <xsl:variable name="responseValues" select="count(.//toop:DataElementResponseValue)" />
     <xsl:variable name="conceptRequests" select="count(..//toop:ConceptRequest)" />
     <xsl:variable name="toopErrors" select="count(//toop:Error)" />
@@ -1158,8 +1141,8 @@
 
 
 	<!--RULE -->
-<xsl:template match="toop:DataElementResponseValue//toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" mode="M20" priority="1000">
-    <svrl:fired-rule context="toop:DataElementResponseValue//toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" />
+<xsl:template match="toop:DataElementResponseValue/toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" mode="M20" priority="1000">
+    <svrl:fired-rule context="toop:DataElementResponseValue/toop:ResponseIndicator | toop:ErrorIndicator | toop:CopyIndicator | toop:SemanticMappingExecutionIndicator | toop:AlternativeResponseIndicator" />
 
 		<!--ASSERT -->
 <xsl:choose>
@@ -1190,8 +1173,8 @@
 
 
 	<!--RULE -->
-<xsl:template match="toop:DataElementResponseValue//toop:ResponseAmount" mode="M21" priority="1000">
-    <svrl:fired-rule context="toop:DataElementResponseValue//toop:ResponseAmount" />
+<xsl:template match="toop:DataElementResponseValue/toop:ResponseAmount" mode="M21" priority="1000">
+    <svrl:fired-rule context="toop:DataElementResponseValue/toop:ResponseAmount" />
 
 		<!--ASSERT -->
 <xsl:choose>
@@ -1222,8 +1205,8 @@
 
 
 	<!--RULE -->
-<xsl:template match="toop:DataElementResponseValue//toop:ResponseNumeric" mode="M22" priority="1000">
-    <svrl:fired-rule context="toop:DataElementResponseValue//toop:ResponseNumeric" />
+<xsl:template match="toop:DataElementResponseValue/toop:ResponseNumeric" mode="M22" priority="1000">
+    <svrl:fired-rule context="toop:DataElementResponseValue/toop:ResponseNumeric" />
 
 		<!--REPORT -->
 <xsl:if test="matches(normalize-space(text()),'%')">
@@ -1248,11 +1231,11 @@
   </xsl:template>
 
 <!--PATTERN -->
-<xsl:variable name="dataproviderids" select="//toop:DataProvider//toop:DPIdentifier" />
+<xsl:variable name="dataproviderids" select="//toop:DataProvider/toop:DPIdentifier" />
 
 	<!--RULE check_matching_dataprovider_id-->
-<xsl:template match="toop:Error//toop:DataProviderIdentifier" mode="M23" priority="1000">
-    <svrl:fired-rule context="toop:Error//toop:DataProviderIdentifier" id="check_matching_dataprovider_id" />
+<xsl:template match="toop:Error/toop:DataProviderIdentifier" mode="M23" priority="1000">
+    <svrl:fired-rule context="toop:Error/toop:DataProviderIdentifier" id="check_matching_dataprovider_id" />
 
 		<!--ASSERT -->
 <xsl:choose>
@@ -1337,7 +1320,7 @@
 	<!--RULE -->
 <xsl:template match="toop:Response" mode="M26" priority="1000">
     <svrl:fired-rule context="toop:Response" />
-    <xsl:variable name="dataProviderCount" select="count(//toop:DataProvider)" />
+    <xsl:variable name="dataProviderCount" select="count(./toop:DataProvider)" />
     <xsl:variable name="errorCount" select="count(//toop:Error[toop:Severity='FAILURE'])" />
 
 		<!--REPORT -->
@@ -1383,9 +1366,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$doctypes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$doctypes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$doctypes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$doctypes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1406,9 +1389,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$doctypes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$doctypes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$doctypes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$doctypes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1427,14 +1410,14 @@
 <xsl:variable name="countrycodes" select="document('..\codelists\std-gc\CountryIdentificationCode-2.1.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_country_countrycode-->
-<xsl:template match="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" mode="M28" priority="1002">
-    <svrl:fired-rule context="toop:DCLegalAddress//toop:CountryCode | toop:DPLegalAddress//toop:CountryCode | toop:RoutingInformation//toop:DataConsumerCountryCode | toop:RoutingInformation//toop:DataProviderCountryCode" id="gc_check_country_countrycode" />
+<xsl:template match="toop:DCLegalAddress/toop:CountryCode | toop:DPLegalAddress/toop:CountryCode | toop:RoutingInformation/toop:DataConsumerCountryCode | toop:RoutingInformation/toop:DataProviderCountryCode" mode="M28" priority="1002">
+    <svrl:fired-rule context="toop:DCLegalAddress/toop:CountryCode | toop:DPLegalAddress/toop:CountryCode | toop:RoutingInformation/toop:DataConsumerCountryCode | toop:RoutingInformation/toop:DataProviderCountryCode" id="gc_check_country_countrycode" />
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$countrycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$countrycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$countrycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$countrycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1448,14 +1431,14 @@
   </xsl:template>
 
 	<!--RULE gc_warn_country_countrycode-->
-<xsl:template match="toop:NaturalPersonLegalAddress//toop:CountryCode | toop:LegalPersonLegalAddress//toop:CountryCode" mode="M28" priority="1001">
-    <svrl:fired-rule context="toop:NaturalPersonLegalAddress//toop:CountryCode | toop:LegalPersonLegalAddress//toop:CountryCode" id="gc_warn_country_countrycode" />
+<xsl:template match="toop:NaturalPersonLegalAddress/toop:CountryCode | toop:LegalPersonLegalAddress/toop:CountryCode" mode="M28" priority="1001">
+    <svrl:fired-rule context="toop:NaturalPersonLegalAddress/toop:CountryCode | toop:LegalPersonLegalAddress/toop:CountryCode" id="gc_warn_country_countrycode" />
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$countrycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$countrycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$countrycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$countrycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1474,9 +1457,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$countrycodes//SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[1])]" />
+      <xsl:when test="$countrycodes/SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[1])]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$countrycodes//SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[1])]">
+        <svrl:failed-assert test="$countrycodes/SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[1])]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1489,9 +1472,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$countrycodes//SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[2])]" />
+      <xsl:when test="$countrycodes/SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[2])]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$countrycodes//SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[2])]">
+        <svrl:failed-assert test="$countrycodes/SimpleValue[normalize-space(.) = (tokenize(normalize-space(current()/.),'/')[2])]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1517,9 +1500,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$subjecttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$subjecttypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$subjecttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$subjecttypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1543,9 +1526,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$gendertypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$gendertypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$gendertypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$gendertypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1569,9 +1552,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$concepttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$concepttypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$concepttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$concepttypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1596,9 +1579,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$currencytypecodes//SimpleValue[normalize-space(.) = $varcurrencyID]" />
+      <xsl:when test="$currencytypecodes/SimpleValue[normalize-space(.) = $varcurrencyID]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$currencytypecodes//SimpleValue[normalize-space(.) = $varcurrencyID]">
+        <svrl:failed-assert test="$currencytypecodes/SimpleValue[normalize-space(.) = $varcurrencyID]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1624,9 +1607,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$industrialtypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$industrialtypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$industrialtypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$industrialtypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1650,9 +1633,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$dataelementresponseerrorcodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$dataelementresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$dataelementresponseerrorcodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1676,9 +1659,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$documentresponseerrorcodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$documentresponseerrorcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$documentresponseerrorcodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1702,9 +1685,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$docrequesttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$docrequesttypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$docrequesttypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$docrequesttypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1728,9 +1711,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$mimetypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$mimetypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$mimetypecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$mimetypecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1754,9 +1737,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$processidcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$processidcodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$processidcodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$processidcodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1781,9 +1764,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$agencyids//SimpleValue[normalize-space(.)] = @schemeAgencyID" />
+      <xsl:when test="$agencyids/SimpleValue[normalize-space(.)] = @schemeAgencyID" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$agencyids//SimpleValue[normalize-space(.)] = @schemeAgencyID">
+        <svrl:failed-assert test="$agencyids/SimpleValue[normalize-space(.)] = @schemeAgencyID">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1809,9 +1792,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$errororigincodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$errororigincodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$errororigincodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$errororigincodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1835,9 +1818,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$errorcategorycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$errorcategorycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$errorcategorycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$errorcategorycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1861,9 +1844,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$errorseveritycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$errorseveritycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$errorseveritycodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$errorseveritycodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1887,9 +1870,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$errorcodecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
+      <xsl:when test="$errorcodecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$errorcodecodes//SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
+        <svrl:failed-assert test="$errorcodecodes/SimpleValue[normalize-space(.) = normalize-space(current()/.)]">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
@@ -1908,8 +1891,8 @@
 <xsl:variable name="loacodes" select="document('..\codelists\gc\LevelsOfAssuranceCode-CodeList.gc')//Value[@ColumnRef='code']" />
 
 	<!--RULE gc_check_loi-->
-<xsl:template match="toop:LegalPerson//toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson//toop:LegalName                         |toop:LegalPerson//toop:VATRegistrationNumber                        |toop:LegalPerson//toop:TaxReferenceNumber                       |toop:LegalPerson//toop:BusinessCodes                        |toop:LegalPerson//toop:LegalEntityIdentifier                        |toop:LegalPerson//toop:EORIIdentifier                        |toop:LegalPerson//toop:SEEDIdentifier                        |toop:LegalPerson//toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress//toop:AddressLine                        |toop:LegalPersonLegalAddress//toop:StreetName                        |toop:LegalPersonLegalAddress//toop:StreetNumber                       |toop:LegalPersonLegalAddress//toop:City                        |toop:LegalPersonLegalAddress//toop:PostCode                        |toop:LegalPersonLegalAddress//toop:Country                        |toop:NaturalPerson//toop:PersonIdentifier                        |toop:NaturalPerson//toop:FamilyName                       |toop:NaturalPerson//toop:FirstName                       |toop:NaturalPerson//toop:BirthDate                       |toop:NaturalPerson//toop:BirthFamilyName                       |toop:NaturalPerson//toop:BirthPlace                       |toop:NaturalPerson//toop:GenderCode                       |toop:NaturalPersonLegalAddress//toop:AddressLine                       |toop:NaturalPersonLegalAddress//toop:StreetName                       |toop:NaturalPersonLegalAddress//toop:StreetNumber                       |toop:NaturalPersonLegalAddress//toop:City                       |toop:NaturalPersonLegalAddress//toop:PostCode                       |toop:NaturalPersonLegalAddress//toop:Country                       " mode="M44" priority="1000">
-    <svrl:fired-rule context="toop:LegalPerson//toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson//toop:LegalName                         |toop:LegalPerson//toop:VATRegistrationNumber                        |toop:LegalPerson//toop:TaxReferenceNumber                       |toop:LegalPerson//toop:BusinessCodes                        |toop:LegalPerson//toop:LegalEntityIdentifier                        |toop:LegalPerson//toop:EORIIdentifier                        |toop:LegalPerson//toop:SEEDIdentifier                        |toop:LegalPerson//toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress//toop:AddressLine                        |toop:LegalPersonLegalAddress//toop:StreetName                        |toop:LegalPersonLegalAddress//toop:StreetNumber                       |toop:LegalPersonLegalAddress//toop:City                        |toop:LegalPersonLegalAddress//toop:PostCode                        |toop:LegalPersonLegalAddress//toop:Country                        |toop:NaturalPerson//toop:PersonIdentifier                        |toop:NaturalPerson//toop:FamilyName                       |toop:NaturalPerson//toop:FirstName                       |toop:NaturalPerson//toop:BirthDate                       |toop:NaturalPerson//toop:BirthFamilyName                       |toop:NaturalPerson//toop:BirthPlace                       |toop:NaturalPerson//toop:GenderCode                       |toop:NaturalPersonLegalAddress//toop:AddressLine                       |toop:NaturalPersonLegalAddress//toop:StreetName                       |toop:NaturalPersonLegalAddress//toop:StreetNumber                       |toop:NaturalPersonLegalAddress//toop:City                       |toop:NaturalPersonLegalAddress//toop:PostCode                       |toop:NaturalPersonLegalAddress//toop:Country                       " id="gc_check_loi" />
+<xsl:template match="toop:LegalPerson/toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson/toop:LegalName                         |toop:LegalPerson/toop:VATRegistrationNumber                        |toop:LegalPerson/toop:TaxReferenceNumber                       |toop:LegalPerson/toop:BusinessCodes                        |toop:LegalPerson/toop:LegalEntityIdentifier                        |toop:LegalPerson/toop:EORIIdentifier                        |toop:LegalPerson/toop:SEEDIdentifier                        |toop:LegalPerson/toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress/toop:AddressLine                        |toop:LegalPersonLegalAddress/toop:StreetName                        |toop:LegalPersonLegalAddress/toop:StreetNumber                       |toop:LegalPersonLegalAddress/toop:City                        |toop:LegalPersonLegalAddress/toop:PostCode                        |toop:LegalPersonLegalAddress/toop:Country                        |toop:NaturalPerson/toop:PersonIdentifier                        |toop:NaturalPerson/toop:FamilyName                       |toop:NaturalPerson/toop:FirstName                       |toop:NaturalPerson/toop:BirthDate                       |toop:NaturalPerson/toop:BirthFamilyName                       |toop:NaturalPerson/toop:BirthPlace                       |toop:NaturalPerson/toop:GenderCode                       |toop:NaturalPersonLegalAddress/toop:AddressLine                       |toop:NaturalPersonLegalAddress/toop:StreetName                       |toop:NaturalPersonLegalAddress/toop:StreetNumber                       |toop:NaturalPersonLegalAddress/toop:City                       |toop:NaturalPersonLegalAddress/toop:PostCode                       |toop:NaturalPersonLegalAddress/toop:Country                       " mode="M44" priority="1000">
+    <svrl:fired-rule context="toop:LegalPerson/toop:LegalPersonUniqueIdentifier                        |toop:LegalPerson/toop:LegalName                         |toop:LegalPerson/toop:VATRegistrationNumber                        |toop:LegalPerson/toop:TaxReferenceNumber                       |toop:LegalPerson/toop:BusinessCodes                        |toop:LegalPerson/toop:LegalEntityIdentifier                        |toop:LegalPerson/toop:EORIIdentifier                        |toop:LegalPerson/toop:SEEDIdentifier                        |toop:LegalPerson/toop:StandardIndustrialClassification                        |toop:LegalPersonLegalAddress/toop:AddressLine                        |toop:LegalPersonLegalAddress/toop:StreetName                        |toop:LegalPersonLegalAddress/toop:StreetNumber                       |toop:LegalPersonLegalAddress/toop:City                        |toop:LegalPersonLegalAddress/toop:PostCode                        |toop:LegalPersonLegalAddress/toop:Country                        |toop:NaturalPerson/toop:PersonIdentifier                        |toop:NaturalPerson/toop:FamilyName                       |toop:NaturalPerson/toop:FirstName                       |toop:NaturalPerson/toop:BirthDate                       |toop:NaturalPerson/toop:BirthFamilyName                       |toop:NaturalPerson/toop:BirthPlace                       |toop:NaturalPerson/toop:GenderCode                       |toop:NaturalPersonLegalAddress/toop:AddressLine                       |toop:NaturalPersonLegalAddress/toop:StreetName                       |toop:NaturalPersonLegalAddress/toop:StreetNumber                       |toop:NaturalPersonLegalAddress/toop:City                       |toop:NaturalPersonLegalAddress/toop:PostCode                       |toop:NaturalPersonLegalAddress/toop:Country                       " id="gc_check_loi" />
 
 		<!--ASSERT -->
 <xsl:choose>
@@ -1932,9 +1915,9 @@
 
 		<!--ASSERT -->
 <xsl:choose>
-      <xsl:when test="$loacodes//SimpleValue[normalize-space(.)] = @levelOfAssurance" />
+      <xsl:when test="$loacodes/SimpleValue[normalize-space(.)] = @levelOfAssurance" />
       <xsl:otherwise>
-        <svrl:failed-assert test="$loacodes//SimpleValue[normalize-space(.)] = @levelOfAssurance">
+        <svrl:failed-assert test="$loacodes/SimpleValue[normalize-space(.)] = @levelOfAssurance">
           <xsl:attribute name="location">
             <xsl:apply-templates mode="schematron-select-full-path" select="." />
           </xsl:attribute>
