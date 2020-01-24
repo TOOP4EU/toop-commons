@@ -19,11 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.helger.commons.annotation.Nonempty;
-import com.helger.commons.annotation.ReturnsMutableCopy;
-import com.helger.commons.id.IHasID;
 import com.helger.commons.lang.EnumHelper;
-
-import eu.toop.commons.concept.ConceptValue;
 
 /**
  * Predefined TOOP concepts for "registered organization". Source
@@ -33,7 +29,7 @@ import eu.toop.commons.concept.ConceptValue;
  * @author Philip Helger
  * @since 0.10.0
  */
-public enum EToopConcept implements IHasID <String>
+public enum EToopConcept implements IToopConcept
 {
   ACTIVITY_DESCRIPTION ("activityDescription"),
   BIRTH_DATE ("birthDate"),
@@ -76,13 +72,6 @@ public enum EToopConcept implements IHasID <String>
   public String getID ()
   {
     return m_sID;
-  }
-
-  @Nonnull
-  @ReturnsMutableCopy
-  public ConceptValue getAsConceptValue ()
-  {
-    return new ConceptValue (SMMDocumentTypeMapping.SMM_DOMAIN_REGISTERED_ORGANIZATION, m_sID);
   }
 
   @Nullable
