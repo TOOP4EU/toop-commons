@@ -32,40 +32,42 @@ import com.helger.commons.lang.EnumHelper;
  */
 public enum EToopConcept_0_10_7 implements IToopConcept
 {
-  ACTIVITY_DESCRIPTION ("activityDescription"),
-  BIRTH_DATE ("birthDate"),
-  CAPTIAL_TYPE ("capitalType"),
-  COMPANY_CODE ("CompanyCode"),
-  COMPANY_NAME ("companyName"),
-  COMPANY_TYPE ("companyType"),
-  COUNTRY_NAME ("countryName"),
-  EMAIL_ADDRESS ("EmailAddress"),
-  FAMILY_NAME ("familyName"),
-  FAX_NUMBER ("FaxNumber"),
-  FOUNDATION_DATE ("foundationDate"),
-  GIVEN_NAME ("givenName"),
-  HAS_LEGAL_REPRESENTATIVE ("hasLegalRepresentative"),
-  LEGAL_STATUS ("legalStatus"),
-  LEGAL_STATUS_EFFECTIVE_DATE ("legalStatusEffectiveDate"),
-  LOCALITY ("locality"),
-  NACE_CODE ("naceCode"),
-  PERSON ("Person"),
-  POSTAL_CODE ("postalCode"),
-  REGION ("region"),
-  REGISTERED_ORGANIZATION ("RegisteredOrganization"),
-  REGISTRATION_AUTH ("RegistrationAuthority"),
-  REGISTRATION_DATE ("registrationDate"),
-  REGISTRATION_NUMBER ("RegistrationNumber"),
-  SOCIAL_SEC_NUMBER ("SSNumber"),
-  STREET_ADDRESS ("streetAddress"),
-  TELEPHONE_NUMBER ("TelephoneNumber"),
-  VAT_NUMBER ("VATNumber");
+  ACTIVITY_DESCRIPTION ("activityDescription", EToopConcept.ACTIVITY_DESCRIPTION),
+  BIRTH_DATE ("birthDate", EToopConcept.BIRTH_DATE),
+  CAPTIAL_TYPE ("capitalType", EToopConcept.CAPTIAL_TYPE),
+  COMPANY_CODE ("CompanyCode", EToopConcept.COMPANY_CODE),
+  COMPANY_NAME ("companyName", EToopConcept.COMPANY_NAME),
+  COMPANY_TYPE ("companyType", EToopConcept.COMPANY_TYPE),
+  COUNTRY_NAME ("countryName", EToopConcept.COUNTRY_NAME),
+  EMAIL_ADDRESS ("EmailAddress", EToopConcept.EMAIL_ADDRESS),
+  FAMILY_NAME ("familyName", EToopConcept.FAMILY_NAME),
+  FAX_NUMBER ("FaxNumber", EToopConcept.FAX_NUMBER),
+  FOUNDATION_DATE ("foundationDate", EToopConcept.FOUNDATION_DATE),
+  GIVEN_NAME ("givenName", EToopConcept.GIVEN_NAME),
+  HAS_LEGAL_REPRESENTATIVE ("hasLegalRepresentative", EToopConcept.HAS_LEGAL_REPRESENTATIVE),
+  LEGAL_STATUS ("legalStatus", EToopConcept.LEGAL_STATUS),
+  LEGAL_STATUS_EFFECTIVE_DATE ("legalStatusEffectiveDate", EToopConcept.LEGAL_STATUS_EFFECTIVE_DATE),
+  LOCALITY ("locality", EToopConcept.LOCALITY),
+  NACE_CODE ("naceCode", EToopConcept.NACE_CODE),
+  PERSON ("Person", EToopConcept.PERSON),
+  POSTAL_CODE ("postalCode", EToopConcept.POSTAL_CODE),
+  REGION ("region", EToopConcept.REGION),
+  REGISTERED_ORGANIZATION ("RegisteredOrganization", EToopConcept.REGISTERED_ORGANIZATION),
+  REGISTRATION_AUTH ("RegistrationAuthority", EToopConcept.REGISTRATION_AUTH),
+  REGISTRATION_DATE ("registrationDate", EToopConcept.REGISTRATION_DATE),
+  REGISTRATION_NUMBER ("RegistrationNumber", EToopConcept.REGISTRATION_NUMBER),
+  SOCIAL_SEC_NUMBER ("SSNumber", EToopConcept.SOCIAL_SEC_NUMBER),
+  STREET_ADDRESS ("streetAddress", EToopConcept.STREET_ADDRESS),
+  TELEPHONE_NUMBER ("TelephoneNumber", EToopConcept.TELEPHONE_NUMBER),
+  VAT_NUMBER ("VATNumber", EToopConcept.VAT_NUMBER);
 
   private final String m_sID;
+  private final EToopConcept m_eNewConcept;
 
-  private EToopConcept_0_10_7 (@Nonnull @Nonempty final String sID)
+  private EToopConcept_0_10_7 (@Nonnull @Nonempty final String sID, @Nonnull final EToopConcept eNewConcept)
   {
     m_sID = sID;
+    m_eNewConcept = eNewConcept;
   }
 
   @Nonnull
@@ -73,6 +75,12 @@ public enum EToopConcept_0_10_7 implements IToopConcept
   public String getID ()
   {
     return m_sID;
+  }
+
+  @Nonnull
+  public EToopConcept getNewConcept ()
+  {
+    return m_eNewConcept;
   }
 
   @Nullable
