@@ -23,40 +23,42 @@ import com.helger.commons.lang.EnumHelper;
 
 /**
  * Predefined TOOP concepts for "registered organization". Source
- * http://wiki.ds.unipi.gr/display/TOOP/National+data+models - all properties
- * (P)
+ * http://wiki.ds.unipi.gr/display/TOOPPILOTS/Datasets <br>
+ * Heavily changed from 0.10.7 to 0.10.8
  *
  * @author Philip Helger
  * @since 0.10.0
+ * @since 0.10.8
+ * @see EToopConcept_0_10_7
  */
 public enum EToopConcept implements IToopConcept
 {
-  ACTIVITY_DESCRIPTION ("activityDescription"),
-  BIRTH_DATE ("birthDate"),
-  CAPTIAL_TYPE ("capitalType"),
+  ACTIVITY_DESCRIPTION ("ActivityDescription"),
+  BIRTH_DATE ("LegalRepresentativeBirthDate"),
+  CAPTIAL_TYPE ("CapitalType"),
   COMPANY_CODE ("CompanyCode"),
-  COMPANY_NAME ("companyName"),
-  COMPANY_TYPE ("companyType"),
-  COUNTRY_NAME ("countryName"),
+  COMPANY_NAME ("CompanyName"),
+  COMPANY_TYPE ("CompanyType"),
+  COUNTRY_NAME ("CountryName"),
   EMAIL_ADDRESS ("EmailAddress"),
-  FAMILY_NAME ("familyName"),
+  FAMILY_NAME ("LegalRepresentativeFamilyName"),
   FAX_NUMBER ("FaxNumber"),
-  FOUNDATION_DATE ("foundationDate"),
-  GIVEN_NAME ("givenName"),
-  HAS_LEGAL_REPRESENTATIVE ("hasLegalRepresentative"),
-  LEGAL_STATUS ("legalStatus"),
-  LEGAL_STATUS_EFFECTIVE_DATE ("legalStatusEffectiveDate"),
-  LOCALITY ("locality"),
-  NACE_CODE ("naceCode"),
+  FOUNDATION_DATE ("FoundationDate"),
+  GIVEN_NAME ("LegalRepresentativeGivenName"),
+  HAS_LEGAL_REPRESENTATIVE ("HasLegalRepresentative"),
+  LEGAL_STATUS ("LegalStatus"),
+  LEGAL_STATUS_EFFECTIVE_DATE ("LegalStatusEffectiveDate"),
+  LOCALITY ("Locality"),
+  NACE_CODE ("NaceCode"),
   PERSON ("Person"),
-  POSTAL_CODE ("postalCode"),
-  REGION ("region"),
+  POSTAL_CODE ("PostalCode"),
+  REGION ("Region"),
   REGISTERED_ORGANIZATION ("RegisteredOrganization"),
   REGISTRATION_AUTH ("RegistrationAuthority"),
-  REGISTRATION_DATE ("registrationDate"),
+  REGISTRATION_DATE ("RegistrationDate"),
   REGISTRATION_NUMBER ("RegistrationNumber"),
   SOCIAL_SEC_NUMBER ("SSNumber"),
-  STREET_ADDRESS ("streetAddress"),
+  STREET_ADDRESS ("StreetAddress"),
   TELEPHONE_NUMBER ("TelephoneNumber"),
   VAT_NUMBER ("VATNumber");
 

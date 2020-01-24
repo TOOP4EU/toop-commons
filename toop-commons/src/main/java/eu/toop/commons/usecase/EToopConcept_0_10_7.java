@@ -28,6 +28,7 @@ import com.helger.commons.lang.EnumHelper;
  *
  * @author Philip Helger
  * @since 0.10.0
+ * @see EToopConcept for the most update to date concept names
  */
 public enum EToopConcept_0_10_7 implements IToopConcept
 {
