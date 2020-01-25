@@ -17,6 +17,7 @@ package eu.toop.commons.usecase;
 
 import javax.annotation.Nonnull;
 
+import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.id.IHasID;
 
@@ -31,9 +32,13 @@ import eu.toop.commons.concept.ConceptValue;
 public interface IToopConcept extends IHasID <String>
 {
   @Nonnull
+  @Nonempty
+  String getConceptNamespaceURI ();
+
+  @Nonnull
   @ReturnsMutableCopy
   default ConceptValue getAsConceptValue ()
   {
-    return new ConceptValue (SMMDocumentTypeMapping.SMM_DOMAIN_REGISTERED_ORGANIZATION, getID ());
+    return new ConceptValue (getConceptNamespaceURI (), getID ());
   }
 }

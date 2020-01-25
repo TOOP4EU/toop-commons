@@ -76,6 +76,13 @@ public enum EToopConcept implements IToopConcept
     return m_sID;
   }
 
+  @Nonnull
+  @Nonempty
+  public String getConceptNamespaceURI ()
+  {
+    return SMMDocumentTypeMapping.SMM_DOMAIN_REGISTERED_ORGANIZATION;
+  }
+
   @Nullable
   public static EToopConcept getFromIDOrNull (@Nullable final String sID)
   {
