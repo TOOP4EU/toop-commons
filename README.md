@@ -2,7 +2,7 @@
 
 Shared common TOOP components, codelists etc.
 
-Latest release: **0.10.7** (2020-01-23) (containing data model v1.4.1-2)
+Latest release: **0.10.8** (2020-01-26) (containing data model v1.4.1-2)
 
 # Development environment
 
