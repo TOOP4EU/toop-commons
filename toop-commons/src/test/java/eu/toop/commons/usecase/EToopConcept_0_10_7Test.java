@@ -20,6 +20,8 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.helger.commons.regex.RegExHelper;
 import com.helger.commons.string.StringHelper;
@@ -31,6 +33,8 @@ import com.helger.commons.string.StringHelper;
  */
 public final class EToopConcept_0_10_7Test
 {
+  private static final Logger LOGGER = LoggerFactory.getLogger (EToopConcept_0_10_7Test.class);
+
   @Test
   public void testBasic ()
   {
@@ -76,5 +80,15 @@ public final class EToopConcept_0_10_7Test
     for (final String s : RegExHelper.getSplitToArray (sOldNames, "\r\n"))
       if (StringHelper.hasText (s))
         assertNotNull (EToopConcept_0_10_7.getFromIDOrNull (s));
+  }
+
+  @Test
+  public void testCreateMapping ()
+  {
+    final StringBuilder aSB = new StringBuilder ();
+    for (final EToopConcept_0_10_7 e : EToopConcept_0_10_7.values ())
+      if (!e.getID ().equals (e.getNewConcept ().getID ()))
+        aSB.append (e.getID ()).append (" -> ").append (e.getNewConcept ().getID ()).append ('\n');
+    LOGGER.info (aSB.toString ());
   }
 }
