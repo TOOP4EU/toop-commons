@@ -40,8 +40,8 @@ public enum EToopDataElementResponseErrorCode implements IToopErrorCode
   DP_ELE_004 ("DP_ELE_004", "Unavailable"),
   /** Internal processing error */
   DP_ELE_005 ("DP_ELE_005", "Internal processing error"),
-  /** Unsufficient input */
-  DP_ELE_006 ("DP_ELE_006", "Unsufficient input");
+  /** Insufficient input */
+  DP_ELE_006 ("DP_ELE_006", "Insufficient input");
 
   private final String m_sID;
   private final String m_sDisplayName;
