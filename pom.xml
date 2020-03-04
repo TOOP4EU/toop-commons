@@ -129,6 +129,7 @@
     <module>toop-commons</module>
     <module>toop-schematron</module>
     <module>toop-kafka-client</module>
+    <module>toop-codelist-tools</module>
   </modules>
   
   <build>
