@@ -4,6 +4,9 @@ Shared common TOOP components, codelists etc.
 
 Latest release: **0.10.8** (2020-01-26) (containing data model v1.4.1-2)
 
+
+# This project is superseded by [TOOP Connector NG](https://github.com/TOOP4EU/toop-connector-ng)
+
 # Development environment
 
 * Java 1.8 latest
